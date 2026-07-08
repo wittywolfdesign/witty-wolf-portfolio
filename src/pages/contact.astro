@@ -1,0 +1,186 @@
+---
+import Base from "../layouts/Base.astro";
+
+const channels = [
+  { label: "Email", value: "howl@wittywolf.design", href: "mailto:howl@wittywolf.design" },
+  { label: "WhatsApp / NL", value: "+31 653 215 989", href: "https://wa.me/31653215989" },
+  { label: "Phone / ES", value: "+34 624 225 011", href: "tel:+34624225011" },
+  { label: "LinkedIn", value: "in/marcorramos", href: "https://www.linkedin.com/in/marcorramos" },
+];
+---
+
+<Base
+  title="Contact · Witty Wolf Design"
+  description="Ready to connect? Reach out to Marco Ramos for collaborations, freelance work or to talk through your next design idea."
+>
+  <section class="section contact">
+    <div class="wrap contact__grid">
+      <div class="contact__intro">
+        <h1 class="contact__title" data-reveal>Let&rsquo;s connect.</h1>
+        <p class="lead muted" data-reveal>
+          A project, a collaboration or just an idea worth talking through.
+          The inbox is open, and I answer.
+        </p>
+
+        <div class="channels" data-reveal-group>
+          {channels.map((c) => (
+            <a class="channel" href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noopener" data-reveal>
+              <span class="channel__label muted">{c.label}</span>
+              <span class="channel__value ul">{c.value}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Form: connect an action URL (Web3Forms / Formspree) to go live -->
+      <form
+        class="form"
+        data-reveal
+        action="https://formspree.io/f/your-form-id"
+        method="POST"
+      >
+        <div class="field">
+          <label for="name">Your name</label>
+          <input id="name" name="name" type="text" autocomplete="name" placeholder="First name is fine" required />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="Where my reply should land" required />
+        </div>
+        <div class="field">
+          <label for="message">What&rsquo;s on your mind?</label>
+          <textarea id="message" name="message" rows="5" placeholder="A project, a question, a half-formed idea. Rough is fine." required></textarea>
+        </div>
+        <button type="submit" class="btn form__submit">
+          Send message <span class="arrow" aria-hidden="true">&rarr;</span>
+        </button>
+        <p class="form__note muted">
+          Prefer email? <a class="ul" href="mailto:howl@wittywolf.design">howl@wittywolf.design</a>
+        </p>
+      </form>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contact__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+  .contact__title { margin: 1rem 0 1.25rem; }
+  .channels { display: grid; gap: 0; margin-top: 2.5rem; }
+  .channel {
+    display: flex; justify-content: space-between; gap: 1rem; align-items: baseline;
+    padding-block: 1.1rem; border-top: 1px solid var(--line);
+  }
+  .channel:last-child { border-bottom: 1px solid var(--line); }
+  .channel__label { font-size: var(--step--1); text-transform: uppercase; letter-spacing: 0.06em; }
+  .channel__value { font-family: var(--font-mono); font-weight: 600; font-size: var(--step-1); }
+
+  .form { display: grid; gap: 1.25rem; padding: clamp(1.5rem, 4vw, 2.5rem); background: var(--bg-elevated); border: 1px solid var(--line); border-radius: var(--radius-lg); }
+  .field { display: grid; gap: 0.5rem; }
+  .field label { font-size: var(--step--1); font-weight: 600; letter-spacing: 0.02em; }
+  .field input, .field textarea {
+    font: inherit; font-size: var(--step-0); color: var(--ink);
+    padding: 0.85rem 1rem; border: 1px solid var(--grey-200); border-radius: 12px;
+    background: var(--paper); transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    resize: vertical;
+  }
+  .field input::placeholder, .field textarea::placeholder { color: var(--grey-400); }
+  .field input:focus, .field textarea:focus {
+    outline: none; border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+  /* webkit autofill paints white by default; repaint with the theme */
+  .field input:-webkit-autofill,
+  .field input:-webkit-autofill:hover,
+  .field input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px var(--paper) inset;
+    -webkit-text-fill-color: var(--ink);
+    caret-color: var(--ink);
+    transition: background-color 999999s;
+  }
+  .form__submit { margin-top: 0.5rem; justify-self: start; }
+  .channel:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .form__note { font-size: var(--step--1); }
+  /* terminal caret for the submit feedback */
+  .form__submit .caret {
+    display: inline-block; width: 0.55em; height: 1.05em;
+    background: currentColor;
+    vertical-align: text-bottom;
+    animation: submit-blink 0.6s steps(2, start) infinite;
+  }
+  @keyframes submit-blink { 50% { opacity: 0; } }
+  @media (max-width: 820px) { .contact__grid { grid-template-columns: 1fr; } }
+</style>
+
+<script>
+  import { rand } from "../scripts/ink";
+
+  // Terminal-style submit feedback: the label retypes to "SENDING..." with
+  // a blinking caret, then "SENT." or a dry error line. Reduced motion gets
+  // plain label swaps. The form posts via fetch so the page never leaves.
+  let formInited = false;
+  function initForm() {
+    if (formInited) return;
+    const form = document.querySelector<HTMLFormElement>(".form");
+    const btn = form?.querySelector<HTMLButtonElement>(".form__submit");
+    if (!form || !btn) return;
+    formInited = true;
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const original = btn.innerHTML;
+    let typeTimer = 0;
+
+    const setLabel = (text: string, done?: () => void) => {
+      window.clearTimeout(typeTimer);
+      if (reduce) {
+        btn.textContent = text;
+        done?.();
+        return;
+      }
+      btn.innerHTML = '<span class="caret" aria-hidden="true"></span>';
+      const caret = btn.querySelector(".caret")!;
+      let i = 0;
+      const step = () => {
+        if (i < text.length) {
+          caret.insertAdjacentText("beforebegin", text[i]);
+          i++;
+          typeTimer = window.setTimeout(step, rand(26, 64));
+        } else {
+          done?.();
+        }
+      };
+      step();
+    };
+    const restore = (after: number) => {
+      window.setTimeout(() => {
+        window.clearTimeout(typeTimer);
+        btn.innerHTML = original;
+        btn.disabled = false;
+        btn.style.minWidth = "";
+      }, after);
+    };
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (btn.disabled) return;
+      btn.disabled = true;
+      // hold the box steady while the label retypes; it may still grow
+      btn.style.minWidth = `${btn.offsetWidth}px`;
+      setLabel("Sending...");
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        setLabel("Sent.", () => form.reset());
+        restore(4000);
+      } catch {
+        setLabel("Didn't send. Try howl@wittywolf.design");
+        restore(7000);
+      }
+    });
+  }
+  document.addEventListener("astro:before-swap", () => (formInited = false));
+  initForm();
+  document.addEventListener("astro:page-load", initForm);
+</script>

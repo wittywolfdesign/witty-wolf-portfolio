@@ -1,0 +1,71 @@
+---
+const year = new Date().getFullYear();
+---
+
+<!-- Terminal-style status footer: mono directory, live time, one wink -->
+<footer class="foot dark mono">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div class="foot__col">
+        <span class="foot__label">Contact</span>
+        <a class="foot__link" href="mailto:howl@wittywolf.design">howl@wittywolf.design</a>
+        <a class="foot__link" href="tel:+34624225011">+34 624 225 011 · ES</a>
+        <a class="foot__link" href="https://wa.me/31653215989" target="_blank" rel="noopener">+31 653 215 989 · NL / WhatsApp</a>
+        <a class="foot__link" href="https://www.linkedin.com/in/marcorramos" target="_blank" rel="noopener">in/marcorramos</a>
+      </div>
+      <div class="foot__col">
+        <span class="foot__label">Location</span>
+        <span>Madrid, ES</span>
+        <span><time data-clock>--:--:--</time> local</span>
+      </div>
+      <div class="foot__col">
+        <span class="foot__label">Status</span>
+        <span><span class="foot__dot" aria-hidden="true"></span>still awake, still designing</span>
+      </div>
+    </div>
+
+    <div class="foot__base">
+      <span>&copy; {year} Witty Wolf Design</span>
+      <span>Designed &amp; built in Madrid. Pencils kept close.</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .foot {
+    padding-block: clamp(2.5rem, 6vw, 4rem) 1.75rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+  }
+  .foot__grid {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 2rem;
+    padding-bottom: clamp(2rem, 5vw, 3rem);
+  }
+  .foot__col { display: flex; flex-direction: column; gap: 0.55rem; align-items: flex-start; }
+  /* plain column labels, no uppercase tags */
+  .foot__label {
+    color: rgba(242, 239, 231, 0.5);
+    margin-bottom: 0.35rem;
+  }
+  .foot__link {
+    background-image: linear-gradient(var(--accent-hot), var(--accent-hot));
+    background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat;
+    transition: background-size 0.25s ease-out;
+    padding-bottom: 2px;
+  }
+  .foot__link:hover { background-size: 100% 1px; }
+  .foot__dot {
+    display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent-hot); margin-right: 0.5em;
+  }
+  .foot__base {
+    display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    padding-top: 1.5rem; border-top: 1px solid rgba(242, 239, 231, 0.14);
+    color: rgba(242, 239, 231, 0.55);
+    font-size: 0.72rem;
+  }
+  @media (max-width: 720px) {
+    .foot__grid { grid-template-columns: 1fr; gap: 1.75rem; }
+  }
+</style>

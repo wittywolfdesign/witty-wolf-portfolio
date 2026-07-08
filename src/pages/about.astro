@@ -1,0 +1,282 @@
+---
+import Base from "../layouts/Base.astro";
+import TypeLine from "../components/TypeLine.astro";
+// handwriting face, used only on the portrait's flipped photo-back credit
+import "@fontsource/caveat";
+
+const facts = [
+  { k: "Based in", v: "Madrid" },
+  { k: "Focus", v: "Two-sided SaaS · consumer fintech" },
+  { k: "Toolkit", v: "Research → production UI → front-end" },
+  { k: "Also", v: "Co-founder & developer" },
+];
+---
+
+<Base
+  title="About · Marco Ramos · Witty Wolf Design"
+  description="From selling vintage clothes in Amsterdam to product design in Madrid. 15 years of making sense of messy systems, now applied to digital products."
+>
+  <section class="section about-hero">
+    <div class="wrap">
+      <h1 class="about-hero__title">
+        <TypeLine segments={[{ text: "Fifteen years of making sense of messy systems." }]} />
+      </h1>
+      <script is:inline data-astro-rerun>
+        if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          const f = document.querySelector(".tw-fallback");
+          if (f) f.style.visibility = "hidden";
+        }
+      </script>
+      <div class="about-facts">
+        {facts.map((f) => (
+          <div class="fact">
+            <span class="fact__k muted">{f.k}</span>
+            <span class="fact__v">{f.v}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap about-body">
+      <h2 class="about-body__lead" data-reveal>The short version</h2>
+      <div class="about-body__prose stack" data-reveal-group>
+        <p data-reveal>
+          I am a product designer for products that don&rsquo;t require a manual,
+          designing for the user who&rsquo;s already frustrated.
+        </p>
+        <p data-reveal>
+          Good design is not decoration. It is structure that lets a product
+          explain itself in seconds. Making it look good comes after making it
+          work.
+        </p>
+      </div>
+    </div>
+    <div class="wrap about-body about-body--longer">
+      <div class="about-side">
+        <p class="about-body__note mono" data-reveal>The longer version</p>
+        <!-- both portraits stay in the DOM so the theme swap never flashes;
+             display flips off data-theme, the hidden one is ignored by AT -->
+        <figure class="about-photo" data-reveal>
+          <!-- the 4:5 window flips like a card to reveal the photo credit on
+               its "back"; only this window turns, the paper mount stays put -->
+          <div class="about-photo__flip" tabindex="0" aria-label="Portrait of Marco Ramos. Flip for the photo credit.">
+            <div class="about-photo__face about-photo__front">
+              <img
+                class="about-photo__img about-photo__img--light"
+                src="/about/marco-light.jpg"
+                alt="Marco Ramos, product designer and developer"
+                width="1600" height="2405"
+              />
+              <img
+                class="about-photo__img about-photo__img--dark"
+                src="/about/marco-dark.jpg"
+                alt="Marco Ramos, product designer and developer"
+                width="1600" height="783"
+              />
+            </div>
+            <div class="about-photo__face about-photo__back">
+              <p class="about-photo__credit">Shot on a sunny day in the studio of Lisa Ball in Amsterdam.</p>
+              <a class="about-photo__credit-url" href="https://www.lisaball.nl/" target="_blank" rel="noopener">lisaball.nl</a>
+            </div>
+          </div>
+          <figcaption class="mono">Madrid, most days</figcaption>
+          <!-- touch devices have no hover: surface the credit as a plain line -->
+          <p class="about-photo__credit-mobile mono">Photography: <a href="https://www.lisaball.nl/" target="_blank" rel="noopener">Lisa Ball</a></p>
+        </figure>
+      </div>
+      <div class="about-body__prose stack" data-reveal-group>
+        <p data-reveal>
+          I started in visual design and stayed comfortable there for years.
+          Then I noticed the work I cared about was never how things looked, it
+          was why they didn&rsquo;t work. So I retrained in UX/UI, moved from
+          Amsterdam to Madrid and started again on purpose. These days I am
+          developing like I never have before, building the products I design
+          in real code and finding out within hours which of my own decisions
+          survive contact with a browser.
+        </p>
+        <p data-reveal>
+          The path was not straight. I sold vintage clothes at Waterlooplein
+          while studying business, spent years at an architecture firm where my
+          role kept drifting toward design, then made it official. That detour
+          is the point: I think in systems because I have run them, not because
+          a course told me to.
+        </p>
+        <p data-reveal>
+          And yes, I use AI every day. Mostly to argue with it. It types fast
+          and thinks average, so the direction has to come from me or what
+          comes back is confident, generic and beige. Fighting that is half the
+          craft now. The other half is what it buys me time for: product logic,
+          accessibility and interfaces that feel calm instead of overwhelming.
+        </p>
+        <p data-reveal>
+          Two years into UX/UI, and nobody has to hold my hand. Urbiqo started
+          as a napkin idea; I turned it into a defined product, a design system
+          and the code now running on staging, as co-founder, designer and
+          developer. At FLIZpay I walked into the overhaul of their merchant
+          dashboard and owned much of the early work that set up the project,
+          pulling context from engineering, business and design into clear,
+          shippable decisions. New to the field, yes. Rookie, no.
+        </p>
+      </div>
+      <a href="/work" class="btn about-body__cta" data-reveal>
+        See my work <span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .about-hero { padding-bottom: clamp(2rem, 5vw, 3rem); }
+  .about-hero__title { max-width: 16ch; margin-top: 1rem; }
+  /* the facts row waits quietly until the heading has finished typing */
+  .about-facts {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+    align-items: start; /* one-line values line up with the first line of two-line ones */
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+    padding-top: 2rem; border-top: 1px solid var(--line);
+    opacity: 0;
+    animation: facts-fade 0.8s var(--ease-out) 2.8s forwards;
+  }
+  @keyframes facts-fade { to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) {
+    .about-facts { animation: none; opacity: 1; }
+  }
+  .fact { display: grid; gap: 0.35rem; }
+  .fact__k { font-family: var(--font-mono); font-size: 0.72rem; }
+  .fact__v { font-family: var(--font-mono); font-weight: 600; font-size: var(--step-0); color: var(--ink); }
+  @media (max-width: 760px) { .about-facts { grid-template-columns: 1fr 1fr; } }
+
+  .about-body {
+    display: grid; grid-template-columns: 0.6fr 1.4fr; gap: clamp(1.5rem, 5vw, 4rem);
+    align-items: start;
+  }
+  .about-body__lead { position: sticky; top: 100px; }
+  .about-body--longer { margin-top: clamp(2.5rem, 6vw, 4rem); }
+  /* the marker and the portrait ride together beside the story */
+  .about-side {
+    position: sticky; top: 100px;
+    display: grid; gap: 1.75rem;
+    align-content: start;
+  }
+  /* jotted margin marker, same notebook tilt as the home approach note */
+  .about-body__note {
+    width: fit-content;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    transform: rotate(-4deg);
+    transform-origin: left center;
+    margin-top: 0.35rem;
+  }
+  /* the portrait: paper mount, hairline border, clipped-to-the-page tilt.
+     A fixed 4:5 window crops both themes' photos identically so the
+     light/dark swap never moves the layout. */
+  .about-photo {
+    max-width: 300px;
+    margin: 0;
+    padding: 0.55rem;
+    background: var(--bg-elevated);
+    border: 1px solid var(--line);
+    transform: rotate(-0.6deg);
+    perspective: 900px; /* depth for the inner card flip */
+  }
+  /* the 4:5 window that turns like a card; only this flips, the mount stays */
+  .about-photo__flip {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+    cursor: pointer;
+  }
+  .about-photo__flip:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  .about-photo:hover .about-photo__flip,
+  .about-photo__flip:focus,
+  .about-photo__flip:focus-within {
+    transform: rotateY(180deg);
+  }
+  .about-photo__face {
+    position: absolute; inset: 0;
+    overflow: hidden;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .about-photo__img {
+    display: block;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 50% 32%;
+  }
+  .about-photo__img--dark { display: none; object-position: 50% 42%; }
+  :global([data-theme="dark"]) .about-photo__img--light { display: none; }
+  :global([data-theme="dark"]) .about-photo__img--dark { display: block; }
+  /* the back: blank photo-paper, kept LIGHT in both themes so the marker
+     reads; a careless handwritten note in orange marker */
+  .about-photo__back {
+    transform: rotateY(180deg);
+    background: radial-gradient(125% 120% at 28% 18%, #f4eede 0%, #e6dbc4 100%);
+    display: grid; align-content: center; justify-items: center; gap: 0.55rem;
+    padding: 1.4rem 1.25rem;
+    text-align: center;
+  }
+  .about-photo__credit {
+    margin: 0;
+    font-family: "Caveat", cursive;
+    color: var(--accent-hot);
+    font-size: 1.6rem; line-height: 1.12;
+    transform: rotate(-2.5deg);
+  }
+  .about-photo__credit-url {
+    font-family: "Caveat", cursive;
+    color: var(--accent-hot);
+    font-size: 1.2rem;
+    opacity: 0.82;
+    transform: rotate(-2deg);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    word-break: break-word;
+  }
+  .about-photo__credit-url:hover { opacity: 1; }
+  /* touch fallback line, shown only where hover does not exist */
+  .about-photo__credit-mobile { display: none; font-size: 0.72rem; color: var(--text-muted); padding-top: 0.4rem; }
+  .about-photo__credit-mobile a {
+    color: var(--ink);
+    background-image: linear-gradient(var(--accent-hot), var(--accent-hot));
+    background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat;
+    transition: background-size 0.4s var(--ease-out);
+    padding-bottom: 2px;
+  }
+  .about-photo__credit-mobile a:hover { background-size: 100% 1px; }
+  @media (hover: none) {
+    .about-photo__flip { cursor: default; }
+    .about-photo:hover .about-photo__flip { transform: none; }
+    .about-photo__credit-mobile { display: block; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    /* no 3D turn: cross-fade the back over the front on hover / focus */
+    .about-photo__flip { transform: none !important; }
+    .about-photo__face { backface-visibility: visible; -webkit-backface-visibility: visible; }
+    .about-photo__back { transform: none; opacity: 0; transition: opacity 0.3s ease; }
+    .about-photo:hover .about-photo__back,
+    .about-photo__flip:focus .about-photo__back,
+    .about-photo__flip:focus-within .about-photo__back { opacity: 1; }
+  }
+  .about-photo figcaption {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    padding-top: 0.55rem;
+  }
+  .about-body__prose { --stack: 1.4rem; font-size: var(--step-1); line-height: 1.55; color: var(--charcoal); }
+  .about-body__cta { grid-column: 2; margin-top: 2rem; width: fit-content; }
+  @media (max-width: 820px) {
+    .about-body { grid-template-columns: 1fr; }
+    .about-body__lead { position: static; }
+    /* the side dissolves: the portrait moves up between the short and the
+       longer version at full column width, the marker stays above the story */
+    .about-side { display: contents; }
+    .about-body__note { margin: 0 0 0.4rem; }
+    .about-photo { order: -1; max-width: 100%; margin-bottom: 1rem; }
+    .about-body__cta { grid-column: 1; }
+  }
+</style>

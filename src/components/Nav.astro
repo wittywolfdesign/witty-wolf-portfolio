@@ -1,0 +1,234 @@
+---
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === "/" ? path === "/" : path.startsWith(href);
+const links = [
+  { href: "/work", label: "Work" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
+---
+
+<header class="nav" data-nav>
+  <div class="wrap nav__inner">
+    <a href="/" class="nav__brand" aria-label="Witty Wolf Design, home">
+      <img src="/brand/wolf-mark.svg" alt="" width="32" height="40" />
+      <span class="nav__wordmark">Witty Wolf<span class="nav__wordmark-tail"> Design</span></span>
+    </a>
+
+    <nav class="nav__links mono" aria-label="Primary">
+      <!-- WORK carries the typewriter gag: on hover it types "ATTEMPTS",
+           strikes it through, and settles back. Overlay only, no layout
+           shift; ABOUT and CONTACT stay plain. -->
+      <a
+        href="/work"
+        class:list={["nav__link", "nav__link--gag", { "is-active": isActive("/work") }]}
+        data-gag
+      >
+        <span class="gag__rest">Work</span>
+        <span class="gag__layer" aria-hidden="true">
+          {[..."Attempts"].map((c) => <span class="gag__g">{c}</span>)}
+          <span class="gag__strike"></span>
+          <span class="gag__cursor"></span>
+        </span>
+      </a>
+      {links.filter((l) => l.href !== "/work").map((l) => (
+        <a href={l.href} class:list={["nav__link", { "is-active": isActive(l.href) }]}>
+          {l.label}
+        </a>
+      ))}
+      <button
+        class="nav__theme mono"
+        type="button"
+        data-theme-toggle
+        aria-pressed="false"
+        aria-label="Dark mode"
+      >dark</button>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--paper) 86%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.25s ease;
+  }
+  .nav[data-scrolled] { border-color: var(--line); }
+  .nav__inner {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1.5rem; height: 64px;
+  }
+  /* full lockup: mark + "Witty Wolf Design" in the site's own mono, sized
+     so the lockup's total width matches the meta line directly beneath it
+     (left edges flush) and the two rows read as one aligned block */
+  .nav__brand {
+    display: inline-flex; align-items: center; gap: 1rem;
+    font-family: var(--font-mono); font-weight: 500; font-size: 1.6rem;
+    color: var(--ink); letter-spacing: -0.01em; white-space: nowrap;
+  }
+  /* the head rests at its natural tilt and pivots from the neck: on hover
+     it straightens with a small overshoot, then relaxes back home. Mouse
+     hover only; touch and reduced motion keep the still tilt. */
+  .nav__brand img {
+    width: auto; height: 40px;
+    transform: rotate(-8deg);
+    transform-origin: 50% 100%;
+    transition: transform 0.35s ease;
+    will-change: transform;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .nav__brand:hover img {
+      transform: rotate(0deg);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav__brand img { transition: none; }
+    .nav__brand:hover img { transform: rotate(-8deg); }
+  }
+  @media (max-width: 899px) {
+    /* tighter widths: back to the short wordmark at nav-link scale */
+    .nav__brand { font-size: 0.95rem; font-weight: 600; gap: 0.6rem; }
+    .nav__brand img { height: 30px; }
+    .nav__wordmark-tail { display: none; }
+  }
+  .nav__links { display: flex; gap: clamp(1.1rem, 3vw, 2rem); }
+  .nav__link {
+    font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-muted);
+    position: relative; padding-block: 0.4rem;
+    transition: color 0.2s ease;
+  }
+  .nav__link:hover { color: var(--ink); }
+  .nav__link::after {
+    content: ""; position: absolute; left: 0; bottom: 0;
+    width: 100%; height: 1px; background: var(--accent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.25s ease-out;
+  }
+  .nav__link:hover::after, .nav__link.is-active::after { transform: scaleX(1); }
+  .nav__link.is-active { color: var(--ink); }
+
+  /* WORK gag: the transient "Attempts" layer anchors to the link's right
+     edge and grows leftward into empty nav space. Same ink language as the
+     hero typewriter: glyph jitter, block caret, tilted strike. */
+  .nav__link--gag { position: relative; }
+  .gag__layer {
+    position: absolute; right: 0; top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    visibility: hidden;
+    pointer-events: none; /* the link stays clickable throughout */
+    color: var(--ink);
+  }
+  .gag__layer.is-on { visibility: visible; }
+  .gag__g { display: inline-block; visibility: hidden; }
+  .gag__cursor {
+    position: absolute; left: 0; top: 0;
+    width: 0.6em; height: 1.15em;
+    background: var(--ink);
+    animation: gag-blink 0.5s steps(2, start) infinite;
+  }
+  .gag__strike {
+    position: absolute; left: -3%; right: -3%; top: 52%;
+    height: 2px;
+    background: var(--ink);
+    opacity: 0.85;
+    border-radius: 1px;
+    transform: rotate(-1.7deg) scaleX(0);
+    transform-origin: left center;
+  }
+  .gag__strike.is-on {
+    transform: rotate(-1.7deg) scaleX(1);
+    transition: transform 0.16s ease-out;
+  }
+  @keyframes gag-blink { 50% { opacity: 0; } }
+
+  /* theme toggle: quiet mono control, hairline underline on hover */
+  .nav__theme {
+    background: none; border: 0; padding: 0.4rem 0;
+    font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-muted);
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat;
+    transition: color 0.2s ease, background-size 0.25s ease-out;
+  }
+  .nav__theme:hover { color: var(--ink); background-size: 100% 1px; }
+  .nav__theme:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .nav__theme[aria-pressed="true"] { color: var(--ink); }
+  @media (max-width: 640px) {
+    .nav__wordmark { display: none; }
+  }
+</style>
+
+<script>
+  import { inkGlyph, rand } from "../scripts/ink";
+
+  // The WORK hover gag. Mouse hover only, fires once per hover with a
+  // cooldown, cancels cleanly if the pointer leaves mid-play. Resting
+  // state is the plain link, so no JS and reduced motion need nothing.
+  const GAG_COOLDOWN = 2500; // ms between plays
+
+  function initGag() {
+    const link = document.querySelector<HTMLElement>("[data-gag]");
+    if (!link || link.dataset.gagInit) return;
+    link.dataset.gagInit = "1";
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+    const layer = link.querySelector<HTMLElement>(".gag__layer")!;
+    const rest = link.querySelector<HTMLElement>(".gag__rest")!;
+    const glyphs = Array.from(link.querySelectorAll<HTMLElement>(".gag__g"));
+    const strike = link.querySelector<HTMLElement>(".gag__strike")!;
+    const cursor = link.querySelector<HTMLElement>(".gag__cursor")!;
+    if (!layer || !rest || !glyphs.length) return;
+
+    let timers: number[] = [];
+    let playing = false;
+    let cooldownUntil = 0;
+
+    const reset = () => {
+      timers.forEach(clearTimeout);
+      timers = [];
+      playing = false;
+      layer.classList.remove("is-on");
+      strike.classList.remove("is-on");
+      glyphs.forEach((g) => (g.style.visibility = "hidden"));
+      rest.style.visibility = "";
+    };
+
+    const play = () => {
+      if (playing || performance.now() < cooldownUntil) return;
+      playing = true;
+      cooldownUntil = performance.now() + GAG_COOLDOWN;
+      // fresh ink character each time (shared helper, slightly tamed for
+      // the small nav size)
+      glyphs.forEach((g) => inkGlyph(g, 0.8));
+      rest.style.visibility = "hidden";
+      layer.classList.add("is-on");
+      glyphs.forEach((g, i) => {
+        timers.push(
+          window.setTimeout(() => {
+            g.style.visibility = "visible";
+            cursor.style.transform = `translateX(${g.offsetLeft + g.offsetWidth + 2}px)`;
+          }, 60 + i * 38 + rand(0, 20))
+        );
+      });
+      timers.push(window.setTimeout(() => strike.classList.add("is-on"), 520));
+      timers.push(window.setTimeout(reset, 850));
+    };
+
+    link.addEventListener("pointerenter", (e) => {
+      if ((e as PointerEvent).pointerType === "mouse") play();
+    });
+    link.addEventListener("pointerleave", () => {
+      if (playing) reset();
+    });
+  }
+
+  initGag();
+  document.addEventListener("astro:page-load", initGag);
+</script>

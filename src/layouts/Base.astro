@@ -1,0 +1,340 @@
+---
+import { ClientRouter } from "astro:transitions";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+/* Self-hosted fonts (Fontsource). Two styles only: Geist Mono is the
+   primary voice, Work Sans is reserved for long-form reading. */
+import "@fontsource-variable/work-sans";
+import "@fontsource-variable/geist-mono";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  theme?: "light" | "dark";
+}
+
+const {
+  title = "Marco Ramos · Product Designer · Witty Wolf Design",
+  description = "Product designer for products that don't need a manual. Clear systems, calm interfaces, real outcomes. Based in Madrid.",
+  theme = "light",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme={theme}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/brand/favicon-mark.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/brand/favicon-64.png" />
+    <link rel="apple-touch-icon" href="/brand/favicon-180.png" />
+    <!-- theme before first paint: localStorage, else system preference.
+         Re-applied after view-transition swaps (html attributes are diffed). -->
+    <script is:inline>
+      (() => {
+        const apply = () => {
+          let t;
+          try { t = localStorage.getItem("theme"); } catch {}
+          if (t !== "dark" && t !== "light")
+            t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          document.documentElement.dataset.theme = t;
+        };
+        apply();
+        document.addEventListener("astro:after-swap", apply);
+      })();
+    </script>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <ClientRouter />
+  </head>
+
+  <body>
+    <a href="#main" class="skip">Skip to content</a>
+    <!-- Accent wash: a colour curtain that sweeps through when navigating
+         into a case study, tinted with that case's accent (see script) -->
+    <div class="wash" aria-hidden="true"></div>
+    <Nav />
+    <!-- Field-notes meta line: role, location, live Madrid time -->
+    <div class="metaline mono">
+      <div class="wrap metaline__inner">
+        <span>Marco Ramos · Product designer &amp; developer</span>
+        <span>Madrid, ES · <time data-clock datetime="">--:--:--</time></span>
+      </div>
+    </div>
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      // Scroll reveal + nav shadow + magnetic buttons.
+      // Runs on first load and after every Astro view transition.
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function initReveal() {
+        const els = document.querySelectorAll("[data-reveal]");
+        if (reduce || !("IntersectionObserver" in window)) {
+          els.forEach((el) => el.classList.add("is-in"));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-in");
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -8% 0px", threshold: 0.15 }
+        );
+        els.forEach((el, i) => {
+          const group = el.closest("[data-reveal-group]");
+          if (group) {
+            const kids = Array.from(group.querySelectorAll("[data-reveal]"));
+            (el as HTMLElement).style.setProperty(
+              "--reveal-delay",
+              `${kids.indexOf(el) * 80}ms`
+            );
+          }
+          io.observe(el);
+        });
+      }
+
+      function initNavShadow() {
+        const nav = document.querySelector("[data-nav]");
+        if (!nav) return;
+        const onScroll = () => {
+          if (window.scrollY > 8) nav.setAttribute("data-scrolled", "");
+          else nav.removeAttribute("data-scrolled");
+        };
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+      }
+
+      // Split headlines marked [data-split] into real rendered lines and
+      // stagger them in. Re-splits (without animation) on resize so the
+      // masks always match the actual line breaks.
+      function splitInto(el: HTMLElement, animate: boolean) {
+        const parts = Array.from(el.children) as HTMLElement[];
+        let i = 0;
+        for (const part of parts) {
+          if (!part.dataset.text)
+            part.dataset.text = (part.textContent || "").trim().replace(/\s+/g, " ");
+          // lay words out as inline blocks to find the natural break points
+          part.textContent = "";
+          const words = part.dataset.text.split(" ").map((w) => {
+            const s = document.createElement("span");
+            s.style.display = "inline-block";
+            s.textContent = w;
+            return s;
+          });
+          words.forEach((w, j) => {
+            part.append(w);
+            if (j < words.length - 1) part.append(" ");
+          });
+          const lines: string[][] = [];
+          let top: number | null = null;
+          for (const w of words) {
+            if (w.offsetTop !== top) { lines.push([]); top = w.offsetTop; }
+            lines[lines.length - 1].push(w.textContent || "");
+          }
+          // rebuild as one masked span per line
+          part.textContent = "";
+          for (const line of lines) {
+            const mask = document.createElement("span");
+            mask.className = "line";
+            const inner = document.createElement("span");
+            inner.textContent = line.join(" ");
+            inner.style.setProperty("--i", String(i++));
+            mask.append(inner);
+            part.append(mask);
+          }
+        }
+        el.classList.toggle("is-static", !animate);
+      }
+
+      async function initSplit() {
+        const els = document.querySelectorAll<HTMLElement>("[data-split]");
+        if (!els.length) return;
+        if (reduce) {
+          els.forEach((el) => (el.style.visibility = ""));
+          return;
+        }
+        // fonts change the line breaks; wait briefly for them, then commit
+        await Promise.race([
+          document.fonts.ready,
+          new Promise((r) => setTimeout(r, 600)),
+        ]);
+        els.forEach((el) => {
+          try { splitInto(el, true); } catch { /* plain text is a fine fallback */ }
+          el.style.visibility = "";
+        });
+      }
+
+      let resizeTimer: number | undefined;
+      let lastWidth = window.innerWidth;
+      window.addEventListener("resize", () => {
+        if (window.innerWidth === lastWidth || reduce) return;
+        lastWidth = window.innerWidth;
+        clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(() => {
+          document.querySelectorAll<HTMLElement>("[data-split]").forEach((el) => {
+            try { splitInto(el, false); } catch {}
+          });
+        }, 150);
+      });
+
+      // Accent wash choreography. When a navigation starts from a link
+      // carrying data-accent (work cards, next-case links), the curtain
+      // rises in that colour and the loader waits for it; after the swap
+      // the new page's curtain starts covering and lifts away on load.
+      let washAccent = "";
+      document.addEventListener("astro:before-preparation", (e) => {
+        if (reduce) return;
+        const src = (e as any).sourceElement as Element | null;
+        const accent = src?.closest?.("[data-accent]")?.getAttribute("data-accent");
+        const wash = document.querySelector<HTMLElement>(".wash");
+        if (!accent || !wash) return;
+        washAccent = accent;
+        wash.style.background = accent;
+        wash.getBoundingClientRect(); // commit styles so the transition runs
+        wash.classList.add("is-in");
+        const load = (e as any).loader;
+        (e as any).loader = async () => {
+          await Promise.all([load(), new Promise((r) => setTimeout(r, 300))]);
+        };
+      });
+      document.addEventListener("astro:after-swap", () => {
+        if (!washAccent) return;
+        const wash = document.querySelector<HTMLElement>(".wash");
+        if (!wash) return;
+        // the swapped-in page has a fresh curtain; keep it covering
+        wash.style.background = washAccent;
+        wash.classList.add("is-in");
+      });
+      document.addEventListener("astro:page-load", () => {
+        if (!washAccent) return;
+        washAccent = "";
+        const wash = document.querySelector<HTMLElement>(".wash");
+        if (!wash) return;
+        setTimeout(() => {
+          wash.classList.add("is-out");
+          setTimeout(() => wash.classList.remove("is-in", "is-out"), 700);
+        }, 60);
+      });
+
+      // Live Madrid clock for the meta line and footer status line.
+      let clockTimer: number | undefined;
+      const clockFmt = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Europe/Madrid",
+        hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false,
+      });
+      function initClock() {
+        const els = document.querySelectorAll<HTMLElement>("[data-clock]");
+        if (!els.length) return;
+        const tick = () => {
+          const now = clockFmt.format(new Date());
+          document.querySelectorAll<HTMLElement>("[data-clock]").forEach((el) => {
+            el.textContent = now;
+          });
+        };
+        tick();
+        if (clockTimer) clearInterval(clockTimer);
+        clockTimer = window.setInterval(tick, 1000);
+      }
+
+      // Theme toggle. On pages with the hero wolf in view, the flip waits
+      // one spooky beat (the wolf leans in, trembles, eyes flash amber, one
+      // flicker) before the theme lands. Elsewhere, or with reduced motion,
+      // it flips instantly.
+      function initTheme() {
+        const btn = document.querySelector<HTMLElement>("[data-theme-toggle]");
+        if (!btn || btn.dataset.bound) return;
+        btn.dataset.bound = "1";
+        const sync = () =>
+          btn.setAttribute(
+            "aria-pressed",
+            String(document.documentElement.dataset.theme === "dark")
+          );
+        sync();
+        let busy = false;
+        btn.addEventListener("click", () => {
+          if (busy) return;
+          const next =
+            document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+          const flip = () => {
+            document.documentElement.dataset.theme = next;
+            try { localStorage.setItem("theme", next); } catch {}
+            sync();
+          };
+          const wolf = document.querySelector<HTMLElement>("[data-wolf-mark]");
+          const inView = () => {
+            if (!wolf) return false;
+            const r = wolf.getBoundingClientRect();
+            return r.bottom > 0 && r.top < window.innerHeight;
+          };
+          if (reduce || !inView()) {
+            flip();
+            return;
+          }
+          busy = true;
+          wolf!.classList.add("is-spook");
+          window.setTimeout(() => {
+            wolf!.classList.remove("is-spook");
+            flip();
+            busy = false;
+          }, 700);
+        });
+      }
+
+      let booted = false;
+      function boot() {
+        if (booted) return;
+        booted = true;
+        initReveal();
+        initNavShadow();
+        initSplit();
+        initClock();
+        initTheme();
+      }
+
+      // Boot immediately (module scripts are deferred, the DOM is ready) and
+      // after every view transition. astro:page-load also fires on initial
+      // load, so the guard stops the double run; before-swap re-arms it.
+      document.addEventListener("astro:before-swap", () => (booted = false));
+      boot();
+      document.addEventListener("astro:page-load", boot);
+    </script>
+
+    <style>
+      .skip {
+        position: absolute; left: -9999px; top: 0; z-index: 100;
+        background: var(--ink); color: #fff; padding: 0.7rem 1.1rem;
+        border-radius: 0 0 10px 0;
+      }
+      .skip:focus { left: 0; }
+
+      .metaline {
+        border-bottom: 1px solid var(--line);
+        color: var(--text-muted);
+        font-size: 0.72rem;
+        letter-spacing: 0.03em;
+      }
+      .metaline__inner {
+        display: flex; justify-content: space-between; gap: 1rem;
+        padding-block: 0.55rem;
+      }
+      @media (max-width: 480px) {
+        .metaline__inner span:first-child { display: none; }
+        .metaline__inner { justify-content: flex-end; }
+      }
+    </style>
+  </body>
+</html>

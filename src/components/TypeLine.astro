@@ -1,0 +1,200 @@
+---
+/* Ink-typewriter line, shared by the hero and the approach statement.
+   Renders three layers: the clean sentence for screen readers, a clean
+   visible fallback (used without JS or with reduced motion), and the
+   aria-hidden typing layer of per-glyph spans the script animates.
+
+   segments: [{ text }] with optional flags:
+     strike: the deliberate mistake, struck through and excluded from the
+             clean text
+     cls:    extra class for the word (e.g. "hl" for the amber word)
+     br:     a hard line break (kept in the visible layers, a space in the
+             screen-reader text)
+   trigger: "load" types immediately, "visible" waits for the viewport. */
+
+interface Segment {
+  text?: string;
+  strike?: boolean;
+  cls?: string;
+  br?: boolean;
+}
+interface Props {
+  segments: Segment[];
+  trigger?: "load" | "visible";
+}
+const { segments, trigger = "load" } = Astro.props;
+
+const clean = segments
+  .filter((s) => !s.strike)
+  .map((s) => (s.br ? " " : s.text ?? ""))
+  .join("");
+
+/* words become nowrap spans of glyphs so per-glyph inline-blocks never
+   break mid-word; whitespace stays as plain text nodes so lines can wrap */
+const tokens = (text: string) => text.split(/(\s+)/).filter((t) => t.length);
+---
+
+<span class="sr-only">{clean}</span>
+<span class="tw-fallback" aria-hidden="true">
+  {segments.map((seg) => (seg.br ? <br /> : seg.strike ? null : seg.text))}
+</span>
+<span class="tw" data-typewriter data-tw-trigger={trigger} aria-hidden="true" hidden>
+  {segments.map((seg) =>
+    seg.br ? (
+      <br />
+    ) : (
+      tokens(seg.text ?? "").map((t) =>
+        /^\s+$/.test(t) ? (
+          t
+        ) : (
+          <span class:list={["tw-w", seg.cls, { "tw-wrong": seg.strike }]}>
+            {[...t].map((c) => <span class="tw-g">{c}</span>)}
+            {seg.strike && <span class="tw-strike" />}
+          </span>
+        )
+      )
+    )
+  )}
+  <span class="tw-cursor" />
+</span>
+
+<style>
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  .tw { position: relative; display: block; }
+  .tw-w { display: inline-block; white-space: nowrap; }
+  .tw-g {
+    display: inline-block;
+    visibility: hidden; /* revealed one by one as it types */
+  }
+  .tw-g.tw-smudge {
+    text-shadow: 0.06em 0.05em 0.14em color-mix(in srgb, var(--ink) 50%, transparent);
+  }
+  .tw-wrong { position: relative; }
+  .tw-strike {
+    position: absolute; left: -2%; right: -2%; top: 52%;
+    height: 0.085em;
+    background: var(--ink);
+    opacity: 0.85;
+    border-radius: 1px;
+    transform: rotate(-1.7deg) scaleX(0);
+    transform-origin: left center;
+  }
+  .tw-strike.is-on {
+    transform: rotate(-1.7deg) scaleX(1);
+    transition: transform 0.2s ease-out;
+  }
+  .tw-cursor {
+    position: absolute; left: 0; top: 0.08em;
+    width: 0.58em; height: 1.25em;
+    background: var(--ink);
+    opacity: 0;
+  }
+  .tw-cursor.is-live {
+    opacity: 1;
+    animation: tw-blink 0.95s steps(2, start) infinite;
+  }
+  @keyframes tw-blink { 50% { opacity: 0; } }
+</style>
+
+<script>
+  import { inkGlyph, rand } from "../scripts/ink";
+
+  // The ink-typewriter driver for every TypeLine on the page (hero,
+  // approach statement, case-study titles). Two adjustable values:
+  const TYPE_SPEED = 42; // average ms per character
+  const INK_MESS = 1; // imperfection intensity, 0 (crisp) to 1 (full)
+
+  let typeInited = false;
+  function initType() {
+    if (typeInited) return;
+    const tws = document.querySelectorAll<HTMLElement>("[data-typewriter]");
+    if (!tws.length) return;
+    typeInited = true;
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    tws.forEach((tw) => {
+      const fallback = tw.parentElement?.querySelector<HTMLElement>(".tw-fallback");
+      if (reduce) {
+        if (fallback) fallback.style.visibility = "";
+        return; // clean static statement, no typing, no strike
+      }
+      if (fallback) fallback.style.display = "none";
+      tw.hidden = false;
+
+      const glyphs = Array.from(tw.querySelectorAll<HTMLElement>(".tw-g"));
+      const cursor = tw.querySelector<HTMLElement>(".tw-cursor");
+      const strike = tw.querySelector<HTMLElement>(".tw-strike");
+      const wrongGlyphs = tw.querySelectorAll<HTMLElement>(".tw-wrong .tw-g");
+      const lastWrong = wrongGlyphs[wrongGlyphs.length - 1];
+
+      // per-glyph ink character (shared helper, see src/scripts/ink.ts)
+      for (const g of glyphs) {
+        if (inkGlyph(g, INK_MESS)) g.classList.add("tw-smudge");
+      }
+
+      const placeCursorAfter = (el: HTMLElement) => {
+        if (!cursor) return;
+        const box = tw.getBoundingClientRect();
+        const r = el.getBoundingClientRect();
+        cursor.style.transform = `translate(${r.right - box.left + 2}px, ${r.top - box.top}px)`;
+      };
+
+      let i = 0;
+      const step = () => {
+        if (i >= glyphs.length) {
+          // done: cursor rests, keeps blinking; tell listeners (case stamp)
+          tw.dispatchEvent(new CustomEvent("tw-done", { bubbles: true }));
+          return;
+        }
+        const g = glyphs[i];
+        g.style.visibility = "visible";
+        placeCursorAfter(g);
+        i++;
+        // irregular rhythm: jitter per key, a breath after sentence marks
+        let delay = TYPE_SPEED * rand(0.4, 1.75);
+        if (/[.,]/.test(g.textContent || "")) delay += TYPE_SPEED * rand(4, 7);
+        if (g === lastWrong) {
+          // the mistake: a beat to notice it, strike it, a beat, carry on
+          window.setTimeout(() => {
+            strike?.classList.add("is-on");
+            window.setTimeout(step, 460);
+          }, 420);
+          return;
+        }
+        window.setTimeout(step, delay);
+      };
+      const start = () => {
+        if (cursor && glyphs.length) {
+          const box = tw.getBoundingClientRect();
+          const r0 = glyphs[0].getBoundingClientRect();
+          cursor.style.transform = `translate(${r0.left - box.left}px, ${r0.top - box.top}px)`;
+          cursor.classList.add("is-live");
+        }
+        window.setTimeout(step, 400);
+      };
+
+      if (tw.dataset.twTrigger === "visible") {
+        const io = new IntersectionObserver(
+          (entries) => {
+            if (entries.some((e) => e.isIntersecting)) {
+              io.disconnect();
+              start();
+            }
+          },
+          { threshold: 0.3 }
+        );
+        io.observe(tw);
+      } else {
+        start();
+      }
+    });
+  }
+
+  document.addEventListener("astro:before-swap", () => (typeInited = false));
+  initType();
+  document.addEventListener("astro:page-load", initType);
+</script>

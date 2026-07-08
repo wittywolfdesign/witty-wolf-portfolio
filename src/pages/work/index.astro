@@ -1,0 +1,62 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import WorkIndex from "../../components/WorkIndex.astro";
+import TypeLine from "../../components/TypeLine.astro";
+
+const work = (await getCollection("work"))
+  .filter((w) => w.data.status === "published")
+  .sort((a, b) => a.data.order - b.data.order);
+
+const heading = [
+  { text: "Four case studies." },
+  { br: true },
+  { text: "Four real problems." },
+];
+---
+
+<Base
+  title="Work · Witty Wolf Design"
+  description="Four case studies. Four real problems. No discover-define-deliver templates."
+>
+  <section class="section work-top">
+    <div class="wrap">
+      <h1 class="work-top__title">
+        <TypeLine segments={heading} />
+      </h1>
+      <script is:inline data-astro-rerun>
+        if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          const f = document.querySelector(".tw-fallback");
+          if (f) f.style.visibility = "hidden";
+        }
+      </script>
+      <p class="lead muted work-top__lead">
+        No discover&ndash;define&ndash;deliver templates. Just the problem, what I
+        did about it and what changed.
+      </p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap">
+      <!-- the shared numbered index, detailed variant: each row carries its
+           summary line in the reading face -->
+      <WorkIndex work={work} variant="detailed" label="All work" />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .work-top { padding-bottom: clamp(1rem, 3vw, 2rem); }
+  .work-top__title { max-width: 24ch; }
+  /* the subline waits quietly until the heading has finished typing */
+  .work-top__lead {
+    max-width: 48ch; margin-top: 1.25rem;
+    opacity: 0;
+    animation: lead-fade 0.8s var(--ease-out) 2.3s forwards;
+  }
+  @keyframes lead-fade { to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) {
+    .work-top__lead { animation: none; opacity: 1; }
+  }
+</style>

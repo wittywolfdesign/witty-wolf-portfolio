@@ -1,0 +1,184 @@
+---
+/* Hero wolf: Marco's logo wolf as pure ink line work, in the same language
+   as the hairlines, guide grid and scent trail. Thin charcoal strokes at
+   reduced opacity, no fills at all except the amber tongue, the one small
+   full-strength accent. The white body is simply the paper.
+
+   It is a free element: huge, anchored top right, bleeding off the right
+   edge of the viewport and rising up behind the nav, sitting above the
+   background grid and below all text.
+
+   Source of truth is public/brand/wolf-vector.svg. The finished line state
+   is the CSS default, so no-JS and reduced-motion render it statically;
+   the script only animates the draw-on into it. The total draw duration is
+   the single WOLF_DRAW value in the script. */
+import rawWolf from "../../public/brand/wolf-vector.svg?raw";
+
+/* Defensive repair: some exports of this file carried a malformed
+   `.../ class="wp" ...>` tag (attributes after the self-closing slash),
+   which silently drops the path data in the browser. Normalise it. */
+const wolfSvg = rawWolf.replace(
+  /\/ (class="wp" style="--i:\d+")>/g,
+  " $1/>"
+);
+---
+
+<div class="wolfmark" data-wolf-mark aria-hidden="true" set:html={wolfSvg} />
+
+<style>
+  .wolfmark {
+    position: absolute;
+    top: -52px; /* the ear tips sit fully visible, up in the nav zone */
+    right: -6vw; /* bleeds off the right edge */
+    height: min(84vh, 800px);
+    /* above the nav surface (z 50) so the ear visibly crosses the menu;
+       pointer-events none keeps the nav links clickable underneath */
+    z-index: 60;
+    pointer-events: none;
+  }
+  .wolfmark :global(svg) {
+    display: block;
+    height: 100%;
+    width: auto;
+  }
+
+  /* The finished ink-line state (also the static no-JS / reduced-motion
+     state). stroke-width is in user units here (~0.8 screen scale ≈ 1px);
+     the script swaps in a crisp non-scaling 1px stroke when it runs.
+     The stroke lives in its own token so the dark theme can lift it to the
+     paper tone; the logo colours themselves are never remapped. */
+  .wolfmark {
+    --wolf-stroke: #2C3E50;
+  }
+  :global([data-theme="dark"]) .wolfmark {
+    --wolf-stroke: #F4F2EC;
+  }
+  .wolfmark :global(.wp) {
+    fill: none;
+    stroke: var(--wolf-stroke);
+    stroke-width: 1.2;
+    stroke-opacity: 0.4;
+  }
+  .wolfmark :global(.wp[fill="#e3993d"]) {
+    fill: #e3993d;
+    fill-opacity: 1; /* the tongue stays the one full-strength accent */
+    stroke: none;
+  }
+
+  /* The spooky beat before a theme flip: lean in and scale toward the
+     viewer, line work trembles, the eye lines flash amber and hold a
+     fraction longer, one quick lamp-dying flicker. Transform and opacity
+     only. The class is removed as the theme lands, snapping calm. */
+  @media (prefers-reduced-motion: no-preference) {
+    .wolfmark.is-spook :global(svg) {
+      transform-origin: 58% 42%;
+      animation: wolf-spook 0.7s cubic-bezier(0.3, 0, 0.4, 1) both;
+    }
+    .wolfmark.is-spook :global(.wp) {
+      animation: wolf-tremble 0.09s linear infinite;
+    }
+    .wolfmark.is-spook :global(.wp[style*="--i:2"]),
+    .wolfmark.is-spook :global(.wp[style*="--i:3"]) {
+      animation:
+        wolf-tremble 0.09s linear infinite,
+        wolf-eyes 0.85s ease-out both;
+    }
+  }
+  @keyframes wolf-spook {
+    0% { transform: none; opacity: 1; }
+    30% { transform: rotate(-2.4deg) scale(1.05); }
+    55% { transform: rotate(-3deg) scale(1.065); opacity: 1; }
+    60% { opacity: 0.22; }
+    66% { opacity: 1; }
+    100% { transform: rotate(-2.6deg) scale(1.055); }
+  }
+  @keyframes wolf-tremble {
+    0% { transform: translate(0.9px, -0.7px); }
+    50% { transform: translate(-1px, 0.8px); }
+    100% { transform: translate(0.7px, 0.9px); }
+  }
+  @keyframes wolf-eyes {
+    0% { stroke: var(--wolf-stroke); stroke-opacity: 0.4; }
+    22%, 100% { stroke: #FFB347; stroke-opacity: 1; }
+  }
+
+  /* Below 900px: same line work behind the text, cropped by the right
+     edge, dimmed further so the headline stays fully readable. */
+  @media (max-width: 899px) {
+    .wolfmark {
+      top: -60px;
+      right: -22%;
+      height: min(60vh, 480px);
+      opacity: 0.45; /* effective line opacity ≈ 0.18 */
+    }
+  }
+</style>
+
+<script>
+  const WOLF_DRAW = 1200; // total draw-on duration in ms (adjustable)
+
+  let wolfInited = false;
+  function initWolfMark() {
+    if (wolfInited) return;
+    const root = document.querySelector<HTMLElement>("[data-wolf-mark]");
+    if (!root) return;
+    wolfInited = true;
+
+    const paths = Array.from(root.querySelectorAll<SVGPathElement>(".wp"));
+    if (
+      matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      !paths.length
+    ) {
+      root.style.visibility = "";
+      return; // static finished line drawing from the CSS
+    }
+
+    const maxI = Math.max(
+      ...paths.map((p) => +(p.style.getPropertyValue("--i") || 0))
+    );
+    const isAmber = (p: SVGPathElement) =>
+      (p.getAttribute("fill") || "").toLowerCase() === "#e3993d";
+
+    // prepare: crisp 1px lines, slightly darker while drawing
+    for (const p of paths) {
+      const len = p.getTotalLength();
+      p.setAttribute("vector-effect", "non-scaling-stroke");
+      p.style.stroke = isAmber(p) ? "#E3993D" : "var(--wolf-stroke)";
+      p.style.strokeWidth = "1";
+      p.style.strokeLinecap = "round";
+      p.style.strokeOpacity = "0.8";
+      if (isAmber(p)) p.style.fillOpacity = "0";
+      p.style.strokeDasharray = `${len}`;
+      p.style.strokeDashoffset = `${len}`;
+    }
+    root.style.visibility = "";
+    void root.offsetWidth; // commit start values so the transitions run
+
+    // draw: quick and assured, staggered in the authored order
+    const drawDur = WOLF_DRAW * 0.55;
+    for (const p of paths) {
+      const i = +(p.style.getPropertyValue("--i") || 0);
+      const delay = (i / (maxI + 1)) * WOLF_DRAW * 0.4;
+      p.style.transition = `stroke-dashoffset ${drawDur}ms cubic-bezier(0.5, 0, 0.3, 1) ${delay}ms`;
+      p.style.strokeDashoffset = "0";
+    }
+
+    // settle: lines relax to their resting opacity, the tongue fills in
+    window.setTimeout(() => {
+      for (const p of paths) {
+        p.style.transition =
+          "stroke-opacity 520ms ease-out, fill-opacity 420ms ease-out";
+        if (isAmber(p)) {
+          p.style.fillOpacity = "1";
+          p.style.strokeOpacity = "0";
+        } else {
+          p.style.strokeOpacity = "0.4";
+        }
+      }
+    }, WOLF_DRAW * 0.85);
+  }
+
+  document.addEventListener("astro:before-swap", () => (wolfInited = false));
+  initWolfMark();
+  document.addEventListener("astro:page-load", initWolfMark);
+</script>

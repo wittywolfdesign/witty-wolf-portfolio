@@ -1,0 +1,425 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import WolfMark from "../components/WolfMark.astro";
+import TypeLine from "../components/TypeLine.astro";
+import WorkIndex from "../components/WorkIndex.astro";
+
+const work = (await getCollection("work"))
+  .filter((w) => w.data.status === "published")
+  .sort((a, b) => a.data.order - b.data.order);
+
+/* Typewriter hero: typed with a deliberate mistake, "pixels" struck
+   through, then the sentence continues correctly. */
+const heroLine = [
+  { text: "I don’t care about your product. I care about the " },
+  { text: "pixels", strike: true },
+  { text: " people trying to use it." },
+];
+
+/* Approach statement, same machine, triggered on scroll into view. */
+const approachLine = [
+  { text: "Good design is not decoration. It is structure that lets a product explain itself in seconds. Making it look good comes after making it " },
+  { text: "work", cls: "hl" },
+  { text: "." },
+];
+---
+
+<Base>
+<div class="home">
+  <!-- SCENT TRAIL: a thin amber path drawn in as you scroll. It runs behind
+       the content (every .wrap sits above it) so it ducks under text and
+       re-emerges in the whitespace. Desktop only; with reduced motion (or no
+       JS) it renders complete and static. -->
+  <svg
+    class="trail"
+    data-trail
+    viewBox="0 0 1000 2000"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+  >
+    <path
+      d="M 990 480
+         C 880 550, 700 570, 520 620
+         S 260 650, 185 710
+         C 95 770, 130 860, 95 950
+         S 60 1150, 130 1280
+         C 200 1420, 650 1360, 790 1500
+         C 900 1610, 800 1780, 640 1870
+         S 500 1950, 480 2000"
+      vector-effect="non-scaling-stroke"
+    />
+  </svg>
+
+  <!-- HERO -->
+  <section class="hero">
+    <WolfMark />
+    <div class="wrap hero__inner">
+      <div class="hero__text">
+        <h1 class="hero__title">
+          <TypeLine segments={heroLine} />
+        </h1>
+        <p class="hero__lead">
+          Smart pixels. Curious mind. Digital experiences brewed with a playful
+          twist, where research and strategy meet clarity and simplicity.
+        </p>
+      </div>
+    </div>
+    <!-- Hide the clean fallback lines, raster and grid field before first
+         paint so nothing flashes before its reveal. Scripts show them once
+         ready; with reduced motion this never runs and all stay static. -->
+    <script is:inline data-astro-rerun>
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.querySelectorAll(".tw-fallback").forEach((el) => {
+          el.style.visibility = "hidden";
+        });
+        const r = document.querySelector("[data-wolf-mark]");
+        if (r) r.style.visibility = "hidden";
+        const hero = document.querySelector(".hero");
+        if (hero) hero.style.setProperty("--field-o", "0");
+      }
+    </script>
+  </section>
+
+  <!-- WORK: the shared numbered index, compact variant -->
+  <section class="section--tight" id="work">
+    <div class="wrap">
+      <WorkIndex work={work} label="Selected work" />
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section class="section approach">
+    <div class="wrap approach__wrap">
+      <!-- notebook margin note: jotted label plus a curly amber arrow
+           pointing at the statement -->
+      <div class="approach__note mono" data-scribble aria-hidden="true">
+        <span>The short version</span>
+        <svg viewBox="0 0 120 84" fill="none" aria-hidden="true">
+          <path class="ap" pathLength="1" d="M8 12 C 28 2, 46 6, 51 20 C 56 34, 40 44, 32 34 C 24 24, 40 12, 58 20 C 80 29, 96 38, 110 48" />
+          <path class="ap" pathLength="1" d="M99 38 L 110 48 L 96 53" />
+        </svg>
+      </div>
+      <p class="approach__statement">
+        <TypeLine segments={approachLine} trigger="visible" />
+      </p>
+      <div class="approach__row" data-reveal>
+        <p class="muted maxread">
+          I design for products that don&rsquo;t require a manual, for the user
+          who&rsquo;s already frustrated. Clear systems, simple language and
+          interfaces that feel calm instead of overwhelming. I use AI every day
+          but keep my pencils close. The direction has to come from me.
+        </p>
+        <a href="/about" class="approach__link mono">More about me &rarr;</a>
+      </div>
+    </div>
+  </section>
+</div>
+</Base>
+
+<style>
+  /* SCENT TRAIL */
+  .home { position: relative; }
+  .trail {
+    position: absolute; inset: 0; z-index: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+  .trail path {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2px;
+    stroke-linecap: round;
+    opacity: 0.9;
+  }
+  /* content rides above the trail so it ducks under text blocks */
+  .home .wrap { position: relative; z-index: 1; }
+  @media (prefers-reduced-motion: no-preference) {
+    /* non-scaling-stroke makes dash units screen pixels, so hide with a
+       value safely above any on-screen path length; the script swaps in
+       the measured length on init */
+    .trail path {
+      stroke-dasharray: 12000 12000;
+      stroke-dashoffset: 12000;
+      transition: stroke-dashoffset 0.9s var(--ease-out);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .trail path { opacity: 0.45; }
+  }
+  @media (max-width: 899px) {
+    .trail { display: none; }
+  }
+
+  /* HERO. overflow-x clip cuts the wolf's bleed exactly at the viewport
+     edge (no horizontal scroll on any device) while overflow-y stays
+     visible so the line work can rise up behind the nav. */
+  .hero {
+    position: relative;
+    padding-block: clamp(3rem, 8vh, 6rem) clamp(3rem, 7vw, 5rem);
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+  /* Figma-style guide grid: a whisper of even 1px lines in both directions
+     across the whole hero. The wolf is a separate layer drawn on top of it,
+     free to break the grid; the grid never changes underneath it. */
+  .hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(to bottom, var(--ink) 0 1px, transparent 1px 20px),
+      repeating-linear-gradient(to right, var(--ink) 0 1px, transparent 1px 20px);
+    opacity: var(--field-o, 0.045);
+    /* two soft off-centre ellipses, unioned: the grid dissolves unevenly
+       into the paper on all four sides, never ending on a straight line */
+    mask-image:
+      radial-gradient(ellipse 58% 52% at 40% 38%, #000 18%, transparent 72%),
+      radial-gradient(ellipse 52% 58% at 68% 62%, #000 14%, transparent 70%);
+    -webkit-mask-image:
+      radial-gradient(ellipse 58% 52% at 40% 38%, #000 18%, transparent 72%),
+      radial-gradient(ellipse 52% 58% at 68% 62%, #000 14%, transparent 70%);
+    pointer-events: none;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero.is-play::before {
+      animation: field-in 0.9s ease-out forwards;
+    }
+  }
+  @keyframes field-in {
+    from { opacity: 0; }
+    to { opacity: 0.045; }
+  }
+  /* the wolf overlaps space, it does not reserve it: text runs wide */
+  .hero__text { max-width: 46rem; }
+
+  /* TYPEWRITER hero statement (glyph layers live in TypeLine.astro) */
+  .hero__title {
+    font-weight: 500;
+    font-size: clamp(1.4rem, 2.6vw, 2.35rem);
+    line-height: 1.45;
+    letter-spacing: -0.02em;
+    text-wrap: initial;
+    margin-bottom: 1.75rem;
+    position: relative;
+  }
+
+  .hero__lead {
+    max-width: 44ch;
+    color: var(--text-muted);
+    opacity: 0; animation: fade 0.8s var(--ease-out) 0.7s forwards;
+  }
+  @keyframes fade { to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__lead { animation: none; opacity: 1; }
+  }
+
+  /* APPROACH */
+  .approach { padding-top: clamp(4rem, 9vw, 7rem); }
+  .approach__wrap { position: relative; }
+  .approach__statement {
+    font-family: var(--font-mono); font-weight: 600;
+    font-size: clamp(1.4rem, 2.4vw, 2.2rem);
+    line-height: 1.35; letter-spacing: -0.025em;
+    color: var(--ink);
+    max-width: 36ch;
+  }
+  .approach__statement :global(.hl) { color: var(--accent); }
+
+  /* the jotted margin note: tilt and arrow do the notebook feel */
+  .approach__note {
+    position: absolute;
+    left: -10.5rem; top: 0.2rem;
+    width: 9rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    transform: rotate(-5.5deg);
+  }
+  .approach__note svg {
+    display: block;
+    width: 86px; height: auto;
+    margin: 0.5rem 0 0 1.6rem;
+  }
+  .approach__note .ap {
+    stroke: var(--accent);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    /* armed by JS, drawn on scroll into view, then a gentle nudge along
+       the pointing direction. Static and fully drawn without JS. */
+    .approach__note.is-armed span {
+      opacity: 0;
+      transition: opacity 0.6s ease-out 0.1s;
+    }
+    .approach__note.is-armed .ap {
+      stroke-dasharray: 1 1;
+      stroke-dashoffset: 1;
+      transition: stroke-dashoffset 0.8s ease-out 0.15s;
+    }
+    .approach__note.is-in span { opacity: 1; }
+    .approach__note.is-in .ap { stroke-dashoffset: 0; }
+    .approach__note.is-in svg {
+      animation: scribble-pulse 3.4s ease-in-out 1.6s infinite;
+    }
+  }
+  @keyframes scribble-pulse {
+    50% { transform: translate(2px, 1px); }
+  }
+  @media (max-width: 899px) {
+    /* no margin on small screens: tuck it above the statement, no arrow */
+    .approach__note {
+      position: static;
+      width: auto;
+      margin-bottom: 0.9rem;
+      transform: rotate(-4deg);
+      transform-origin: left center;
+    }
+    .approach__note svg { display: none; }
+  }
+  .approach__row {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    gap: 2rem; flex-wrap: wrap;
+    margin-top: clamp(1.75rem, 4vw, 2.75rem);
+  }
+  /* secondary CTA: mono text + arrow, hairline underline draws itself
+     left to right on hover, same easing family as the scent trail */
+  .approach__link {
+    font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink);
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat;
+    transition: background-size 0.4s var(--ease-out);
+    padding-bottom: 3px;
+  }
+  .approach__link:hover { background-size: 100% 1px; }
+  .approach__link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+</style>
+
+<script>
+  // Draw the scent trail as the page scrolls (engine unchanged, only the
+  // path waypoints in the markup differ per layout).
+  let trailInited = false;
+  function initTrail() {
+    if (trailInited) return;
+    const svg = document.querySelector<SVGSVGElement>("[data-trail]");
+    const path = svg?.querySelector("path");
+    if (!svg || !path) return;
+    trailInited = true;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      path.style.strokeDasharray = "none";
+      path.style.strokeDashoffset = "0";
+      return;
+    }
+
+    // Two wrinkles to account for. Path length does not map linearly to
+    // vertical position (horizontal sweeps consume length without
+    // descending), so the path is sampled once and a cumulative table maps
+    // a viewBox y to the length needed to reach it. And because
+    // non-scaling-stroke computes dashes in SCREEN pixels while the svg is
+    // stretched non-uniformly, that table must measure screen-space length,
+    // remeasured on resize.
+    const SAMPLES = 160;
+    const total = path.getTotalLength();
+    const pts: DOMPoint[] = [];
+    for (let i = 0; i <= SAMPLES; i++)
+      pts.push(path.getPointAtLength((i / SAMPLES) * total));
+    const viewW = svg.viewBox.baseVal.width;
+    const viewH = svg.viewBox.baseVal.height;
+
+    let cum: number[] = [];
+    let screenTotal = 0;
+    const measure = () => {
+      const rect = svg.getBoundingClientRect();
+      const sx = rect.width / viewW;
+      const sy = rect.height / viewH;
+      cum = [0];
+      screenTotal = 0;
+      for (let i = 1; i <= SAMPLES; i++) {
+        screenTotal += Math.hypot(
+          (pts[i].x - pts[i - 1].x) * sx,
+          (pts[i].y - pts[i - 1].y) * sy
+        );
+        cum.push(screenTotal);
+      }
+      path.style.strokeDasharray = `${screenTotal} ${screenTotal}`;
+    };
+    const lengthForY = (y: number) => {
+      for (let i = 0; i <= SAMPLES; i++) if (pts[i].y >= y) return cum[i];
+      return screenTotal;
+    };
+
+    // The scroll handler sets the offset directly; the CSS transition on the
+    // path smooths it, so the line eases after the scroll like a catch-up.
+    const update = () => {
+      const rect = svg.getBoundingClientRect();
+      const yView = ((window.innerHeight * 0.92 - rect.top) / rect.height) * viewH;
+      const drawn = Math.min(screenTotal, Math.max(0, lengthForY(yView)));
+      path.style.strokeDashoffset = String(screenTotal - drawn);
+    };
+    measure();
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    const onResize = () => {
+      measure();
+      update();
+    };
+    window.addEventListener("resize", onResize);
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+        window.removeEventListener("scroll", update);
+        window.removeEventListener("resize", onResize);
+      },
+      { once: true }
+    );
+  }
+
+  // Hero guide-grid fade-in (the wolf's own draw-on lives in WolfMark.astro).
+  // Static grid under reduced motion or without JS.
+  let fieldInited = false;
+  function initField() {
+    if (fieldInited) return;
+    const hero = document.querySelector<HTMLElement>(".hero");
+    if (!hero) return;
+    fieldInited = true;
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      hero.classList.add("is-play");
+    }
+  }
+
+  // The margin-note scribble: armed on init, draws when it scrolls into
+  // view. Static and fully drawn under reduced motion or without JS.
+  let scribbleInited = false;
+  function initScribble() {
+    if (scribbleInited) return;
+    const note = document.querySelector<HTMLElement>("[data-scribble]");
+    if (!note) return;
+    scribbleInited = true;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    note.classList.add("is-armed");
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          io.disconnect();
+          note.classList.add("is-in");
+        }
+      },
+      { threshold: 0.4 }
+    );
+    io.observe(note.parentElement || note);
+  }
+
+  function bootHome() {
+    initTrail();
+    initField();
+    initScribble();
+  }
+  document.addEventListener("astro:before-swap", () => {
+    trailInited = false;
+    fieldInited = false;
+    scribbleInited = false;
+  });
+  bootHome();
+  document.addEventListener("astro:page-load", bootHome);
+</script>

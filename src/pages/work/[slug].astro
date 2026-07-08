@@ -1,0 +1,850 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import TypeLine from "../../components/TypeLine.astro";
+
+export async function getStaticPaths() {
+  const work = await getCollection("work");
+  const sorted = work.sort((a, b) => a.data.order - b.data.order);
+  return sorted.map((entry, i) => {
+    const next = sorted[(i + 1) % sorted.length];
+    return { params: { slug: entry.slug }, props: { entry, next } };
+  });
+}
+
+const { entry, next } = Astro.props;
+const d = entry.data;
+const { Content } = await entry.render();
+
+/* Rubber-stamp of the project's brand mark, extracted from the tile art
+   into /public/brand/stamps/<slug>.svg (single path set, currentColor).
+   Every mark is normalised onto a fixed 240-unit canvas so the ink
+   roughness filter bites identically on all four pages. */
+const stampFiles = import.meta.glob("../../../public/brand/stamps/*.svg", {
+  query: "?raw",
+  import: "default",
+  eager: true,
+});
+const stampRaw = stampFiles[`../../../public/brand/stamps/${entry.slug}.svg`] as string;
+const vb = stampRaw.match(/viewBox="([^"]+)"/)![1].split(/\s+/).map(Number);
+const stampInner = stampRaw.replace(/^.*?<svg[^>]*>/s, "").replace(/<\/svg>\s*$/s, "");
+const W = 240;
+const PADX = 20;
+const PADY = 16;
+const s = (W - PADX * 2) / vb[2];
+const H = Math.round(vb[3] * s + PADY * 2);
+const tx = PADX - vb[0] * s;
+const ty = PADY - vb[1] * s;
+/* two curly ink flourishes in the site's hand-drawn line language,
+   parameterised on the stamp's proportions */
+const px = (fx: number, fy: number) => `${(fx * W).toFixed(1)} ${(fy * H).toFixed(1)}`;
+const line1 =
+  `M ${px(-0.05, 0.66)} C ${px(0.1, 0.82)}, ${px(0.24, 0.78)}, ${px(0.35, 0.62)} ` +
+  `C ${px(0.43, 0.5)}, ${px(0.52, 0.5)}, ${px(0.51, 0.62)} ` +
+  `C ${px(0.5, 0.74)}, ${px(0.4, 0.76)}, ${px(0.42, 0.62)} ` +
+  `C ${px(0.44, 0.47)}, ${px(0.6, 0.44)}, ${px(0.74, 0.5)} ` +
+  `C ${px(0.88, 0.56)}, ${px(0.97, 0.52)}, ${px(1.05, 0.44)}`;
+const line2 =
+  `M ${px(0.58, 0.06)} C ${px(0.68, -0.04)}, ${px(0.82, -0.02)}, ${px(0.86, 0.1)} ` +
+  `C ${px(0.88, 0.17)}, ${px(0.81, 0.2)}, ${px(0.78, 0.12)}`;
+---
+
+<Base title={`${d.client} · ${d.tagline} · Witty Wolf Design`} description={d.summary}>
+  <!-- Case hero; the project accent is available page-wide as a CSS var,
+       used only at hairline and caption level -->
+  <article class="case" style={`--case-accent:${d.accent}`}>
+    <header class="case-hero">
+      <div class="wrap">
+        <!-- the brand mark as a faded rubber stamp behind the header -->
+        <div class="case-stamp" data-stamp aria-hidden="true">
+          <svg class="case-stamp__art" viewBox={`0 0 ${W} ${H}`}>
+            <defs>
+              <filter id="stamp-fx" x="-8%" y="-12%" width="116%" height="124%">
+                <!-- speckled ink dropout, then a wobble so edges bite unevenly.
+                     Dropout eased and wobble tightened so a harder press still
+                     reads crisp/inked, not eroded -->
+                <feTurbulence type="fractalNoise" baseFrequency="0.38" numOctaves="2" seed="4" result="grain" />
+                <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 3.8 -0.6" result="grainA" />
+                <feComposite in="SourceGraphic" in2="grainA" operator="in" result="bitten" />
+                <feTurbulence type="fractalNoise" baseFrequency="0.02 0.028" numOctaves="2" seed="11" result="warp" />
+                <feDisplacementMap in="bitten" in2="warp" scale="2.5" />
+              </filter>
+            </defs>
+            <g class="case-stamp__ink" filter="url(#stamp-fx)">
+              <rect
+                x="2.5" y="2.5"
+                width={W - 5} height={H - 5}
+                rx="12"
+                fill="none" stroke="currentColor" stroke-width="2.5"
+              />
+              <g transform={`translate(${tx.toFixed(2)} ${ty.toFixed(2)}) scale(${s.toFixed(4)})`} set:html={stampInner} />
+            </g>
+            <g class="case-stamp__lines" fill="none" stroke-linecap="round">
+              <path class="sl" pathLength="1" d={line1} />
+              <path class="sl sl--2" pathLength="1" d={line2} />
+            </g>
+          </svg>
+        </div>
+        <a href="/work" class="case-back ul">&larr; All work</a>
+        <p class="mono muted case-kicker">{d.client} · {d.year}</p>
+        <h1 class="case-title">
+          <TypeLine segments={[{ text: d.tagline }]} />
+        </h1>
+        <script is:inline data-astro-rerun>
+          if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            const f = document.querySelector(".tw-fallback");
+            if (f) f.style.visibility = "hidden";
+            const s = document.querySelector("[data-stamp]");
+            if (s) s.style.visibility = "hidden";
+          }
+        </script>
+        <p class="case-summary lead">{d.summary}</p>
+
+        <dl class="case-meta">
+          <div><dt>Role</dt><dd>{d.role}</dd></div>
+          <div><dt>Discipline</dt><dd>{d.discipline.join(" · ")}</dd></div>
+          <div><dt>Year</dt><dd>{d.year}</dd></div>
+        </dl>
+
+        {/* live-site CTA, URL read from frontmatter (single source, see liveUrl) */}
+        {d.liveUrl && (
+          <a class="live-cta" href={d.liveUrl} target="_blank" rel="noopener noreferrer">
+            See it live on staging <span class="live-cta__arrow">&rarr;</span>
+          </a>
+        )}
+      </div>
+    </header>
+
+    {d.metrics && (
+      <section class="section--tight">
+        <div class="wrap">
+          <div class="metrics" data-reveal-group>
+            {d.metrics.map((m) => (
+              <div class="metric" data-reveal>
+                <span class="metric__v">{m.value}</span>
+                <span class="metric__l muted">{m.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="section--tight">
+      <div class="wrap">
+        <!-- no data-reveal here: a page-length element never reaches the
+             observer's ratio threshold and would stay invisible -->
+        <div class="prose">
+          <Content />
+        </div>
+        {/* same live-site CTA at the end of "Status and next steps" */}
+        {d.liveUrl && (
+          <a class="live-cta live-cta--foot" href={d.liveUrl} target="_blank" rel="noopener noreferrer">
+            See it live on staging <span class="live-cta__arrow">&rarr;</span>
+          </a>
+        )}
+      </div>
+    </section>
+
+    <!-- Next project -->
+    <a href={`/work/${next.slug}`} class="nextcard dark" data-accent={next.data.accent}>
+      <div class="wrap nextcard__inner">
+        <span class="mono nextcard__label">Next case study</span>
+        <span class="nextcard__title">{next.data.tagline}</span>
+        <span class="nextcard__client">{next.data.client} <span class="arrow">&rarr;</span></span>
+      </div>
+    </a>
+  </article>
+</Base>
+
+<style>
+  .case-hero {
+    position: relative;
+    padding-block: clamp(2rem, 6vw, 4rem) clamp(2rem, 5vw, 3rem);
+  }
+  /* the home page's guide-grid language continues here, static */
+  .case-hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(to bottom, var(--ink) 0 1px, transparent 1px 20px),
+      repeating-linear-gradient(to right, var(--ink) 0 1px, transparent 1px 20px);
+    opacity: 0.045;
+    mask-image:
+      radial-gradient(ellipse 60% 55% at 38% 40%, #000 16%, transparent 72%),
+      radial-gradient(ellipse 50% 60% at 70% 60%, #000 12%, transparent 70%);
+    -webkit-mask-image:
+      radial-gradient(ellipse 60% 55% at 38% 40%, #000 16%, transparent 72%),
+      radial-gradient(ellipse 50% 60% at 70% 60%, #000 12%, transparent 70%);
+    pointer-events: none;
+  }
+  .case-hero .wrap { position: relative; }
+  .case-back { display: inline-block; font-weight: 600; font-size: var(--step--1); margin-bottom: 2rem; }
+
+  /* the brand mark as a rubber stamp: faded single-colour ink in the top
+     left, BEHIND the back link, meta line and headline start. Background
+     on first look, legible on the second. The ink colour is the project
+     accent pulled toward the theme's ink so it reads on both surfaces
+     without glowing (Shelly's pale accent included). */
+  .case {
+    --stamp-ink: color-mix(in srgb, var(--case-accent) 62%, var(--ink) 38%);
+    /* overprinted ON TOP of the text now, so a firm ink that clearly reads as
+       pressed over the letters (not a faint watermark) while the words stay
+       legible through it (multiply was rejected: it makes the light-toned
+       dark-theme ink vanish into the dark paper) */
+    --stamp-alpha: 0.32;
+  }
+  :global([data-theme="dark"]) .case {
+    --stamp-ink: color-mix(in srgb, var(--case-accent) 38%, var(--ink) 62%);
+    --stamp-alpha: 0.34;
+  }
+  .case-stamp {
+    position: absolute;
+    top: 0.5rem; /* lower, so it presses over the meta line and title start */
+    left: -5rem; /* further into the gutter */
+    width: clamp(180px, 16vw, 236px);
+    transform: rotate(-8deg);
+    color: var(--stamp-ink);
+    z-index: 2; /* pressed ON TOP of the hero text, not a watermark behind */
+    pointer-events: none; /* never blocks the back link, meta or text selection */
+  }
+  .case-stamp__art { display: block; width: 100%; height: auto; overflow: visible; }
+  .case-stamp__ink { opacity: var(--stamp-alpha); }
+  .case-stamp__lines .sl {
+    /* the curly flourishes are the envelope-ink accent (amber), not the case
+       accent, matching the home page's curly arrow */
+    stroke: var(--accent-hot);
+    stroke-width: 1.6;
+    opacity: 0.5;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    /* stamp punch: slightly large, snap down hard, 150ms, no bounce */
+    .case-stamp.is-armed .case-stamp__art {
+      opacity: 0;
+    }
+    .case-stamp.is-stamped .case-stamp__art {
+      animation: stamp-punch 0.15s cubic-bezier(0.19, 1, 0.22, 1) both;
+    }
+    /* the flourishes draw themselves right after the punch; armed by JS so
+       no-JS visitors still get the static drawn lines */
+    .case-stamp.is-armed .sl {
+      stroke-dasharray: 1 1;
+      stroke-dashoffset: 1;
+    }
+    .case-stamp.is-in .sl {
+      stroke-dashoffset: 0;
+      transition: stroke-dashoffset 0.55s ease-out;
+    }
+    .case-stamp.is-in .sl--2 { transition-delay: 0.3s; }
+  }
+  @keyframes stamp-punch {
+    from { opacity: 0; transform: scale(1.15); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @media (max-width: 720px) {
+    /* pressed over the meta line and title start, but smaller and lighter so
+       it does not swamp the smaller mobile title; kept on-screen at 360px */
+    .case { --stamp-alpha: 0.22; }
+    :global([data-theme="dark"]) .case { --stamp-alpha: 0.24; }
+    .case-stamp { width: clamp(118px, 36vw, 150px); left: -2rem; top: 0; }
+  }
+  .case-title {
+    max-width: 26ch;
+    margin: 1rem 0 1.25rem;
+    font-size: clamp(1.8rem, 3.6vw, 2.9rem);
+    line-height: 1.3;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+  }
+  .case-summary { max-width: 52ch; color: var(--charcoal); }
+  .case-meta {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem;
+    margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+  }
+  .case-meta dt { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+  .case-meta dd { font-family: var(--font-mono); font-weight: 600; font-size: var(--step-0); color: var(--ink); font-variant-numeric: tabular-nums; }
+  @media (max-width: 680px) { .case-meta { grid-template-columns: 1fr; gap: 1rem; } }
+
+  /* live-site CTA: mono link in the secondary self-drawing-underline style
+     (same mechanic as the next-case link), tinted with the case accent */
+  .live-cta {
+    display: inline-block;
+    margin-top: 1.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem; font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--case-accent, var(--accent));
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat;
+    transition: background-size 0.4s var(--ease-out);
+    padding-bottom: 3px;
+    width: fit-content;
+  }
+  .live-cta:hover, .live-cta:focus-visible { background-size: 100% 1px; }
+  .live-cta__arrow { display: inline-block; transition: transform 0.3s var(--ease); }
+  .live-cta:hover .live-cta__arrow, .live-cta:focus-visible .live-cta__arrow { transform: translateX(6px); }
+  .live-cta--foot { margin-top: 2rem; }
+
+  .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .metric {
+    display: grid; gap: 0.35rem; padding: 1.25rem;
+    border: 1px solid var(--line);
+    border-top: 2px solid var(--case-accent, var(--accent));
+  }
+  .metric__v { font-family: var(--font-mono); font-weight: 700; font-size: var(--step-1); color: var(--ink); line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .metric__l { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.02em; }
+  @media (max-width: 680px) { .metrics { grid-template-columns: 1fr; } }
+
+  /* prose (rendered markdown): left-aligned field notes. Text measures stay
+     readable; figures are free to run wider, bleed, or hang in the margin. */
+  .prose { position: relative; }
+  .prose :global(h2) { font-size: var(--step-2); margin-top: clamp(2.5rem, 6vw, 4rem); margin-bottom: 1rem; max-width: 30ch; }
+  .prose :global(h3) { font-size: var(--step-1); margin-top: 2rem; margin-bottom: 0.75rem; max-width: 40ch; }
+  .prose :global(p) { font-size: var(--step-0); line-height: 1.7; margin-bottom: 1.25rem; max-width: 62ch; }
+  .prose :global(blockquote) {
+    margin: clamp(2.5rem, 6vw, 4rem) 0; padding-left: 1.5rem;
+    border-left: 2px solid var(--case-accent, var(--accent));
+    font-family: var(--font-mono); font-size: var(--step-1); font-weight: 600;
+    line-height: 1.4; color: var(--ink); max-width: 34ch;
+  }
+  .prose :global(blockquote p) { font-size: inherit; margin: 0; }
+  .prose :global(ul), .prose :global(ol) { padding-left: 1.25rem; margin-bottom: 1.25rem; font-size: var(--step-0); max-width: 60ch; }
+  .prose :global(li) { margin-bottom: 0.7rem; line-height: 1.65; }
+
+  /* figures: field-notes prints. Images sit straight on the paper, no
+     white mats or frames, taped across the top corners with a hint of
+     alternating tilt so pages feel pinned up. Variants: --bleed (untaped
+     full spread, both sides, never one-sided), --duo (pair), --margin
+     (small aside hanging right), --small (icon-level artefact). */
+  .case {
+    --tape: rgba(214, 189, 138, 0.32);
+    --board-bg: rgba(26, 23, 20, 0.045);
+    --pin: color-mix(in srgb, var(--case-accent) 60%, var(--ink) 40%);
+  }
+  :global([data-theme="dark"]) .case {
+    --tape: rgba(240, 232, 214, 0.16);
+    --board-bg: rgba(0, 0, 0, 0.28);
+    --pin: color-mix(in srgb, var(--case-accent) 40%, var(--ink) 60%);
+  }
+  .prose :global(.fig) {
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
+    margin: clamp(2rem, 5vw, 3rem) 0;
+  }
+  .prose :global(.fig img) {
+    display: block;
+    max-width: 100%;
+    max-height: 70vh;
+    width: auto;
+  }
+  /* white-artboard exports read as lightboxes on dark paper; dim, not glow */
+  :global([data-theme="dark"]) .prose :global(.fig img) { filter: brightness(0.88); }
+  .prose :global(.fig:nth-of-type(odd)) { transform: rotate(0.45deg); }
+  .prose :global(.fig:nth-of-type(even)) { transform: rotate(-0.55deg); }
+  .prose :global(.fig::before),
+  .prose :global(.fig::after) {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    width: 54px;
+    height: 15px;
+    top: -5px;
+    background: var(--tape);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    pointer-events: none;
+  }
+  .prose :global(.fig::before) { left: -16px; transform: rotate(-40deg); }
+  .prose :global(.fig::after) { right: -16px; transform: rotate(37deg); }
+  .prose :global(.fig:nth-of-type(even)::before) { transform: rotate(-34deg); top: -7px; }
+  .prose :global(.fig:nth-of-type(even)::after) { transform: rotate(43deg); }
+  /* cap the FIGURE (not just the image) so the box shrink-wraps the print:
+     otherwise the fit-content figure stays as wide as its caption and the
+     tape corners float off the image, most visibly on the right */
+  .prose :global(.fig--small) { max-width: 220px; }
+  .prose :global(.fig--small img) { max-width: 100%; }
+  .prose :global(.fig--mid) { max-width: min(620px, 100%); }
+  .prose :global(.fig--mid img) { max-width: 100%; }
+  /* transparent / light-ground diagrams need the sheet they were printed on,
+     in BOTH themes: on dark paper so dark ink shows, and on light paper so
+     light-ink boards do not vanish into the cream. No padding, no mat. */
+  .prose :global(.fig--sheet img) { background: #E9E4D8; }
+
+  /* theme-swap figures: two exports of the same board, one per theme, both
+     kept in the DOM so the swap never reflows (as the About portraits do) */
+  /* img in the selector so these beat the base `.fig img { display:block }` */
+  .prose :global(.fig img.fig__theme--dark) { display: none; }
+  :global([data-theme="dark"]) .prose :global(.fig img.fig__theme--light) { display: none; }
+  :global([data-theme="dark"]) .prose :global(.fig img.fig__theme--dark) { display: block; }
+
+  /* white-artboard exports (design-system sheets, persona cards, boards, live
+     screenshots): tone the hard #FFF so it takes the surface colour instead of
+     glaring. In light the image multiplies into the cream paper (white -> the
+     paper tone). In dark, multiplying into the near-black surface would crush
+     the content, so the figure is isolated over a warm mat and the white melts
+     into THAT instead — no glare, mid-tones survive. The Maria Moreno effect. */
+  .prose :global(.fig--paper img) { mix-blend-mode: multiply; }
+  :global([data-theme="dark"]) .prose :global(.fig--paper) {
+    isolation: isolate;
+    background: #cfc7b5; /* warm mat the white melts to on dark paper */
+  }
+  :global([data-theme="dark"]) .prose :global(.fig--paper img) {
+    filter: none; /* the multiply + mat already tone it; skip the extra dim */
+  }
+  .prose :global(.fig figcaption) {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    margin-top: 0.6rem;
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--case-accent, var(--accent));
+    max-width: 56ch;
+  }
+  /* fig--paper figures carry a warm light mat in dark mode, so their caption
+     lands on that light mat: darken it there so it stays readable (the muted
+     grey token is for captions sitting on the dark paper) */
+  :global([data-theme="dark"]) .prose :global(.fig--paper figcaption) { color: #4a4238; }
+  /* a deliberate spread: full viewport width on BOTH sides, untaped,
+     untilted. The symmetric margin trick keeps it centred on the column. */
+  .prose :global(.fig.fig--bleed) {
+    width: 100vw;
+    max-width: none;
+    margin-left: calc(50% - 50vw);
+    margin-right: 0;
+    transform: none;
+  }
+  .prose :global(.fig--bleed::before),
+  .prose :global(.fig--bleed::after) { display: none; }
+  .prose :global(.fig--bleed img) {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+  }
+  .prose :global(.fig--bleed figcaption) { margin-inline: max(var(--gutter), calc((100vw - var(--wrap)) / 2)); }
+  .prose :global(.fig--duo) {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+    align-items: start; /* let each print keep its own height, no stretch */
+    width: 100%;
+    max-width: 62ch; /* capped to the prose column, never full bleed */
+  }
+  /* each image sits in its own relatively-positioned tile so tape anchors to
+     that image's corners, not the shared container */
+  .prose :global(.fig--duo .fig__tile) { position: relative; display: block; }
+  .prose :global(.fig--duo img) {
+    display: block;
+    width: 100%;
+    height: auto; /* natural aspect ratio */
+    object-fit: contain;
+  }
+  .prose :global(.fig--duo figcaption) { grid-column: 1 / -1; }
+  /* a pair's container tapes float over the gap between the two prints, so
+     drop them and give each tile its own top-left + top-right tape: four
+     strips total, each one always sitting on an image, never the background */
+  .prose :global(.fig--duo::before), .prose :global(.fig--duo::after) { display: none; }
+  .prose :global(.fig--duo .fig__tile::before),
+  .prose :global(.fig--duo .fig__tile::after) {
+    content: ""; position: absolute; z-index: 1;
+    width: 48px; height: 15px; top: -5px;
+    background: var(--tape);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    pointer-events: none;
+  }
+  .prose :global(.fig--duo .fig__tile::before) { left: -13px; transform: rotate(-38deg); }
+  .prose :global(.fig--duo .fig__tile::after) { right: -13px; transform: rotate(40deg); }
+  .prose :global(.fig--duo .fig__tile:nth-child(2)::before) { transform: rotate(-33deg); top: -6px; }
+  .prose :global(.fig--duo .fig__tile:nth-child(2)::after) { transform: rotate(44deg); }
+  /* a tile whose artwork is two phones at different heights inside a
+     transparent frame (Airbnb discovery flow): pin the two tapes onto the
+     phones, not the empty corners. Percentages track the image at any size. */
+  .prose :global(.fig--duo .fig__tile--offset::before) { top: 8%; left: 4%; transform: rotate(-36deg); }
+  .prose :global(.fig--duo .fig__tile--offset::after) { top: 1.5%; right: 3%; transform: rotate(41deg); }
+  @media (max-width: 680px) {
+    .prose :global(.fig--duo) { grid-template-columns: 1fr; }
+  }
+  /* floats to the container's right edge, which on wide screens is the
+     whitespace beside the 62ch text column */
+  .prose :global(.fig--margin) {
+    float: right;
+    width: clamp(200px, 24vw, 320px);
+    margin: 0.4rem 0 1.5rem 2rem;
+  }
+  .prose :global(.fig--margin img) { width: 100%; }
+
+  /* build-stage detail, ported from the live Urbiqo site: the terracotta
+     skyline divider and the section heading below it wipe in together from
+     the left (a mask grown 0%->100%), on scroll into view and on hover.
+     Reduced motion or no JS: both sit fully revealed. */
+  /* the whole unit sits at the text column's left edge (part of the narrative
+     flow, the origin of the terracotta), but the block shrink-wraps the title
+     so the skyline can centre over the words beneath it */
+  .prose :global(.skyline-head) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+    width: fit-content;
+    margin: clamp(3rem, 7vw, 4.5rem) 0;
+    clear: both;
+  }
+  .prose :global(.skyline-break) {
+    display: block;
+    width: 168px;
+    max-width: 100%;
+    color: var(--case-accent, var(--accent));
+  }
+  .prose :global(.skyline-break svg) { display: block; width: 100%; height: auto; overflow: visible; }
+  .prose :global(.skyline-break-title) {
+    margin: 0;
+    font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .prose :global(.skyline-break-title span) { color: var(--case-accent, var(--accent)); }
+  @media (prefers-reduced-motion: no-preference) {
+    .prose :global(.skyline-break),
+    .prose :global(.skyline-break-title) {
+      -webkit-mask-image: linear-gradient(to right, #000, #000);
+      mask-image: linear-gradient(to right, #000, #000);
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-position: left center;
+      mask-position: left center;
+    }
+    /* armed by JS, not yet in view: held hidden, ready to wipe in */
+    .prose :global(.skyline-head.reveal-ready:not(.in-view) .skyline-break),
+    .prose :global(.skyline-head.reveal-ready:not(.in-view) .skyline-break-title) {
+      -webkit-mask-size: 0% 100%;
+      mask-size: 0% 100%;
+    }
+    /* play on scroll into view */
+    .prose :global(.skyline-head.in-view .skyline-break),
+    .prose :global(.skyline-head.in-view .skyline-break-title) {
+      animation: case-skyline-wipe 900ms linear;
+    }
+    /* replay on hover: a distinct keyframe name so a repeat hover actually
+       restarts the wipe. Reusing the in-view name would not re-fire, since
+       .in-view keeps that same animation value permanently applied. */
+    .prose :global(.skyline-head:hover .skyline-break),
+    .prose :global(.skyline-head:hover .skyline-break-title) {
+      animation: case-skyline-wipe-replay 900ms linear;
+    }
+  }
+  @keyframes case-skyline-wipe {
+    from { -webkit-mask-size: 0% 100%; mask-size: 0% 100%; }
+    to   { -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
+  }
+  @keyframes case-skyline-wipe-replay {
+    from { -webkit-mask-size: 0% 100%; mask-size: 0% 100%; }
+    to   { -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
+  }
+
+  /* bulletin board: a quiet darker zone for a cluster of related items,
+     each pinned with a round dot and a tiny real shadow. One per page. */
+  .prose :global(.board) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1rem, 3vw, 1.75rem);
+    margin: clamp(2rem, 5vw, 3rem) 0;
+    padding: clamp(1.25rem, 3.5vw, 2rem);
+    background: url('/textures/cork-board.jpg') center / cover;
+    border: 6px solid #6b4f2a; /* warm frame around the cork */
+    border-radius: 4px;
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.22); /* recessed, framed feel */
+  }
+  /* the cork photo is warm and bright: dim just the texture in dark mode via
+     an overlay layer, so the white cards on top keep their brightness */
+  :global([data-theme="dark"]) .prose :global(.board) {
+    background: linear-gradient(rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0.16)),
+      url('/textures/cork-board.jpg') center / cover;
+  }
+  .prose :global(.board > div) {
+    position: relative;
+    background: var(--bg-elevated);
+    border: 1px solid var(--line);
+    padding: 1.1rem 1.25rem 1.2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18); /* lifted off the cork */
+  }
+  .prose :global(.board > div:nth-child(odd)) { transform: rotate(-0.5deg); }
+  .prose :global(.board > div:nth-child(even)) { transform: rotate(0.4deg); }
+  .prose :global(.board > div::before) {
+    content: "";
+    position: absolute;
+    top: -5px; left: 50%;
+    width: 11px; height: 11px;
+    margin-left: -5.5px;
+    border-radius: 50%;
+    /* push-pin dome: a small top-left highlight over the accent */
+    background: radial-gradient(circle at 34% 30%,
+      color-mix(in srgb, var(--pin) 40%, #fff) 0%,
+      var(--pin) 58%);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  }
+  .prose :global(.board .persona__k) {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    margin-bottom: 0.55rem;
+  }
+  .prose :global(.board p) {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+    max-width: none;
+  }
+  @media (max-width: 680px) {
+    .prose :global(.board) { grid-template-columns: 1fr; }
+  }
+
+  /* placeholder block for artwork still to come */
+  .prose :global(.ph) {
+    display: grid; place-items: center;
+    min-height: 220px;
+    margin: clamp(2rem, 5vw, 3rem) 0;
+    padding: 2rem;
+    border: 1px dashed var(--grey-400);
+    background: var(--paper);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
+    color: var(--text-muted);
+    text-align: center;
+    max-width: 100%;
+  }
+
+  /* margin note: a small mono label hanging left of the text column on
+     wide screens, folded inline (plain, never uppercase) otherwise */
+  .prose :global(.note) {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+  }
+  @media (min-width: 1520px) {
+    .prose :global(.note) {
+      float: left;
+      width: 8rem;
+      margin-left: -9.5rem;
+      margin-bottom: 0;
+    }
+  }
+
+  /* mono stat rows (projections and goals live here, honestly labelled) */
+  .prose :global(.stats) {
+    max-width: 62ch;
+    margin: 2rem 0;
+    border-top: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+  .prose :global(.stats > div) {
+    display: flex; justify-content: space-between; gap: 1.5rem;
+    padding-block: 0.8rem;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.82rem;
+  }
+  .prose :global(.stats > div > span:first-child) { color: var(--ink); font-weight: 600; }
+  .prose :global(.stats > div > span:last-child) { color: var(--text-muted); text-align: right; }
+
+  /* click-to-enlarge: every case image opens near-fullscreen in an overlay.
+     The overlay lives at <body> level (built by the script below), so its
+     styles are global rather than scoped to .prose. */
+  .prose :global(.fig img) { cursor: zoom-in; }
+  :global(.lightbox) {
+    position: fixed; inset: 0; z-index: 200;
+    display: grid; place-items: center;
+    padding: clamp(1rem, 4vw, 3rem);
+    background: rgba(20, 18, 15, 0.88);
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    cursor: zoom-out;
+  }
+  :global(.lightbox.is-open) { opacity: 1; visibility: visible; }
+  :global(.lightbox__img) {
+    max-width: min(96vw, 1600px);
+    max-height: 90vh;
+    width: auto; height: auto;
+    object-fit: contain;
+    background: #fff;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+    cursor: default;
+    transform: scale(0.97);
+    transition: transform 0.25s var(--ease-out, ease-out);
+  }
+  :global(.lightbox.is-open .lightbox__img) { transform: scale(1); }
+  :global(.lightbox__close) {
+    position: absolute;
+    top: clamp(0.75rem, 2.5vw, 1.75rem);
+    right: clamp(0.75rem, 2.5vw, 1.75rem);
+    width: 44px; height: 44px;
+    display: grid; place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.35);
+    color: #fff;
+    font-size: 1.5rem; line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  :global(.lightbox__close:hover) {
+    background: rgba(0, 0, 0, 0.65);
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+  :global(.lightbox__cap) {
+    position: absolute; left: 0; right: 0;
+    bottom: clamp(0.5rem, 2vw, 1.25rem);
+    margin: 0; padding-inline: 1.5rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.72);
+    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.02em;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :global(.lightbox), :global(.lightbox__img) { transition: none; }
+    :global(.lightbox__img) { transform: none; }
+  }
+
+  .nextcard { display: block; margin-top: clamp(3rem, 8vw, 6rem); padding-block: clamp(3rem, 7vw, 5rem); }
+  .nextcard__label { color: rgba(242, 239, 231, 0.55); }
+  .nextcard__inner { display: grid; gap: 0.6rem; }
+  .nextcard__title { font-family: var(--font-mono); font-weight: 700; font-size: var(--step-3); line-height: 1.05; color: #fff; max-width: 20ch; }
+  .nextcard__client {
+    color: var(--accent-hot); font-weight: 600;
+    font-family: var(--font-mono); font-size: 0.82rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    /* secondary CTA underline: draws itself left to right on hover */
+    background-image: linear-gradient(var(--accent-hot), var(--accent-hot));
+    background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat;
+    transition: background-size 0.4s var(--ease-out);
+    padding-bottom: 3px;
+    width: fit-content;
+  }
+  .nextcard:hover .nextcard__client { background-size: 100% 1px; }
+  .nextcard .arrow { display: inline-block; transition: transform 0.4s var(--ease); }
+  .nextcard:hover .arrow { transform: translateX(8px); }
+</style>
+
+<script>
+  // Stamp choreography: curtain lifts, the title types itself, then the
+  // stamp lands (quick snap) and the curly ink lines draw over it. The
+  // title's TypeLine dispatches tw-done when it finishes; a generous
+  // timeout backstops it. Reduced motion or no JS: static, already there.
+  let stampInited = false;
+  function initStamp() {
+    if (stampInited) return;
+    const el = document.querySelector<HTMLElement>("[data-stamp]");
+    if (!el) return;
+    stampInited = true;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.style.visibility = "";
+      return;
+    }
+    el.classList.add("is-armed");
+    let landed = false;
+    const land = () => {
+      if (landed) return;
+      landed = true;
+      el.style.visibility = "";
+      el.classList.add("is-stamped");
+      window.setTimeout(() => el.classList.add("is-in"), 180);
+    };
+    document
+      .querySelector(".case-title")
+      ?.addEventListener("tw-done", () => window.setTimeout(land, 200), { once: true });
+    window.setTimeout(land, 7000);
+  }
+  document.addEventListener("astro:before-swap", () => (stampInited = false));
+  initStamp();
+  document.addEventListener("astro:page-load", initStamp);
+
+  // Build-stage skyline header: the divider + heading wipe in together when
+  // the group enters the viewport (and replay on hover, via CSS). Armed by JS
+  // so no-JS visitors see it fully revealed; reduced motion stays static.
+  function initSkylines() {
+    const heads = document.querySelectorAll<HTMLElement>(".skyline-head");
+    if (!heads.length) return;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const io = new IntersectionObserver(
+      (entries, obs) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.classList.add("in-view");
+            obs.unobserve(e.target);
+          }
+        }
+      },
+      { threshold: 0.4 },
+    );
+    heads.forEach((h) => {
+      h.classList.add("reveal-ready");
+      io.observe(h);
+    });
+  }
+  initSkylines();
+  document.addEventListener("astro:page-load", initSkylines);
+
+  // Click-to-enlarge lightbox for case-study images. One overlay is built at
+  // <body> level and reused; clicks are delegated so it keeps working across
+  // Astro view transitions. Close via the button, a backdrop click, or Escape.
+  interface LightboxWindow extends Window { __caseLightbox?: boolean }
+  (() => {
+    const w = window as unknown as LightboxWindow;
+    if (w.__caseLightbox) return;
+    w.__caseLightbox = true;
+
+    const box = document.createElement("div");
+    box.className = "lightbox";
+    box.setAttribute("role", "dialog");
+    box.setAttribute("aria-modal", "true");
+    box.setAttribute("aria-hidden", "true");
+    box.innerHTML =
+      '<button class="lightbox__close" type="button" aria-label="Close image">×</button>' +
+      '<img class="lightbox__img" alt="" />' +
+      '<p class="lightbox__cap"></p>';
+    document.body.appendChild(box);
+
+    const imgEl = box.querySelector(".lightbox__img") as HTMLImageElement;
+    const capEl = box.querySelector(".lightbox__cap") as HTMLElement;
+    const closeBtn = box.querySelector(".lightbox__close") as HTMLButtonElement;
+    let lastFocus: HTMLElement | null = null;
+
+    const open = (src: string, alt: string, cap: string) => {
+      imgEl.src = src;
+      imgEl.alt = alt;
+      capEl.textContent = cap;
+      capEl.style.display = cap ? "" : "none";
+      lastFocus = document.activeElement as HTMLElement;
+      box.classList.add("is-open");
+      box.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      closeBtn.focus();
+    };
+    const close = () => {
+      box.classList.remove("is-open");
+      box.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      lastFocus?.focus();
+    };
+
+    // open: delegated click on any case image (not the .fig--bleed decoration? all count)
+    document.addEventListener("click", (e) => {
+      const img = (e.target as HTMLElement).closest(".prose .fig img") as HTMLImageElement | null;
+      if (!img) return;
+      const cap = img.closest(".fig")?.querySelector("figcaption")?.textContent?.trim() ?? "";
+      open(img.currentSrc || img.src, img.alt || "", cap);
+    });
+
+    // close: backdrop click (overlay itself, never the image/button/caption)
+    box.addEventListener("click", (e) => {
+      if (e.target === box) close();
+    });
+    closeBtn.addEventListener("click", close);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && box.classList.contains("is-open")) close();
+    });
+  })();
+</script>
