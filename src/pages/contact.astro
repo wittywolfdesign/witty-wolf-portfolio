@@ -32,24 +32,37 @@ const channels = [
         </div>
       </div>
 
-      <!-- Form: connect an action URL (Web3Forms / Formspree) to go live -->
+      <!-- Form posts to Web3Forms (no backend needed on static hosting).
+           Replace the access_key value below with the key Web3Forms emails you
+           after you register marco@wittywolf.design at web3forms.com.
+           novalidate: validation is handled in the script for custom messages. -->
       <form
         class="form"
         data-reveal
-        action="https://formspree.io/f/your-form-id"
+        action="https://api.web3forms.com/submit"
         method="POST"
+        novalidate
       >
+        <input type="hidden" name="access_key" value="73807b61-7306-4d25-8a68-6313659e3f96" />
+        <input type="hidden" name="subject" value="New enquiry via wittywolf.design" />
+        <input type="hidden" name="from_name" value="wittywolf.design" />
+        <!-- honeypot: real people never see or fill this; bots do -->
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
         <div class="field">
           <label for="name">Your name</label>
           <input id="name" name="name" type="text" autocomplete="name" placeholder="First name is fine" required />
+          <p class="field__err" data-err="name" aria-live="polite"></p>
         </div>
         <div class="field">
           <label for="email">Email</label>
           <input id="email" name="email" type="email" autocomplete="email" placeholder="Where my reply should land" required />
+          <p class="field__err" data-err="email" aria-live="polite"></p>
         </div>
         <div class="field">
           <label for="message">What&rsquo;s on your mind?</label>
           <textarea id="message" name="message" rows="5" placeholder="A project, a question, a half-formed idea. Rough is fine." required></textarea>
+          <p class="field__err" data-err="message" aria-live="polite"></p>
         </div>
         <button type="submit" class="btn form__submit">
           Send message <span class="arrow" aria-hidden="true">&rarr;</span>
@@ -100,6 +113,17 @@ const channels = [
   .form__submit { margin-top: 0.5rem; justify-self: start; }
   .channel:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   .form__note { font-size: var(--step--1); }
+  /* honeypot: visually and audibly hidden, off the tab order */
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  /* inline field guidance: plain ink mono, no red boxes */
+  .field__err {
+    font-family: var(--font-mono); font-size: var(--step--1);
+    color: var(--ink); margin: 0.15rem 0 0; min-height: 1.15em;
+    line-height: 1.3;
+  }
+  .field input.invalid, .field textarea.invalid {
+    border-color: color-mix(in srgb, var(--accent) 65%, var(--ink));
+  }
   /* terminal caret for the submit feedback */
   .form__submit .caret {
     display: inline-block; width: 0.55em; height: 1.05em;
@@ -158,9 +182,52 @@ const channels = [
       }, after);
     };
 
+    // Inline validation with plain-spoken guidance. novalidate on the form
+    // hands control here so the messages read in Marco's voice, not the
+    // browser's generic bubble.
+    const fields: Record<string, HTMLInputElement | HTMLTextAreaElement | null> = {
+      name: form.querySelector("#name"),
+      email: form.querySelector("#email"),
+      message: form.querySelector("#message"),
+    };
+    // one @, something before and after it, and a dotted domain. Rejects
+    // a@@b.com, marco@, marco@site (no dot), and anything with spaces.
+    const emailOk = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    const setErr = (key: string, msg: string) => {
+      const el = form.querySelector<HTMLElement>(`[data-err="${key}"]`);
+      if (el) el.textContent = msg;
+      fields[key]?.classList.toggle("invalid", !!msg);
+    };
+    const validate = () => {
+      let firstBad: HTMLElement | null = null;
+      const flag = (key: string, bad: boolean, msg: string) => {
+        setErr(key, bad ? msg : "");
+        if (bad && !firstBad) firstBad = fields[key] as HTMLElement;
+      };
+      const name = fields.name?.value.trim() ?? "";
+      const email = fields.email?.value.trim() ?? "";
+      const message = fields.message?.value.trim() ?? "";
+      flag("name", !name, "A name, even just the first one.");
+      flag("email", !email || !emailOk(email),
+        !email ? "Need an email so I can write back."
+               : "That address looks off. Check the @ and the part after it.");
+      flag("message", !message, "Tell me a little about it. Rough is fine.");
+      if (firstBad) (firstBad as HTMLElement).focus();
+      return !firstBad;
+    };
+    // clear a field's message the moment it becomes valid
+    for (const key of Object.keys(fields)) {
+      fields[key]?.addEventListener("input", () => {
+        const v = fields[key]?.value.trim() ?? "";
+        if (key === "email") { if (v && emailOk(v)) setErr("email", ""); }
+        else if (v) setErr(key, "");
+      });
+    }
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (btn.disabled) return;
+      if (!validate()) return;
       btn.disabled = true;
       // hold the box steady while the label retypes; it may still grow
       btn.style.minWidth = `${btn.offsetWidth}px`;
