@@ -66,9 +66,12 @@ const line2 =
 ---
 
 <Base title={baseTitle} description={d.summary}>
-  <!-- Case hero; the project accent is available page-wide as a CSS var,
-       used only at hairline and caption level -->
-  <article class="case" style={`--case-accent:${d.accent}`}>
+  <!-- Case hero. The static on-page accent (--case-accent) is MY brand accent
+       for every project (defined on .case as var(--accent), theme-aware), so
+       hairlines and hover/active never render in a project's own colour. The
+       project's own d.accent is kept only for the page-transition wash (the
+       data-accent on the work cards + next-case card). -->
+  <article class="case">
     <header class="case-hero">
       <div class="wrap">
         <!-- the brand mark as a faded rubber stamp behind the header -->
@@ -209,6 +212,9 @@ const line2 =
      accent pulled toward the theme's ink so it reads on both surfaces
      without glowing (Shelly's pale accent included). */
   .case {
+    /* every static on-page accent is MY brand accent, theme-aware (orange on
+       paper, amber on dark), not the displayed project's own colour */
+    --case-accent: var(--accent);
     --stamp-ink: color-mix(in srgb, var(--case-accent) 62%, var(--ink) 38%);
     /* overprinted ON TOP of the text now, so a firm ink that clearly reads as
        pressed over the letters (not a faint watermark) while the words stay
@@ -283,6 +289,14 @@ const line2 =
       column-gap: clamp(1.5rem, 3vw, 2.75rem);
       align-items: start;
     }
+  }
+  /* wide enough (>=1520px) for a real page gutter: drop the grid so the prose
+     sits hard against the wrap's left edge, the same edge as the hero and
+     metrics above. The rail then hangs OUT in the left margin as a sticky
+     float (that float lives on .case-index--js in CaseIndex.astro, since Astro
+     scoping can't reach the child from here). The asymmetry is deliberate. */
+  @media (min-width: 1520px) {
+    .prose-wrap.case-has-index { display: block; position: relative; }
   }
 
   .case-title {

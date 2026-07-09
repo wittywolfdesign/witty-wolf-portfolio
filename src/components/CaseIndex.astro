@@ -125,6 +125,21 @@ const { sections, client, baseTitle } = Astro.props;
     }
   }
 
+  /* ---- wide desktop (>=1520px): rail hangs in the left margin -----------
+     The parent .prose-wrap drops its grid at this width (see [slug].astro), so
+     pull the still-sticky rail fully into the gutter with a float plus a
+     matching negative margin (rail width + the 2rem gap). The float then sits
+     entirely left of the content column, so the prose flows full-width from
+     the wrap's left edge; float and position:sticky co-exist, so it also keeps
+     tracking the scroll. */
+  @media (min-width: 1520px) {
+    .case-index--js {
+      float: left;
+      width: clamp(7rem, 8vw, 9.5rem);
+      margin-left: calc(-1 * (clamp(7rem, 8vw, 9.5rem) + 2rem));
+    }
+  }
+
   /* ---- enhanced mobile: floating current-section pill ------------------ */
   @media (max-width: 1023px) {
     .case-index--js {
