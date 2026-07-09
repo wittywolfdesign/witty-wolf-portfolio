@@ -218,26 +218,31 @@ const line2 =
     /* every FUNCTIONAL on-page accent is MY brand accent, theme-aware (orange
        on paper, amber on dark), not the displayed project's own colour */
     --case-accent: var(--accent);
-    /* the stamp is the PROJECT's own logo mark, so its ink follows the project
-       accent (--brand-accent, set inline from d.accent), pulled toward the
-       theme ink so it reads on both surfaces without glowing */
-    --stamp-ink: color-mix(in srgb, var(--brand-accent, var(--case-accent)) 62%, var(--ink) 38%);
-    /* overprinted ON TOP of the text now, so a firm ink that clearly reads as
-       pressed over the letters (not a faint watermark) while the words stay
-       legible through it (multiply was rejected: it makes the light-toned
-       dark-theme ink vanish into the dark paper) */
-    --stamp-alpha: 0.32;
+    /* the stamp is the PROJECT's own logo mark, inked in its own brand HUE
+       (--brand-accent, set inline from d.accent). It must PRESS OVER the letters
+       like a stamp on an envelope. The accents range from very dark (Airbnb navy,
+       EVVO blue) to pale (Shelly), and neither a light tone (vanishes over the
+       light letters) nor the raw brand tone (dark accents vanish on the dark
+       page) reads on both. So force the brand hue to a MID lightness: it then
+       reads over both the letters and the page, in either theme. Relative-colour
+       oklch keeps hue + chroma and only sets lightness; color-mix is the
+       fallback. Semi-transparent + the ink-bite filter keeps the words legible. */
+    --stamp-ink: color-mix(in srgb, var(--brand-accent, var(--case-accent)) 70%, var(--ink) 30%);
+    --stamp-ink: oklch(from var(--brand-accent, var(--case-accent)) 0.56 c h);
+    --stamp-alpha: 0.5;
   }
   :global([data-theme="dark"]) .case {
-    --stamp-ink: color-mix(in srgb, var(--brand-accent, var(--case-accent)) 38%, var(--ink) 62%);
-    --stamp-alpha: 0.34;
+    /* lighter target on the dark page so the mark still pops off it */
+    --stamp-ink: color-mix(in srgb, var(--brand-accent, var(--case-accent)) 55%, var(--ink) 45%);
+    --stamp-ink: oklch(from var(--brand-accent, var(--case-accent)) 0.68 c h);
+    --stamp-alpha: 0.55;
   }
   .case-stamp {
     position: absolute;
-    top: 0.5rem; /* lower, so it presses over the meta line and title start */
+    top: -1.25rem; /* sits high, pressing over the back link + meta + title start */
     left: -5rem; /* further into the gutter */
     width: clamp(180px, 16vw, 236px);
-    transform: rotate(-8deg);
+    transform: rotate(-13deg); /* a firmer left tilt, like a stamp banged on */
     color: var(--stamp-ink);
     z-index: 2; /* pressed ON TOP of the hero text, not a watermark behind */
     pointer-events: none; /* never blocks the back link, meta or text selection */
@@ -278,9 +283,9 @@ const line2 =
   @media (max-width: 720px) {
     /* pressed over the meta line and title start, but smaller and lighter so
        it does not swamp the smaller mobile title; kept on-screen at 360px */
-    .case { --stamp-alpha: 0.22; }
-    :global([data-theme="dark"]) .case { --stamp-alpha: 0.24; }
-    .case-stamp { width: clamp(118px, 36vw, 150px); left: -2rem; top: 0; }
+    .case { --stamp-alpha: 0.42; }
+    :global([data-theme="dark"]) .case { --stamp-alpha: 0.48; }
+    .case-stamp { width: clamp(118px, 36vw, 150px); left: -2rem; top: -1rem; }
   }
   /* Reading section as a two-column [index rail | body] grid on desktop, but
      only once the index script has enhanced it (adds .case-has-index). The
