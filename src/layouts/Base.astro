@@ -273,11 +273,16 @@ const ogImage = new URL(image, base).href;
         const btn = document.querySelector<HTMLElement>("[data-theme-toggle]");
         if (!btn || btn.dataset.bound) return;
         btn.dataset.bound = "1";
-        const sync = () =>
-          btn.setAttribute(
-            "aria-pressed",
-            String(document.documentElement.dataset.theme === "dark")
-          );
+        // the label names the ACTION (the theme a click switches TO): "dark" in
+        // light mode, "light" in dark. Runs on init (so it is right on load and
+        // after every view-transition swap, since a fresh nav re-binds) and
+        // again after each flip.
+        const sync = () => {
+          const isDark = document.documentElement.dataset.theme === "dark";
+          btn.setAttribute("aria-pressed", String(isDark));
+          btn.textContent = isDark ? "light" : "dark";
+          btn.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+        };
         sync();
         let busy = false;
         btn.addEventListener("click", () => {

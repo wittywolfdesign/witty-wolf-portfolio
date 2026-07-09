@@ -60,7 +60,7 @@ resolve them. A modular system from scratch: a strict icon grid, uniform
 foundation. The redesign is a concept, not a shipped product; one possible
 answer to what the audit surfaced.
 
-<figure class="fig fig--pin">
+<figure class="fig">
   <img src="/work/airbnb/airbnb-atomic-design-board.png" alt="Atomic design board organising the new system from atoms like icons and colours up to full pages" loading="lazy" />
   <figcaption>Atoms to pages: the concept system in one board.</figcaption>
 </figure>

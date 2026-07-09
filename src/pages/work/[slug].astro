@@ -387,17 +387,20 @@ const line2 =
     max-height: 70vh;
     width: auto;
   }
-  /* white-artboard exports read as lightboxes on dark paper; ease the glare,
-     but a middle ground: enough to sit calmly, not so much it goes muddy */
-  :global([data-theme="dark"]) .prose :global(.fig img) { filter: brightness(0.95); }
+  /* dark mode: tone every image to one comfortable light level with a single
+     brightness filter (no mat, no multiply, so nothing goes muddy or haloed).
+     White-artboard exports land as a clean light grey; photos dim a touch. */
+  :global([data-theme="dark"]) .prose :global(.fig img) { filter: brightness(0.9); }
   .prose :global(.fig:nth-of-type(odd)) { transform: rotate(0.45deg); }
   .prose :global(.fig:nth-of-type(even)) { transform: rotate(-0.55deg); }
 
-  /* board / collage figures (design-system grids, tilted-screen collages,
-     spec boards) carry a single centred push-pin at the top, in the
-     bulletin-board pin language (--pin). The pin is a self-contained ::before
-     (the corner tape it used to share a base with is gone). --bare figures,
-     whose top-centre is a structural gap, opt out and read as a clean board. */
+  /* the single centred push-pin (bulletin-board --pin language) is reserved for
+     small / standalone prints: the small screenshots and modest fig / fig--mid
+     images. Large or full-width boards (design-system boards, swimlanes, the
+     service blueprint, anything fig--bleed) sit clean, no pin and no tape, so
+     the markup only puts fig--pin on the little prints. The pin is a
+     self-contained ::before (the corner tape it once shared a base with is
+     gone). --bare figures opt out entirely. */
   .prose :global(.fig--bare::before) { display: none; }
   .prose :global(.fig--pin::before),
   .prose :global(.fig--pin:nth-of-type(even)::before) {
@@ -436,23 +439,18 @@ const line2 =
   :global([data-theme="dark"]) .prose :global(.fig img.fig__theme--dark) { display: block; }
 
   /* white-artboard exports (design-system sheets, persona cards, boards, live
-     screenshots): give the export a surface so its white body stays visible.
-     Light: a faint mat lighter than the cream paper, image rendered normally.
-     (Multiply is NOT used in light: white multiplied into the cream paper goes
-     transparent, so the board's white and its edges dissolve into the page.)
-     Dark: a warm mat and the white melts into THAT via multiply, so no glare. */
+     screenshots). Light: a faint mat lighter than the cream paper keeps the
+     white body and its edges visible on the page, image rendered normally.
+     Dark: NO mat and NO multiply. The old warm-mat + multiply left a light
+     block/halo around the screenshot and crushed the midtones to mud, so in
+     dark these sit straight on the paper and are toned only by the shared
+     brightness filter above, like every other image. */
   .prose :global(.fig--paper) {
     isolation: isolate;
     background: #FBFAF6; /* light mat so white artwork stays visible on cream */
   }
   :global([data-theme="dark"]) .prose :global(.fig--paper) {
-    /* warm mat the white multiplies down to: lifted from the old muddy #cfc7b5
-       so white-artboard exports read as a clean light grey, not glare, not mud */
-    background: #D8D1C2;
-  }
-  :global([data-theme="dark"]) .prose :global(.fig--paper img) {
-    mix-blend-mode: multiply;
-    filter: none; /* the multiply + mat already tone it; skip the extra dim */
+    background: transparent; /* no mat: white screenshots sit on the dark paper, no frame */
   }
   .prose :global(.fig figcaption) {
     font-family: var(--font-mono);
@@ -464,10 +462,6 @@ const line2 =
     border-left: 2px solid var(--case-accent, var(--accent));
     max-width: 56ch;
   }
-  /* fig--paper figures carry a warm light mat in dark mode, so their caption
-     lands on that light mat: darken it there so it stays readable (the muted
-     grey token is for captions sitting on the dark paper) */
-  :global([data-theme="dark"]) .prose :global(.fig--paper figcaption) { color: #4a4238; }
   /* formerly a full-viewport spread. The wide artefacts (swimlanes, the
      heuristic board, the verification blueprint) are unreadable inline anyway,
      and the lightbox carries the detail on click, so inline they are now a
@@ -670,10 +664,17 @@ const line2 =
     font-family: var(--font-mono);
     font-size: 0.72rem;
     color: var(--text-muted);
-    margin-bottom: 0.4rem;
+    /* the note STARTS a new section: a clear gap above detaches it from the
+       block before it, a tight gap below groups it with its heading */
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+    margin-bottom: 0.3rem;
     /* section-index anchor targets: clear the 64px sticky nav on jump */
     scroll-margin-top: 5.5rem;
   }
+  /* the heading right after a note joins it: drop the heading's own top gap so
+     note + heading + body read as one grouped head, not three loose lines */
+  .prose :global(.note + h2),
+  .prose :global(.note + h3) { margin-top: 0; }
   @media (min-width: 1520px) {
     .prose :global(.note) {
       float: left;
@@ -687,7 +688,7 @@ const line2 =
       float: none;
       width: auto;
       margin-left: 0;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.3rem;
     }
   }
 
@@ -714,9 +715,10 @@ const line2 =
   .prose :global(.fig img) { cursor: zoom-in; }
   /* "Look closer" enlarge hint, injected by the lightbox script into each
      click-to-enlarge figure. Caption voice (mono, muted, small), tucked in the
-     image's bottom-right over a faint blurred tint so it stays legible on any
+     figure's bottom-right over a faint blurred tint so it stays legible on any
      export; on figure hover it lights to the brand accent and draws the same
-     hairline underline as the site's links. Never intercepts the click. */
+     hairline underline as the site's links. It is clickable and the lightbox
+     handler resolves it to the figure's image (see the script). */
   .prose :global(.fig__zoom) {
     position: absolute;
     right: 0.5rem; bottom: 0.5rem;
@@ -729,7 +731,7 @@ const line2 =
     background: color-mix(in srgb, var(--bg-elevated) 68%, transparent);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
-    pointer-events: none; /* clicks fall through to the image, opening the lightbox */
+    cursor: zoom-in; /* clicking it opens the lightbox, like the image */
     transition: color 0.2s ease;
   }
   .prose :global(.fig:hover .fig__zoom),
@@ -945,9 +947,19 @@ const line2 =
       lastFocus?.focus();
     };
 
-    // open: delegated click on any case image (not the .fig--bleed decoration? all count)
+    // open: delegated click on any case image OR its "Look closer" hint. The
+    // hint sits over the caption row, not the image, so a click on it is
+    // resolved back to the figure's visible <img> (theme-swap figures keep two).
     document.addEventListener("click", (e) => {
-      const img = (e.target as HTMLElement).closest(".prose .fig img") as HTMLImageElement | null;
+      const t = e.target as HTMLElement;
+      let img = t.closest(".prose .fig img") as HTMLImageElement | null;
+      if (!img) {
+        const fig = t.closest(".prose .fig .fig__zoom")?.closest(".fig");
+        if (fig) {
+          const imgs = Array.from(fig.querySelectorAll<HTMLImageElement>("img"));
+          img = imgs.find((i) => i.offsetParent !== null) ?? imgs[0] ?? null;
+        }
+      }
       if (!img) return;
       const cap = img.closest(".fig")?.querySelector("figcaption")?.textContent?.trim() ?? "";
       open(img.currentSrc || img.src, img.alt || "", cap);
