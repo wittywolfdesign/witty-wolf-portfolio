@@ -66,12 +66,15 @@ const line2 =
 ---
 
 <Base title={baseTitle} description={d.summary}>
-  <!-- Case hero. The static on-page accent (--case-accent) is MY brand accent
-       for every project (defined on .case as var(--accent), theme-aware), so
-       hairlines and hover/active never render in a project's own colour. The
-       project's own d.accent is kept only for the page-transition wash (the
-       data-accent on the work cards + next-case card). -->
-  <article class="case">
+  <!-- Case hero. Two accents, kept separate:
+       --case-accent is MY brand accent (var(--accent), theme-aware) and drives
+       every FUNCTIONAL accent: hairlines, borders, the section index, hover and
+       active. --brand-accent is the displayed PROJECT's own colour (d.accent)
+       and is used only for that project's own brand marks on the page (the
+       rubber-stamp logo, the skyline divider, the project-name accent word), so
+       Urbiqo's skyline stays terracotta, EVVO's mark stays its own blue, etc.
+       d.accent also still drives the page-transition wash via data-accent. -->
+  <article class="case" style={`--brand-accent:${d.accent}`}>
     <header class="case-hero">
       <div class="wrap">
         <!-- the brand mark as a faded rubber stamp behind the header -->
@@ -212,10 +215,13 @@ const line2 =
      accent pulled toward the theme's ink so it reads on both surfaces
      without glowing (Shelly's pale accent included). */
   .case {
-    /* every static on-page accent is MY brand accent, theme-aware (orange on
-       paper, amber on dark), not the displayed project's own colour */
+    /* every FUNCTIONAL on-page accent is MY brand accent, theme-aware (orange
+       on paper, amber on dark), not the displayed project's own colour */
     --case-accent: var(--accent);
-    --stamp-ink: color-mix(in srgb, var(--case-accent) 62%, var(--ink) 38%);
+    /* the stamp is the PROJECT's own logo mark, so its ink follows the project
+       accent (--brand-accent, set inline from d.accent), pulled toward the
+       theme ink so it reads on both surfaces without glowing */
+    --stamp-ink: color-mix(in srgb, var(--brand-accent, var(--case-accent)) 62%, var(--ink) 38%);
     /* overprinted ON TOP of the text now, so a firm ink that clearly reads as
        pressed over the letters (not a faint watermark) while the words stay
        legible through it (multiply was rejected: it makes the light-toned
@@ -223,7 +229,7 @@ const line2 =
     --stamp-alpha: 0.32;
   }
   :global([data-theme="dark"]) .case {
-    --stamp-ink: color-mix(in srgb, var(--case-accent) 38%, var(--ink) 62%);
+    --stamp-ink: color-mix(in srgb, var(--brand-accent, var(--case-accent)) 38%, var(--ink) 62%);
     --stamp-alpha: 0.34;
   }
   .case-stamp {
@@ -533,7 +539,9 @@ const line2 =
     display: block;
     width: 168px;
     max-width: 100%;
-    color: var(--case-accent, var(--accent));
+    /* the skyline is the PROJECT's own brand mark, so it keeps the project
+       colour (Urbiqo terracotta), not my functional accent */
+    color: var(--brand-accent, var(--case-accent, var(--accent)));
   }
   .prose :global(.skyline-break svg) { display: block; width: 100%; height: auto; overflow: visible; }
   .prose :global(.skyline-break-title) {
@@ -544,7 +552,7 @@ const line2 =
     font-weight: 600;
     color: var(--ink);
   }
-  .prose :global(.skyline-break-title span) { color: var(--case-accent, var(--accent)); }
+  .prose :global(.skyline-break-title span) { color: var(--brand-accent, var(--case-accent, var(--accent))); }
   @media (prefers-reduced-motion: no-preference) {
     .prose :global(.skyline-break),
     .prose :global(.skyline-break-title) {
