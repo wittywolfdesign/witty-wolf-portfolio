@@ -437,6 +437,10 @@ const line2 =
   .prose :global(.fig--small img) { max-width: 100%; }
   .prose :global(.fig--mid) { max-width: min(620px, 100%); }
   .prose :global(.fig--mid img) { max-width: 100%; }
+  /* a single UI card exported large (e.g. the 700px trust card): show it at a
+     modest card size, not filling the column */
+  .prose :global(.fig--card) { max-width: min(500px, 100%); }
+  .prose :global(.fig--card img) { max-width: 100%; }
   /* transparent / light-ground diagrams need the sheet they were printed on,
      in BOTH themes: on dark paper so dark ink shows, and on light paper so
      light-ink boards do not vanish into the cream. No padding, no mat. */
@@ -917,32 +921,41 @@ const line2 =
   initZoomHints();
   document.addEventListener("astro:page-load", initZoomHints);
 
-  // Click-to-enlarge lightbox for case-study images. One overlay is built at
-  // <body> level and reused; clicks are delegated so it keeps working across
-  // Astro view transitions. Close via the button, a backdrop click, or Escape.
+  // Click-to-enlarge lightbox for case-study images. GOTCHA: Astro's
+  // ClientRouter replaces <body> on a view transition, so an overlay appended
+  // to <body> once is DETACHED after the first in-site navigation and clicks
+  // then open a box that is not in the DOM (nothing shows). So the overlay is
+  // (re)created per page via ensureBox(), while the delegated click/key
+  // listeners are registered once on document. Close via the button, a
+  // backdrop click, or Escape.
   interface LightboxWindow extends Window { __caseLightbox?: boolean }
   (() => {
     const w = window as unknown as LightboxWindow;
-    if (w.__caseLightbox) return;
-    w.__caseLightbox = true;
-
-    const box = document.createElement("div");
-    box.className = "lightbox";
-    box.setAttribute("role", "dialog");
-    box.setAttribute("aria-modal", "true");
-    box.setAttribute("aria-hidden", "true");
-    box.innerHTML =
-      '<button class="lightbox__close" type="button" aria-label="Close image">×</button>' +
-      '<img class="lightbox__img" alt="" />' +
-      '<p class="lightbox__cap"></p>';
-    document.body.appendChild(box);
-
-    const imgEl = box.querySelector(".lightbox__img") as HTMLImageElement;
-    const capEl = box.querySelector(".lightbox__cap") as HTMLElement;
-    const closeBtn = box.querySelector(".lightbox__close") as HTMLButtonElement;
     let lastFocus: HTMLElement | null = null;
 
-    const open = (src: string, alt: string, cap: string) => {
+    function ensureBox(): HTMLElement {
+      const existing = document.querySelector<HTMLElement>(".lightbox");
+      if (existing) return existing;
+      const box = document.createElement("div");
+      box.className = "lightbox";
+      box.setAttribute("role", "dialog");
+      box.setAttribute("aria-modal", "true");
+      box.setAttribute("aria-hidden", "true");
+      box.innerHTML =
+        '<button class="lightbox__close" type="button" aria-label="Close image">×</button>' +
+        '<img class="lightbox__img" alt="" />' +
+        '<p class="lightbox__cap"></p>';
+      document.body.appendChild(box);
+      // close: backdrop click (the overlay itself) or the close button
+      box.addEventListener("click", (e) => { if (e.target === box) close(); });
+      box.querySelector<HTMLButtonElement>(".lightbox__close")!.addEventListener("click", close);
+      return box;
+    }
+
+    function open(src: string, alt: string, cap: string) {
+      const box = ensureBox();
+      const imgEl = box.querySelector(".lightbox__img") as HTMLImageElement;
+      const capEl = box.querySelector(".lightbox__cap") as HTMLElement;
       imgEl.src = src;
       imgEl.alt = alt;
       capEl.textContent = cap;
@@ -951,40 +964,46 @@ const line2 =
       box.classList.add("is-open");
       box.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
-      closeBtn.focus();
-    };
-    const close = () => {
+      (box.querySelector(".lightbox__close") as HTMLElement).focus();
+    }
+    function close() {
+      const box = document.querySelector<HTMLElement>(".lightbox");
+      if (!box) return;
       box.classList.remove("is-open");
       box.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
       lastFocus?.focus();
-    };
+    }
 
-    // open: delegated click on any case image OR its "Look closer" hint. The
-    // hint sits over the caption row, not the image, so a click on it is
-    // resolved back to the figure's visible <img> (theme-swap figures keep two).
-    document.addEventListener("click", (e) => {
-      const t = e.target as HTMLElement;
-      let img = t.closest(".prose .fig img") as HTMLImageElement | null;
-      if (!img) {
-        const fig = t.closest(".prose .fig .fig__zoom")?.closest(".fig");
-        if (fig) {
-          const imgs = Array.from(fig.querySelectorAll<HTMLImageElement>("img"));
-          img = imgs.find((i) => i.offsetParent !== null) ?? imgs[0] ?? null;
+    // register the global listeners once (they survive view transitions)
+    if (!w.__caseLightbox) {
+      w.__caseLightbox = true;
+      // open: delegated click on any case image OR its "Look closer" hint. The
+      // hint sits over the caption row, not the image, so resolve it back to the
+      // figure's visible <img> (theme-swap figures keep two).
+      document.addEventListener("click", (e) => {
+        const t = e.target as HTMLElement;
+        let img = t.closest(".prose .fig img") as HTMLImageElement | null;
+        if (!img) {
+          const fig = t.closest(".prose .fig .fig__zoom")?.closest(".fig");
+          if (fig) {
+            const imgs = Array.from(fig.querySelectorAll<HTMLImageElement>("img"));
+            img = imgs.find((i) => i.offsetParent !== null) ?? imgs[0] ?? null;
+          }
         }
-      }
-      if (!img) return;
-      const cap = img.closest(".fig")?.querySelector("figcaption")?.textContent?.trim() ?? "";
-      open(img.currentSrc || img.src, img.alt || "", cap);
-    });
+        if (!img) return;
+        const cap = img.closest(".fig")?.querySelector("figcaption")?.textContent?.trim() ?? "";
+        open(img.currentSrc || img.src, img.alt || "", cap);
+      });
+      document.addEventListener("keydown", (e) => {
+        const box = document.querySelector(".lightbox");
+        if (e.key === "Escape" && box && box.classList.contains("is-open")) close();
+      });
+    }
 
-    // close: backdrop click (overlay itself, never the image/button/caption)
-    box.addEventListener("click", (e) => {
-      if (e.target === box) close();
-    });
-    closeBtn.addEventListener("click", close);
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && box.classList.contains("is-open")) close();
-    });
+    // ensure the overlay is present on this page, and re-create it after every
+    // view-transition swap (which drops the previous one from <body>)
+    ensureBox();
+    document.addEventListener("astro:page-load", ensureBox);
   })();
 </script>

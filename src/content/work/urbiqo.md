@@ -113,7 +113,7 @@ check. Hosts declare their relationship to the listing too, owner, tenant
 or intermediary, so applicants know who they are dealing with. Trust is
 visible on both sides before anyone books a viewing.
 
-<figure class="fig fig--paper">
+<figure class="fig fig--paper fig--card">
   <img src="/work/urbiqo/urbiqo-live-trust-step.png" alt="Trust and Safety card on a live Urbiqo listing: Email verified, Phone pending, Identity pending" loading="lazy" />
   <figcaption>The verification card the host sees before any meeting: one state per signal.</figcaption>
 </figure>
