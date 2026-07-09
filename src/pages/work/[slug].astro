@@ -362,18 +362,16 @@ const line2 =
   .prose :global(ul), .prose :global(ol) { padding-left: 1.25rem; margin-bottom: 1.25rem; font-size: var(--step-0); max-width: 60ch; }
   .prose :global(li) { margin-bottom: 0.7rem; line-height: 1.65; }
 
-  /* figures: field-notes prints. Images sit straight on the paper, no
-     white mats or frames, taped across the top corners with a hint of
-     alternating tilt so pages feel pinned up. Variants: --bleed (untaped
-     full spread, both sides, never one-sided), --duo (pair), --margin
-     (small aside hanging right), --small (icon-level artefact). */
+  /* figures: field-notes prints. Images sit straight on the paper, no white
+     mats or frames, with a hint of alternating tilt so pages feel pinned up.
+     No corner tape: board figures (--pin) keep a single push-pin, plain
+     figures carry nothing. Variants: --bleed (contained wide figure), --duo
+     (pair), --margin (small aside hanging right), --small (icon-level). */
   .case {
-    --tape: rgba(214, 189, 138, 0.32);
     --board-bg: rgba(26, 23, 20, 0.045);
     --pin: color-mix(in srgb, var(--case-accent) 60%, var(--ink) 40%);
   }
   :global([data-theme="dark"]) .case {
-    --tape: rgba(240, 232, 214, 0.16);
     --board-bg: rgba(0, 0, 0, 0.28);
     --pin: color-mix(in srgb, var(--case-accent) 40%, var(--ink) 60%);
   }
@@ -389,40 +387,25 @@ const line2 =
     max-height: 70vh;
     width: auto;
   }
-  /* white-artboard exports read as lightboxes on dark paper; dim, not glow */
-  :global([data-theme="dark"]) .prose :global(.fig img) { filter: brightness(0.88); }
+  /* white-artboard exports read as lightboxes on dark paper; ease the glare,
+     but a middle ground: enough to sit calmly, not so much it goes muddy */
+  :global([data-theme="dark"]) .prose :global(.fig img) { filter: brightness(0.95); }
   .prose :global(.fig:nth-of-type(odd)) { transform: rotate(0.45deg); }
   .prose :global(.fig:nth-of-type(even)) { transform: rotate(-0.55deg); }
-  .prose :global(.fig::before),
-  .prose :global(.fig::after) {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    width: 54px;
-    height: 15px;
-    top: -5px;
-    background: var(--tape);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
-    pointer-events: none;
-  }
-  .prose :global(.fig::before) { left: -16px; transform: rotate(-40deg); }
-  .prose :global(.fig::after) { right: -16px; transform: rotate(37deg); }
-  .prose :global(.fig:nth-of-type(even)::before) { transform: rotate(-34deg); top: -7px; }
-  .prose :global(.fig:nth-of-type(even)::after) { transform: rotate(43deg); }
 
-  /* sparse board / collage figures (design-system grids, tilted-screen
-     collages, spec boards): their transparent corners leave the two corner
-     tapes floating over empty paper, so swap both for a single centred
-     push-pin at the top, reusing the bulletin-board pin language (--pin).
-     ::before becomes the pin; ::after is dropped. */
-  /* a board whose very top is too sparse even for a centred pin (its top-centre
-     is a structural gap): carry no tape and no pin, it reads as a clean board */
-  .prose :global(.fig--bare::before),
-  .prose :global(.fig--bare::after) { display: none; }
-
-  .prose :global(.fig--pin::after) { display: none; }
+  /* board / collage figures (design-system grids, tilted-screen collages,
+     spec boards) carry a single centred push-pin at the top, in the
+     bulletin-board pin language (--pin). The pin is a self-contained ::before
+     (the corner tape it used to share a base with is gone). --bare figures,
+     whose top-centre is a structural gap, opt out and read as a clean board. */
+  .prose :global(.fig--bare::before) { display: none; }
   .prose :global(.fig--pin::before),
   .prose :global(.fig--pin:nth-of-type(even)::before) {
+    content: "";
+    position: absolute;
+    display: block;
+    z-index: 1;
+    pointer-events: none;
     width: 13px; height: 13px;
     top: -6px; left: 50%;
     margin-left: -6.5px;
@@ -463,7 +446,9 @@ const line2 =
     background: #FBFAF6; /* light mat so white artwork stays visible on cream */
   }
   :global([data-theme="dark"]) .prose :global(.fig--paper) {
-    background: #cfc7b5; /* warm mat the white melts to on dark paper */
+    /* warm mat the white multiplies down to: lifted from the old muddy #cfc7b5
+       so white-artboard exports read as a clean light grey, not glare, not mud */
+    background: #D8D1C2;
   }
   :global([data-theme="dark"]) .prose :global(.fig--paper img) {
     mix-blend-mode: multiply;
@@ -483,31 +468,36 @@ const line2 =
      lands on that light mat: darken it there so it stays readable (the muted
      grey token is for captions sitting on the dark paper) */
   :global([data-theme="dark"]) .prose :global(.fig--paper figcaption) { color: #4a4238; }
-  /* a deliberate spread: full viewport width on BOTH sides, untaped,
-     untilted. The symmetric margin trick keeps it centred on the column. */
+  /* formerly a full-viewport spread. The wide artefacts (swimlanes, the
+     heuristic board, the verification blueprint) are unreadable inline anyway,
+     and the lightbox carries the detail on click, so inline they are now a
+     contained, untilted figure capped well under a screen so they do not
+     dominate the page. */
   .prose :global(.fig.fig--bleed) {
-    width: 100vw;
-    max-width: none;
-    margin-left: calc(50% - 50vw);
+    /* capped by width so the box shrink-wraps the image (keeps the tilt off and
+       the "Look closer" hint anchored to the image, not to empty paper). For
+       these wide artefacts a ~720px cap lands around 40vh, well under a
+       screen. */
+    width: fit-content;
+    max-width: min(720px, 100%);
+    margin-left: 0;
     margin-right: 0;
     transform: none;
   }
-  .prose :global(.fig--bleed::before),
-  .prose :global(.fig--bleed::after) { display: none; }
   .prose :global(.fig--bleed img) {
     width: 100%;
-    max-height: 70vh;
+    max-width: 100%;
+    height: auto;
     object-fit: contain;
   }
-  .prose :global(.fig--bleed figcaption) { margin-inline: max(var(--gutter), calc((100vw - var(--wrap)) / 2)); }
+  .prose :global(.fig--bleed figcaption) { margin-inline: 0; }
   .prose :global(.fig--duo) {
     display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
     align-items: start; /* let each print keep its own height, no stretch */
     width: 100%;
     max-width: 62ch; /* capped to the prose column, never full bleed */
   }
-  /* each image sits in its own relatively-positioned tile so tape anchors to
-     that image's corners, not the shared container */
+  /* each image sits in its own tile block (kept as a positioning context) */
   .prose :global(.fig--duo .fig__tile) { position: relative; display: block; }
   .prose :global(.fig--duo img) {
     display: block;
@@ -516,27 +506,6 @@ const line2 =
     object-fit: contain;
   }
   .prose :global(.fig--duo figcaption) { grid-column: 1 / -1; }
-  /* a pair's container tapes float over the gap between the two prints, so
-     drop them and give each tile its own top-left + top-right tape: four
-     strips total, each one always sitting on an image, never the background */
-  .prose :global(.fig--duo::before), .prose :global(.fig--duo::after) { display: none; }
-  .prose :global(.fig--duo .fig__tile::before),
-  .prose :global(.fig--duo .fig__tile::after) {
-    content: ""; position: absolute; z-index: 1;
-    width: 48px; height: 15px; top: -5px;
-    background: var(--tape);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
-    pointer-events: none;
-  }
-  .prose :global(.fig--duo .fig__tile::before) { left: -13px; transform: rotate(-38deg); }
-  .prose :global(.fig--duo .fig__tile::after) { right: -13px; transform: rotate(40deg); }
-  .prose :global(.fig--duo .fig__tile:nth-child(2)::before) { transform: rotate(-33deg); top: -6px; }
-  .prose :global(.fig--duo .fig__tile:nth-child(2)::after) { transform: rotate(44deg); }
-  /* a tile whose artwork is two phones at different heights inside a
-     transparent frame (Airbnb discovery flow): pin the two tapes onto the
-     phones, not the empty corners. Percentages track the image at any size. */
-  .prose :global(.fig--duo .fig__tile--offset::before) { top: 8%; left: 4%; transform: rotate(-36deg); }
-  .prose :global(.fig--duo .fig__tile--offset::after) { top: 1.5%; right: 3%; transform: rotate(41deg); }
   @media (max-width: 680px) {
     .prose :global(.fig--duo) { grid-template-columns: 1fr; }
   }
@@ -743,6 +712,48 @@ const line2 =
      The overlay lives at <body> level (built by the script below), so its
      styles are global rather than scoped to .prose. */
   .prose :global(.fig img) { cursor: zoom-in; }
+  /* "Look closer" enlarge hint, injected by the lightbox script into each
+     click-to-enlarge figure. Caption voice (mono, muted, small), tucked in the
+     image's bottom-right over a faint blurred tint so it stays legible on any
+     export; on figure hover it lights to the brand accent and draws the same
+     hairline underline as the site's links. Never intercepts the click. */
+  .prose :global(.fig__zoom) {
+    position: absolute;
+    right: 0.5rem; bottom: 0.5rem;
+    z-index: 2;
+    padding: 0.2rem 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    background: color-mix(in srgb, var(--bg-elevated) 68%, transparent);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    pointer-events: none; /* clicks fall through to the image, opening the lightbox */
+    transition: color 0.2s ease;
+  }
+  .prose :global(.fig:hover .fig__zoom),
+  .prose :global(.fig:focus-within .fig__zoom) { color: var(--case-accent, var(--accent)); }
+  .prose :global(.fig__zoom-t) {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s var(--ease-out);
+    padding-bottom: 2px;
+  }
+  .prose :global(.fig:hover .fig__zoom-t),
+  .prose :global(.fig:focus-within .fig__zoom-t) { background-size: 100% 1px; }
+  /* keep the smallest artefacts and margin asides clean, no hint overlay */
+  .prose :global(.fig--small .fig__zoom),
+  .prose :global(.fig--margin .fig__zoom) { display: none; }
+  /* the hint sits at the figure's bottom-right, which on a short caption is the
+     caption row: reserve room there so caption text never runs under it (most
+     visible when the caption wraps on narrow screens) */
+  .prose :global(.fig:not(.fig--small):not(.fig--margin) figcaption) { padding-right: 6.5rem; }
+  @media (prefers-reduced-motion: reduce) {
+    .prose :global(.fig__zoom-t) { transition: none; }
+  }
   :global(.lightbox) {
     position: fixed; inset: 0; z-index: 200;
     display: grid; place-items: center;
@@ -874,6 +885,22 @@ const line2 =
   }
   initSkylines();
   document.addEventListener("astro:page-load", initSkylines);
+
+  // "Look closer" enlarge hint: drop a small label into every click-to-enlarge
+  // figure. JS-only by design, it advertises the lightbox, which itself needs
+  // JS, so no-JS visitors correctly see neither. Idempotent, re-runs per page.
+  function initZoomHints() {
+    document.querySelectorAll<HTMLElement>(".prose .fig").forEach((fig) => {
+      if (!fig.querySelector("img") || fig.querySelector(".fig__zoom")) return;
+      const hint = document.createElement("span");
+      hint.className = "fig__zoom";
+      hint.setAttribute("aria-hidden", "true");
+      hint.innerHTML = '<span class="fig__zoom-t">Look closer</span>';
+      fig.appendChild(hint);
+    });
+  }
+  initZoomHints();
+  document.addEventListener("astro:page-load", initZoomHints);
 
   // Click-to-enlarge lightbox for case-study images. One overlay is built at
   // <body> level and reused; clicks are delegated so it keeps working across
