@@ -27,6 +27,8 @@ const year = new Date().getFullYear();
     <div class="foot__base">
       <span>&copy; {year} Witty Wolf Design</span>
       <span>Designed &amp; built in Madrid. Pencils kept close.</span>
+      <!-- reopens the consent banner so a visitor can change their mind -->
+      <button class="foot__cookies" type="button" data-consent-reopen>Cookies</button>
     </div>
   </div>
 </footer>
@@ -65,6 +67,17 @@ const year = new Date().getFullYear();
     color: rgba(242, 239, 231, 0.55);
     font-size: 0.72rem;
   }
+  /* quiet "Cookies" control: a button that reads like a foot link */
+  .foot__cookies {
+    background: transparent; border: 0; padding: 0;
+    color: inherit; font: inherit; letter-spacing: inherit; cursor: pointer;
+    background-image: linear-gradient(var(--accent-hot), var(--accent-hot));
+    background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat;
+    transition: background-size 0.25s ease-out;
+    padding-bottom: 2px;
+  }
+  .foot__cookies:hover, .foot__cookies:focus-visible { background-size: 100% 1px; }
+  .foot__cookies:focus-visible { outline: none; color: rgba(242, 239, 231, 0.85); }
   @media (max-width: 720px) {
     .foot__grid { grid-template-columns: 1fr; gap: 1.75rem; }
   }

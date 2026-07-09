@@ -2,6 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import ConsentBanner from "../components/ConsentBanner.astro";
 /* Self-hosted fonts (Fontsource). Two styles only: Geist Mono is the
    primary voice, Work Sans is reserved for long-form reading. */
 import "@fontsource-variable/work-sans";
@@ -86,6 +87,8 @@ const ogImage = new URL(image, base).href;
       <slot />
     </main>
     <Footer />
+    <!-- EU opt-in consent gate; loads Microsoft Clarity only after Allow -->
+    <ConsentBanner />
 
     <script>
       // Scroll reveal + nav shadow + magnetic buttons.

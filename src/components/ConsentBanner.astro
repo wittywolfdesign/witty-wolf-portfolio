@@ -1,0 +1,165 @@
+---
+/*
+  EU opt-in consent gate for Microsoft Clarity (anonymised heatmaps + session
+  replay). Clarity is NEVER in the head; its snippet is injected only after the
+  visitor clicks Allow. The choice lives in localStorage ("ww-consent" =
+  "granted" | "denied") and persists across pages and view transitions, so the
+  banner shows once until a choice is made, then never again.
+
+  The banner is server-rendered but hidden by default (CSS), revealed by the
+  script only when consent is unset. No JS -> it never shows and Clarity never
+  loads, the correct EU default. It is a non-modal labelled region:
+  keyboard-focusable, no focus trap, does not block the page, and Escape is not
+  bound (Escape must not count as consent). Allow and No thanks are two
+  equally-easy one-click buttons.
+*/
+---
+
+<aside class="consent" data-consent-banner aria-label="Cookie consent" aria-live="polite">
+  <div class="consent__card">
+    <p class="consent__label">COOKIES, SORT OF</p>
+    <p class="consent__body">Mind if I watch how you move around? Clarity keeps anonymised heatmaps and the odd session replay, so I can see what works here and fix what doesn't. It runs through Microsoft, not ad networks. Say no and nothing loads.</p>
+    <div class="consent__actions">
+      <button class="btn" type="button" data-consent-allow>Allow</button>
+      <button class="consent__decline" type="button" data-consent-deny>No thanks</button>
+    </div>
+  </div>
+</aside>
+
+<style>
+  /* slim card, bottom-left, never a full-screen overlay. Hidden until the
+     script reveals it (only when consent is unset). */
+  .consent {
+    position: fixed;
+    left: clamp(1rem, 3vw, 1.5rem);
+    bottom: clamp(1rem, 3vw, 1.5rem);
+    z-index: 70; /* above nav (50), below the lightbox (200) */
+    width: min(24rem, calc(100vw - 2rem));
+    transform: translateY(0.75rem);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.35s var(--ease-out), opacity 0.3s ease, visibility 0.3s;
+  }
+  .consent.is-visible {
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .consent__card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--line);
+    padding: 1.1rem 1.15rem 1.2rem;
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.14);
+  }
+  .consent__label {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 0.6rem;
+  }
+  .consent__body {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 0 0 1rem;
+  }
+  .consent__actions {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  /* Allow reuses the global primary .btn. No thanks is a quiet secondary of the
+     SAME size and shape (one click, equally easy), just lower-emphasis. */
+  .consent__decline {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.85em 1.4em;
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--line);
+    border-radius: 0;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.18s ease, border-color 0.18s ease;
+  }
+  .consent__decline:hover { color: var(--ink); border-color: var(--ink); }
+  .consent__decline:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .consent { transition: none; transform: none; }
+    .consent__decline { transition: none; }
+  }
+</style>
+
+<script>
+  // Microsoft Clarity, gated behind opt-in consent. The snippet is injected
+  // only on Allow (or on a later load when consent is already "granted").
+  const CLARITY_ID = "xjrrlcgi9q";
+  const KEY = "ww-consent";
+
+  interface ConsentWindow extends Window { __wwClarity?: boolean; __wwConsentReopen?: boolean }
+  const w = window as unknown as ConsentWindow;
+
+  function loadClarity() {
+    if (w.__wwClarity) return; // inject once per session
+    w.__wwClarity = true;
+    (function (c: any, l: any, a: any, r: any, i: any, t: any, y: any) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", CLARITY_ID);
+  }
+
+  const read = () => { try { return localStorage.getItem(KEY); } catch { return null; } };
+  const write = (v: string) => { try { localStorage.setItem(KEY, v); } catch {} };
+
+  const show = (b: HTMLElement) => b.classList.add("is-visible");
+  const hide = (b: HTMLElement) => b.classList.remove("is-visible");
+
+  function bind(b: HTMLElement) {
+    if (b.dataset.bound) return;
+    b.dataset.bound = "1";
+    b.querySelector<HTMLButtonElement>("[data-consent-allow]")?.addEventListener("click", () => {
+      write("granted"); loadClarity(); hide(b);
+    });
+    b.querySelector<HTMLButtonElement>("[data-consent-deny]")?.addEventListener("click", () => {
+      write("denied"); hide(b);
+    });
+  }
+
+  // Re-run on first load and after every view-transition swap (fresh banner
+  // element each time). The stored choice is respected without re-prompting.
+  function init() {
+    const b = document.querySelector<HTMLElement>("[data-consent-banner]");
+    if (b) bind(b);
+    const choice = read();
+    if (choice === "granted") { loadClarity(); return; }
+    if (choice === "denied") return;
+    if (b) show(b); // unset -> ask once
+  }
+
+  // A footer "Cookies" control reopens the banner so a visitor can change their
+  // mind. Delegated + bound once so it survives view transitions.
+  if (!w.__wwConsentReopen) {
+    w.__wwConsentReopen = true;
+    document.addEventListener("click", (e) => {
+      const trigger = (e.target as HTMLElement).closest?.("[data-consent-reopen]");
+      if (!trigger) return;
+      e.preventDefault();
+      const b = document.querySelector<HTMLElement>("[data-consent-banner]");
+      if (b) { bind(b); show(b); }
+    });
+  }
+
+  init();
+  document.addEventListener("astro:page-load", init);
+</script>
