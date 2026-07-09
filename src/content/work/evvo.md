@@ -30,7 +30,7 @@ and a site that read like a technical catalogue: dense specs, a buried
 value proposition and navigation built for engineers, not for people who
 shop on feel.
 
-<figure class="fig">
+<figure class="fig fig--pin">
   <img src="/work/evvo/evvo-legacy-site.png" alt="The original EVVO website: a cluttered desktop-first layout packed with dense technical content" loading="lazy" />
   <figcaption>The starting point: a desktop-first technical catalogue.</figcaption>
 </figure>
@@ -130,7 +130,7 @@ Recycled materials argued as benefits, not features.
 A modular component library, atomic design and auto layout throughout.
 The whole journey stays consistent and ready to grow.
 
-<figure class="fig">
+<figure class="fig fig--bare">
   <img src="/work/evvo/evvo-design-system.png" alt="EVVO design system: a modular grid of buttons, typography styles and components" loading="lazy" />
   <figcaption>The component library underneath the shop.</figcaption>
 </figure>

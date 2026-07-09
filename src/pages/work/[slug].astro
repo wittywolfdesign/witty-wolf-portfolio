@@ -2,6 +2,8 @@
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import TypeLine from "../../components/TypeLine.astro";
+import CaseIndex from "../../components/CaseIndex.astro";
+import { slug } from "../../scripts/slug.mjs";
 
 export async function getStaticPaths() {
   const work = await getCollection("work");
@@ -15,6 +17,20 @@ export async function getStaticPaths() {
 const { entry, next } = Astro.props;
 const d = entry.data;
 const { Content } = await entry.render();
+
+/* Section index, single source of truth: the `<p class="note">` labels already
+   written into the case markdown, in document order. Parsed from the raw body
+   at build so the index renders server-side; the same slug() stamps the note
+   ids (rehype, astro.config) so these hrefs resolve with JS off. */
+const sections = [...entry.body.matchAll(/class="note"[^>]*>([\s\S]*?)<\/p>/g)]
+  .map((m) => m[1].replace(/<[^>]*>/g, "").trim())
+  .filter(Boolean)
+  .map((label) => ({ label, id: slug(label) }));
+
+/* Shorter, screenshot-friendly base title: "Client · Short title · Witty Wolf"
+   (middle dot separator, not an em-dash). The scroll-spy swaps the middle part
+   for the active section label; see CaseIndex. */
+const baseTitle = `${d.client} · ${d.title} · Witty Wolf`;
 
 /* Rubber-stamp of the project's brand mark, extracted from the tile art
    into /public/brand/stamps/<slug>.svg (single path set, currentColor).
@@ -49,7 +65,7 @@ const line2 =
   `C ${px(0.88, 0.17)}, ${px(0.81, 0.2)}, ${px(0.78, 0.12)}`;
 ---
 
-<Base title={`${d.client} · ${d.tagline} · Witty Wolf Design`} description={d.summary}>
+<Base title={baseTitle} description={d.summary}>
   <!-- Case hero; the project accent is available page-wide as a CSS var,
        used only at hairline and caption level -->
   <article class="case" style={`--case-accent:${d.accent}`}>
@@ -131,18 +147,24 @@ const line2 =
     )}
 
     <section class="section--tight">
-      <div class="wrap">
-        <!-- no data-reveal here: a page-length element never reaches the
-             observer's ratio threshold and would stay invisible -->
-        <div class="prose">
-          <Content />
+      <!-- prose-wrap becomes a [rail | body] grid on desktop once the index
+           script boots (adds .case-has-index); with JS off it stays a plain
+           column and CaseIndex renders as an in-flow list of links -->
+      <div class="wrap prose-wrap">
+        <CaseIndex sections={sections} client={d.client} baseTitle={baseTitle} />
+        <div class="prose-body">
+          <!-- no data-reveal here: a page-length element never reaches the
+               observer's ratio threshold and would stay invisible -->
+          <div class="prose">
+            <Content />
+          </div>
+          {/* same live-site CTA at the end of "Status and next steps" */}
+          {d.liveUrl && (
+            <a class="live-cta live-cta--foot" href={d.liveUrl} target="_blank" rel="noopener noreferrer">
+              See it live on staging <span class="live-cta__arrow">&rarr;</span>
+            </a>
+          )}
         </div>
-        {/* same live-site CTA at the end of "Status and next steps" */}
-        {d.liveUrl && (
-          <a class="live-cta live-cta--foot" href={d.liveUrl} target="_blank" rel="noopener noreferrer">
-            See it live on staging <span class="live-cta__arrow">&rarr;</span>
-          </a>
-        )}
       </div>
     </section>
 
@@ -248,6 +270,21 @@ const line2 =
     :global([data-theme="dark"]) .case { --stamp-alpha: 0.24; }
     .case-stamp { width: clamp(118px, 36vw, 150px); left: -2rem; top: 0; }
   }
+  /* Reading section as a two-column [index rail | body] grid on desktop, but
+     only once the index script has enhanced it (adds .case-has-index). The
+     rail sits in a left band; the body column keeps the prose measures. With
+     JS off the wrap stays a normal block and the index is a plain list on top.
+     --rail-top clears the 64px sticky nav (the metaline is not sticky). */
+  .prose-wrap { --rail-top: 5.5rem; }
+  @media (min-width: 1024px) {
+    .prose-wrap.case-has-index {
+      display: grid;
+      grid-template-columns: clamp(7rem, 9vw, 9rem) minmax(0, 1fr);
+      column-gap: clamp(1.5rem, 3vw, 2.75rem);
+      align-items: start;
+    }
+  }
+
   .case-title {
     max-width: 26ch;
     margin: 1rem 0 1.25rem;
@@ -358,6 +395,30 @@ const line2 =
   .prose :global(.fig::after) { right: -16px; transform: rotate(37deg); }
   .prose :global(.fig:nth-of-type(even)::before) { transform: rotate(-34deg); top: -7px; }
   .prose :global(.fig:nth-of-type(even)::after) { transform: rotate(43deg); }
+
+  /* sparse board / collage figures (design-system grids, tilted-screen
+     collages, spec boards): their transparent corners leave the two corner
+     tapes floating over empty paper, so swap both for a single centred
+     push-pin at the top, reusing the bulletin-board pin language (--pin).
+     ::before becomes the pin; ::after is dropped. */
+  /* a board whose very top is too sparse even for a centred pin (its top-centre
+     is a structural gap): carry no tape and no pin, it reads as a clean board */
+  .prose :global(.fig--bare::before),
+  .prose :global(.fig--bare::after) { display: none; }
+
+  .prose :global(.fig--pin::after) { display: none; }
+  .prose :global(.fig--pin::before),
+  .prose :global(.fig--pin:nth-of-type(even)::before) {
+    width: 13px; height: 13px;
+    top: -6px; left: 50%;
+    margin-left: -6.5px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 34% 30%,
+      color-mix(in srgb, var(--pin) 40%, #fff) 0%, var(--pin) 58%);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    transform: none;
+  }
+
   /* cap the FIGURE (not just the image) so the box shrink-wraps the print:
      otherwise the fit-content figure stays as wide as its caption and the
      tape corners float off the image, most visibly on the right */
@@ -378,17 +439,20 @@ const line2 =
   :global([data-theme="dark"]) .prose :global(.fig img.fig__theme--dark) { display: block; }
 
   /* white-artboard exports (design-system sheets, persona cards, boards, live
-     screenshots): tone the hard #FFF so it takes the surface colour instead of
-     glaring. In light the image multiplies into the cream paper (white -> the
-     paper tone). In dark, multiplying into the near-black surface would crush
-     the content, so the figure is isolated over a warm mat and the white melts
-     into THAT instead — no glare, mid-tones survive. The Maria Moreno effect. */
-  .prose :global(.fig--paper img) { mix-blend-mode: multiply; }
-  :global([data-theme="dark"]) .prose :global(.fig--paper) {
+     screenshots): give the export a surface so its white body stays visible.
+     Light: a faint mat lighter than the cream paper, image rendered normally.
+     (Multiply is NOT used in light: white multiplied into the cream paper goes
+     transparent, so the board's white and its edges dissolve into the page.)
+     Dark: a warm mat and the white melts into THAT via multiply, so no glare. */
+  .prose :global(.fig--paper) {
     isolation: isolate;
+    background: #FBFAF6; /* light mat so white artwork stays visible on cream */
+  }
+  :global([data-theme="dark"]) .prose :global(.fig--paper) {
     background: #cfc7b5; /* warm mat the white melts to on dark paper */
   }
   :global([data-theme="dark"]) .prose :global(.fig--paper img) {
+    mix-blend-mode: multiply;
     filter: none; /* the multiply + mat already tone it; skip the extra dim */
   }
   .prose :global(.fig figcaption) {
@@ -624,6 +688,8 @@ const line2 =
     font-size: 0.72rem;
     color: var(--text-muted);
     margin-bottom: 0.4rem;
+    /* section-index anchor targets: clear the 64px sticky nav on jump */
+    scroll-margin-top: 5.5rem;
   }
   @media (min-width: 1520px) {
     .prose :global(.note) {
@@ -631,6 +697,14 @@ const line2 =
       width: 8rem;
       margin-left: -9.5rem;
       margin-bottom: 0;
+    }
+    /* when the sticky index owns the left margin, stop the notes hanging into
+       it (they would collide with the rail); fold them back inline instead */
+    .prose-wrap.case-has-index .prose :global(.note) {
+      float: none;
+      width: auto;
+      margin-left: 0;
+      margin-bottom: 0.4rem;
     }
   }
 

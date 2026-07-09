@@ -60,7 +60,7 @@ resolve them. A modular system from scratch: a strict icon grid, uniform
 foundation. The redesign is a concept, not a shipped product; one possible
 answer to what the audit surfaced.
 
-<figure class="fig">
+<figure class="fig fig--pin">
   <img src="/work/airbnb/airbnb-atomic-design-board.png" alt="Atomic design board organising the new system from atoms like icons and colours up to full pages" loading="lazy" />
   <figcaption>Atoms to pages: the concept system in one board.</figcaption>
 </figure>
@@ -72,7 +72,7 @@ answer to what the audit surfaced.
 Lexend as the primary typeface. Rounded forms, generous spacing, better
 readability for a broader range of travellers.
 
-<figure class="fig fig--mid">
+<figure class="fig fig--mid fig--pin">
   <img src="/work/airbnb/airbnb-typography-lexend.png" alt="Type specimen of Lexend against the old mixed styles, showing its rounded forms" loading="lazy" />
   <figcaption>Lexend against the old mix: one voice instead of nine.</figcaption>
 </figure>
@@ -85,7 +85,7 @@ One icon grid, one button system. Every interactive element shares the
 same stroke weight and corner radius, so nothing has to be relearned
 between screens.
 
-<figure class="fig fig--mid">
+<figure class="fig fig--mid fig--pin">
   <img src="/work/airbnb/airbnb-icon-button-system.png" alt="The standardised icon grid and button system with shared stroke weight and corner radius" loading="lazy" />
   <figcaption>One grid, one radius, one stroke weight.</figcaption>
 </figure>

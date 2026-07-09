@@ -2,7 +2,7 @@
 
 A running record of the redesign, so a fresh session (Claude Code or Cowork)
 can pick up without losing context. Written for Marco Ramos, Witty Wolf Design.
-Last updated: 8 July 2026, after confirming the title-tape rollback landed.
+Last updated: 9 July 2026, after adding the case section index + screenshot titles.
 
 ## Marco's working preferences (apply to everything)
 - UK English. Metric units. No Oxford comma. No em-dashes, use commas or full stops.
@@ -159,6 +159,51 @@ not deleted), Typography Logo spec. Still to update there: Component
 Examples section (new CTA system) and the guideline prose sections (Brand
 Overview, Tone of Voice, Digital Presence, Spacing & Sizing, Incorrect
 Usage, Colour Palette Logo).
+
+## Case-study section index + screenshot titles (9 July 2026)
+Case pages ([slug].astro) now carry a scroll-spy section index and shortened
+titles, both driven off one source of truth: the `<p class="note">` labels
+already authored in each case's markdown, in document order.
+- New component `src/components/CaseIndex.astro`. Its sections are parsed from
+  `entry.body` in [slug].astro (regex over the .note labels) and slugged with
+  the shared `src/scripts/slug.mjs`. Desktop (>=1024px): a sticky rail in the
+  left margin, active section lit in the case accent, driven by a rAF-throttled
+  scroll handler (reads getBoundingClientRect, activate line 120px). Mobile
+  (<1024px): a floating pill showing the current section that taps open to the
+  full list; revealed after the first section, hidden again at the next-case
+  card. No-JS: the same nav renders server-side as a plain in-flow list of
+  working anchor links (not sticky).
+- Anchors resolve with JS off because a tiny inline rehype plugin in
+  astro.config.mjs (`rehypeNoteIds`) stamps `id="<slug>"` onto each note at
+  build. GOTCHA: the notes are authored as inline HTML, which Astro carries as
+  raw string nodes (no tagName), so the plugin rewrites the raw string, not an
+  element. GOTCHA: changing markdown/rehype config does not bust the content
+  cache — `rm -rf node_modules/.astro .astro` before rebuilding or ids look
+  missing.
+- The reading section is a `.prose-wrap` that becomes a `[rail | body]` grid on
+  desktop ONLY once the script adds `.case-has-index` (grid + rail vars live in
+  [slug].astro; prose indents into the body column, hero above stays full
+  width). The >=1520px `.note` hang-left is cancelled when the index owns the
+  margin. GOTCHA: Astro scopes every compound selector, so a component's scoped
+  CSS cannot target the parent `.prose-wrap` — the rail styles are gated on the
+  nav's own `.case-index--js` class instead.
+- Screenshot-friendly titles: Base title shortened to `${client} · ${title} ·
+  Witty Wolf` (middle dot, not em-dash). With `DYNAMIC_TITLE = true` in
+  CaseIndex, document.title tracks the active section (`client · label · Witty
+  Wolf`), restores to base above the first section, and is reset on
+  astro:before-swap so SPA navigation keeps the next page's title. Only helps
+  macOS window captures (Shift-Cmd-4 then Space); region/full-screen/iOS
+  captures stay generic — do not claim otherwise. The script guards against the
+  first-load double-init (direct call + astro:page-load) with an `inited` flag,
+  same pattern as the stamp/boot scripts, else the pill toggle cancels itself.
+- Verified with a Playwright script (25 checks: desktop rail/active/title,
+  mobile pill reveal/expand/collapse/hide, reduced motion, no-JS SSR anchors,
+  title restore on nav). Test gotchas that are NOT component bugs: `.prose` is
+  position:relative so note.offsetTop is prose-relative (use rect.top+scrollY);
+  images are loading="lazy" so pre-scroll to load them before measuring; global
+  `html{scroll-behavior:smooth}` means test scrolls must use behavior:'instant';
+  the Chrome extension can't scroll an occluded window (rAF frozen) so drive it
+  with headless Playwright, not the browser tools.
 
 ## How to run
 Marco runs the dev server himself in his own terminal (background servers

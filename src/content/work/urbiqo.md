@@ -200,7 +200,9 @@ Live on staging today: featured listings; search with type, price and size
 filters beside a map; listing pages with gallery, amenities and
 neighbourhood notes; apply and contact host; freemium and premium tiers for
 hosts, tenants always free; full English and Spanish; a help centre, FAQs
-and a contact form that routes by topic.
+and a contact form that routes by topic. The listings are sample data for
+now, placeholders to exercise the flows end to end until real inventory
+arrives at launch.
 
 <figure class="fig fig--paper">
   <img src="/work/urbiqo/urbiqo-live-search.png" alt="Urbiqo search page: title, with Type, price and size filters above the results grid of six Madrid listings" loading="lazy" />
@@ -271,14 +273,17 @@ Three things Urbiqo taught me:
 
 ## Status and next steps
 
-The platform runs at staging.urbiqo.com, in English and Spanish. The bet:
-replace rigid contract requirements with reputation-based signals and the
-market opens on both sides. Unproven until launch, but the logic holds. If
-you can verify reliability without demanding a permanent contract, hosts
-get confidence and tenants get access.
+Staging went live on 6 July 2026 and the platform runs at
+staging.urbiqo.com, in English and Spanish. It is in active QA now, the
+day-to-day is correcting what real screens, states and content expose before
+launch. The bet: replace rigid contract requirements with reputation-based
+signals and the market opens on both sides. Unproven until launch, but the
+logic holds. If you can verify reliability without demanding a permanent
+contract, hosts get confidence and tenants get access.
 
 <div class="stats">
   <div><span>Built</span><span>live on staging, by me, on Next.js</span></div>
+  <div><span>6 Jul 2026</span><span>went live on staging, now in QA</span></div>
   <div><span>Q3 2026</span><span>targeted live release</span></div>
   <div><span>10,000</span><span>listings projected in year one</span></div>
   <div><span>50,000</span><span>growth goal for 2027</span></div>
