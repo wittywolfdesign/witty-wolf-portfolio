@@ -258,9 +258,12 @@ status DRAFT, order 5, title/tagline/accent carry options in comments for
 Marco. Assets in public/work/witty-wolf-site/ (framer-* before shots pulled
 from "../Framer website/", astro-* after shots captured from the built site;
 retake astro-home-*.png once the new hero copy lands). Stamp:
-public/brand/stamps/witty-wolf-site.svg (solid wolf head from
-wolf-vector.svg, wax-seal look); placeholder thumb public/thumbs/
-witty-wolf.svg. NOTE for launch of this case: home/work still say
+public/brand/stamps/witty-wolf-site.svg is the hero wolf as STROKE line
+art (wolf-vector paths, fill none, stroke 9, padded viewBox 102 59 1240
+856 so the width-fitting stamp system renders it small and short, in
+family with the other four; the first solid wax-seal version overpowered
+the title and was replaced 10 July 2026 evening). Placeholder thumb
+public/thumbs/witty-wolf.svg. NOTE for launch of this case: home/work still say
 "04 projects" and "Four case studies. Four real problems.", and consider a
 liveUrl only after the DNS swap (wittywolf.design still serves the Framer
 site). Open options Marco must pick: EVVO title, hero H1 + lead rewrite,
