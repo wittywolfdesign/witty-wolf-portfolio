@@ -227,10 +227,13 @@ one-line TODO MARCO comment in evvo.md marks where they may return if the
 method is ever documented. The fifth case gained a verbatim Marco beat
 ("My worst client / I am my worst client") before the closing section, and
 the astro-home-*.png after-shots were retaken with the new hero. The fifth
-case remains status DRAFT: on publish, update "04 projects" (home) and
-"Four case studies. Four real problems." (/work), and Marco still owes the
-opener-vs-closer curation call. Urbiqo staging room-photo swap (shortlist
-at "04 Website & portfolio/urbiqo-room-shortlist.png") remains open.
+case is PUBLISHED as the closer (order 5, Marco's call, 10 July 2026
+evening): /work heading and meta description now read "Five case studies.
+Five real problems.", the "projects" count labels were already computed
+from work.length so they flipped to 05 on their own, and the next-case
+ring runs Urbiqo → EVVO → Shelly → Airbnb → Witty Wolf → Urbiqo. Urbiqo
+staging room-photo swap (shortlist at "04 Website & portfolio/
+urbiqo-room-shortlist.png") remains open.
 
 ## Original pass notes (same day, superseded where the above says so)
 Editorial and art-direction pass over the four cases plus a new fifth case.

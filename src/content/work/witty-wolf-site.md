@@ -1,6 +1,6 @@
 ---
-# DRAFT until Marco says publish. Facts sourced from HANDOVER.md only.
-# Title, tagline and accent approved by Marco on 10 July 2026.
+# Facts sourced from HANDOVER.md only.
+# Title, tagline, accent and publish-as-closer approved by Marco, 10 July 2026.
 title: "Kill your template"
 client: "Witty Wolf"
 tagline: "The site you are reading is the case study"
@@ -11,11 +11,10 @@ discipline: ["Art direction", "Front-end", "Design system"]
 thumb: "/thumbs/witty-wolf.svg"
 accent: "#E3993D"
 ink: "#1A1714"
-# CURATION, Marco decides: does this case OPEN the set as a statement or CLOSE
-# it as the proof? Default here: order 5, the closer. Flagged, not decided.
+# Curation decided: the case CLOSES the set as the proof.
 order: 5
 featured: true
-status: "draft"
+status: "published"
 context: "The portfolio you are looking at, rebuilt from a Framer template into a hand-coded Astro site."
 problem: "A template can host your work. It cannot speak for you."
 outcome: "A static, hand-coded Astro site in the field-notes direction; every detail this case describes is live on the page you are reading."
