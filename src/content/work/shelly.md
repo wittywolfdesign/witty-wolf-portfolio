@@ -4,7 +4,7 @@ client: "Shelly"
 tagline: "Wellness app for people who hate wellness apps"
 summary: "Building health routines through flexibility, not pressure."
 year: "2024"
-role: "UX/UI Designer · Team project (Ironhack, with Anna)"
+role: "UX/UI Designer · 4-week team sprint, with Anna"
 discipline: ["Product design", "Behavioural UX", "Branding"]
 thumb: "/thumbs/shelly.svg"
 accent: "#ECEFF1"
