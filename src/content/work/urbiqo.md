@@ -140,9 +140,9 @@ specialisation. The gap: nobody combines trust-based verification with
 accessible pricing for freelancers, expats and non-traditional tenants.
 
 <figure class="fig">
-  <img class="fig__theme fig__theme--light" src="/work/urbiqo/urbiqo-positioning-light.png" alt="Market positioning map placing Urbiqo, under its former name Arcano, as the most specialised player against mass-market platforms like Idealista and full-service providers like Vitalhouse" loading="lazy" />
-  <img class="fig__theme fig__theme--dark" src="/work/urbiqo/urbiqo-positioning-dark.png" alt="Market positioning map placing Urbiqo, under its former name Arcano, as the most specialised player against mass-market platforms like Idealista and full-service providers like Vitalhouse" loading="lazy" />
-  <figcaption>The positioning map, drawn during the rebranding phase: the client, still under its former name Arcano, holding the niche between mass market and full service.</figcaption>
+  <img class="fig__theme fig__theme--light" src="/work/urbiqo/urbiqo-positioning-light.png" alt="Market positioning map placing Urbiqo as the most specialised player against mass-market platforms like Idealista and full-service providers like Vitalhouse. The legend still says Arcano, taped over and corrected to Urbiqo by hand" loading="lazy" />
+  <img class="fig__theme fig__theme--dark" src="/work/urbiqo/urbiqo-positioning-dark.png" alt="Market positioning map placing Urbiqo as the most specialised player against mass-market platforms like Idealista and full-service providers like Vitalhouse. The legend still says Arcano, taped over and corrected to Urbiqo by hand" loading="lazy" />
+  <figcaption>The positioning map predates the rename, hence the tape: Arcano then, Urbiqo now, holding the niche between mass market and full service.</figcaption>
 </figure>
 
 <p class="note">The craft layer</p>
