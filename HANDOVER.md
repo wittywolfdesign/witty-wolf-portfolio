@@ -215,6 +215,56 @@ inline) and concepts.md with per-concept notes. All marks are driven by
 fallbacks; wolf-02.svg carries the master geometry the others reuse.
 Nothing on the live site references these yet; no site files were touched.
 
+## Senior polish pass — APPROVED AND APPLIED (10 July 2026, evening)
+Marco picked all column-A options and they are committed: hero H1 is now
+"Your product isn't the point. The ~~pixels~~ people using it are." (strike
+gag intact), hero lead "I design products, then build them in real code.
+The second half keeps the first half honest.", the about closing line
+"New to the field, yes. Rookie, no." is cut (paragraph ends on "clear,
+shippable decisions."), EVVO title is "Sell the story, not the spec sheet".
+EVVO's 33%/70% deltas were REMOVED entirely (no n/method exists); a
+one-line TODO MARCO comment in evvo.md marks where they may return if the
+method is ever documented. The fifth case gained a verbatim Marco beat
+("My worst client / I am my worst client") before the closing section, and
+the astro-home-*.png after-shots were retaken with the new hero. The fifth
+case remains status DRAFT: on publish, update "04 projects" (home) and
+"Four case studies. Four real problems." (/work), and Marco still owes the
+opener-vs-closer curation call. Urbiqo staging room-photo swap (shortlist
+at "04 Website & portfolio/urbiqo-room-shortlist.png") remains open.
+
+## Original pass notes (same day, superseded where the above says so)
+Editorial and art-direction pass over the four cases plus a new fifth case.
+COMMITTED: Ironhack removed from the EVVO/Shelly role lines (now "6-week
+team sprint, with Jacopo and Rodrigo" / "4-week team sprint, with Anna");
+the Urbiqo positioning maps (light + dark PNGs) now carry a baked-in white
+tape strip over the old "Arcano" legend label with a hand-marker "Urbiqo"
+correction (Marker Felt, done in the pixels so it survives every
+breakpoint), caption and alt updated to make the rename read deliberate.
+UNCOMMITTED, awaiting Marco's approval: every case closing now ends on a
+judgement instead of a disclaimer; the three "The problem is a human
+situation" headings are now unique per case; Urbiqo's third act has three
+labelled build beats (Build 01 · The restless card / Build 02 · Honest
+pills / Build 03 · Half the words) which also feed the section index; the
+EVVO 33%/70% usability deltas were demoted out of the metric blocks into
+caveated prose (Marco still owes n + method, or they come out); Airbnb was
+reframed from correction to study; the EVVO design-system board and Shelly
+identity boards were demoted to fig--small (Shelly's visual-identity tile
+cut, mascot/type kept); [slug].astro's next-case rotation now skips drafts.
+NEW: src/content/work/witty-wolf-site.md, the Framer-to-Astro rebuild case,
+status DRAFT, order 5, title/tagline/accent carry options in comments for
+Marco. Assets in public/work/witty-wolf-site/ (framer-* before shots pulled
+from "../Framer website/", astro-* after shots captured from the built site;
+retake astro-home-*.png once the new hero copy lands). Stamp:
+public/brand/stamps/witty-wolf-site.svg (solid wolf head from
+wolf-vector.svg, wax-seal look); placeholder thumb public/thumbs/
+witty-wolf.svg. NOTE for launch of this case: home/work still say
+"04 projects" and "Four case studies. Four real problems.", and consider a
+liveUrl only after the DNS swap (wittywolf.design still serves the Framer
+site). Open options Marco must pick: EVVO title, hero H1 + lead rewrite,
+about closing line replacement ("New to the field, yes. Rookie, no." still
+in place until then). Urbiqo room-photo Unsplash shortlist for the staging
+listings sits at "04 Website & portfolio/urbiqo-room-shortlist.png".
+
 ## How to run
 Marco runs the dev server himself in his own terminal (background servers
 started by sessions get reaped):
