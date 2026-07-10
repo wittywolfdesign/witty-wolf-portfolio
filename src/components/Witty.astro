@@ -1,0 +1,181 @@
+---
+/* Witty: the corner "AI agent" that refuses to help. One joke, told once,
+   dismissible forever. The avatar is the real logo mark, the same file the
+   nav uses, so the refusal clearly comes from the site's own wolf and not
+   from a bought widget. Rendered by Base on every page except /contact. */
+---
+
+<aside class="witty" data-witty aria-label="Witty, the site mascot" hidden>
+  <div class="witty__bubble">
+    <button class="witty__close" type="button" data-witty-close aria-label="Dismiss Witty">&times;</button>
+    <p class="witty__line">
+      Hi, I&rsquo;m Witty. I can&rsquo;t actually help you. But send me a DM
+      through <a href="/contact">the form</a> and the human will.
+    </p>
+  </div>
+  <img class="witty__wolf" src="/brand/wolf-mark.svg" alt="" width="87" height="110" />
+</aside>
+
+<style>
+  .witty {
+    position: fixed;
+    right: clamp(0.75rem, 2vw, 1.5rem);
+    bottom: 0;
+    z-index: 55; /* above content; below the case pill (60), consent (70), wash (140) */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    /* the container catches nothing: only the bubble and the wolf are solid */
+    pointer-events: none;
+    transform: translateY(16px);
+    opacity: 0;
+    transition: transform 0.45s var(--ease-out), opacity 0.35s ease-out;
+  }
+  .witty[hidden] { display: none; }
+  .witty.is-in { transform: translateY(0); opacity: 1; }
+  /* steps out (dismissal, or the footer owns the corner while on screen) */
+  .witty.is-away { transform: translateY(110%); opacity: 0; }
+
+  .witty__bubble {
+    position: relative;
+    pointer-events: auto;
+    max-width: 250px;
+    padding: 0.85rem 2rem 0.85rem 1rem;
+    background: var(--bg-elevated);
+    border: 1px solid var(--ink);
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  /* pointer tail toward the wolf */
+  .witty__bubble::after {
+    content: "";
+    position: absolute;
+    right: 30px;
+    bottom: -6px;
+    width: 10px;
+    height: 10px;
+    background: inherit;
+    border-right: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    transform: rotate(45deg);
+  }
+  .witty__line { margin: 0; }
+
+  /* the site's secondary-link language: amber, self-drawing underline */
+  .witty__line a {
+    color: var(--accent);
+    text-decoration: none;
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s var(--ease-out);
+    padding-bottom: 2px;
+  }
+  .witty__line a:hover,
+  .witty__line a:focus-visible { background-size: 100% 1px; }
+  .witty__line a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .witty__close {
+    position: absolute;
+    top: 0.2rem;
+    right: 0.3rem;
+    padding: 0.25rem;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    line-height: 1;
+    color: var(--text-muted);
+  }
+  .witty__close:hover { color: var(--ink); }
+  .witty__close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* the wolf peeks up over the viewport edge, resting at the nav mark's tilt */
+  .witty__wolf {
+    display: block;
+    pointer-events: auto;
+    width: clamp(84px, 8vw, 104px);
+    height: auto;
+    margin-right: 0.9rem;
+    margin-bottom: -14px;
+    transform: rotate(-8deg);
+    transform-origin: 50% 100%;
+  }
+
+  /* small mobile: the corner is contested (footer stack, inline CTAs), skip it */
+  @media (max-width: 639px) {
+    .witty { display: none; }
+  }
+  /* while the floating section pill owns the bottom edge on case pages */
+  @media (max-width: 1023px) {
+    :global(body:has([data-case-index])) .witty { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .witty { transition: none; }
+  }
+</style>
+
+<script>
+  // Show after a short beat or the first scroll, whichever comes first.
+  // Dismissal is remembered in localStorage so Witty never re-nags. While the
+  // footer is on screen the corner belongs to the Cookies link, so Witty
+  // steps out of the way. Re-binds after every view-transition swap.
+  const KEY = "ww-witty";
+
+  function bind(el: HTMLElement) {
+    if (el.dataset.bound) return;
+    el.dataset.bound = "1";
+
+    let dismissed = false;
+    try { dismissed = localStorage.getItem(KEY) === "dismissed"; } catch {}
+    if (dismissed) return;
+
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduced) {
+      // simply present, no entrance motion
+      el.hidden = false;
+      el.classList.add("is-in");
+    } else {
+      let fired = false;
+      const fire = () => {
+        if (fired) return;
+        fired = true;
+        clearTimeout(timer);
+        removeEventListener("scroll", fire);
+        el.hidden = false;
+        // let the initial transform commit before transitioning in
+        requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("is-in")));
+      };
+      const timer = setTimeout(fire, 1200);
+      addEventListener("scroll", fire, { once: true, passive: true });
+    }
+
+    el.querySelector("[data-witty-close]")?.addEventListener("click", () => {
+      try { localStorage.setItem(KEY, "dismissed"); } catch {}
+      el.classList.remove("is-in");
+      el.classList.add("is-away");
+      setTimeout(() => { el.hidden = true; }, reduced ? 0 : 300);
+    });
+
+    const footer = document.querySelector("footer");
+    if (footer && "IntersectionObserver" in window) {
+      new IntersectionObserver((entries) => {
+        for (const e of entries) el.classList.toggle("is-away", e.isIntersecting);
+      }).observe(footer);
+    }
+  }
+
+  function init() {
+    const el = document.querySelector<HTMLElement>("[data-witty]");
+    if (el) bind(el);
+  }
+  init();
+  document.addEventListener("astro:page-load", init);
+</script>

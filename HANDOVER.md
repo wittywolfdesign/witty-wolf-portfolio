@@ -268,6 +268,27 @@ about closing line replacement ("New to the field, yes. Rookie, no." still
 in place until then). Urbiqo room-photo Unsplash shortlist for the staging
 listings sits at "04 Website & portfolio/urbiqo-room-shortlist.png".
 
+## Witty, the corner agent that refuses to help (10 July 2026)
+src/components/Witty.astro, rendered by Base on every page except /contact.
+The gag: the assistant-position mascot is Marco's own wolf (the same
+/brand/wolf-mark.svg the nav uses, one file for both themes) and its only
+message is that it cannot help, with an amber self-drawing link to the
+form. Copy shipped (option A): "Hi, I'm Witty. I can't actually help you.
+But send me a DM through the form and the human will." Bubble is on-brand:
+paper card, 1px ink border, pointer tail, mono, no radius, no shadow.
+Behaviour: enters after 1.2s or first scroll (translateY + opacity only);
+reduced motion renders it static and immediately; dismiss X stores
+"ww-witty" = "dismissed" in localStorage so it never re-nags; an
+IntersectionObserver slides it away while the footer is on screen (the
+corner belongs to the Cookies link); hidden under 640px, and under 1024px
+on case pages where the floating section pill owns the bottom edge (via
+body:has([data-case-index])); z-index 55 (below pill 60, consent 70, wash
+140); pointer-events only on bubble and wolf. Verified: entrance both
+themes, dismissal persists across reloads, absent on /contact, steps aside
+at footer and returns, hidden at 360 and on tablet case pages, reduced
+motion static. Trope-y shadowed variant deliberately not built (it would
+be the site's only rounded shadowed element); revisit only if Marco asks.
+
 ## How to run
 Marco runs the dev server himself in his own terminal (background servers
 started by sessions get reaped):
