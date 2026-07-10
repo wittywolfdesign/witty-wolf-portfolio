@@ -34,7 +34,7 @@ community, in a crowded health-tech space, strictly inside GDPR.
 
 <p class="note">The 'no time' barrier</p>
 
-## The problem is a human situation
+## The streak punishes real life
 
 City life leaves no room for rigid wellness plans. Research with 16
 participants showed the conflict:
@@ -102,10 +102,9 @@ a breathing exercise. Energetic? Shelly suggests a run.
 A visual identity of nature-inspired greens and warm yellows. Typography
 and rounded UI tuned to lower cognitive load and take the anxiety out.
 
-<figure class="fig fig--paper fig--duo">
-  <span class="fig__tile"><img src="/work/shelly/shelly-visual-identity.png" alt="Shelly visual identity board with a nature-inspired palette of calming greens and warm yellows" loading="lazy" /></span>
-  <span class="fig__tile"><img src="/work/shelly/shelly-typography-mascot.png" alt="Shelly typography guide alongside the turtle mascot giving a peace sign" loading="lazy" /></span>
-  <figcaption>Identity and type, with the mascot keeping things friendly.</figcaption>
+<figure class="fig fig--small fig--pin">
+  <img src="/work/shelly/shelly-typography-mascot.png" alt="Shelly typography guide alongside the turtle mascot giving a peace sign" loading="lazy" />
+  <figcaption>The identity decision that matters: rounded type and a mascot that never scolds.</figcaption>
 </figure>
 
 <figure class="fig">
@@ -117,9 +116,10 @@ and rounded UI tuned to lower cognitive load and take the anxiety out.
 
 ## Impact and reflections
 
-Every participant completed the core flow, and all responded positively.
-That's usability testing, not the market, but it validated the bet: an app
-that forgives the miss keeps people moving.
+In usability testing, every participant completed the core flow and all
+responded positively. The market is a harder judge, but the bet those
+sessions validated is the one the whole product stands on: an app that
+forgives the miss keeps people moving.
 
 > Finally an app that feels like a friend.
 

@@ -32,7 +32,7 @@ solvent tenants and leaves hosts choosing from a smaller, samey pool.
 
 <p class="note">The paperwork wall</p>
 
-## The problem is a human situation
+## Solvent, and still locked out
 
 Freelancers and expats hit closed doors. An estimated 70% of solvent
 applicants are blocked for lacking a standard payslip. Hosts are stuck too:
@@ -186,16 +186,6 @@ decision made in code, not in the static design file.
   <p class="skyline-break-title">Why <span>Urbiqo</span></p>
 </div>
 
-The listing card is the clearest example: real descriptions vary in length, so
-the 'More details' button pinned after the text could never sit still. The
-title now clamps to one line, the description to three and the whole card
-became the click target.
-
-<figure class="fig fig--paper fig--duo">
-  <figure class="fig__tile"><img src="/work/urbiqo/urbiqo-card-design.png" alt="A designed Urbiqo listing card: image, price, title, a location row with a pin, room type and size, amenities, then a description and a More details button" loading="lazy" /><figcaption>As designed: a location row and a button after a description of unknown length.</figcaption></figure>
-  <figure class="fig__tile"><img src="/work/urbiqo/urbiqo-card-rebuilt.png" alt="The rebuilt Urbiqo listing card: image, price, a one-line title, room type and size and a clamped description, with no button" loading="lazy" /><figcaption>As built: one-line title, three-line description, the card itself is the target.</figcaption></figure>
-</figure>
-
 Live on staging today: featured listings; search with type, price and size
 filters beside a map; listing pages with gallery, amenities and
 neighbourhood notes; apply and contact host; freemium and premium tiers for
@@ -214,21 +204,44 @@ arrives at launch.
   <figcaption>A live listing: gallery, amenities, neighbourhood notes and map.</figcaption>
 </figure>
 
+Three decisions from the build earned their own labels.
+
+<p class="note">Build 01 · The restless card</p>
+
+## The card that could not sit still
+
+Real descriptions vary in length, so the 'More details' button pinned after
+the text could never sit still. The title now clamps to one line, the
+description to three and the whole card became the click target.
+
+<figure class="fig fig--paper fig--duo">
+  <figure class="fig__tile"><img src="/work/urbiqo/urbiqo-card-design.png" alt="A designed Urbiqo listing card: image, price, title, a location row with a pin, room type and size, amenities, then a description and a More details button" loading="lazy" /><figcaption>As designed: a location row and a button after a description of unknown length.</figcaption></figure>
+  <figure class="fig__tile"><img src="/work/urbiqo/urbiqo-card-rebuilt.png" alt="The rebuilt Urbiqo listing card: image, price, a one-line title, room type and size and a clamped description, with no button" loading="lazy" /><figcaption>As built: one-line title, three-line description, the card itself is the target.</figcaption></figure>
+</figure>
+
+<p class="note">Build 02 · Honest pills</p>
+
+## A pill should never lie about why it is red
+
 The verification thinking survived into code as the trust and safety card
 on every listing. Each signal has its own state: a profile can show email
 verified while phone and identity are still pending. Honest states, not
 one binary badge.
 
 In the design file the four states were a legend: Active, Pending, Attention
-and Issue, one pill per signal. In code every pill needed a source of truth and
-a failure story, so a signed-out user stopped being treated as an error and one
-blanket 'something went wrong' was split into distinct causes, because a pill
-should never lie about why it is red.
+and Issue, one pill per signal. In code every pill needed a source of truth
+and a failure story. A signed-out user stopped being treated as an error,
+and one blanket 'something went wrong' was split into its distinct causes,
+so a red pill always means one specific thing.
 
 <figure class="fig fig--paper">
   <img src="/work/urbiqo/urbiqo-host-dashboard.png" alt="The Urbiqo host dashboard: the signals Email, Phone, Identity, Payout and Agreement each carry their own state, beside a legend of Active, Pending, Attention and Issue" loading="lazy" />
   <figcaption>The host dashboard: five signals, five independent states, one legend.</figcaption>
 </figure>
+
+<p class="note">Build 03 · Half the words</p>
+
+## Only half the words are mine
 
 Localisation was designed as a variable mode and shipped as one. The same
 screens run in English and Spanish end to end.
@@ -239,11 +252,10 @@ screens run in English and Spanish end to end.
   <figcaption>The same listing, English and Spanish, one variable build.</figcaption>
 </figure>
 
-The design file flips every string with one variable mode; the build showed
-that only half the words are mine. Interface copy translates, but listing
-content lives in the database, so a Spanish page can still speak English
-wherever the data does, and Spanish runs long enough to truncate cards the
-English never stressed.
+The design file flips every string with one variable mode. The build
+corrected me: interface copy translates, but listing content lives in the
+database, so a Spanish page can still speak English wherever the data does.
+And Spanish runs long enough to truncate cards the English never stressed.
 
 <figure class="fig fig--paper">
   <img src="/work/urbiqo/urbiqo-card-es-truncated.png" alt="A Spanish Urbiqo listing card with its title truncated by an ellipsis where the shorter English title fit" loading="lazy" />
@@ -252,9 +264,11 @@ English never stressed.
 
 ## What I learned
 
-The platform is built and live on staging. The launch is still ahead, so
-there are no user metrics yet, and I would rather say that plainly: this
-case study covers definition, design and build, not measured outcomes.
+Designed end to end, then built end to end, by one person, on Next.js.
+That is the outcome: a two-sided platform running on staging in two
+languages, from search to application. No user metrics yet, the launch is
+still ahead, so what follows is what shipping it taught, not what the
+market said.
 
 Three things Urbiqo taught me:
 

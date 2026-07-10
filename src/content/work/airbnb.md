@@ -2,7 +2,7 @@
 title: "9 fonts, one flow. Why?"
 client: "Airbnb"
 tagline: "What cloning Airbnb screen by screen actually reveals"
-summary: "A screen-by-screen clone of Airbnb's iOS app revealed inconsistencies you wouldn't expect from a product this big."
+summary: "A screen-by-screen clone of Airbnb's iOS app: a study in what drifts at scale and whether strict atomic design could hold it together."
 year: "2024"
 role: "Solo exercise · Heuristic audit and concept redesign (not a client project)"
 discipline: ["UI", "Design systems", "Audit"]
@@ -13,8 +13,8 @@ order: 4
 featured: true
 status: "published"
 context: "A self-initiated teardown and rebuild of the Airbnb iOS app."
-problem: "Cloning Airbnb screen by screen exposes how much inconsistency hides in a polished product."
-outcome: "A documented audit and a concept redesign with full atomic consistency; an exercise, not a shipped product."
+problem: "Cloning Airbnb screen by screen shows how much inconsistency even a polished product can absorb."
+outcome: "A documented audit and a concept rebuild with full atomic consistency, offered as a study, not a correction."
 metrics:
   - value: "40 hours"
     label: "Sprint, clone to concept"
@@ -24,8 +24,10 @@ metrics:
     label: "Corner radius variants (audit)"
 ---
 
-I wanted to know if Airbnb's design system was as solid as it looked. So I
-cloned the iOS app screen by screen in a 40-hour sprint. It wasn't.
+I wanted to know what a design system looks like at Airbnb's scale, up
+close. So I cloned the iOS app screen by screen in a 40-hour sprint. Up
+close it is messier than the polish suggests. Most systems that have
+shipped fast for a decade probably are.
 
 <p class="note">What the clone revealed</p>
 
@@ -48,7 +50,7 @@ weakens the sense of control.
   <div><span>Shifting</span><span>back and cancel controls between screens</span></div>
 </div>
 
-> The audit revealed real inconsistencies in a product used by millions.
+> Inconsistency at this scale isn't sloppiness. It's what a decade of shipping fast looks like up close.
 
 <p class="note">Groundwork</p>
 
@@ -107,8 +109,10 @@ matters: the properties and experiences themselves.
 
 ## What this exercise showed
 
-Full standardisation is possible: icons, buttons, radii and type under one
-system, controls that stay put, a modular structure that could expand
-quickly. This was an exercise, not a shipped product. The redesign tested
-whether strict atomic design could fix what the audit surfaced. I think it
-could.
+This was an exercise, and Airbnb ships under constraints a 40-hour clone
+never meets: legacy, experiments, teams moving in parallel. That is exactly
+what made it worth studying. The rebuild showed full standardisation is
+possible: icons, buttons, radii and type under one system, controls that
+stay put, a modular structure that could expand quickly. What I took with
+me: consistency isn't a coat of polish applied at the end. It's a structure
+you commit to at the start, or pay to retrofit later.

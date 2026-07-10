@@ -9,7 +9,12 @@ export async function getStaticPaths() {
   const work = await getCollection("work");
   const sorted = work.sort((a, b) => a.data.order - b.data.order);
   return sorted.map((entry, i) => {
-    const next = sorted[(i + 1) % sorted.length];
+    /* the next-case rotation skips drafts, so no published page ever
+       leads into one; draft pages still build for review */
+    let next = sorted[(i + 1) % sorted.length];
+    for (let hop = 0; next.data.status !== "published" && hop < sorted.length; hop++) {
+      next = sorted[(sorted.indexOf(next) + 1) % sorted.length];
+    }
     return { params: { slug: entry.slug }, props: { entry, next } };
   });
 }

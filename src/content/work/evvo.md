@@ -1,5 +1,5 @@
 ---
-title: "9 fonts, one flow"
+title: "Sell the story, not the spec sheet"
 client: "EVVO"
 tagline: "Helping people buy gear without reading an essay first"
 summary: "A French snowshoe brand with award-winning tech that nobody understood. The site needed to sell the story, not the specs."
@@ -14,14 +14,14 @@ featured: true
 status: "published"
 context: "An outdoor lifestyle brand focused on snowshoes."
 problem: "Buying gear meant reading an essay before you could add to cart."
-outcome: "A story-first e-commerce redesign, usability tested; conversion impact still unproven."
+outcome: "A story-first redesign: activity-based navigation, benefit-first cards and a comparison tool, validated in usability testing."
 metrics:
   - value: "6 weeks"
     label: "MVP design sprint"
-  - value: "33%"
-    label: "Clearer brand differentiators (usability tested)"
+  - value: "1 in 3"
+    label: "Could say why EVVO was premium, before the redesign"
   - value: "70%"
-    label: "Less cognitive load on mobile (usability tested)"
+    label: "Of mobile visits bounced off the old desktop-first site"
 ---
 
 EVVO Snowshoes is a French brand with patented lightweight technology,
@@ -37,7 +37,7 @@ shop on feel.
 
 <p class="note">Invisible innovation</p>
 
-## The problem is a human situation
+## Premium gear that couldn't say why
 
 The research showed a simple disconnect: users could not tell why EVVO was
 premium. Only 1 in 3 understood the sustainability angle, and 70% of
@@ -130,9 +130,9 @@ Recycled materials argued as benefits, not features.
 A modular component library, atomic design and auto layout throughout.
 The whole journey stays consistent and ready to grow.
 
-<figure class="fig fig--bare">
+<figure class="fig fig--small fig--pin">
   <img src="/work/evvo/evvo-design-system.png" alt="EVVO design system: a modular grid of buttons, typography styles and components" loading="lazy" />
-  <figcaption>The component library underneath the shop.</figcaption>
+  <figcaption>The library exists; the decision that matters is on the cards above, benefit before spec.</figcaption>
 </figure>
 
 <p class="note">Honestly, though</p>
@@ -141,10 +141,10 @@ The whole journey stays consistent and ready to grow.
 
 The hypothesis: lead with story, support with specs. In usability testing
 people understood the product faster and chose with more confidence.
-Whether that translates to conversion is still unproven.
 
-<div class="stats">
-  <div><span>33%</span><span>clearer brand differentiators, usability tested</span></div>
-  <div><span>70%</span><span>reduced cognitive load on mobile, usability tested</span></div>
-  <div><span>New</span><span>scalable architecture, less decision friction at checkout</span></div>
-</div>
+<!-- TODO MARCO: the 33% differentiator and 70% cognitive-load deltas can return here once the test method and sample size are documented -->
+
+
+Conversion needs a live shop to prove it. The judgement stands either way:
+people don't buy a spec sheet, they buy the reason it exists, and every
+screen now leads with that reason.
