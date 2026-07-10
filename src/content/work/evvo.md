@@ -142,9 +142,6 @@ The whole journey stays consistent and ready to grow.
 The hypothesis: lead with story, support with specs. In usability testing
 people understood the product faster and chose with more confidence.
 
-<!-- TODO MARCO: the 33% differentiator and 70% cognitive-load deltas can return here once the test method and sample size are documented -->
-
-
 Conversion needs a live shop to prove it. The judgement stands either way:
 people don't buy a spec sheet, they buy the reason it exists, and every
 screen now leads with that reason.
