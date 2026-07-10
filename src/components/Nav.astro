@@ -72,8 +72,12 @@ const links = [
   /* the head rests at its natural tilt and pivots from the neck: on hover
      it straightens with a small overshoot, then relaxes back home. Mouse
      hover only; touch and reduced motion keep the still tilt. */
+  /* the mark height tracks the wordmark: ~2.1x the type's em, matching the
+     brand lockup where the wolf reads clearly taller than the letters (it was
+     40px ≈ 1.56em, so it sat about the same height as the text). em keeps the
+     ratio across the responsive font-size steps. */
   .nav__brand img {
-    width: auto; height: 40px;
+    width: auto; height: 2.1em;
     transform: rotate(-8deg);
     transform-origin: 50% 100%;
     transition: transform 0.35s ease;
@@ -90,9 +94,9 @@ const links = [
     .nav__brand:hover img { transform: rotate(-8deg); }
   }
   @media (max-width: 899px) {
-    /* tighter widths: back to the short wordmark at nav-link scale */
+    /* tighter widths: back to the short wordmark at nav-link scale (the mark
+       stays 2.1em, so it scales down with the smaller font automatically) */
     .nav__brand { font-size: 0.95rem; font-weight: 600; gap: 0.6rem; }
-    .nav__brand img { height: 30px; }
     .nav__wordmark-tail { display: none; }
   }
   .nav__links { display: flex; gap: clamp(1.1rem, 3vw, 2rem); }
