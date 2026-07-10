@@ -205,6 +205,16 @@ already authored in each case's markdown, in document order.
   the Chrome extension can't scroll an occluded window (rAF frozen) so drive it
   with headless Playwright, not the browser tools.
 
+## DONE: six reimagined logo concepts (10 July 2026)
+public/brand/concepts/ holds wolf-01.svg to wolf-06.svg (same wolf, six
+treatments: solid successor, line heir, draftsman construction, coin,
+heavyweight, one-line wildcard), PNG exports in png/ (512 + 40, paper +
+charcoal), a concepts.html preview sheet (Geist Mono embedded, both themes
+inline) and concepts.md with per-concept notes. All marks are driven by
+--wolf-ink / --wolf-accent custom properties with charcoal and amber
+fallbacks; wolf-02.svg carries the master geometry the others reuse.
+Nothing on the live site references these yet; no site files were touched.
+
 ## How to run
 Marco runs the dev server himself in his own terminal (background servers
 started by sessions get reaped):
