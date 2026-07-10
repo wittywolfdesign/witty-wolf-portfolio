@@ -9,7 +9,7 @@ discipline: ["Research", "Product design", "Design system", "Front-end"]
 thumb: "/thumbs/urbiqo.svg"
 accent: "#C25A3C"
 ink: "#ffffff"
-order: 1
+order: 2
 featured: true
 status: "published"
 # STAGING URL — swap to the production URL at launch. Single source for the "live" CTA.

@@ -9,7 +9,7 @@ discipline: ["UX", "E-commerce", "UI"]
 thumb: "/thumbs/evvo.svg"
 accent: "#2E4A63"
 ink: "#ffffff"
-order: 2
+order: 3
 featured: true
 status: "published"
 context: "An outdoor lifestyle brand focused on snowshoes."

@@ -9,7 +9,7 @@ discipline: ["Product design", "Behavioural UX", "Branding"]
 thumb: "/thumbs/shelly.svg"
 accent: "#ECEFF1"
 ink: "#1A242F"
-order: 3
+order: 4
 featured: true
 status: "published"
 context: "A habit-building app for the Daily Health Conference, a wellness non-profit."

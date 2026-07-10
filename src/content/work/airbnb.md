@@ -9,7 +9,7 @@ discipline: ["UI", "Design systems", "Audit"]
 thumb: "/thumbs/airbnb.svg"
 accent: "#1C2B3A"
 ink: "#ffffff"
-order: 4
+order: 5
 featured: true
 status: "published"
 context: "A self-initiated teardown and rebuild of the Airbnb iOS app."

@@ -11,8 +11,9 @@ discipline: ["Art direction", "Front-end", "Design system"]
 thumb: "/thumbs/witty-wolf.svg"
 accent: "#E3993D"
 ink: "#1A1714"
-# Curation decided: the case CLOSES the set as the proof.
-order: 5
+# Curation decided (10 July 2026, revised): the case OPENS the set as the
+# statement; the rest follow by recency.
+order: 1
 featured: true
 status: "published"
 context: "The portfolio you are looking at, rebuilt from a Framer template into a hand-coded Astro site."
