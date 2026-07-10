@@ -273,9 +273,10 @@ src/components/Witty.astro, rendered by Base on every page except /contact.
 The gag: the assistant-position mascot is Marco's own wolf (the same
 /brand/wolf-mark.svg the nav uses, one file for both themes) and its only
 message is that it cannot help, with an amber self-drawing link to the
-form. Copy shipped (option A): "Hi, I'm Witty. I can't actually help you.
-But send me a DM through the form and the human will." Bubble is on-brand:
-paper card, 1px ink border, pointer tail, mono, no radius, no shadow.
+form. Copy shipped (option A, decided): "Hi, I'm Witty. I can't actually
+help you. But send me a DM through the form and the human will." Bubble is
+the decided option 1: paper-token card, 1.5px ink border, 2px radius,
+pointer tail, mono, no shadow.
 Behaviour: enters after 1.2s or first scroll (translateY + opacity only);
 reduced motion renders it static and immediately; dismiss X stores
 "ww-witty" = "dismissed" in localStorage so it never re-nags; an
