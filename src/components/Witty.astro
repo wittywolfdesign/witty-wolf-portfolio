@@ -66,6 +66,16 @@
   }
   .witty__line { margin: 0; }
 
+  /* the typing caret, same block language as the site's typewriter */
+  .witty__line :global(.witty__caret) {
+    display: inline-block;
+    width: 0.5em;
+    height: 0.95em;
+    margin-left: 1px;
+    background: var(--ink);
+    vertical-align: text-bottom;
+  }
+
   /* the site's secondary-link language: amber, self-drawing underline */
   .witty__line a {
     color: var(--accent);
@@ -123,11 +133,52 @@
 </style>
 
 <script>
-  // Show after a short beat or the first scroll, whichever comes first.
-  // Dismissal is remembered in localStorage so Witty never re-nags. While the
-  // footer is on screen the corner belongs to the Cookies link, so Witty
-  // steps out of the way. Re-binds after every view-transition swap.
+  // Chat-widget choreography: appear after a proper wait (the way those AI
+  // assistants always do), then TYPE the message into the bubble. First
+  // appearance per session performs; later pages show it already settled so
+  // the gag never repeats. Dismissal is remembered in localStorage. While
+  // the footer is on screen the corner belongs to the Cookies link, so
+  // Witty steps out of the way. Re-binds after every view-transition swap.
   const KEY = "ww-witty";
+  const SEEN = "ww-witty-seen";
+  const WAIT = 6000; // the chatbot beat: late enough to miss the hero typing
+  const CHAR = 22;   // ms per typed character
+
+  function typeLine(el: HTMLElement, line: HTMLElement, done: () => void) {
+    // collect every text node (the link's text included) so the message
+    // types straight through the amber link without breaking it
+    const nodes: Text[] = [];
+    (function collect(n: Node) {
+      n.childNodes.forEach((c) =>
+        c.nodeType === 3 ? nodes.push(c as Text) : collect(c));
+    })(line);
+    const texts = nodes.map((n) => n.nodeValue ?? "");
+
+    // freeze the bubble at its final size so typing never reflows it
+    const bubble = line.closest<HTMLElement>(".witty__bubble");
+    if (bubble) {
+      const r = bubble.getBoundingClientRect();
+      bubble.style.width = `${r.width}px`;
+      bubble.style.height = `${r.height}px`;
+    }
+    nodes.forEach((n) => { n.nodeValue = ""; });
+
+    const caret = document.createElement("span");
+    caret.className = "witty__caret";
+    caret.setAttribute("aria-hidden", "true");
+
+    let j = 0, c = 0;
+    const step = () => {
+      if (el.hidden) { caret.remove(); return; } // dismissed mid-sentence
+      if (j >= nodes.length) { caret.remove(); done(); return; }
+      const node = nodes[j];
+      node.nodeValue = texts[j].slice(0, ++c);
+      node.parentNode?.insertBefore(caret, node.nextSibling);
+      if (c >= texts[j].length) { j++; c = 0; }
+      setTimeout(step, CHAR);
+    };
+    step();
+  }
 
   function bind(el: HTMLElement) {
     if (el.dataset.bound) return;
@@ -138,24 +189,31 @@
     if (dismissed) return;
 
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let seen = false;
+    try { seen = sessionStorage.getItem(SEEN) === "1"; } catch {}
+    const line = el.querySelector<HTMLElement>(".witty__line");
+
+    const show = () => {
+      el.hidden = false;
+      requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("is-in")));
+    };
 
     if (reduced) {
-      // simply present, no entrance motion
+      // simply present, full message, no motion
       el.hidden = false;
       el.classList.add("is-in");
+    } else if (seen) {
+      // already performed this session: settle in quietly, no typing
+      setTimeout(show, 600);
     } else {
-      let fired = false;
-      const fire = () => {
-        if (fired) return;
-        fired = true;
-        clearTimeout(timer);
-        removeEventListener("scroll", fire);
-        el.hidden = false;
-        // let the initial transform commit before transitioning in
-        requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("is-in")));
-      };
-      const timer = setTimeout(fire, 1200);
-      addEventListener("scroll", fire, { once: true, passive: true });
+      setTimeout(() => {
+        show();
+        if (!line) return;
+        // wolf up first, then the message types
+        setTimeout(() => typeLine(el, line, () => {
+          try { sessionStorage.setItem(SEEN, "1"); } catch {}
+        }), 650);
+      }, WAIT);
     }
 
     el.querySelector("[data-witty-close]")?.addEventListener("click", () => {

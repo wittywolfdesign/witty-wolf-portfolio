@@ -281,8 +281,14 @@ form. Copy shipped (option A, decided): "Hi, I'm Witty. I can't actually
 help you. But send me a DM through the form and the human will." Bubble is
 the decided option 1: paper-token card, 1.5px ink border, 2px radius,
 pointer tail, mono, no shadow.
-Behaviour: enters after 1.2s or first scroll (translateY + opacity only);
-reduced motion renders it static and immediately; dismiss X stores
+Behaviour (reworked 10 July 2026 evening, Marco's call): a proper chatbot
+wait, 6s after load the wolf slides up, then the message TYPES into the
+bubble (block caret, ~22ms/char, straight through the amber link; the
+bubble is frozen at final size during typing so nothing reflows). First
+appearance per session performs; later pages show it already settled via
+sessionStorage "ww-witty-seen". The 6s beat also lands after the hero
+typewriter finishes, fixing the audit's timing collision. Reduced motion
+renders it static, immediately, full message, no caret; dismiss X stores
 "ww-witty" = "dismissed" in localStorage so it never re-nags; an
 IntersectionObserver slides it away while the footer is on screen (the
 corner belongs to the Cookies link); hidden under 640px, and under 1024px
