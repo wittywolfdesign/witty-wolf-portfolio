@@ -227,11 +227,12 @@ one-line TODO MARCO comment in evvo.md marks where they may return if the
 method is ever documented. The fifth case gained a verbatim Marco beat
 ("My worst client / I am my worst client") before the closing section, and
 the astro-home-*.png after-shots were retaken with the new hero. The fifth
-case is PUBLISHED as the closer (order 5, Marco's call, 10 July 2026
-evening): /work heading and meta description now read "Five case studies.
-Five real problems.", the "projects" count labels were already computed
-from work.length so they flipped to 05 on their own, and the next-case
-ring runs Urbiqo → EVVO → Shelly → Airbnb → Witty Wolf → Urbiqo. Urbiqo
+case is PUBLISHED and, since Marco's revised call later the same evening,
+OPENS the set at order 1 with the rest by recency (Urbiqo 2, EVVO 3,
+Shelly 4, Airbnb 5). /work heading and meta description read "Five case
+studies. Five real problems.", the "projects" count labels are computed
+from work.length, and the next-case ring runs Witty Wolf → Urbiqo → EVVO
+→ Shelly → Airbnb → back to Witty Wolf. Urbiqo
 staging room-photo swap (shortlist at "04 Website & portfolio/
 urbiqo-room-shortlist.png") remains open.
 
@@ -292,6 +293,15 @@ themes, dismissal persists across reloads, absent on /contact, steps aside
 at footer and returns, hidden at 360 and on tablet case pages, reduced
 motion static. Trope-y shadowed variant deliberately not built (it would
 be the site's only rounded shadowed element); revisit only if Marco asks.
+
+## Deployment (documented 10 July 2026)
+GitHub Pages via .github/workflows/deploy.yml, which builds and deploys on
+every push to main (remote: github.com/wittywolfdesign/witty-wolf-portfolio).
+wittywolf.design already points at Pages, so a push IS a deploy. Pages sits
+behind Fastly with cache-control max-age=600: after a deploy the old page
+can linger up to 10 minutes and there is no manual purge, a hard refresh
+plus patience covers it. Sessions on this machine CANNOT push (no GitHub
+credential in the keychain, no SSH key, no gh CLI): Marco pushes himself.
 
 ## How to run
 Marco runs the dev server himself in his own terminal (background servers
