@@ -1,16 +1,43 @@
 ---
 /* Witty: the corner "AI agent" that refuses to help. One joke, told once,
    dismissible forever. The avatar is the real logo mark, the same file the
-   nav uses, so the refusal clearly comes from the site's own wolf and not
-   from a bought widget. Rendered by Base on every page except /contact. */
+   nav uses. Rendered by Base on every page except contact, in every locale.
+
+   Witty is also the language easter egg: on a first visit whose browser
+   language differs from the page's, Witty offers the switch in the
+   BROWSER's language, once, and remembers the answer. Never a redirect,
+   never geolocation: navigator.language only, client-side. */
+import { t, ui, type Locale } from "../i18n/ui";
+
+const locale = (Astro.currentLocale ?? "en") as Locale;
+const T = t(locale);
+const prefix = locale === "en" ? "" : `/${locale}`;
+
+/* every locale's offer strings ride along so the OFFER can speak the
+   browser's language, whatever page it fires on */
+const offers = Object.fromEntries(
+  (Object.keys(ui) as Locale[]).map((l) => [
+    l,
+    { line: ui[l].witty.offer, yes: ui[l].witty.offerYes, no: ui[l].witty.offerNo },
+  ])
+);
 ---
 
-<aside class="witty" data-witty aria-label="Witty, the site mascot" hidden>
+<aside
+  class="witty"
+  data-witty
+  data-witty-offers={JSON.stringify(offers)}
+  aria-label={T.witty.ariaLabel}
+  hidden
+>
   <div class="witty__bubble">
-    <button class="witty__close" type="button" data-witty-close aria-label="Dismiss Witty">&times;</button>
-    <p class="witty__line">
-      Hi, I&rsquo;m Witty. I can&rsquo;t actually help you. But send me a DM
-      through <a href="/contact">the form</a> and the human will.
+    <button class="witty__close" type="button" data-witty-close aria-label={T.witty.dismiss}>&times;</button>
+    <p class="witty__line" data-witty-line>
+      {T.witty.lineBefore}<a href={`${prefix}/contact`}>{T.witty.lineLink}</a>{T.witty.lineAfter}
+    </p>
+    <p class="witty__actions" data-witty-actions hidden>
+      <button class="witty__btn" type="button" data-witty-yes></button>
+      <button class="witty__btn witty__btn--quiet" type="button" data-witty-no></button>
     </p>
   </div>
   <img class="witty__wolf" src="/brand/wolf-mark.svg" alt="" width="87" height="110" />
@@ -54,7 +81,7 @@
     line-height: 1.6;
     color: var(--ink);
   }
-  /* pointer tail toward the wolf, now on the bubble's right edge */
+  /* pointer tail toward the wolf, on the bubble's right edge */
   .witty__bubble::after {
     content: "";
     position: absolute;
@@ -93,6 +120,30 @@
   .witty__line a:hover,
   .witty__line a:focus-visible { background-size: 100% 1px; }
   .witty__line a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* the language-offer buttons: tiny field-notes rectangles, no pills */
+  .witty__actions {
+    margin: 0.6rem 0 0;
+    display: flex;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+  }
+  .witty__actions[hidden] { display: none; }
+  .witty__btn {
+    font: inherit;
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    padding: 0.3rem 0.55rem;
+    background: transparent;
+    border: 1px solid var(--ink);
+    border-radius: 2px;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .witty__btn:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+  .witty__btn--quiet { border-color: var(--line); color: var(--text-muted); }
+  .witty__btn--quiet:hover { background: transparent; border-color: var(--ink); color: var(--ink); }
+  .witty__btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
   .witty__close {
     position: absolute;
@@ -135,20 +186,57 @@
 </style>
 
 <script>
-  // Chat-widget choreography: appear after a proper wait (the way those AI
-  // assistants always do), then TYPE the message into the bubble. First
-  // appearance per session performs; later pages show it already settled so
-  // the gag never repeats. Dismissal is remembered in localStorage. While
-  // the footer is on screen the corner belongs to the Cookies link, so
-  // Witty steps out of the way. Re-binds after every view-transition swap.
+  // Chat-widget choreography: appear after a proper wait, then TYPE the
+  // message into the bubble. First appearance per session performs; later
+  // pages show it settled. Dismissal is remembered forever. While the
+  // footer is on screen the corner belongs to the Cookies link.
+  //
+  // Language offer: if the browser's primary language differs from the
+  // page's and the site speaks it, the first performance is the offer, in
+  // the browser's language, with two buttons. Any answer (or a manual
+  // switch in the nav) is remembered and Witty never asks again.
   const KEY = "ww-witty";
   const SEEN = "ww-witty-seen";
-  const WAIT = 6000; // the chatbot beat: late enough to miss the hero typing
-  const CHAR = 22;   // ms per typed character
+  const OFFER_DONE = "ww-lang-offer";
+  const LOCALE = "ww-locale";
+  const WAIT = 6000;
+  const CHAR = 22;
+  const SUPPORTED = ["en", "nl", "es"];
+
+  function store(k: string): string | null {
+    try { return localStorage.getItem(k); } catch { return null; }
+  }
+  function put(k: string, v: string) {
+    try { localStorage.setItem(k, v); } catch {}
+  }
+
+  function pageLocale(): string {
+    return (document.documentElement.lang || "en").slice(0, 2);
+  }
+  function strippedPath(): string {
+    const m = location.pathname.match(/^\/(nl|es)(\/.*|$)/);
+    return m ? m[2] || "/" : location.pathname;
+  }
+  function pathIn(target: string): string {
+    const base = strippedPath();
+    return target === "en" ? base : `/${target}${base === "/" ? "/" : base}`;
+  }
+
+  function offerLocaleFor(): string | null {
+    if (store(OFFER_DONE)) return null;
+    let prefs: string[] = [];
+    try {
+      prefs = (navigator.languages && navigator.languages.length
+        ? Array.from(navigator.languages)
+        : [navigator.language || ""]
+      ).map((l) => (l || "").slice(0, 2).toLowerCase());
+    } catch {}
+    const primary = prefs[0];
+    if (primary && primary !== pageLocale() && SUPPORTED.includes(primary)) return primary;
+    return null;
+  }
 
   function typeLine(el: HTMLElement, line: HTMLElement, done: () => void) {
-    // collect every text node (the link's text included) so the message
-    // types straight through the amber link without breaking it
     const nodes: Text[] = [];
     (function collect(n: Node) {
       n.childNodes.forEach((c) =>
@@ -171,7 +259,7 @@
 
     let j = 0, c = 0;
     const step = () => {
-      if (el.hidden) { caret.remove(); return; } // dismissed mid-sentence
+      if (el.hidden) { caret.remove(); return; }
       if (j >= nodes.length) { caret.remove(); done(); return; }
       const node = nodes[j];
       node.nodeValue = texts[j].slice(0, ++c);
@@ -186,40 +274,75 @@
     if (el.dataset.bound) return;
     el.dataset.bound = "1";
 
-    let dismissed = false;
-    try { dismissed = localStorage.getItem(KEY) === "dismissed"; } catch {}
-    if (dismissed) return;
+    if (store(KEY) === "dismissed") return;
 
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let seen = false;
-    try { seen = sessionStorage.getItem(SEEN) === "1"; } catch {}
-    const line = el.querySelector<HTMLElement>(".witty__line");
+    const line = el.querySelector<HTMLElement>("[data-witty-line]");
+    const actions = el.querySelector<HTMLElement>("[data-witty-actions]");
+    const yesBtn = el.querySelector<HTMLButtonElement>("[data-witty-yes]");
+    const noBtn = el.querySelector<HTMLButtonElement>("[data-witty-no]");
+    const standard = line ? (line.cloneNode(true) as HTMLElement) : null;
+
+    const offerLang = offerLocaleFor();
+    let offers: Record<string, { line: string; yes: string; no: string }> = {};
+    try { offers = JSON.parse(el.dataset.wittyOffers ?? "{}"); } catch {}
+    const offer = offerLang ? offers[offerLang] : null;
 
     const show = () => {
       el.hidden = false;
       requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("is-in")));
     };
 
+    const armOffer = () => {
+      if (!line || !actions || !yesBtn || !noBtn || !offer || !offerLang) return false;
+      line.textContent = offer.line;
+      yesBtn.textContent = offer.yes;
+      noBtn.textContent = offer.no;
+      actions.hidden = false;
+      yesBtn.addEventListener("click", () => {
+        put(LOCALE, offerLang);
+        put(OFFER_DONE, "done");
+        location.href = pathIn(offerLang);
+      });
+      noBtn.addEventListener("click", () => {
+        put(OFFER_DONE, "done");
+        // back to the normal line, instantly; the offer is over
+        actions.hidden = true;
+        if (standard) line.replaceChildren(...Array.from(standard.cloneNode(true).childNodes));
+        const bubble = line.closest<HTMLElement>(".witty__bubble");
+        if (bubble) { bubble.style.width = ""; bubble.style.height = ""; }
+      });
+      return true;
+    };
+
+    const offering = offer ? armOffer() : false;
+
     if (reduced) {
-      // simply present, full message, no motion
+      // simply present, full message (offer included), no motion
       el.hidden = false;
       el.classList.add("is-in");
-    } else if (seen) {
+    } else if (store(SEEN) && !offering) {
       // already performed this session: settle in quietly, no typing
       setTimeout(show, 600);
     } else {
       setTimeout(() => {
         show();
         if (!line) return;
-        // wolf up first, then the message types
-        setTimeout(() => typeLine(el, line, () => {
-          try { sessionStorage.setItem(SEEN, "1"); } catch {}
-        }), 650);
+        setTimeout(() => {
+          // typeLine freezes the bubble synchronously, so the buttons are
+          // still visible for the measurement; hide them right after and
+          // they reappear once the line has finished typing
+          typeLine(el, line, () => {
+            put(SEEN, "1");
+            if (offering && actions) actions.hidden = false;
+          });
+          if (offering && actions) actions.hidden = true;
+        }, 650);
       }, WAIT);
     }
 
     el.querySelector("[data-witty-close]")?.addEventListener("click", () => {
-      try { localStorage.setItem(KEY, "dismissed"); } catch {}
+      put(KEY, "dismissed");
       el.classList.remove("is-in");
       el.classList.add("is-away");
       setTimeout(() => { el.hidden = true; }, reduced ? 0 : 300);

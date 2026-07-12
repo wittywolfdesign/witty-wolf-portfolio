@@ -1,38 +1,48 @@
 ---
+import { t, basePath, localePath, locales, type Locale } from "../i18n/ui";
+
+const locale = (Astro.currentLocale ?? "en") as Locale;
+const T = t(locale);
 const path = Astro.url.pathname;
-const isActive = (href: string) =>
-  href === "/" ? path === "/" : path.startsWith(href);
+const prefix = locale === "en" ? "" : `/${locale}`;
+const home = locale === "en" ? "/" : `/${locale}/`;
+const isActive = (href: string) => path.startsWith(href);
 const links = [
-  { href: "/work", label: "Work" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: `${prefix}/about`, label: T.nav.about },
+  { href: `${prefix}/contact`, label: T.nav.contact },
 ];
+/* the same page in each locale: slugs are shared, so only the prefix moves */
+const switcher = locales.map((l) => ({
+  code: l,
+  href: localePath(path, l),
+  active: l === locale,
+}));
 ---
 
 <header class="nav" data-nav>
   <div class="wrap nav__inner">
-    <a href="/" class="nav__brand" aria-label="Witty Wolf Design, home">
+    <a href={home} class="nav__brand" aria-label={T.a11y.brandHome}>
       <img src="/brand/wolf-mark.svg" alt="" width="32" height="40" />
       <span class="nav__wordmark">Witty Wolf<span class="nav__wordmark-tail"> Design</span></span>
     </a>
 
     <nav class="nav__links mono" aria-label="Primary">
-      <!-- WORK carries the typewriter gag: on hover it types "ATTEMPTS",
-           strikes it through, and settles back. Overlay only, no layout
-           shift; ABOUT and CONTACT stay plain. -->
+      <!-- WORK carries the typewriter gag: on hover it types the locale's
+           own "Attempts", strikes it through, and settles back. Overlay
+           only, no layout shift; the other links stay plain. -->
       <a
-        href="/work"
-        class:list={["nav__link", "nav__link--gag", { "is-active": isActive("/work") }]}
+        href={`${prefix}/work`}
+        class:list={["nav__link", "nav__link--gag", { "is-active": isActive(`${prefix}/work`) }]}
         data-gag
       >
-        <span class="gag__rest">Work</span>
+        <span class="gag__rest">{T.nav.work}</span>
         <span class="gag__layer" aria-hidden="true">
-          {[..."Attempts"].map((c) => <span class="gag__g">{c}</span>)}
+          {[...T.nav.gagWord].map((c) => <span class="gag__g">{c}</span>)}
           <span class="gag__strike"></span>
           <span class="gag__cursor"></span>
         </span>
       </a>
-      {links.filter((l) => l.href !== "/work").map((l) => (
+      {links.map((l) => (
         <a href={l.href} class:list={["nav__link", { "is-active": isActive(l.href) }]}>
           {l.label}
         </a>
@@ -41,9 +51,29 @@ const links = [
         class="nav__theme mono"
         type="button"
         data-theme-toggle
+        data-label-dark={T.nav.themeDark}
+        data-label-light={T.nav.themeLight}
+        data-to-dark={T.nav.themeToDark}
+        data-to-light={T.nav.themeToLight}
         aria-pressed="false"
-        aria-label="Switch to dark mode"
-      >dark</button>
+        aria-label={T.nav.themeToDark}
+      >{T.nav.themeDark}</button>
+      <!-- the locale switcher stays quiet: mono, no animation, the wit
+           lives elsewhere. Same page, different prefix. -->
+      <span class="nav__langs" aria-label={T.nav.langLabel}>
+        {switcher.map((s, i) => (
+          <>
+            {i > 0 && <span class="nav__langsep" aria-hidden="true">/</span>}
+            <a
+              href={s.href}
+              class:list={["nav__lang", { "is-current": s.active }]}
+              data-locale-switch={s.code}
+              aria-current={s.active ? "true" : undefined}
+              lang={s.code}
+            >{s.code.toUpperCase()}</a>
+          </>
+        ))}
+      </span>
     </nav>
   </div>
 </header>
@@ -167,10 +197,41 @@ const links = [
   /* focus: draw the same hairline underline as hover, no boxed accent outline */
   .nav__theme:focus-visible { color: var(--ink); background-size: 100% 1px; outline: 2px solid var(--accent); outline-offset: 3px; }
   .nav__theme[aria-pressed="true"] { color: var(--ink); }
+
+  /* locale switcher: quiet mono, active locale in ink, no animation */
+  .nav__langs {
+    display: inline-flex; align-items: center; gap: 0.45em;
+    font-size: 0.78rem; letter-spacing: 0.08em;
+  }
+  .nav__lang { color: var(--text-muted); padding-block: 0.4rem; }
+  .nav__lang:hover { color: var(--ink); }
+  .nav__lang.is-current { color: var(--ink); }
+  .nav__lang:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; color: var(--ink); }
+  .nav__langsep { color: var(--line); }
+
   @media (max-width: 640px) {
     .nav__wordmark { display: none; }
   }
 </style>
+
+<script>
+  // A manual locale switch is an explicit choice: remember it, and stand
+  // Witty's language offer down for good.
+  function initLangSwitch() {
+    document.querySelectorAll<HTMLElement>("[data-locale-switch]").forEach((a) => {
+      if (a.dataset.bound) return;
+      a.dataset.bound = "1";
+      a.addEventListener("click", () => {
+        try {
+          localStorage.setItem("ww-locale", a.dataset.localeSwitch ?? "");
+          localStorage.setItem("ww-lang-offer", "done");
+        } catch {}
+      });
+    });
+  }
+  initLangSwitch();
+  document.addEventListener("astro:page-load", initLangSwitch);
+</script>
 
 <script>
   import { inkGlyph, rand } from "../scripts/ink";
