@@ -3,23 +3,19 @@ import Base from "../layouts/Base.astro";
 import TypeLine from "../components/TypeLine.astro";
 // handwriting face, used only on the portrait's flipped photo-back credit
 import "@fontsource/caveat";
+import { t, type Locale } from "../i18n/ui";
 
-const facts = [
-  { k: "Based in", v: "Madrid" },
-  { k: "Focus", v: "Two-sided SaaS · consumer fintech" },
-  { k: "Toolkit", v: "Research → production UI → front-end" },
-  { k: "Also", v: "Co-founder & developer" },
-];
+const locale = (Astro.currentLocale ?? "en") as Locale;
+const T = t(locale);
+const prefix = locale === "en" ? "" : `/${locale}`;
+const facts = T.about.facts;
 ---
 
-<Base
-  title="About · Marco Ramos · Witty Wolf Design"
-  description="From selling vintage clothes in Amsterdam to product design in Madrid. 15 years of making sense of messy systems, now applied to digital products."
->
+<Base title={T.meta.aboutTitle} description={T.meta.aboutDesc}>
   <section class="section about-hero">
     <div class="wrap">
       <h1 class="about-hero__title">
-        <TypeLine segments={[{ text: "Fifteen years of making sense of messy systems." }]} />
+        <TypeLine segments={[{ text: T.about.hero }]} />
       </h1>
       <script is:inline data-astro-rerun>
         if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -40,88 +36,52 @@ const facts = [
 
   <section class="section--tight">
     <div class="wrap about-body">
-      <h2 class="about-body__lead" data-reveal>The short version</h2>
+      <h2 class="about-body__lead" data-reveal>{T.about.shortLabel}</h2>
       <div class="about-body__prose stack" data-reveal-group>
-        <p data-reveal>
-          I am a product designer for products that don&rsquo;t require a manual,
-          designing for the user who&rsquo;s already frustrated.
-        </p>
-        <p data-reveal>
-          Good design is not decoration. It is structure that lets a product
-          explain itself in seconds. Making it look good comes after making it
-          work.
-        </p>
+        <p data-reveal>{T.about.short1}</p>
+        <p data-reveal>{T.about.short2}</p>
       </div>
     </div>
     <div class="wrap about-body about-body--longer">
       <div class="about-side">
-        <p class="about-body__note mono" data-reveal>The longer version</p>
+        <p class="about-body__note mono" data-reveal>{T.about.longLabel}</p>
         <!-- both portraits stay in the DOM so the theme swap never flashes;
              display flips off data-theme, the hidden one is ignored by AT -->
         <figure class="about-photo" data-reveal>
           <!-- the 4:5 window flips like a card to reveal the photo credit on
                its "back"; only this window turns, the paper mount stays put -->
-          <div class="about-photo__flip" tabindex="0" aria-label="Portrait of Marco Ramos. Flip for the photo credit.">
+          <div class="about-photo__flip" tabindex="0" aria-label={T.about.photoFlipLabel}>
             <div class="about-photo__face about-photo__front">
               <img
                 class="about-photo__img about-photo__img--light"
                 src="/about/marco-light.jpg"
-                alt="Marco Ramos, product designer and developer"
+                alt={T.about.photoAlt}
                 width="1600" height="2405"
               />
               <img
                 class="about-photo__img about-photo__img--dark"
                 src="/about/marco-dark.jpg"
-                alt="Marco Ramos, product designer and developer"
+                alt={T.about.photoAlt}
                 width="1600" height="783"
               />
             </div>
             <div class="about-photo__face about-photo__back">
-              <p class="about-photo__credit">Shot on a sunny day in the studio of Lisa Ball in Amsterdam.</p>
+              <p class="about-photo__credit">{T.about.photoCredit}</p>
               <a class="about-photo__credit-url" href="https://www.lisaball.nl/" target="_blank" rel="noopener">lisaball.nl</a>
             </div>
           </div>
-          <figcaption class="mono">Madrid, most days</figcaption>
+          <figcaption class="mono">{T.about.photoCaption}</figcaption>
           <!-- touch devices have no hover: surface the credit as a plain line -->
-          <p class="about-photo__credit-mobile mono">Photography: <a href="https://www.lisaball.nl/" target="_blank" rel="noopener">Lisa Ball</a></p>
+          <p class="about-photo__credit-mobile mono">{T.about.photoCreditLabel} <a href="https://www.lisaball.nl/" target="_blank" rel="noopener">Lisa Ball</a></p>
         </figure>
       </div>
       <div class="about-body__prose stack" data-reveal-group>
-        <p data-reveal>
-          I started in visual design and stayed comfortable there for years.
-          Then I noticed the work I cared about was never how things looked, it
-          was why they didn&rsquo;t work. So I retrained in UX/UI, moved from
-          Amsterdam to Madrid and started again on purpose. These days I am
-          developing like I never have before, building the products I design
-          in real code and finding out within hours which of my own decisions
-          survive contact with a browser.
-        </p>
-        <p data-reveal>
-          The path was not straight. I sold vintage clothes at Waterlooplein
-          while studying business, spent years at an architecture firm where my
-          role kept drifting toward design, then made it official. That detour
-          is the point: I think in systems because I have run them, not because
-          a course told me to.
-        </p>
-        <p data-reveal>
-          And yes, I use AI every day. Mostly to argue with it. It types fast
-          and thinks average, so the direction has to come from me or what
-          comes back is confident, generic and beige. Fighting that is half the
-          craft now. The other half is what it buys me time for: product logic,
-          accessibility and interfaces that feel calm instead of overwhelming.
-        </p>
-        <p data-reveal>
-          Almost three years into UX/UI, and nobody has to hold my hand. Urbiqo started
-          as a napkin idea; I turned it into a defined product, a design system
-          and the code now running on staging, as co-founder, designer and
-          developer. At FLIZpay I walked into the overhaul of their merchant
-          dashboard and owned much of the early work that set up the project,
-          pulling context from engineering, business and design into clear,
-          shippable decisions.
-        </p>
+        {T.about.long.map((p) => (
+          <p data-reveal>{p}</p>
+        ))}
       </div>
-      <a href="/work" class="btn about-body__cta" data-reveal>
-        See my work <span class="arrow" aria-hidden="true">&rarr;</span>
+      <a href={`${prefix}/work`} class="btn about-body__cta" data-reveal>
+        {T.about.seeWork} <span class="arrow" aria-hidden="true">&rarr;</span>
       </a>
     </div>
   </section>

@@ -1,0 +1,12 @@
+---
+/* Spanish case routes: same public slugs, Spanish content folder */
+import Page from "../../work/[slug].astro";
+import { casePaths } from "../../../i18n/casePaths";
+
+export async function getStaticPaths() {
+  return casePaths("es");
+}
+const { entry, next } = Astro.props;
+---
+
+<Page entry={entry} next={next} />

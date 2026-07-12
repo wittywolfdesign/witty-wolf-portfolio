@@ -1,14 +1,26 @@
 ---
 import Base from "../layouts/Base.astro";
+import { ui } from "../i18n/ui";
+
+/* GitHub Pages serves a single 404.html for every missing URL, so this page
+   cannot be pre-rendered per locale. It ships English and swaps itself
+   client-side: a missing /nl/... URL reads Dutch, /es/... Spanish, otherwise
+   the visitor's remembered choice. Without JavaScript it stays English,
+   the honest default for the one page nobody navigates to on purpose. */
+const T = ui.en;
+const strings = {
+  nl: { ...ui.nl.notFound, docTitle: ui.nl.meta.notFoundTitle },
+  es: { ...ui.es.notFound, docTitle: ui.es.meta.notFoundTitle },
+};
 ---
 
-<Base title="Lost the scent · Witty Wolf Design">
-  <section class="section center nf">
+<Base title={T.meta.notFoundTitle}>
+  <section class="section center nf" data-nf={JSON.stringify(strings)}>
     <div class="wrap">
-      <h1 data-reveal>This page lost the scent.</h1>
-      <p class="lead muted" data-reveal>The link is broken or the page moved on.</p>
-      <a href="/" class="btn" data-reveal style="margin-top:2rem">
-        Back home <span class="arrow" aria-hidden="true">&rarr;</span>
+      <h1 data-reveal data-nf-title>{T.notFound.title}</h1>
+      <p class="lead muted" data-reveal data-nf-sub>{T.notFound.sub}</p>
+      <a href="/" class="btn" data-reveal data-nf-home style="margin-top:2rem">
+        <span data-nf-home-label>{T.notFound.home}</span> <span class="arrow" aria-hidden="true">&rarr;</span>
       </a>
     </div>
   </section>
@@ -17,3 +29,33 @@ import Base from "../layouts/Base.astro";
 <style>
   .nf { min-height: 60vh; display: grid; place-items: center; }
 </style>
+
+<script>
+  // locale from the broken URL's own prefix first, then the stored choice
+  function init() {
+    const box = document.querySelector<HTMLElement>("[data-nf]");
+    if (!box || box.dataset.done) return;
+    box.dataset.done = "1";
+    let lang: string | null = null;
+    const m = location.pathname.match(/^\/(nl|es)(\/|$)/);
+    if (m) lang = m[1];
+    else { try { lang = localStorage.getItem("ww-locale"); } catch {} }
+    if (lang !== "nl" && lang !== "es") return;
+    let s: { title: string; sub: string; home: string; docTitle: string } | undefined;
+    try { s = JSON.parse(box.dataset.nf ?? "{}")[lang]; } catch { return; }
+    if (!s) return;
+    document.documentElement.lang = lang;
+    document.title = s.docTitle;
+    const set = (sel: string, v: string) => {
+      const el = document.querySelector<HTMLElement>(sel);
+      if (el) el.textContent = v;
+    };
+    set("[data-nf-title]", s.title);
+    set("[data-nf-sub]", s.sub);
+    set("[data-nf-home-label]", s.home);
+    const home = document.querySelector<HTMLAnchorElement>("[data-nf-home]");
+    if (home) home.href = `/${lang}/`;
+  }
+  init();
+  document.addEventListener("astro:page-load", init);
+</script>

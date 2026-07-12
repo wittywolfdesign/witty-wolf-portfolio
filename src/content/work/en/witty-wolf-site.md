@@ -137,8 +137,7 @@ The work was redaction, cutting what was abundant and what I had quietly
 started to resent. The hardest part was killing my darlings.
 
 Criticism from a client or an employer is easier to take than from me. I am
-merciless when I have to criticise my own work. Then it gets polished. And
-polished is not the same as AI-made.
+merciless when I have to criticise my own work. Then it gets polished.
 
 <p class="note">Honestly, though</p>
 

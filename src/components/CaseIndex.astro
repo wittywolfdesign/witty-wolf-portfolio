@@ -8,23 +8,26 @@
        expand the full list
    The same script optionally retitles the document to the active section, for
    cleaner macOS window-capture filenames. See the <script> below. */
+import { t, type Locale } from "../i18n/ui";
+
 interface Props {
   sections: { label: string; id: string }[];
   client: string;
   baseTitle: string;
 }
 const { sections, client, baseTitle } = Astro.props;
+const T = t((Astro.currentLocale ?? "en") as Locale);
 ---
 
 {sections.length > 0 && (
   <nav
     class="case-index"
-    aria-label="Sections"
+    aria-label={T.caseUi.sectionsLabel}
     data-case-index
     data-case-client={client}
     data-case-title={baseTitle}
   >
-    <h2 class="case-index__heading mono">On this page</h2>
+    <h2 class="case-index__heading mono">{T.caseUi.onThisPage}</h2>
     <ol class="case-index__list" id="case-index-list">
       {sections.map((s, i) => (
         <li class="case-index__item">

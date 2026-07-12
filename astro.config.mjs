@@ -41,6 +41,15 @@ function rehypeNoteIds() {
 // https://astro.build/config
 export default defineConfig({
   site: 'https://wittywolf.design',
+  /* Built-in i18n routing. English stays at the root, Dutch and Spanish get
+     prefixes; a fourth locale is one entry here plus content, never a
+     rebuild. No geolocation anywhere: the language offer reads the
+     browser's own language, client-side, and only ever offers. */
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'nl', 'es'],
+    routing: { prefixDefaultLocale: false },
+  },
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'viewport',

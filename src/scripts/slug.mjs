@@ -4,6 +4,8 @@
    Same input text -> same id everywhere, deterministically. */
 export function slug(input) {
   return String(input)
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "") /* fold diacritics: Año -> ano, not a-o */
     .toLowerCase()
     .trim()
     .replace(/[^a-z0-9]+/g, "-")

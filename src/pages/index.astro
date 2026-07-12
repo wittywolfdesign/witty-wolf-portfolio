@@ -1,31 +1,24 @@
 ---
-import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import WolfMark from "../components/WolfMark.astro";
 import TypeLine from "../components/TypeLine.astro";
 import WorkIndex from "../components/WorkIndex.astro";
+import { t, type Locale } from "../i18n/ui";
+import { workFor } from "../i18n/casePaths";
 
-const work = (await getCollection("work"))
-  .filter((w) => w.data.status === "published")
-  .sort((a, b) => a.data.order - b.data.order);
+const locale = (Astro.currentLocale ?? "en") as Locale;
+const T = t(locale);
+const prefix = locale === "en" ? "" : `/${locale}`;
+const work = await workFor(locale);
 
-/* Typewriter hero: typed with a deliberate mistake, "pixels" struck
-   through, then the sentence continues correctly. */
-const heroLine = [
-  { text: "Your product isn’t the point. The " },
-  { text: "pixels", strike: true },
-  { text: " people using it are." },
-];
-
-/* Approach statement, same machine, triggered on scroll into view. */
-const approachLine = [
-  { text: "Good design is not decoration. It is structure that lets a product explain itself in seconds. Making it look good comes after making it " },
-  { text: "work", cls: "hl" },
-  { text: "." },
-];
+/* Typewriter hero: typed with a deliberate mistake, the struck word swapped
+   for people, per locale. The approach statement runs the same machine,
+   triggered on scroll into view. */
+const heroLine = T.home.heroLine;
+const approachLine = T.home.approachLine;
 ---
 
-<Base>
+<Base title={T.meta.homeTitle} description={T.meta.homeDesc}>
 <div class="home">
   <!-- SCENT TRAIL: a thin amber path drawn in as you scroll. It runs behind
        the content (every .wrap sits above it) so it ducks under text and
@@ -59,10 +52,7 @@ const approachLine = [
         <h1 class="hero__title">
           <TypeLine segments={heroLine} />
         </h1>
-        <p class="hero__lead">
-          I design products, then build them in real code. The second half
-          keeps the first half honest.
-        </p>
+        <p class="hero__lead">{T.home.lead}</p>
       </div>
     </div>
     <!-- Hide the clean fallback lines, raster and grid field before first
@@ -84,7 +74,7 @@ const approachLine = [
   <!-- WORK: the shared numbered index, compact variant -->
   <section class="section--tight" id="work">
     <div class="wrap">
-      <WorkIndex work={work} label="Selected work" />
+      <WorkIndex work={work} label={T.home.selectedWork} />
     </div>
   </section>
 
@@ -94,7 +84,7 @@ const approachLine = [
       <!-- notebook margin note: jotted label plus a curly amber arrow
            pointing at the statement -->
       <div class="approach__note mono" data-scribble aria-hidden="true">
-        <span>The short version</span>
+        <span>{T.home.approachNote}</span>
         <svg viewBox="0 0 120 84" fill="none" aria-hidden="true">
           <path class="ap" pathLength="1" d="M8 12 C 28 2, 46 6, 51 20 C 56 34, 40 44, 32 34 C 24 24, 40 12, 58 20 C 80 29, 96 38, 110 48" />
           <path class="ap" pathLength="1" d="M99 38 L 110 48 L 96 53" />
@@ -104,13 +94,8 @@ const approachLine = [
         <TypeLine segments={approachLine} trigger="visible" />
       </p>
       <div class="approach__row" data-reveal>
-        <p class="muted maxread">
-          I design for products that don&rsquo;t require a manual, for the user
-          who&rsquo;s already frustrated. Clear systems, simple language and
-          interfaces that feel calm instead of overwhelming. I use AI every day
-          but keep my pencils close. The direction has to come from me.
-        </p>
-        <a href="/about" class="approach__link mono">More about me &rarr;</a>
+        <p class="muted maxread">{T.home.approachBody}</p>
+        <a href={`${prefix}/about`} class="approach__link mono">{T.home.moreAboutMe} &rarr;</a>
       </div>
     </div>
   </section>

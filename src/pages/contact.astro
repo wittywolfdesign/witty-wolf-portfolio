@@ -1,5 +1,9 @@
 ---
 import Base from "../layouts/Base.astro";
+import { t, type Locale } from "../i18n/ui";
+
+const locale = (Astro.currentLocale ?? "en") as Locale;
+const T = t(locale);
 
 const channels = [
   { label: "Email", value: "howl@wittywolf.design", href: "mailto:howl@wittywolf.design" },
@@ -9,18 +13,12 @@ const channels = [
 ];
 ---
 
-<Base
-  title="Contact · Witty Wolf Design"
-  description="A project, a collaboration or just an idea worth talking through. The inbox is open, and I answer."
->
+<Base title={T.meta.contactTitle} description={T.meta.contactDesc}>
   <section class="section contact">
     <div class="wrap contact__grid">
       <div class="contact__intro">
-        <h1 class="contact__title" data-reveal>Let&rsquo;s connect.</h1>
-        <p class="lead muted" data-reveal>
-          A project, a collaboration or just an idea worth talking through.
-          The inbox is open, and I answer.
-        </p>
+        <h1 class="contact__title" data-reveal>{T.contact.title}</h1>
+        <p class="lead muted" data-reveal>{T.contact.lead}</p>
 
         <div class="channels" data-reveal-group>
           {channels.map((c) => (
@@ -42,6 +40,13 @@ const channels = [
         action="https://api.web3forms.com/submit"
         method="POST"
         novalidate
+        data-msg-sending={T.contact.sending}
+        data-msg-sent={T.contact.sent}
+        data-msg-failed={T.contact.failed}
+        data-err-name={T.contact.errName}
+        data-err-email-missing={T.contact.errEmailMissing}
+        data-err-email-bad={T.contact.errEmailBad}
+        data-err-msg={T.contact.errMsg}
       >
         <input type="hidden" name="access_key" value="73807b61-7306-4d25-8a68-6313659e3f96" />
         <input type="hidden" name="subject" value="New enquiry via wittywolf.design" />
@@ -50,25 +55,25 @@ const channels = [
         <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
         <div class="field">
-          <label for="name">Your name</label>
-          <input id="name" name="name" type="text" autocomplete="name" placeholder="First name is fine" required />
+          <label for="name">{T.contact.nameLabel}</label>
+          <input id="name" name="name" type="text" autocomplete="name" placeholder={T.contact.namePh} required />
           <p class="field__err" data-err="name" aria-live="polite"></p>
         </div>
         <div class="field">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" autocomplete="email" placeholder="Where my reply should land" required />
+          <label for="email">{T.contact.emailLabel}</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder={T.contact.emailPh} required />
           <p class="field__err" data-err="email" aria-live="polite"></p>
         </div>
         <div class="field">
-          <label for="message">What&rsquo;s on your mind?</label>
-          <textarea id="message" name="message" rows="5" placeholder="A project, a question, a half-formed idea. Rough is fine." required></textarea>
+          <label for="message">{T.contact.msgLabel}</label>
+          <textarea id="message" name="message" rows="5" placeholder={T.contact.msgPh} required></textarea>
           <p class="field__err" data-err="message" aria-live="polite"></p>
         </div>
         <button type="submit" class="btn form__submit">
-          Send message <span class="arrow" aria-hidden="true">&rarr;</span>
+          {T.contact.send} <span class="arrow" aria-hidden="true">&rarr;</span>
         </button>
         <p class="form__note muted">
-          Prefer email? <a class="ul" href="mailto:howl@wittywolf.design">howl@wittywolf.design</a>
+          {T.contact.preferEmail} <a class="ul" href="mailto:howl@wittywolf.design">howl@wittywolf.design</a>
         </p>
       </form>
     </div>
@@ -210,11 +215,13 @@ const channels = [
       const name = fields.name?.value.trim() ?? "";
       const email = fields.email?.value.trim() ?? "";
       const message = fields.message?.value.trim() ?? "";
-      flag("name", !name, "A name, even just the first one.");
+      // messages live on the form's data attributes, one per locale
+      const M = (form as HTMLElement).dataset;
+      flag("name", !name, M.errName ?? "A name, even just the first one.");
       flag("email", !email || !emailOk(email),
-        !email ? "Need an email so I can write back."
-               : "That address looks off. Check the @ and the part after it.");
-      flag("message", !message, "Tell me a little about it. Rough is fine.");
+        !email ? M.errEmailMissing ?? "Need an email so I can write back."
+               : M.errEmailBad ?? "That address looks off. Check the @ and the part after it.");
+      flag("message", !message, M.errMsg ?? "Tell me a little about it. Rough is fine.");
       if (firstBad) (firstBad as HTMLElement).focus();
       return !firstBad;
     };
@@ -234,7 +241,7 @@ const channels = [
       btn.disabled = true;
       // hold the box steady while the label retypes; it may still grow
       btn.style.minWidth = `${btn.offsetWidth}px`;
-      setLabel("Sending...");
+      setLabel((form as HTMLElement).dataset.msgSending ?? "Sending...");
       try {
         const res = await fetch(form.action, {
           method: "POST",
@@ -242,10 +249,10 @@ const channels = [
           headers: { Accept: "application/json" },
         });
         if (!res.ok) throw new Error(String(res.status));
-        setLabel("Sent.", () => form.reset());
+        setLabel((form as HTMLElement).dataset.msgSent ?? "Sent.", () => form.reset());
         restore(4000);
       } catch {
-        setLabel("Didn't send. Try howl@wittywolf.design");
+        setLabel((form as HTMLElement).dataset.msgFailed ?? "Didn't send. Try howl@wittywolf.design");
         restore(7000);
       }
     });

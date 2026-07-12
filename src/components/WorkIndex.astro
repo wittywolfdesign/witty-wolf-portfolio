@@ -5,25 +5,29 @@
    and year outside, client and tagline inside, hairlines between rows;
    the whole row is the link and carries data-accent for the curtain. */
 import type { CollectionEntry } from "astro:content";
+import { t, type Locale } from "../i18n/ui";
 
 interface Props {
   work: CollectionEntry<"work">[];
   variant?: "compact" | "detailed";
   label?: string;
 }
-const { work, variant = "compact", label = "Selected work" } = Astro.props;
+const locale = (Astro.currentLocale ?? "en") as Locale;
+const T = t(locale);
+const prefix = locale === "en" ? "" : `/${locale}`;
+const { work, variant = "compact", label = T.home.selectedWork } = Astro.props;
 ---
 
 <div class="windex">
   <header class="index-head mono" data-reveal>
     <span>{label}</span>
-    <span>{String(work.length).padStart(2, "0")} projects</span>
+    <span>{String(work.length).padStart(2, "0")} {T.home.projects}</span>
   </header>
   <ul class="index" data-reveal-group>
     {work.map((w, i) => (
       <li>
         <a
-          href={`/work/${w.slug}`}
+          href={`${prefix}/work/${w.slug.split("/").pop()}`}
           class="row"
           data-reveal
           data-accent={w.data.accent}

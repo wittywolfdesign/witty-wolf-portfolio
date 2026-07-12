@@ -1,27 +1,27 @@
 ---
-import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import TypeLine from "../../components/TypeLine.astro";
 import CaseIndex from "../../components/CaseIndex.astro";
 import { slug } from "../../scripts/slug.mjs";
+import { casePaths } from "../../i18n/casePaths";
+import { t, type Locale } from "../../i18n/ui";
 
+/* English routes; the /nl and /es wrappers build their own paths from
+   their own content folders and render this same page component */
 export async function getStaticPaths() {
-  const work = await getCollection("work");
-  const sorted = work.sort((a, b) => a.data.order - b.data.order);
-  return sorted.map((entry, i) => {
-    /* the next-case rotation skips drafts, so no published page ever
-       leads into one; draft pages still build for review */
-    let next = sorted[(i + 1) % sorted.length];
-    for (let hop = 0; next.data.status !== "published" && hop < sorted.length; hop++) {
-      next = sorted[(sorted.indexOf(next) + 1) % sorted.length];
-    }
-    return { params: { slug: entry.slug }, props: { entry, next } };
-  });
+  return casePaths("en");
 }
 
 const { entry, next } = Astro.props;
 const d = entry.data;
 const { Content } = await entry.render();
+
+const locale = (Astro.currentLocale ?? "en") as Locale;
+const T = t(locale);
+const prefix = locale === "en" ? "" : `/${locale}`;
+/* content lives under <locale>/<slug>; the public slug drops the prefix */
+const cleanSlug = entry.slug.split("/").pop();
+const nextSlug = next.slug.split("/").pop();
 
 /* Section index, single source of truth: the `<p class="note">` labels already
    written into the case markdown, in document order. Parsed from the raw body
@@ -51,7 +51,7 @@ const stampFiles = import.meta.glob("../../../public/brand/stamps/*.svg", {
   import: "default",
   eager: true,
 });
-const stampRaw = stampFiles[`../../../public/brand/stamps/${entry.slug}.svg`] as string;
+const stampRaw = stampFiles[`../../../public/brand/stamps/${cleanSlug}.svg`] as string;
 const vb = stampRaw.match(/viewBox="([^"]+)"/)![1].split(/\s+/).map(Number);
 const stampInner = stampRaw.replace(/^.*?<svg[^>]*>/s, "").replace(/<\/svg>\s*$/s, "");
 const W = 240;
@@ -84,7 +84,12 @@ const line2 =
        rubber-stamp logo, the skyline divider, the project-name accent word), so
        Urbiqo's skyline stays terracotta, EVVO's mark stays its own blue, etc.
        d.accent also still drives the page-transition wash via data-accent. -->
-  <article class="case" style={`--brand-accent:${d.accent}`}>
+  <article
+    class="case"
+    style={`--brand-accent:${d.accent}`}
+    data-ui-lookcloser={T.caseUi.lookCloser}
+    data-ui-close={T.caseUi.close}
+  >
     <header class="case-hero">
       <div class="wrap">
         <!-- the brand mark as a faded rubber stamp behind the header -->
@@ -117,7 +122,7 @@ const line2 =
             </g>
           </svg>
         </div>
-        <a href="/work" class="case-back ul">&larr; All work</a>
+        <a href={`${prefix}/work`} class="case-back ul">&larr; {T.caseUi.back}</a>
         <p class="mono muted case-kicker">{d.client} · {d.year}</p>
         <h1 class="case-title">
           <TypeLine segments={[{ text: d.tagline }]} />
@@ -133,15 +138,15 @@ const line2 =
         <p class="case-summary lead">{d.summary}</p>
 
         <dl class="case-meta">
-          <div><dt>Role</dt><dd>{d.role}</dd></div>
-          <div><dt>Discipline</dt><dd>{d.discipline.join(" · ")}</dd></div>
-          <div><dt>Year</dt><dd>{d.year}</dd></div>
+          <div><dt>{T.caseUi.role}</dt><dd>{d.role}</dd></div>
+          <div><dt>{T.caseUi.discipline}</dt><dd>{d.discipline.join(" · ")}</dd></div>
+          <div><dt>{T.caseUi.year}</dt><dd>{d.year}</dd></div>
         </dl>
 
         {/* live-site CTA, URL read from frontmatter (single source, see liveUrl) */}
         {d.liveUrl && (
           <a class="live-cta" href={d.liveUrl} target="_blank" rel="noopener noreferrer">
-            See it live on staging <span class="live-cta__arrow">&rarr;</span>
+            {T.caseUi.liveCta} <span class="live-cta__arrow">&rarr;</span>
           </a>
         )}
       </div>
@@ -177,7 +182,7 @@ const line2 =
           {/* same live-site CTA at the end of "Status and next steps" */}
           {d.liveUrl && (
             <a class="live-cta live-cta--foot" href={d.liveUrl} target="_blank" rel="noopener noreferrer">
-              See it live on staging <span class="live-cta__arrow">&rarr;</span>
+              {T.caseUi.liveCta} <span class="live-cta__arrow">&rarr;</span>
             </a>
           )}
         </div>
@@ -185,9 +190,9 @@ const line2 =
     </section>
 
     <!-- Next project -->
-    <a href={`/work/${next.slug}`} class="nextcard dark" data-accent={next.data.accent}>
+    <a href={`${prefix}/work/${nextSlug}`} class="nextcard dark" data-accent={next.data.accent}>
       <div class="wrap nextcard__inner">
-        <span class="mono nextcard__label">Next case study</span>
+        <span class="mono nextcard__label">{T.caseUi.nextCase}</span>
         <span class="nextcard__title">{next.data.tagline}</span>
         <span class="nextcard__client">{next.data.client} <span class="arrow">&rarr;</span></span>
       </div>
@@ -919,12 +924,19 @@ const line2 =
   // figure. JS-only by design, it advertises the lightbox, which itself needs
   // JS, so no-JS visitors correctly see neither. Idempotent, re-runs per page.
   function initZoomHints() {
+    // the label speaks the page's language; it rides on the article's data
+    // attribute so this shared script needs no locale knowledge of its own
+    const label =
+      document.querySelector<HTMLElement>(".case")?.dataset.uiLookcloser ?? "Look closer";
     document.querySelectorAll<HTMLElement>(".prose .fig").forEach((fig) => {
       if (!fig.querySelector("img") || fig.querySelector(".fig__zoom")) return;
       const hint = document.createElement("span");
       hint.className = "fig__zoom";
       hint.setAttribute("aria-hidden", "true");
-      hint.innerHTML = '<span class="fig__zoom-t">Look closer</span>';
+      const text = document.createElement("span");
+      text.className = "fig__zoom-t";
+      text.textContent = label;
+      hint.appendChild(text);
       fig.appendChild(hint);
     });
   }
@@ -951,8 +963,10 @@ const line2 =
       box.setAttribute("role", "dialog");
       box.setAttribute("aria-modal", "true");
       box.setAttribute("aria-hidden", "true");
+      const closeLabel =
+        document.querySelector<HTMLElement>(".case")?.dataset.uiClose ?? "Close";
       box.innerHTML =
-        '<button class="lightbox__close" type="button" aria-label="Close image">×</button>' +
+        `<button class="lightbox__close" type="button" aria-label="${closeLabel}">×</button>` +
         '<img class="lightbox__img" alt="" />' +
         '<p class="lightbox__cap"></p>';
       document.body.appendChild(box);

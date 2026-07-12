@@ -10,6 +10,8 @@ import "@fontsource-variable/work-sans";
 import "@fontsource-variable/geist-mono";
 import "../styles/global.css";
 
+import { t, locales, localePath, ogLocale, type Locale } from "../i18n/ui";
+
 interface Props {
   title?: string;
   description?: string;
@@ -17,9 +19,13 @@ interface Props {
   image?: string;
 }
 
+/* locale comes from the URL via Astro's built-in i18n routing */
+const locale = (Astro.currentLocale ?? "en") as Locale;
+const T = t(locale);
+
 const {
-  title = "Marco Ramos · Product Designer · Witty Wolf Design",
-  description = "Product designer for products that don't need a manual. Clear systems, calm interfaces, real outcomes. Based in Madrid.",
+  title = T.meta.homeTitle,
+  description = T.meta.homeDesc,
   theme = "light",
   image = "/brand/og-image.png",
 } = Astro.props;
@@ -29,10 +35,16 @@ const {
 const base = Astro.site ?? new URL("https://wittywolf.design");
 const canonical = new URL(Astro.url.pathname, base).href;
 const ogImage = new URL(image, base).href;
+/* hreflang alternates: the same page in every locale (slugs are shared),
+   x-default pointing at English */
+const alternates = locales.map((l) => ({
+  lang: l,
+  href: new URL(localePath(Astro.url.pathname, l), base).href,
+}));
 ---
 
 <!doctype html>
-<html lang="en" data-theme={theme}>
+<html lang={locale} data-theme={theme}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -58,9 +70,17 @@ const ogImage = new URL(image, base).href;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {alternates.map((a) => (
+      <link rel="alternate" hreflang={a.lang} href={a.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={alternates[0].href} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content={ogLocale[locale]} />
+    {locales.filter((l) => l !== locale).map((l) => (
+      <meta property="og:locale:alternate" content={ogLocale[l]} />
+    ))}
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:site_name" content="Witty Wolf Design" />
@@ -72,7 +92,7 @@ const ogImage = new URL(image, base).href;
   </head>
 
   <body>
-    <a href="#main" class="skip">Skip to content</a>
+    <a href="#main" class="skip">{T.a11y.skip}</a>
     <!-- Accent wash: a colour curtain that sweeps through when navigating
          into a case study, tinted with that case's accent (see script) -->
     <div class="wash" aria-hidden="true"></div>
@@ -88,9 +108,9 @@ const ogImage = new URL(image, base).href;
       <slot />
     </main>
     <Footer />
-    <!-- Witty, the corner agent that refuses to help; not on /contact, the
-         form is already there -->
-    {!Astro.url.pathname.startsWith("/contact") && <Witty />}
+    <!-- Witty, the corner agent that refuses to help; not on the contact
+         page in any locale, the form is already there -->
+    {!Astro.url.pathname.includes("/contact") && <Witty />}
     <!-- EU opt-in consent gate; loads Microsoft Clarity only after Allow -->
     <ConsentBanner />
 
@@ -287,8 +307,17 @@ const ogImage = new URL(image, base).href;
         const sync = () => {
           const isDark = document.documentElement.dataset.theme === "dark";
           btn.setAttribute("aria-pressed", String(isDark));
-          btn.textContent = isDark ? "light" : "dark";
-          btn.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+          // labels come from the button's own data attributes so every
+          // locale renders its own words without touching this script
+          btn.textContent = isDark
+            ? btn.dataset.labelLight ?? "light"
+            : btn.dataset.labelDark ?? "dark";
+          btn.setAttribute(
+            "aria-label",
+            isDark
+              ? btn.dataset.toLight ?? "Switch to light mode"
+              : btn.dataset.toDark ?? "Switch to dark mode"
+          );
         };
         sync();
         let busy = false;

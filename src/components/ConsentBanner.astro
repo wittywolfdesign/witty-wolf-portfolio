@@ -13,15 +13,17 @@
   bound (Escape must not count as consent). Allow and No thanks are two
   equally-easy one-click buttons.
 */
+import { t, type Locale } from "../i18n/ui";
+const T = t((Astro.currentLocale ?? "en") as Locale);
 ---
 
-<aside class="consent" data-consent-banner aria-label="Cookie consent" aria-live="polite">
+<aside class="consent" data-consent-banner aria-label={T.consent.ariaLabel} aria-live="polite">
   <div class="consent__card">
-    <p class="consent__label">COOKIES, SORT OF</p>
-    <p class="consent__body">Mind if I watch how you move around? Clarity keeps anonymised heatmaps and the odd session replay, so I can see what works here and fix what doesn't. It runs through Microsoft, not ad networks. Say no and nothing loads.</p>
+    <p class="consent__label">{T.consent.label}</p>
+    <p class="consent__body">{T.consent.body}</p>
     <div class="consent__actions">
-      <button class="btn" type="button" data-consent-allow>Allow</button>
-      <button class="consent__decline" type="button" data-consent-deny>No thanks</button>
+      <button class="btn" type="button" data-consent-allow>{T.consent.allow}</button>
+      <button class="consent__decline" type="button" data-consent-deny>{T.consent.deny}</button>
     </div>
   </div>
 </aside>

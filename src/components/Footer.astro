@@ -1,4 +1,6 @@
 ---
+import { t, type Locale } from "../i18n/ui";
+const T = t((Astro.currentLocale ?? "en") as Locale);
 const year = new Date().getFullYear();
 ---
 
@@ -7,19 +9,19 @@ const year = new Date().getFullYear();
   <div class="wrap">
     <div class="foot__grid">
       <div class="foot__col">
-        <span class="foot__label">Contact</span>
+        <span class="foot__label">{T.footer.contact}</span>
         <a class="foot__link" href="mailto:howl@wittywolf.design">howl@wittywolf.design</a>
         <a class="foot__link" href="tel:+34624225011">+34 624 225 011 · ES</a>
         <a class="foot__link" href="https://wa.me/31653215989" target="_blank" rel="noopener">+31 653 215 989 · NL / WhatsApp</a>
         <a class="foot__link" href="https://www.linkedin.com/in/marcorramos" target="_blank" rel="noopener">in/marcorramos</a>
       </div>
       <div class="foot__col">
-        <span class="foot__label">Location</span>
+        <span class="foot__label">{T.footer.location}</span>
         <span>Madrid, ES</span>
-        <span><time data-clock>--:--:--</time> local</span>
+        <span><time data-clock>--:--:--</time> {T.footer.local}</span>
       </div>
       <div class="foot__col">
-        <span class="foot__label">Status</span>
+        <span class="foot__label">{T.footer.status}</span>
         <span><span class="foot__dot" aria-hidden="true"></span>still awake, still designing</span>
       </div>
     </div>
@@ -28,7 +30,7 @@ const year = new Date().getFullYear();
       <span>&copy; {year} Witty Wolf Design</span>
       <span>Designed &amp; built in Madrid. Pencils kept close.</span>
       <!-- reopens the consent banner so a visitor can change their mind -->
-      <button class="foot__cookies" type="button" data-consent-reopen>Cookies</button>
+      <button class="foot__cookies" type="button" data-consent-reopen>{T.footer.cookies}</button>
     </div>
   </div>
 </footer>
