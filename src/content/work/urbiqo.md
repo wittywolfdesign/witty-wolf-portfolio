@@ -34,8 +34,8 @@ solvent tenants and leaves hosts choosing from a smaller, samey pool.
 
 ## Solvent, and still locked out
 
-Freelancers and expats hit closed doors. An estimated 70% of solvent
-applicants are blocked for lacking a standard payslip. Hosts are stuck too:
+Freelancers and expats hit closed doors, blocked for lacking a standard
+payslip however solvent they are. Hosts are stuck too:
 rigid paperwork is the only risk tool on offer, so they use it. Urbiqo does
 not throw that paperwork away; it adds more ways in. A tenant can name a
 guarantor, family help counts as a real answer to how the rent gets
@@ -60,6 +60,11 @@ listing, and a verified profile is reusable across applications.
 <figure class="fig fig--bleed fig--sheet">
   <img src="/work/urbiqo/urbiqo-user-flow.png" alt="Swim-lane user flow for tenants and hosts, from first login through verification, application and payment" loading="lazy" />
   <figcaption>The full flow, both sides, from first login to payment.</figcaption>
+</figure>
+
+<figure class="fig fig--mid fig--pin">
+  <img src="/work/urbiqo/urbiqo-user-flow-detail.png" alt="Detail of the user flow at reading size: the host chooses freemium or premium, pays by Visa, Bizum or PayPal, passes the verification check and only then reaches the verified host state" loading="lazy" />
+  <figcaption>The same map at reading size: hosts pick freemium or premium, pay, and only a verified host gets to list.</figcaption>
 </figure>
 
 ## Two sides, one problem
@@ -93,14 +98,9 @@ invoices. Employer letters and tax returns were considered and dropped,
 both lag actual cash flow. Bank statements and invoices reflect it in real
 time, and validate through OCR with manual review for the edge cases.
 
-<figure class="fig fig--paper">
-  <img src="/work/urbiqo/urbiqo-verification-options.png" alt="The Urbiqo verification screen: photo ID, income proof and additional documents next to a trust and safety checklist" loading="lazy" />
-  <figcaption>Alternative proofs sit next to the classic payslip, none of them second class.</figcaption>
-</figure>
-
-Inclusivity is hard-coded, not sprinkled on top. A service blueprint maps
-the backend logic that adapts verification requirements to the user's
-status, accepting invoices for freelancers, for example.
+A service blueprint maps the backend logic that adapts verification
+requirements to the user's status, accepting invoices for freelancers,
+for example.
 
 <figure class="fig fig--paper fig--bleed">
   <img src="/work/urbiqo/urbiqo-service-blueprint.png" alt="Service blueprint mapping frontstage screens against backstage system logic, with conditional workflows for freelancers, OCR validation and risk scoring that triggers manual review" loading="lazy" />
@@ -129,11 +129,6 @@ visible on both sides before anyone books a viewing.
 Renting is overwhelming enough. The landing page works as a calming
 filter: the verification journey compressed into four linear steps,
 understood before anyone creates an account.
-
-<figure class="fig fig--paper">
-  <img src="/work/urbiqo/urbiqo-live-landing.png" alt="The live Urbiqo landing page explaining the platform in four plain steps" loading="lazy" />
-  <figcaption>The live landing: the whole journey in four plain steps.</figcaption>
-</figure>
 
 <p class="note">Positioning</p>
 
@@ -303,6 +298,4 @@ permanent contract, hosts get confidence and tenants get access.
   <div><span>Built</span><span>live on staging, by me, on Next.js</span></div>
   <div><span>6 Jul 2026</span><span>went live on staging, now in QA</span></div>
   <div><span>Q3 2026</span><span>targeted live release</span></div>
-  <div><span>10,000</span><span>listings projected in year one</span></div>
-  <div><span>50,000</span><span>growth goal for 2027</span></div>
 </div>

@@ -40,13 +40,14 @@ City life leaves no room for rigid wellness plans. Research with 16
 participants showed the conflict:
 
 <div class="stats">
-  <div><span>94%</span><span>want more physical activity</span></div>
-  <div><span>63%</span><span>cite mental health or stress as their top concern</span></div>
-  <div><span>25%</span><span>cite work as the main barrier to routine</span></div>
+  <div><span>15 of 16</span><span>want more physical activity</span></div>
+  <div><span>10 of 16</span><span>cite mental health or stress as their top concern</span></div>
+  <div><span>4 of 16</span><span>cite work as the main barrier to routine</span></div>
 </div>
 
 Existing apps punish the slip: miss a streak and the app judges you, so
-people leave. And 61% prioritise mental wellbeing over physical metrics.
+people leave. And a majority prioritise mental wellbeing over physical
+metrics.
 The answer became a tortoise philosophy: slow, steady, flexible habits.
 
 <figure class="fig fig--paper fig--bleed">
@@ -54,10 +55,14 @@ The answer became a tortoise philosophy: slow, steady, flexible habits.
   <figcaption>The research wall: sixteen participants, four pillars.</figcaption>
 </figure>
 
-<figure class="fig fig--paper fig--margin">
-  <img src="/work/shelly/shelly-persona-maria.png" alt="Persona card for Maria Moreno, a busy urban professional in Barcelona balancing an agency job with the wish for a healthier routine" loading="lazy" />
-  <figcaption>Maria, the busy urban professional the schedule bends around.</figcaption>
-</figure>
+<div class="board">
+  <div>
+    <p class="persona__k">MARIA · busy urban professional, Barcelona</p>
+    <p>An agency job with irregular hours and the wish for a healthier
+    routine. She does not need another plan to fail at; she needs a
+    schedule that bends around hers.</p>
+  </div>
+</div>
 
 <p class="note">01 · Flexibility</p>
 
@@ -124,4 +129,4 @@ forgives the miss keeps people moving.
 > Finally an app that feels like a friend.
 
 The line above came from a participant in the final round of usability
-tests. It's the entire product strategy in seven words.
+tests.

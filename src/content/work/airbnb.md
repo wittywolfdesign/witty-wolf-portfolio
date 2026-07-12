@@ -44,6 +44,11 @@ weakens the sense of control.
   <figcaption>The full journey, cloned and annotated. Every flag is an inconsistency.</figcaption>
 </figure>
 
+<figure class="fig fig--mid fig--pin">
+  <img src="/work/airbnb/airbnb-audit-detail.png" alt="Detail of the audit board at reading size: three corner-radius variants flagged on adjacent screens, small, larger and barely round, with the proposed standardisation notes" loading="lazy" />
+  <figcaption>One column at reading size: three corner radii on adjacent screens, and the note that became the fix.</figcaption>
+</figure>
+
 <div class="stats">
   <div><span>9+</span><span>font weight and size combinations in one journey</span></div>
   <div><span>12+</span><span>corner radius variants across cards and buttons</span></div>
@@ -95,9 +100,6 @@ between screens.
 <p class="note">03 · Experience</p>
 
 ## Calmer discovery
-
-Removing visual noise and aligning the grid lets users focus on what
-matters: the properties and experiences themselves.
 
 <figure class="fig fig--duo">
   <span class="fig__tile fig__tile--offset"><img src="/work/airbnb/airbnb-discovery-flow.png" alt="The stays and experiences discovery flow with a decluttered layout" loading="lazy" /></span>

@@ -54,12 +54,10 @@ unclear sizing and no comparison tools. And interviews kept saying the
 same thing: shoppers wanted comfort, quality and sustainability, not
 feature tables.
 
-<figure class="fig fig--margin">
-  <img src="/work/evvo/evvo-persona-cautious-adventurer.png" alt="Persona card for the cautious adventurer: a winter hiker, with goals and frustrations" loading="lazy" />
-  <figcaption>The user: the cautious adventurer.</figcaption>
-</figure>
-
 > I need to trust the gear before I buy it. I don't care about specs; I care about safety.
+
+The user in one line: the cautious adventurer, straight from the
+interviews.
 
 <p class="note">Groundwork</p>
 
@@ -128,7 +126,6 @@ Recycled materials argued as benefits, not features.
 ## Built for scale
 
 A modular component library, atomic design and auto layout throughout.
-The whole journey stays consistent and ready to grow.
 
 <figure class="fig fig--small fig--pin">
   <img src="/work/evvo/evvo-design-system.png" alt="EVVO design system: a modular grid of buttons, typography styles and components" loading="lazy" />
