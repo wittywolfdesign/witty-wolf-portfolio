@@ -36,9 +36,13 @@ solvent tenants and leaves hosts choosing from a smaller, samey pool.
 
 Freelancers and expats hit closed doors. An estimated 70% of solvent
 applicants are blocked for lacking a standard payslip. Hosts are stuck too:
-rigid paperwork is the only risk tool on offer, so they use it. Urbiqo
-replaces paperwork with verifiable trust signals. Hosts decide on evidence,
-and solvent non-traditional tenants get through the door.
+rigid paperwork is the only risk tool on offer, so they use it. Urbiqo does
+not throw that paperwork away; it adds more ways in. A tenant can name a
+guarantor, family help counts as a real answer to how the rent gets
+covered, and an optional background step lets them tell hosts who they
+are: why they are moving, how they live, how they rented before. Hosts
+decide on more evidence, and solvent non-traditional tenants get through
+the door.
 
 > The problem was never the listing. It was the leap of faith on both sides of it.
 
@@ -84,7 +88,7 @@ The difference Urbiqo bets on: validating reliability, not just salary.
 
 ## Fairer screening
 
-I replaced salary requirements with alternative proofs: bank statements and
+I added alternative proofs beside the classic payslip: bank statements and
 invoices. Employer letters and tax returns were considered and dropped,
 both lag actual cash flow. Bank statements and invoices reflect it in real
 time, and validate through OCR with manual review for the edge cases.
@@ -290,10 +294,10 @@ Three things Urbiqo taught me:
 Staging went live on 6 July 2026 and the platform runs at
 staging.urbiqo.com, in English and Spanish. It is in active QA now, the
 day-to-day is correcting what real screens, states and content expose before
-launch. The bet: replace rigid contract requirements with reputation-based
-signals and the market opens on both sides. Unproven until launch, but the
-logic holds. If you can verify reliability without demanding a permanent
-contract, hosts get confidence and tenants get access.
+launch. The bet: put verifiable trust signals beside the rigid contract
+requirements and the market opens on both sides. Unproven until launch, but
+the logic holds. If you can verify reliability without demanding a
+permanent contract, hosts get confidence and tenants get access.
 
 <div class="stats">
   <div><span>Built</span><span>live on staging, by me, on Next.js</span></div>
