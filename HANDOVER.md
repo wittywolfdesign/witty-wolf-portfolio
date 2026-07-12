@@ -309,6 +309,24 @@ can linger up to 10 minutes and there is no manual purge, a hard refresh
 plus patience covers it. Sessions on this machine CANNOT push (no GitHub
 credential in the keychain, no SSH key, no gh CLI): Marco pushes himself.
 
+## Audit fixes, items 2-6 (12 July 2026)
+From the rendered design audit: nav links and the theme toggle now carry
+the 2px amber focus outline (the hairline-underline-only focus was
+invisible; the "no boxed outline" comment was overruled on purpose). The
+home approach note tucks above the statement by default and only hangs
+into the left margin at >=1560px (it used to clip to "hort version" at
+1440). The case-index active line is now the upper third of the viewport
+(Math.max(140, innerHeight * 0.35)) so the lit rail label matches the
+heading the reader sees. TypeLine got a `.tw[hidden]{display:none}` guard:
+its display:block was defeating the hidden attribute, so reduced-motion
+and pre-JS renders reserved an invisible duplicate line under every typed
+heading. Witty's bubble moved BESIDE the wolf (flex row, tail on the
+bubble's right edge) and sits low, so the ensemble stays in the bottom
+~150px strip instead of climbing over metric cards and the about
+paragraph. Still open from the audit: live-domain contact send test,
+diagram legibility treatment, Urbiqo prune, contact form restyle,
+EVVO/Shelly persona cards, Urbiqo rail register, fifth-case duo pairing.
+
 ## How to run
 Marco runs the dev server himself in his own terminal (background servers
 started by sessions get reaped):

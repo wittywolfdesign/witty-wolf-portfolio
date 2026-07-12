@@ -65,6 +65,11 @@ const tokens = (text: string) => text.split(/(\s+)/).filter((t) => t.length);
     clip: rect(0 0 0 0); white-space: nowrap; border: 0;
   }
   .tw { position: relative; display: block; }
+  /* display:block above would defeat the hidden attribute: without this
+     guard the not-yet-started typed line reserves invisible height under
+     the fallback (reduced motion and no-JS showed a dead band under every
+     typed heading) */
+  .tw[hidden] { display: none; }
   .tw-w { display: inline-block; white-space: nowrap; }
   .tw-g {
     display: inline-block;

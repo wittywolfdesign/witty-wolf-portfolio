@@ -114,7 +114,9 @@ const links = [
     transition: transform 0.25s ease-out;
   }
   .nav__link:hover::after, .nav__link:focus-visible::after, .nav__link.is-active::after { transform: scaleX(1); }
-  .nav__link:focus-visible { outline: none; color: var(--ink); }
+  /* keyboard focus gets the same amber box as buttons and work rows: the
+     hairline underline alone was invisible at a glance */
+  .nav__link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; color: var(--ink); }
   .nav__link.is-active { color: var(--ink); }
 
   /* WORK gag: the transient "Attempts" layer anchors to the link's right
@@ -163,7 +165,7 @@ const links = [
   }
   .nav__theme:hover { color: var(--ink); background-size: 100% 1px; }
   /* focus: draw the same hairline underline as hover, no boxed accent outline */
-  .nav__theme:focus-visible { color: var(--ink); background-size: 100% 1px; outline: none; }
+  .nav__theme:focus-visible { color: var(--ink); background-size: 100% 1px; outline: 2px solid var(--accent); outline-offset: 3px; }
   .nav__theme[aria-pressed="true"] { color: var(--ink); }
   @media (max-width: 640px) {
     .nav__wordmark { display: none; }

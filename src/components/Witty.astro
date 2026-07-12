@@ -22,10 +22,12 @@
     right: clamp(0.75rem, 2vw, 1.5rem);
     bottom: 0;
     z-index: 55; /* above content; below the case pill (60), consent (70), wash (140) */
+    /* bubble BESIDE the wolf, not above it: the ensemble stays inside the
+       bottom ~150px strip instead of climbing over metric cards and prose */
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-end;
-    gap: 0.5rem;
+    gap: 0.6rem;
     /* the container catches nothing: only the bubble and the wolf are solid */
     pointer-events: none;
     transform: translateY(16px);
@@ -41,6 +43,7 @@
     position: relative;
     pointer-events: auto;
     max-width: 250px;
+    margin-bottom: 0.75rem; /* low in the corner strip, clear of the metric cards */
     padding: 0.85rem 2rem 0.85rem 1rem;
     background: var(--paper);
     border: 1.5px solid var(--ink);
@@ -51,17 +54,17 @@
     line-height: 1.6;
     color: var(--ink);
   }
-  /* pointer tail toward the wolf */
+  /* pointer tail toward the wolf, now on the bubble's right edge */
   .witty__bubble::after {
     content: "";
     position: absolute;
-    right: 30px;
-    bottom: -6.5px;
+    right: -6.5px;
+    bottom: 16px;
     width: 10px;
     height: 10px;
     background: inherit;
+    border-top: 1.5px solid var(--ink);
     border-right: 1.5px solid var(--ink);
-    border-bottom: 1.5px solid var(--ink);
     transform: rotate(45deg);
   }
   .witty__line { margin: 0; }

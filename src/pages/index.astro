@@ -225,19 +225,33 @@ const approachLine = [
   }
   .approach__statement :global(.hl) { color: var(--accent); }
 
-  /* the jotted margin note: tilt and arrow do the notebook feel */
+  /* the jotted margin note: tilt and arrow do the notebook feel. It only
+     hangs into the left margin when the margin can actually hold it
+     (>=1560px); anywhere narrower it tucks above the statement instead of
+     clipping at the viewport edge */
   .approach__note {
-    position: absolute;
-    left: -10.5rem; top: 0.2rem;
-    width: 9rem;
+    position: static;
+    width: auto;
+    margin-bottom: 0.9rem;
     font-size: 0.75rem;
     color: var(--text-muted);
-    transform: rotate(-5.5deg);
+    transform: rotate(-4deg);
+    transform-origin: left center;
   }
-  .approach__note svg {
-    display: block;
-    width: 86px; height: auto;
-    margin: 0.5rem 0 0 1.6rem;
+  .approach__note svg { display: none; }
+  @media (min-width: 1560px) {
+    .approach__note {
+      position: absolute;
+      left: -10.5rem; top: 0.2rem;
+      width: 9rem;
+      margin-bottom: 0;
+      transform: rotate(-5.5deg);
+    }
+    .approach__note svg {
+      display: block;
+      width: 86px; height: auto;
+      margin: 0.5rem 0 0 1.6rem;
+    }
   }
   .approach__note .ap {
     stroke: var(--accent);
@@ -265,17 +279,6 @@ const approachLine = [
   }
   @keyframes scribble-pulse {
     50% { transform: translate(2px, 1px); }
-  }
-  @media (max-width: 899px) {
-    /* no margin on small screens: tuck it above the statement, no arrow */
-    .approach__note {
-      position: static;
-      width: auto;
-      margin-bottom: 0.9rem;
-      transform: rotate(-4deg);
-      transform-origin: left center;
-    }
-    .approach__note svg { display: none; }
   }
   .approach__row {
     display: flex; justify-content: space-between; align-items: flex-end;

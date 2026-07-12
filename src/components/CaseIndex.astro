@@ -245,8 +245,10 @@ const { sections, client, baseTitle } = Astro.props;
   // keep it short and only ever write it on an actual section change.
   const DYNAMIC_TITLE = true;
 
-  // A note is "active" once its top passes this line below the sticky nav.
-  const ACTIVATE_LINE = 120;
+  // A note is "active" once its top passes the upper third of the viewport,
+  // where the reader's eyes actually are. The old fixed 120px line lagged a
+  // full section behind the visible heading.
+  const activateLine = () => Math.max(140, window.innerHeight * 0.35);
 
   interface CaseIndexCleanup { (): void }
   let teardown: CaseIndexCleanup | null = null;
@@ -322,7 +324,7 @@ const { sections, client, baseTitle } = Astro.props;
       raf = 0;
       let idx = -1;
       for (let i = 0; i < count; i++) {
-        if (notes[i].getBoundingClientRect().top <= ACTIVATE_LINE) idx = i;
+        if (notes[i].getBoundingClientRect().top <= activateLine()) idx = i;
         else break;
       }
       apply(idx);
