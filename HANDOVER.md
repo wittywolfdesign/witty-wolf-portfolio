@@ -339,9 +339,22 @@ truth, the product ADDS routes (guarantor, family help as a real answer,
 optional background step where tenants tell hosts who they are), it never
 replaced the paperwork; grounded in the verification screens in the Figma
 design file (nodes 40002084-7467 and -7254).
-Still open from the audit: diagram legibility treatment, Urbiqo prune,
-contact form restyle, EVVO/Shelly persona cards, Urbiqo rail register,
-fifth-case duo pairing.
+Second audit (12 July 2026) applied wholesale on Marco's "fix everything":
+evidence honesty pass (Shelly counts instead of percentages of sixteen,
+the eight-word quote no longer miscounted, Urbiqo's unsourced 70% and the
+10k/50k projection rows cut, tenure now "almost three years"), stock
+persona portraits replaced by a Maria text card (board) and EVVO's
+participant quote, detail crops at reading size added beside the Urbiqo
+user flow (the freemium/premium + verification fork) and the Airbnb board
+(the corner-radius column), slogan/brochure filler cut, two Urbiqo figures
+pruned (verification-options, live-landing; assets kept on disk), contact
+form restyled to field-notes (hairline ink, 2px corners, amber focus),
+contact meta description now reuses the page's own line, the fifth case's
+tab title de-stuttered ("Kill your template · Witty Wolf"), Witty tucked
+into the corner (200px bubble, 12px off the edge, a touch higher).
+KEPT by Marco's call: Witty itself, the WORK→ATTEMPTS gag and the
+verbatim worst-client beat incl. the asshole line. PENDING: FLIZpay case,
+Marco first asks them what he may show; Urbiqo room-photo swap.
 
 ## How to run
 Marco runs the dev server himself in his own terminal (background servers
