@@ -324,13 +324,16 @@ heading. Witty's bubble moved BESIDE the wolf (flex row, tail on the
 bubble's right edge) and sits low, so the ensemble stays in the bottom
 ~150px strip instead of climbing over metric cards and the about
 paragraph.
-CONTACT FORM, tested on the LIVE domain 12 July 2026: the send FAILS.
-The Web3Forms request dies at CORS preflight because the access_key in
-contact.astro is still the unregistered placeholder (the comment above it
-says to swap in the key Web3Forms emails after registering
-marco@wittywolf.design). Nobody can send through the form until Marco
-registers and pastes the real key; the on-page error state works and
-points to howl@. Retest one send after the swap.
+CONTACT FORM: WORKS. Confirmed on the live domain 12 July 2026 with a
+real send (API 200, success true, mail delivered to Marco's inbox). An
+earlier session wrongly declared the key an unregistered placeholder:
+Web3Forms' spam protection blocks AUTOMATED/HEADLESS browsers and that
+block surfaces as a failed CORS preflight, which looks exactly like a bad
+key. GOTCHA for future sessions: never diagnose this form from a default
+Playwright/headless context; test with a normal browser fingerprint
+(regular Chrome UA, webdriver flag hidden) or ask Marco to send one. The
+setup comment above the access_key in contact.astro is stale, the real
+key is already in place.
 Also fixed 12 July: Urbiqo's three "replace" claims corrected to the
 truth, the product ADDS routes (guarantor, family help as a real answer,
 optional background step where tenants tell hosts who they are), it never
