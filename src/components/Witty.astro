@@ -19,7 +19,7 @@
 <style>
   .witty {
     position: fixed;
-    right: clamp(0.75rem, 2vw, 1.5rem);
+    right: 0.75rem; /* truly in the corner */
     bottom: 0;
     z-index: 55; /* above content; below the case pill (60), consent (70), wash (140) */
     /* bubble BESIDE the wolf, not above it: the ensemble stays inside the
@@ -42,8 +42,8 @@
   .witty__bubble {
     position: relative;
     pointer-events: auto;
-    max-width: 250px;
-    margin-bottom: 0.75rem; /* low in the corner strip, clear of the metric cards */
+    max-width: 200px; /* narrow, so it stops sitting on body text */
+    margin-bottom: 1.5rem; /* a touch higher, level with the wolf's face */
     padding: 0.85rem 2rem 0.85rem 1rem;
     background: var(--paper);
     border: 1.5px solid var(--ink);
@@ -114,10 +114,9 @@
   .witty__wolf {
     display: block;
     pointer-events: auto;
-    width: clamp(84px, 8vw, 104px);
+    width: clamp(80px, 7vw, 96px);
     height: auto;
-    margin-right: 0.9rem;
-    margin-bottom: -14px;
+    margin-bottom: -16px;
     transform: rotate(-8deg);
     transform-origin: 50% 100%;
   }
