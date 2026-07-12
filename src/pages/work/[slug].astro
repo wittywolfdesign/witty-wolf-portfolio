@@ -35,7 +35,12 @@ const sections = [...entry.body.matchAll(/class="note"[^>]*>([\s\S]*?)<\/p>/g)]
 /* Shorter, screenshot-friendly base title: "Client · Short title · Witty Wolf"
    (middle dot separator, not an em-dash). The scroll-spy swaps the middle part
    for the active section label; see CaseIndex. */
-const baseTitle = `${d.client} · ${d.title} · Witty Wolf`;
+/* the self-case would stutter "Witty Wolf · ... · Witty Wolf", so its own
+   name is dropped from the front */
+const titleClient = d.client === "Witty Wolf" ? "" : d.client;
+const baseTitle = titleClient
+  ? `${titleClient} · ${d.title} · Witty Wolf`
+  : `${d.title} · Witty Wolf`;
 
 /* Rubber-stamp of the project's brand mark, extracted from the tile art
    into /public/brand/stamps/<slug>.svg (single path set, currentColor).
@@ -162,7 +167,7 @@ const line2 =
            script boots (adds .case-has-index); with JS off it stays a plain
            column and CaseIndex renders as an in-flow list of links -->
       <div class="wrap prose-wrap">
-        <CaseIndex sections={sections} client={d.client} baseTitle={baseTitle} />
+        <CaseIndex sections={sections} client={titleClient} baseTitle={baseTitle} />
         <div class="prose-body">
           <!-- no data-reveal here: a page-length element never reaches the
                observer's ratio threshold and would stay invisible -->

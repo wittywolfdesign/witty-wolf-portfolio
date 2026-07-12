@@ -309,7 +309,7 @@ const { sections, client, baseTitle } = Astro.props;
           else l.removeAttribute("aria-current");
         });
         if (pillLabel && idx >= 0) pillLabel.textContent = links[idx].textContent;
-        setTitle(idx >= 0 ? `${client} · ${links[idx].textContent} · Witty Wolf` : baseTitle);
+        setTitle(idx >= 0 ? `${client ? client + " · " : ""}${links[idx].textContent} · Witty Wolf` : baseTitle);
       }
       // reveal the mobile pill once past the intro, hide it around the footer
       const nearFooter = nextcard
