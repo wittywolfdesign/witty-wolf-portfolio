@@ -352,9 +352,12 @@ form restyled to field-notes (hairline ink, 2px corners, amber focus),
 contact meta description now reuses the page's own line, the fifth case's
 tab title de-stuttered ("Kill your template · Witty Wolf"), Witty tucked
 into the corner (200px bubble, 12px off the edge, a touch higher).
-KEPT by Marco's call: Witty itself, the WORK→ATTEMPTS gag and the
-verbatim worst-client beat incl. the asshole line. PENDING: FLIZpay case,
-Marco first asks them what he may show; Urbiqo room-photo swap.
+KEPT by Marco's call: Witty itself and the WORK→ATTEMPTS gag. The
+worst-client beat was softened on his follow-up (12 July): "I am kind of
+an asshole when I have to criticise myself" became "I am merciless when I
+have to criticise my own work"; the rest of the beat stands verbatim.
+PENDING: FLIZpay case, Marco first asks them what he may show; Urbiqo
+room-photo swap.
 
 ## How to run
 Marco runs the dev server himself in his own terminal (background servers
