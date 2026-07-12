@@ -359,6 +359,35 @@ have to criticise my own work"; the rest of the beat stands verbatim.
 PENDING: FLIZpay case, Marco first asks them what he may show; Urbiqo
 room-photo swap.
 
+## Three locales (12 July 2026): EN root, /nl, /es
+Astro built-in i18n (defaultLocale en, prefixDefaultLocale false), no
+library, no geolocation. Structure: src/i18n/ui.ts holds every UI string
+and page copy per locale (a fourth locale = one object + one content
+folder + five thin wrappers); case markdown lives in
+src/content/work/<locale>/ with SHARED public slugs (never translated), so
+/work/urbiqo, /nl/work/urbiqo and /es/work/urbiqo are the same page;
+pages derive locale from Astro.currentLocale and the /nl + /es wrappers
+just re-render them ([slug] wrappers carry their own getStaticPaths via
+src/i18n/casePaths.ts). Base emits lang, hreflang alternates + x-default
+and og:locale(:alternate) on every page. slug.mjs now folds diacritics
+(Año -> ano) and CaseIndex bundles the same module, so per-locale note
+anchors work with JS off (verified 12/12 in all three locales). Nav: quiet
+EN/NL/ES switcher (mono, active in ink, same page, stores ww-locale +
+stands the offer down); WORK gag word per locale (Attempts / Pogingen /
+Intentos). Witty is the language easter egg: browser language != page
+language (first visit only, navigator.language, SUPPORTED list in
+Witty.astro) -> the bubble types the offer in the browser's language with
+two buttons; yes navigates + stores, no reverts to the standard line;
+ww-lang-offer=done means never ask again. NEVER hard-redirect. The 404 is
+one EN file that swaps itself client-side from the broken URL's locale
+prefix (nav/footer stay EN there, known limit; no-JS gets EN). NOT
+translated by design: wordmark, Witty's name, addresses, client names,
+footer brand lines, job titles/industry terms, channel labels on contact,
+the metaline. NL uses Marco's approved verbatim lines INCLUDING the eikel
+worst-client line (edgier than the softened EN, his explicit instruction;
+flag if he wants parity). ES shipped with paired options in the session
+report and NEEDS A NATIVE-SPEAKER PASS before Marco calls it final.
+
 ## How to run
 Marco runs the dev server himself in his own terminal (background servers
 started by sessions get reaped):
