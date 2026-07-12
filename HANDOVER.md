@@ -323,9 +323,22 @@ and pre-JS renders reserved an invisible duplicate line under every typed
 heading. Witty's bubble moved BESIDE the wolf (flex row, tail on the
 bubble's right edge) and sits low, so the ensemble stays in the bottom
 ~150px strip instead of climbing over metric cards and the about
-paragraph. Still open from the audit: live-domain contact send test,
-diagram legibility treatment, Urbiqo prune, contact form restyle,
-EVVO/Shelly persona cards, Urbiqo rail register, fifth-case duo pairing.
+paragraph.
+CONTACT FORM, tested on the LIVE domain 12 July 2026: the send FAILS.
+The Web3Forms request dies at CORS preflight because the access_key in
+contact.astro is still the unregistered placeholder (the comment above it
+says to swap in the key Web3Forms emails after registering
+marco@wittywolf.design). Nobody can send through the form until Marco
+registers and pastes the real key; the on-page error state works and
+points to howl@. Retest one send after the swap.
+Also fixed 12 July: Urbiqo's three "replace" claims corrected to the
+truth, the product ADDS routes (guarantor, family help as a real answer,
+optional background step where tenants tell hosts who they are), it never
+replaced the paperwork; grounded in the verification screens in the Figma
+design file (nodes 40002084-7467 and -7254).
+Still open from the audit: diagram legibility treatment, Urbiqo prune,
+contact form restyle, EVVO/Shelly persona cards, Urbiqo rail register,
+fifth-case duo pairing.
 
 ## How to run
 Marco runs the dev server himself in his own terminal (background servers
