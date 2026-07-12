@@ -36,15 +36,15 @@ The vessel had a subscription.
 
 ## Someone else's vessel
 
-The template spoke first, and it spoke in stock. The hero was a sunset in
-Amsterdam, the work page opened on a 3D render from a photo library and
-contact hid behind a city skyline that could sell anything. Underneath sat
-a wordmark in a rounded display face that has since been retired from the
-brand entirely.
+The template spoke first, and it mostly spoke in stock. The hero photo was
+mine, a sunset I shot in the Houthavens in Amsterdam, but the work page
+opened on a 3D render from a photo library and contact hid behind a city
+skyline that could sell anything. Underneath sat a wordmark in a rounded
+display face that has since been retired from the brand entirely.
 
 <figure class="fig">
-  <img src="/work/witty-wolf-site/framer-landing.png" alt="The old Framer landing page: a sunset photo of sailing boats in Amsterdam with Witty Wolf Design set in the old rounded display face" loading="lazy" />
-  <figcaption>The old landing: borrowed sunset, retired typeface, the copy already trying to get out.</figcaption>
+  <img src="/work/witty-wolf-site/framer-landing.png" alt="The old Framer landing page: Marco's own sunset photo of sailing boats in the Houthavens, Amsterdam, with Witty Wolf Design set in the old rounded display face" loading="lazy" />
+  <figcaption>The old landing: my own Houthavens sunset, the retired typeface, the copy already trying to get out.</figcaption>
 </figure>
 
 <figure class="fig fig--paper fig--duo">
