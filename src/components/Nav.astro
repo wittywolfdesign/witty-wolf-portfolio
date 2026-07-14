@@ -96,7 +96,11 @@ const switcher = locales.map((l) => ({
      (left edges flush) and the two rows read as one aligned block */
   .nav__brand {
     display: inline-flex; align-items: center; gap: 1rem;
-    font-family: var(--font-mono); font-weight: 500; font-size: 1.6rem;
+    /* font-size tuned so the lockup's right edge (end of "Design") lands on
+       the end of the meta line beneath it ("...developer"): left edges are
+       already flush in .wrap, this makes the two rows read as one block.
+       The wolf tracks the type at 2.1em, so the whole lockup scales as one. */
+    font-family: var(--font-mono); font-weight: 500; font-size: 1.544rem;
     color: var(--ink); letter-spacing: -0.01em; white-space: nowrap;
   }
   /* the head rests at its natural tilt and pivots from the neck: on hover

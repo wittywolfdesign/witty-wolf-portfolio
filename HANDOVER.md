@@ -2,7 +2,8 @@
 
 A running record of the redesign, so a fresh session (Claude Code or Cowork)
 can pick up without losing context. Written for Marco Ramos, Witty Wolf Design.
-Last updated: 9 July 2026, after adding the case section index + screenshot titles.
+Last updated: 14 July 2026, after the Figma design system + brand guidelines
+rebuild (see the entry at the end).
 
 ## Marco's working preferences (apply to everything)
 - UK English. Metric units. No Oxford comma. No em-dashes, use commas or full stops.
@@ -387,6 +388,208 @@ the metaline. NL uses Marco's approved verbatim lines INCLUDING the eikel
 worst-client line (edgier than the softened EN, his explicit instruction;
 flag if he wants parity). ES shipped with paired options in the session
 report and NEEDS A NATIVE-SPEAKER PASS before Marco calls it final.
+
+## Online-meeting background rebuilt (14 July 2026)
+In the Figma branding file (YbibMITCEMiqsigj8ox4gr, page "Witty Wolf Design -
+Branding & Design system"), the frame "Witty Wolf Background Online Meetings
+NEW" (3079x1920, node 4841:986) was rebuilt from the old blue-gradient
+version into the site-header language: paper bg, 44px guide grid at 6%
+dissolving radially into the paper (built as lines + an inverse paper-fade
+rectangle ON TOP inside the 6% group — Figma silently ignored an ALPHA
+gradient mask that was set up correctly, do not retry masks for this),
+stroke-only hero wolf from wolf-vector.svg (stroke #2C3E50 at 0.4, amber
+tongue) bleeding off the right edge with ear tips cropped, lockup top-left
+(colour mark + Geist Mono Medium wordmark) with the tagline "design that
+survives contact with real code" (Marco's pick 14 July 2026, replacing
+"designing for the user who's already frustrated") in muted mono
+sized/letter-spaced to be flush left AND right with the lockup (Marco's
+block-alignment preference),
+and the kept LinkedIn QR image restyled as a field-notes card (paper fill,
+2px ink hairline, 3px radius, mono uppercase "FIND ME ON LINKEDIN").
+GOTCHA: Figma groups auto-dissolve when emptied — never touch a group node
+after removing its children (atomic script dies on the dead ID).
+DARK TWIN: frame "Witty Wolf Background Online Meetings DARK" (4841:1014)
+is the same build rethemed with the site's dark tokens: page #14110D, grid
+lines + wolf strokes in the paper tone #F4F2EC (same 0.4 opacity), fade
+overlay dark, wordmark paper, tagline #A9A294 (dark muted), tongue stays
+#E3993D exactly like WolfMark.astro (never theme-swapped). The colour wolf
+mark in the lockup is untouched, one mark for both themes like the nav.
+QR sits on a 16px-padded paper sheet (the .fig--sheet trick) inside a
+#201C16 elevated card with a paper hairline, so it stays scannable.
+UPDATE (14 July 2026, later): Marco removed the QR from both frames (a QR
+does not survive video compression and nobody scans off a Zoom tile). The
+wolf moved down so the whole head is in frame, and the line work was lifted
+for legibility (stroke ~3.3, opacity 0.58 light / 0.7 dark, since paper
+lines on the dark surface read fainter than charcoal on paper). Contact now
+a quiet bottom-left footer mirroring the header block: "Marco Ramos" (mono
+medium, ink/paper) over "linkedin.com/in/marcorramos" (mono muted). Layout
+reads as a frame: brand top-left, person bottom-left, wolf right.
+
+## Nav lockup alignment + logo package (14 July 2026)
+Two jobs, both done.
+- Nav lockup / meta line alignment: the top row (wolf + "Witty Wolf Design")
+  and the meta line under it ("Marco Ramos · Product designer & developer")
+  now read as one block, flush left AND right. Left edges were already flush
+  in .wrap (both at the gutter). The right edge was 10px out ("Design" overran
+  "developer"). Fix in src/components/Nav.astro: .nav__brand font-size 1.6rem →
+  1.544rem, so the lockup's right edge lands on the end of the meta line (the
+  wolf tracks the type at 2.1em, so the whole lockup scales as one). Verified
+  by measuring bounding boxes with Playwright against the built preview
+  (brand.right 368.81 vs marcoName.right 368.83). This is tuned to the current
+  wordmark + meta-line strings; if either copy changes, re-tune the font-size.
+- Logo package: public/brand/logo-package/ (README + svg/ + png/). Two
+  colourways, transparent: light = ink wordmark for light backgrounds, dark =
+  paper wordmark for dark backgrounds; the wolf mark is IDENTICAL in both (only
+  the letters change colour). Built from the clean vector favicon-mark.svg
+  (charcoal silhouette #2C3E50, white face, amber tongue #E3993D, -8° tilt),
+  NOT the heavy raster public/brand/wolf-mark.svg the nav still uses. Wordmark
+  is live text: Geist Mono Medium, -0.01em, wolf height = 1.5em, gap 0.42em.
+  The lockup SVGs embed the Geist Mono webfont (base64) so they render without
+  the font installed; PNGs at heights 400/200/100/50 (lockups) and
+  512/256/128/64/32 (mark). GOTCHA that cost time: measure text width with the
+  font ACTUALLY loaded (a file:// URL with %20/%26 in the path silently fails
+  to load → proportional fallback → wrong width → clipped viewBox). Geist Mono
+  advance is ~0.59em; the correct "Witty Wolf Design" width at 100px is ~1003,
+  not 736.
+- Figma: page "Witty Wolf Design - Branding & Design system", section
+  "Witty wolf logo 2026" (node 4830:46) now holds two live-text lockup tiles
+  (light node 4834:58, dark 4834:71) — wolf via createNodeFromSvg + real Geist
+  Mono Medium text, on paper / #14110D cards. GOTCHA: appending auto-layout
+  cards (born at 0,0) to a Section balloons the section to include the origin;
+  set the children's absolute x/y inside the section, then
+  resizeWithoutConstraints the section back. The Figma screenshot service
+  cached the ballooned bounds afterwards — screenshot the tiles directly to
+  verify, trust node metadata for the section.
+
+## Figma design system + brand guidelines rebuilt in place (14 July 2026)
+File YbibMITCEMiqsigj8ox4gr, page "Witty Wolf Design - Branding & Design system".
+
+WHICH NODES. The brief named 1644:699 and 819:2504 and called them copies of
+the old system. They are not: they are the untouched Bricolage ORIGINALS. The
+copies carrying Cowork's earlier Geist Mono pass are the "- July 2026" frames,
+4783:370 (design system) and 4783:75 (brand guidelines). Marco confirmed the
+July 2026 copies are the live ones, so ALL work below is in 4783:370 and
+4783:75. The two originals were not touched and remain the historical record.
+If a future session is handed the old IDs again, check this first.
+
+### 4783:370 — Design System for Witty Wolf - July 2026 (now 7576 tall)
+- Colour palette. The five surviving 50-900 ramps are gone. Now: a 10-swatch
+  core token row (--ink, --paper, --white, --dark, --orange, --amber,
+  --grey-100/200/400/600), a semantic token row on a paper panel (light) and
+  its twin on a #14110D panel (dark), each swatch labelled with the CSS custom
+  property, the hex and its real role. --slate gets one swatch plus a usage
+  note, no ramp. Grey Neutrals became the light semantic row, Charcoal Primary
+  the dark one, Orange Accent the slate row; the Amber and Blue Slate ramp
+  containers were deleted (they still exist in the untouched original).
+- Contrast. "Color Combinations" is now "Contrast · what actually passes AA",
+  a measured table for both themes. Ratios were computed, not estimated.
+  HONEST FINDING, NOT FIXED IN CODE: the light-theme CTA hover puts a --paper
+  label on --accent and measures 2.11:1, so the shipped hover fails AA. The
+  dark hover is fine at 10.57:1. --accent on --bg is also 2.11:1 in light,
+  which is why amber never carries text on paper. Stated plainly on the page.
+- Typography. H1-H4, body and label specimens rebuilt from global.css with the
+  real clamps, line-heights and tracking. Specimen copy is real site copy.
+  Documented finding: h4 has NO font-size of its own, it inherits --step-0.
+  Two documented overrides: the home hero h1 is Geist Mono 500 at
+  clamp(1.4rem, 2.6vw, 2.35rem)/1.45, and .case-title is clamp(1.8rem, 3.6vw,
+  2.9rem)/1.3, so the --step-4/700 base only applies to /contact, /about, /404.
+  The "Button Text" specimen became the .mono Label specimen (buttons belong in
+  components).
+- Weight scale. Cowork's descriptions were wrong (it called 500 "headings"
+  when headings are 700, and listed Work Sans Light 300 and Black 900, which
+  the site never uses). Now: Geist Mono 400/500/600/650/700 and Work Sans
+  400/600, each with where it is actually used. Both are variable fonts so the
+  full 100-900 axis exists in the browser; Figma only has static cuts, so 650
+  is drawn at SemiBold and the page says so.
+- Caveat is documented as a restricted third face (Marco's call): used only for
+  the handwritten photo credit on the back of the about portrait.
+- Component examples. Pills, radii, shadows and the three-card grid are gone.
+  Now: CTA (.btn) with rest/hover/active in both themes; the secondary .ul link
+  with its self-drawing underline; the contact send button's SEND MESSAGE /
+  SENDING... / SENT retype with the block caret. Then five patterns that really
+  exist: work index type rows (real data from the case frontmatter), pinned
+  figure, cork bulletin board, tilted margin note, terminal footer.
+- DISABLED STATE CUT, deliberately (Marco's call). contact.astro sets
+  btn.disabled = true while sending but global.css has NO :disabled rule, so
+  there is no designed disabled state to document. OPEN ITEM: either style it
+  or accept that disabled looks identical to rest.
+- The header still showed the OLD Bricolage raster banner, visible, with no
+  Geist Mono replacement (Cowork had done this in the guidelines but not here).
+  Replaced with a live Geist Mono lockup; the raster is hidden, not deleted,
+  and renamed "(superseded, hidden)". Header intro rewritten: it still boasted
+  about the "expanded color palette" that no longer exists.
+- Footer year was 2025 (not 2024 as briefed), now 2026.
+
+### 4783:75 — Brand guidelines & Logo design - July 2026 (now 8807 tall)
+- The placeholder string "Our expanded color system provides a comprehensive…"
+  was in LAYER NAMES only, never in the body. All nine renamed after their
+  section. The prose was real, just stale and full of AI-slop marketing.
+- Rewritten in Marco's voice, UK English, sentence case, no Oxford comma, no
+  em-dashes, first person singular ("I", never "we"): Brand Overview, Core
+  Philosophy & Values, Tone of Voice, Visual Identity & Imagery, Digital
+  Presence, Hierarchy & Usage, Brand Mark, Legacy Stacked Logo, Spacing &
+  Sizing, Incorrect usage, Typography Logo, Colour Palette Logo.
+- Brand Overview and Core Philosophy contained BYTE-IDENTICAL text (the same
+  770 characters), so Core Philosophy had never actually been written. It is
+  written now, from the home approach copy and the about page.
+- Tone of Voice shows the voice instead of describing it: six DO lines lifted
+  verbatim from the live site, four DON'T lines lifted from the marketing prose
+  retired from this very document ("Smart pixels. Curious mind.", "pack leader
+  in smart pixels", "howl at the moon", "utilize advanced methodologies"). The
+  two surviving "Bricolage" and "Smart pixels" mentions in this node are
+  deliberate: they are the retirement statements and the DON'T list.
+- Spacing & Sizing now derives from the real tokens: --wrap 1180px, --gutter
+  clamp(1.25rem, 5vw, 4rem), section padding clamp(4rem, 10vw, 8rem) and
+  clamp(2.5rem, 6vw, 4rem), the note that --radius 18px/--radius-lg 28px exist
+  but the CTAs use no radius and the form uses 2px, plus the 2026 pack's real
+  PNG cuts (lockup 400/200/100/50, mark 512/256/128/64/32). The clear-space
+  rule (one wolf ear) was NOT changed: the logo pack README confirms it.
+- Size table: only two cells changed, both because they contradicted the new
+  hierarchy by recommending the now-restricted legacy logo. "Legacy Logo or
+  icon" → "Lockup (horizontal)", "Icon or Legacy Logo" → "Icon or lockup". No
+  rows invented, no other cell touched.
+- Two real contradictions fixed. (1) The old don't said "never rotate the logo,
+  the wolf should always be upright", but the mark carries a -8 degree tilt by
+  design and the nav straightens it on hover. Rewritten to protect the tilt.
+  (2) The light banner caption said to use it "on dark backgrounds", where its
+  ink wordmark would be invisible. Corrected.
+- Typos fixed: "Typograhpy Logo" was already fixed by Cowork in this copy;
+  "Incorrect usage: dont's" → "don'ts".
+- Frames renamed: the three siblings all called "Typography Logo" are now
+  "Incorrect usage", "Typography Logo" and "Colour Palette Logo", matching
+  their contents (verified against the heading text, not the order).
+- Footer year was 2025, now 2026.
+
+### Facts this pass corrected (the brief was working from stale notes)
+- THE CORNER TAPE IS GONE. [slug].astro says so in its own comment ("the corner
+  tape it once shared a base with is gone"). Figures now carry a single centred
+  push-pin (.fig--pin, 13px dome) plus the alternating 0.45/-0.55deg tilt. The
+  only "tape" left is baked into the Urbiqo positioning PNGs as pixels. The
+  guidelines and the pattern tile say "pinned figure", not "taped figure".
+- --slate #4A6A82, --grey-100 and --grey-200 are declared in global.css and
+  referenced NOWHERE in src/. Documented as declared-but-unused rather than
+  implied to be in use. The wolf's #2C3E50 is its own value in WolfMark.astro
+  and is not --slate.
+- --charcoal is a legacy alias of --ink and is still used by about.astro and
+  [slug].astro.
+
+### Outstanding
+- The light-theme CTA hover fails AA at 2.11:1 (see above). Design decision
+  needed: darken the sweep, or flip the label to --ink on hover.
+- No :disabled style exists for .btn.
+- The Figma variable global/fontFamilies/heading still resolves to "Bricolage
+  Grotesque". Nothing in either July 2026 frame is bound to it, so it was left
+  alone rather than risk other pages. It should be retired file-wide.
+- The site's real token set has NO Figma variables. The "global" collection
+  still holds the old 50-900 ramps (grey/charcoal/orange/amber/blue). Swatches
+  are therefore hardcoded hex where no matching variable exists; existing
+  bindings were preserved by cloning. Worth building a proper token collection
+  with light/dark modes, but that is a file-wide change and was out of scope.
+- The two Bricolage originals (1644:699, 819:2504) still sit on the page. If
+  the July 2026 frames are now the source of truth, they are duplicates and
+  should be archived or deleted.
+- Cowork's palette intro used to justify keeping the ramps ("they are not
+  website colours"). That claim is gone with the ramps.
 
 ## How to run
 Marco runs the dev server himself in his own terminal (background servers
