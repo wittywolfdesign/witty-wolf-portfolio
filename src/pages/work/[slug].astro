@@ -259,6 +259,21 @@ const line2 =
     --stamp-ink: oklch(from var(--brand-accent, var(--case-accent)) 0.68 c h);
     --stamp-alpha: 0.55;
   }
+  /* FLIZ only: its brand green is far brighter and more saturated than the
+     other case accents, so the shared recipe leaves the stamp shouting over
+     the hero. Pull it back to background: chroma nearly halved, a quieter
+     alpha, and a lightness pushed toward the page so it reads as a faded
+     press, not a fresh one. */
+  .case--fliz {
+    --stamp-ink: color-mix(in srgb, var(--brand-accent) 35%, var(--grey-400) 65%);
+    --stamp-ink: oklch(from var(--brand-accent) 0.62 calc(c * 0.45) h);
+    --stamp-alpha: 0.3;
+  }
+  :global([data-theme="dark"]) .case--fliz {
+    --stamp-ink: color-mix(in srgb, var(--brand-accent) 35%, var(--grey-600) 65%);
+    --stamp-ink: oklch(from var(--brand-accent) 0.52 calc(c * 0.45) h);
+    --stamp-alpha: 0.34;
+  }
   .case-stamp {
     position: absolute;
     top: -1.25rem; /* sits high, pressing over the back link + meta + title start */
