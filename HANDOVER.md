@@ -2,8 +2,8 @@
 
 A running record of the redesign, so a fresh session (Claude Code or Cowork)
 can pick up without losing context. Written for Marco Ramos, Witty Wolf Design.
-Last updated: 14 July 2026, after the Figma design system + brand guidelines
-rebuild (see the entry at the end).
+Last updated: 29 July 2026, after the Shelly 2026 act (three interactive
+demos; see the entry near the end).
 
 ## Marco's working preferences (apply to everything)
 - UK English. Metric units. No Oxford comma. No em-dashes, use commas or full stops.
@@ -610,6 +610,50 @@ closed-eye curves sit ~user y500..545 and two crops missed them first).
 Safe areas per notes.md: nothing essential left of x460, text inside
 x500..1310. preview.html mocks desktop overlap with the real portrait and
 a centre-76% mobile crop. Upload files: png/banner-pXX[-dark]-1584x396.png.
+
+## Shelly 2026 act: three interactive demos (29 July 2026)
+The Shelly case gained a closing act in all three locales: note "2026 ·
+Second lap" / "2026 · Tweede ronde" / "2026 · Segunda vuelta", heading "Two
+years later, Shelly learned to move". Frontmatter extended (summary and
+role now carry the 2026 code revisit, solo). The copy states the truth:
+the 2024 sprint ended as a tested Figma prototype; in 2026 Marco rebuilt
+the key flows in working code, AI-assisted, every design decision his.
+The act was built in one session that crashed on the 29 July Anthropic
+outage before verifying; a follow-up session reconstructed it from the
+working tree, audited it, fixed one loose end and verified everything.
+
+Three interactive phone demos (.shd) live in the case markdown and ride
+the normal pinned-figure system: a check-in flow (packed, normal or open
+day reorders Shelly's suggestions and promotes a hero pill), a progress
+week (count-up to 189 strawberries, goal fills landing one by one, the
+one empty day deliberately untouched, a mascot wave at the end) and a
+one-minute breathing exercise (Web Animations scale loop, tap to pause
+or resume, +3 reward screen). The mascot is an inline SVG rebuild of the
+turtle with idle breathing and blink keyframes; the strawberry likewise.
+
+SCOPE FENCE: Shelly's greens, pills and rounded corners are the CLIENT's
+language and exist only inside the phone frames, all scoped under .shd in
+[slug].astro. The in-demo UI text is ENGLISH in all three locales on
+purpose: the demos speak the product's own language, exactly like the
+screenshots above them; captions, surrounding prose and aria-labels are
+localised. The demo logic is vanilla JS in one script block in
+[slug].astro, guarded on .shd presence: IntersectionObserver plays the
+week count once on first view and pauses idle loops off-screen, and
+everything tears down on astro:before-swap. With JS off each frame
+server-renders its poster state with every control hidden. Reduced
+motion gets static final states, instant screen switches and text-only
+breathing cues. Loose end fixed in the follow-up session: the figcaption
+padding-right reserved for the "Look closer" hint no longer applies to
+.shd figures (they carry no img, so the hint never appears).
+
+VERIFIED 29 July 2026 against the clean build (65 checks, Playwright):
+all three locales interactive, section index and note anchors per locale,
+desktop and 360 in both themes with the demos inside the viewport,
+reduced-motion static states, no-JS posters and SSR anchors, demos
+re-initialise after view transitions (away and back), Urbiqo control page
+unchanged. Known pre-existing, NOT from this act: at 360 the nav language
+switcher pokes ~15px past the viewport on every case page, invisible
+because global.css clips overflow-x; same on the untouched control.
 
 ## How to run
 Marco runs the dev server himself in his own terminal (background servers
