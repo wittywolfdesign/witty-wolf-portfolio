@@ -591,6 +591,26 @@ If a future session is handed the old IDs again, check this first.
 - Cowork's palette intro used to justify keeping the ramps ("they are not
   website colours"). That claim is gone with the ramps.
 
+## Personal LinkedIn banner set (18 July 2026)
+public/brand/linkedin-banner/personal/ holds three compositions for Marco's
+PERSONAL profile banner plus dark twins (banner-p01..p03[-dark]), built by
+its own build.mjs on the company covers' pattern but to the PROFILE spec,
+verified on LinkedIn help a568217: 1584x396, 4:1, JPG/PNG, under 8 MB (the
+company 4200x700/6:1 numbers do not apply). The wolf IS allowed here (the
+profile photo is Marco's portrait): hero-style stroke-only wolf-vector
+paths, tongue the only fill, never redrawn. p01 = hero echo with the lead
+line two-up in the centre band; p02 = Marco's pick: the scent trail out
+from behind the profile photo doubles as a TIGHTROPE, a stick figure walks
+it with a balance pole and a Witty-style balloon saying "Design to code.
+No net.", trail vanishing behind the wolf's head (silhouette path
+bg-filled for occlusion; textless original kept as banner-p02-plain);
+p03 = the wolf peeking over the bottom edge,
+amber inner ears (paths --i:2/--i:3 are the EAR LININGS, not eyes; the
+closed-eye curves sit ~user y500..545 and two crops missed them first).
+Safe areas per notes.md: nothing essential left of x460, text inside
+x500..1310. preview.html mocks desktop overlap with the real portrait and
+a centre-76% mobile crop. Upload files: png/banner-pXX[-dark]-1584x396.png.
+
 ## How to run
 Marco runs the dev server himself in his own terminal (background servers
 started by sessions get reaped):
