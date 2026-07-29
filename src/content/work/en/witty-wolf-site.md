@@ -146,6 +146,18 @@ started to resent. The hardest part was killing my darlings.
 Criticism from a client or an employer is easier to take than from me. I am
 merciless when I have to criticise my own work. Then it gets polished.
 
+<p class="note">Use of AI</p>
+
+## Use of AI
+
+The code was AI-written from start to finish, with me directing every
+step; that story is above. What I keep by hand: the words. Every text on
+this site is mine, it is where most of the hours go, and I want it that
+way. I also raise my tools: the brand lives in a skill file that teaches
+the AI the house style once, tone, type, the wolf's rules, so no session
+starts from zero. The rebuild took days, not months, because the thinking
+was already done and the typing no longer costs anything.
+
 <p class="note">Honestly, though</p>
 
 ## The most honest test there is

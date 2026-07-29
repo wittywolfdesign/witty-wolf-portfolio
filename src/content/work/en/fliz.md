@@ -245,10 +245,23 @@ variables, how to handle localisation. Documentation that makes the next
 designer faster with nobody in the room. The same split carried
 the brand work. The identity had just taken a new direction under the design
 lead, and I worked with her to push it through everywhere, iconography included,
-Gemini generating, me curating. Delegate the repetition, keep the judgment. I
-did hands-on QA on TestFlight, and filed **five-plus post-release UX tasks
+Gemini generating, me curating. Delegate the repetition, keep the judgment. I did hands-on QA on TestFlight and ran Clarity tests end to end: the
+research, the interpretation, the reporting. And I filed **five-plus post-release UX tasks
 unprompted**, each framed not as a bug but as a retention or activation problem
 worth fixing.
+
+<p class="note">Use of AI</p>
+
+## Use of AI
+
+For the reader keeping score, the split in one place. AI filled the
+competitive matrix on parameters I fixed; I verified every conclusion in
+the rivals' own apps. AI did the bulk of the 1,150-layer rename and the
+localisation fixes on precise briefs; I chose between its variants and
+checked the result layer by layer. Gemini generated iconography for the
+brand's new direction; the design lead and I directed and curated. Nothing
+AI produced shipped unreviewed. Delegate the repetition, keep the
+judgment.
 
 <p class="note">What it taught me</p>
 

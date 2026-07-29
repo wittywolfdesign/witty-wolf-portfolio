@@ -152,6 +152,19 @@ detestar. Lo más difícil fue matar a mis favoritos.
 La crítica de un cliente o de un jefe la encajo mejor que la mía. Soy
 implacable cuando me toca juzgar mi propio trabajo. Después, se pule.
 
+<p class="note">Uso de IA</p>
+
+## Uso de IA
+
+El código lo escribió la IA de principio a fin, conmigo dirigiendo cada
+paso; esa historia está arriba. Lo que sigo haciendo a mano: las palabras.
+Cada texto de esta web es mío, ahí se van la mayoría de las horas, y así
+lo quiero. También educo a mis herramientas: la marca vive en un archivo
+de skill que le enseña a la IA el estilo de la casa una sola vez, tono,
+tipografía, las reglas del lobo, para que ninguna sesión empiece de cero.
+La reconstrucción llevó días, no meses, porque el pensamiento ya estaba
+hecho y teclear ya no cuesta nada.
+
 <p class="note">Siendo honestos</p>
 
 ## La prueba más honesta que existe

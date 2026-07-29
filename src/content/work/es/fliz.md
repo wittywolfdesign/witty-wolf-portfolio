@@ -250,10 +250,24 @@ rápido al siguiente diseñador sin nadie en la sala. El
 mismo reparto llevó el trabajo de marca. La identidad acababa de tomar una nueva
 dirección bajo la design lead, y trabajé con ella para llevarla a todas partes,
 iconografía incluida, con Gemini generando y yo filtrando. Delegar la
-repetición, quedarse con el criterio. Hice QA a mano en TestFlight, y presenté
+repetición, quedarse con el criterio. Hice QA a mano en TestFlight y llevé tests de Clarity de principio a fin:
+la research, la interpretación, el informe. Y presenté
 **cinco y pico tareas de UX post-lanzamiento sin que me lo pidieran**, cada una
 planteada no como un bug sino como un problema de retención o activación que
 valía la pena resolver.
+
+<p class="note">Uso de IA</p>
+
+## Uso de IA
+
+Para quien quiera el balance, el reparto en un solo sitio. La IA rellenó
+la matriz competitiva con parámetros que fijé yo; verifiqué cada
+conclusión en las apps de los propios rivales. La IA hizo el grueso del
+renombrado de 1.150 capas y de los arreglos de localisation, con encargos
+precisos; yo elegía entre sus variantes y comprobaba capa a capa. Gemini
+generó iconografía para la nueva dirección de marca; la design lead y yo
+dirigimos y filtramos. Nada producido por la IA salió sin revisar. Delegar
+la repetición, quedarse con el criterio.
 
 <p class="note">Lo que me enseñó</p>
 

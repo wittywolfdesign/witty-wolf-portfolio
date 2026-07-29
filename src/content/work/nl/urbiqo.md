@@ -180,6 +180,11 @@ echte content tegen. Ik was de ontwerper die het moest toegeven en de
 developer die het moest repareren, dus de iteratieslag draaide in minuten,
 niet in sprints. Het product op staging is het resultaat.
 
+De grootste kill was mijn eigen ontwerp: hosts kregen eerst een aparte
+verificatieflow. Ik voegde hem samen met de listingflow, één pagina. Een
+plek online zetten moet simpel zijn, en een tweede flow was structuur die
+zichzelf verdedigde tegen de gebruiker.
+
 Eén detail verscheen pas toen er een front-end was om het op te draaien:
 elke sectiekop tekent zichzelf van links in, achter de terracotta skyline.
 Een bewegingsbeslissing genomen in code, niet in het statische
@@ -272,6 +277,19 @@ kappen die het Engels nooit onder druk zette.
   <img src="/work/urbiqo/urbiqo-card-es-truncated.png" alt="Een Spaanse Urbiqo-advertentiekaart waarvan de titel is afgekapt met een beletselteken waar de kortere Engelse titel wel paste" loading="lazy" />
   <figcaption>Spaans loopt langer uit: dezelfde kaartcomponent, afgekapt waar de Engelse titel paste.</figcaption>
 </figure>
+
+<p class="note">AI-gebruik</p>
+
+## AI-gebruik
+
+Twee soorten, niet te verwarren. De build: het hele platform met AI
+gedeveloped onder mijn regie. AI schreef de code, ik briefde, controleerde
+en stuurde terug tot het klopte. Het product: Urbiqo draait zelf op AI die
+het fout kan hebben. OCR leest de verificatiedocumenten. Dus ontwierp ik
+voor de misser, niet voor de demo: manual review vangt de randgevallen,
+risk scoring schaalt op naar een mens, en elke status-pill vertelt eerlijk
+waarom hij rood is. Blind vertrouwen op AI is een ontwerpfout. Ontwerpen
+voor de fouten is het vak.
 
 ## Wat ik ervan leerde
 

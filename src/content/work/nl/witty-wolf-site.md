@@ -151,6 +151,19 @@ Kritiek van een klant of werkgever slik ik makkelijker dan kritiek van
 mezelf. Ik ben nogal een eikel als ik mezelf moet beoordelen. Daarna wordt
 het gepolijst.
 
+<p class="note">AI-gebruik</p>
+
+## AI-gebruik
+
+De code is door AI geschreven, van begin tot eind, met mij als regisseur.
+Dat verhaal staat hierboven. Wat ik zelf blijf doen: de woorden. Elke
+tekst op deze site is van mij. Daar zitten de meeste uren in, en dat wil
+ik zo. Ik voed mijn gereedschap ook op: het merk leeft in een
+skill-bestand dat de AI de huisstijl één keer leert, toon, letter, de
+regels van de wolf. Geen sessie begint op nul. De rebuild kostte dagen,
+geen maanden, omdat het denkwerk al gedaan was en het typen niets meer
+kost.
+
 <p class="note">Eerlijk gezegd</p>
 
 ## De eerlijkste test die er is

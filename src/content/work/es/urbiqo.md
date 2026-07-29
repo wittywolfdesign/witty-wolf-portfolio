@@ -181,6 +181,11 @@ admitirlo y el developer que tenía que arreglarlo, así que el ciclo de
 iteración corría en minutos, no en sprints. El producto en staging es el
 resultado.
 
+Lo más grande que maté fue un diseño propio: los hosts tenían un flujo de
+verificación aparte. Lo fusioné con el flujo de publicación, una sola
+página. Poner un sitio online tiene que ser simple, y un segundo flujo era
+estructura defendiéndose del usuario.
+
 Un detalle solo apareció cuando hubo un front-end donde ejecutarlo: cada
 título de sección se dibuja entrando desde la izquierda, detrás del
 skyline terracota. Una decisión de movimiento tomada en código, no en el
@@ -275,6 +280,20 @@ nunca puso a prueba.
   <img src="/work/urbiqo/urbiqo-card-es-truncated.png" alt="Una tarjeta de anuncio de Urbiqo en español con el título recortado con puntos suspensivos donde el título inglés, más corto, sí cabía" loading="lazy" />
   <figcaption>El español se alarga: el mismo componente de tarjeta, recortado donde el título inglés cabía.</figcaption>
 </figure>
+
+<p class="note">Uso de IA</p>
+
+## Uso de IA
+
+Dos usos, que no conviene confundir. La build: toda la plataforma
+desarrollada con IA bajo mi dirección, la IA escribía el código, yo daba
+el encargo, revisaba y devolvía hasta que cuadraba. El producto: el propio
+Urbiqo funciona con una IA que puede equivocarse, el OCR lee los
+documentos de verificación. Así que diseñé para el fallo, no para la demo:
+la revisión manual atrapa los casos límite, el risk scoring escala a una
+persona, y cada status pill dice la verdad sobre por qué está en rojo.
+Fiarse a ciegas de la IA es un error de diseño; diseñar para sus fallos es
+el oficio.
 
 ## Lo que aprendí
 
