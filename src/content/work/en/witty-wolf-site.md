@@ -84,7 +84,6 @@ That is also how the build itself ran: the whole site AI-developed, with
 me as the director. Every component briefed, reviewed and sent back until
 it behaved; every decision this case describes, the typewriter's mistake,
 the wolf's spook, the margin labels feeding the section index, mine.
-Hand-coded, here, means hands on the wheel, not hands on every key.
 
 <figure class="fig fig--paper">
   <img src="/work/witty-wolf-site/astro-home-light.png" alt="The new Astro home page in the light theme: typewriter hero with pixels struck through, the line-art wolf drawn in on warm paper" loading="lazy" />
@@ -135,7 +134,7 @@ finishes typing.
 Shipping for yourself means meeting your own critical self, and mine is the
 hardest client I have. No brief to hide behind, no one else to blame. A
 showcase also stops you going wild: the design has to step out of the way of
-the process, so restraint is the job, not the compromise.
+the process, so restraint is the job.
 
 The Framer site took nearly four months. Most of that was not building, it was
 deciding. What to show, what to cut, which images earned their place, where the
@@ -153,7 +152,7 @@ merciless when I have to criticise my own work. Then it gets polished.
 The code was AI-written from start to finish, with me directing every
 step; that story is above. What I keep by hand: the words. Every text on
 this site is mine, it is where most of the hours go, and I want it that
-way. I also raise my tools: the brand lives in a skill file that teaches
+way. The brand lives in a skill file that teaches
 the AI the house style once, tone, type, the wolf's rules, so no session
 starts from zero. The rebuild took days, not months, because the thinking
 was already done and the typing no longer costs anything.

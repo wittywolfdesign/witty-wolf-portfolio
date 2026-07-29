@@ -241,7 +241,7 @@ en el objetivo del clic.
 El pensamiento de verificación sobrevivió en código como la tarjeta de
 trust & safety de cada anuncio. Cada señal tiene su propio estado: un
 perfil puede mostrar el email verificado mientras el teléfono y la
-identidad siguen pendientes. Estados honestos, no una insignia binaria.
+identidad siguen pendientes.
 
 En el archivo de diseño los cuatro estados eran una leyenda: Active,
 Pending, Attention e Issue, una píldora por señal. En código, cada píldora

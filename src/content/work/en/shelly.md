@@ -85,7 +85,7 @@ Shelly, grows with you, even on slow days.
 
 <figure class="fig fig--small">
   <img src="/work/shelly/shelly-progress-path.png" alt="Progress screen with a visual path that grows with the user instead of red crosses for broken streaks" loading="lazy" />
-  <figcaption>A path that grows, never a streak that breaks.</figcaption>
+  <figcaption>A path that grows, with nothing to break.</figcaption>
 </figure>
 
 <p class="note">03 · Support</p>

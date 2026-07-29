@@ -85,8 +85,7 @@ Así corrió también la propia build: toda la web desarrollada con IA,
 conmigo de director. Cada componente con su encargo, revisado y devuelto
 hasta que se comportaba; cada decisión que describe este caso, la errata
 de la máquina de escribir, el susto del lobo, las etiquetas de margen que
-alimentan el índice, mía. Escrita a mano significa aquí manos en el
-volante, no manos en cada tecla.
+alimentan el índice, mía.
 
 <figure class="fig fig--paper">
   <img src="/work/witty-wolf-site/astro-home-light.png" alt="La nueva home en Astro con el tema claro: hero de máquina de escribir con la palabra tachada, el lobo de línea dibujado sobre papel cálido" loading="lazy" />
@@ -140,7 +139,7 @@ Publicar para ti mismo significa conocer a tu propio yo crítico, y el mío
 es el cliente más difícil que tengo. Sin briefing tras el que esconderse,
 sin nadie más a quien culpar. Un escaparate también te frena: el diseño
 tiene que apartarse del camino del trabajo, así que la contención es el
-encargo, no el compromiso.
+encargo.
 
 La web de Framer llevó casi cuatro meses. La mayor parte no fue construir,
 fue decidir. Qué enseñar, qué cortar, qué imágenes se ganaban el sitio,
@@ -159,7 +158,7 @@ implacable cuando me toca juzgar mi propio trabajo. Después, se pule.
 El código lo escribió la IA de principio a fin, conmigo dirigiendo cada
 paso; esa historia está arriba. Lo que sigo haciendo a mano: las palabras.
 Cada texto de esta web es mío, ahí se van la mayoría de las horas, y así
-lo quiero. También educo a mis herramientas: la marca vive en un archivo
+lo quiero. La marca vive en un archivo
 de skill que le enseña a la IA el estilo de la casa una sola vez, tono,
 tipografía, las reglas del lobo, para que ninguna sesión empiece de cero.
 La reconstrucción llevó días, no meses, porque el pensamiento ya estaba

@@ -86,7 +86,7 @@ mascotte, Shelly, groeit met je mee, ook op trage dagen.
 
 <figure class="fig fig--small">
   <img src="/work/shelly/shelly-progress-path.png" alt="Voortgangsscherm met een visueel pad dat met de gebruiker meegroeit, in plaats van rode kruisjes voor gebroken streaks" loading="lazy" />
-  <figcaption>Een pad dat groeit, nooit een streak die breekt.</figcaption>
+  <figcaption>Een pad dat groeit, met niets dat kan breken.</figcaption>
 </figure>
 
 <p class="note">03 · Steun</p>

@@ -90,8 +90,7 @@ Het verhaal gaat voorop: waarom EVVO ertoe doet vóór wat EVVO verkoopt.
 
 Acht technische SKU-codes werden categorieën op activiteit, zodat
 gebruikers zichzelf meteen indelen. Productkaarten volgen dezelfde logica:
-eerst beeld, dan één regel voordeel, dan pas spec. Scannen voor waarde,
-graven voor bewijs.
+eerst beeld, dan één regel voordeel, dan pas spec.
 
 <figure class="fig fig--paper fig--duo">
   <span class="fig__tile"><img src="/work/evvo/evvo-navigation.png" alt="Het nieuwe navigatiemenu: categorieën op activiteit in plaats van technische SKU-codes" loading="lazy" /></span>
@@ -116,8 +115,8 @@ uitrusting kopen.
 
 ## Productpagina's met een verhaal
 
-Michelin-techniek uitgelegd via verhaal en beeld, niet via een tabel.
-Gerecyclede materialen beargumenteerd als voordelen, niet als features.
+Michelin-techniek uitgelegd via verhaal en beeld in plaats van een
+tabel, gerecyclede materialen beargumenteerd als voordelen.
 
 <figure class="fig fig--paper fig--margin">
   <img src="/work/evvo/evvo-product-detail.png" alt="Volledige productdetailpagina met Michelin-techniek en biobased materialen" loading="lazy" />
@@ -144,5 +143,5 @@ De hypothese: open met het verhaal, onderbouw met specs. In usabilitytests
 begrepen mensen het product sneller en kozen ze met meer zekerheid.
 
 Conversie kan alleen een live winkel bewijzen. Het oordeel staat hoe dan
-ook: mensen kopen geen specificatieblad, ze kopen de reden dat het
-bestaat, en elk scherm opent nu met die reden.
+ook: een specificatieblad overtuigt niemand, en elk scherm opent nu met
+de reden dat het product bestaat.

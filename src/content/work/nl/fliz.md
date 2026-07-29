@@ -84,7 +84,7 @@ structuur, genoeg om de richting te bewijzen voor de high-fidelity-slag.
 
 De echte onderdelen doen het werk: een KPI-strip, een filterbare transactietabel,
 discount-prestaties, een installatiegids en een live platform-statusregel. Het hele
-account leesbaar, en bestuurbaar, vanaf één scherm.
+account leesbaar en bestuurbaar vanaf één scherm.
 
 <figure class="fig fig--bare fz-shot" data-fz-parallax>
   <span class="fz-browser">
@@ -239,8 +239,7 @@ CEO schrapten de verstuur- en ontvangstfuncties volledig uit de app.
 De grote structuur werkt alleen als de kleine signalen eerlijk zijn. Een offer
 bewaren stond met een paperclip, wat leest als *bijlage*, niet *bewaren*, dus werd
 het een hart. Dat maakte het urgentiesignaal vrij dat de paperclip vertroebelde,
-en de deal of the week kreeg een vlam om te zeggen *dit verloopt*. Twee kleine
-iconen, twee frustraties minder.
+en de deal of the week kreeg een vlam om te zeggen *dit verloopt*.
 
 <p class="note">Onder de motorkap</p>
 

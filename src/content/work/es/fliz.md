@@ -87,8 +87,8 @@ justo para probar la dirección antes del pase a alta fidelidad.
 
 Las áreas de verdad hacen el trabajo: una franja de KPIs, una tabla de transacciones
 filtrable, el rendimiento del descuento, una guía de instalación y una línea de
-estado de la plataforma en vivo. Toda la cuenta legible, y manejable, desde una sola
-pantalla.
+estado de la plataforma en vivo. Toda la cuenta legible y manejable desde una
+sola pantalla.
 
 <figure class="fig fig--bare fz-shot" data-fz-parallax>
   <span class="fz-browser">
@@ -243,8 +243,7 @@ enviar y recibir de la app.
 La gran estructura solo funciona si las señales pequeñas son honestas. Guardar una
 oferta se marcaba con un clip, que se lee como *adjuntar*, no *guardar*, así que pasó
 a ser un corazón. Eso liberó la señal de urgencia que el clip enturbiaba, y el deal
-of the week tomó una llama para decir *esto caduca*. Dos iconos pequeños, dos
-fricciones menos.
+of the week tomó una llama para decir *esto caduca*.
 
 <p class="note">Bajo el capó</p>
 

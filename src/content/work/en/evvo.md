@@ -89,7 +89,7 @@ The story goes first: why EVVO matters before what EVVO sells.
 
 Eight technical SKU codes became activity-based categories, so users
 self-segment instantly. Product cards follow the same logic: image first,
-benefit one-liner second, spec last. Skim for value, dig for proof.
+benefit one-liner second, spec last.
 
 <figure class="fig fig--paper fig--duo">
   <span class="fig__tile"><img src="/work/evvo/evvo-navigation.png" alt="The new navigation menu: activity-based categories replacing technical SKU codes" loading="lazy" /></span>
@@ -113,8 +113,8 @@ the fear our research kept surfacing: buying the wrong gear.
 
 ## Story-driven product pages
 
-Michelin technology explained through story and visuals, not a table.
-Recycled materials argued as benefits, not features.
+Michelin technology explained through story and visuals instead of a
+table, recycled materials argued as benefits.
 
 <figure class="fig fig--paper fig--margin">
   <img src="/work/evvo/evvo-product-detail.png" alt="Full product detail page presenting Michelin technology and bio-sourced materials" loading="lazy" />
@@ -139,6 +139,6 @@ A modular component library, atomic design and auto layout throughout.
 The hypothesis: lead with story, support with specs. In usability testing
 people understood the product faster and chose with more confidence.
 
-Conversion needs a live shop to prove it. The judgement stands either way:
-people don't buy a spec sheet, they buy the reason it exists, and every
-screen now leads with that reason.
+Conversion needs a live shop to prove it. The judgement stands either way: a
+spec sheet convinces nobody, and every screen now leads with the reason
+the product exists.

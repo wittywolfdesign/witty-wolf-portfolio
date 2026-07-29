@@ -230,8 +230,7 @@ description to three and the whole card became the click target.
 
 The verification thinking survived into code as the trust and safety card
 on every listing. Each signal has its own state: a profile can show email
-verified while phone and identity are still pending. Honest states, not
-one binary badge.
+verified while phone and identity are still pending.
 
 In the design file the four states were a legend: Active, Pending, Attention
 and Issue, one pill per signal. In code every pill needed a source of truth

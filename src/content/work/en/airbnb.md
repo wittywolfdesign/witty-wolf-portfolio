@@ -55,7 +55,7 @@ weakens the sense of control.
   <div><span>Shifting</span><span>back and cancel controls between screens</span></div>
 </div>
 
-> Inconsistency at this scale isn't sloppiness. It's what a decade of shipping fast looks like up close.
+> Inconsistency at this scale is what a decade of shipping fast looks like up close.
 
 <p class="note">Groundwork</p>
 
@@ -116,5 +116,5 @@ never meets: legacy, experiments, teams moving in parallel. That is exactly
 what made it worth studying. The rebuild showed full standardisation is
 possible: icons, buttons, radii and type under one system, controls that
 stay put, a modular structure that could expand quickly. What I took with
-me: consistency isn't a coat of polish applied at the end. It's a structure
-you commit to at the start, or pay to retrofit later.
+me: consistency is a structure you commit to at the
+start, or pay to retrofit later.

@@ -63,7 +63,7 @@ matching the checklist, and put the difference where it cannot be missed.
 
 A merchant should not log in to *look* at their account. They should log in to
 *run* it. The dashboard has one job, and it is not taking payments, the app does
-that. It is where a merchant sets their cashback rate, watches it perform, and
+that. It is where a merchant sets their cashback rate, watches it perform and
 keeps the shop connected. So we rebuilt the FLIZ Company
 Account around that one job: the cashback, its performance and its setup all one glance away. I owned
 much of the early work, the research, the structure and the MVP that proved the
@@ -77,14 +77,14 @@ structure, enough to prove the direction before the high-fidelity pass.
 <figure class="fig fig--bare fz-shot fz-shot--wire" data-fz-parallax>
   <span class="fz-browser">
     <span class="fz-browser__bar" aria-hidden="true"><i></i><i></i><i></i><b>dashboard · MVP</b></span>
-    <img src="/work/fliz/fliz-dashboard-wireframe.png" alt="The MVP for the FLIZpay dashboard overhaul: the dashboard structure — a KPI row, a transactions table and the discount areas — laid out before the high-fidelity pass" loading="lazy" />
+    <img src="/work/fliz/fliz-dashboard-wireframe.png" alt="The MVP for the FLIZpay dashboard overhaul: the dashboard structure: a KPI row, a transactions table and the discount areas, laid out before the high-fidelity pass" loading="lazy" />
   </span>
   <figcaption>The MVP for the overhaul: the dashboard structure, before the high-fidelity pass.</figcaption>
 </figure>
 
 The real areas do the work: a KPI strip, a filterable transactions table, discount
 performance, an installation guide, and a live platform-status line, the whole
-account readable, and runnable, from one screen.
+account readable and runnable from one screen.
 
 <figure class="fig fig--bare fz-shot" data-fz-parallax>
   <span class="fz-browser">
@@ -165,8 +165,8 @@ inside settings. I proposed pulling it out into its own space on the
 dashboard, and that is where it went. A
 merchant sets two rates, a **first-purchase** cashback to pull new customers in
 and a **standard** rate for everyone after, sees the effect in a live preview, and
-publishes. The thing the company is best at is now the thing the dashboard makes
-easiest to do.
+publishes. What the company is best at is now the easiest thing to do in the
+dashboard.
 
 <figure class="fig fig--bare fz-shot" data-fz-parallax>
   <span class="fz-browser">
@@ -237,8 +237,7 @@ app's send and receive functions entirely.
 The big structure only works if the small signals are honest. Saving an offer was
 marked with a paperclip, which reads as *attach*, not *keep*, so it became a
 heart. That freed up the urgency signal the paperclip had been muddying, and the
-deal of the week took a flame to say *this expires*. Two tiny marks, two frictions
-gone.
+deal of the week took a flame to say *this expires*.
 
 <p class="note">Under the hood</p>
 

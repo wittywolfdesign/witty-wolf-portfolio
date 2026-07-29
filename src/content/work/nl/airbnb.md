@@ -56,7 +56,7 @@ kost aandacht en verzwakt het gevoel van controle.
   <div><span>Zwervend</span><span>terug- en annuleerknoppen tussen schermen</span></div>
 </div>
 
-> Inconsistentie op deze schaal is geen slordigheid. Zo ziet tien jaar snel shippen er van dichtbij uit.
+> Inconsistentie op deze schaal is hoe tien jaar snel shippen er van dichtbij uitziet.
 
 <p class="note">Grondwerk</p>
 
@@ -117,6 +117,5 @@ Dit was een oefening, en Airbnb shipt onder beperkingen die een kloon van
 Precies dat maakte het de studie waard. De herbouw liet zien dat volledige
 standaardisatie kan: iconen, knoppen, radii en typografie onder één
 systeem, knoppen die blijven staan, een modulaire structuur die snel kan
-groeien. Wat ik meenam: consistentie is geen laklaag die er aan het eind
-overheen gaat. Het is een structuur waar je aan het begin voor kiest, of
+groeien. Wat ik meenam: consistentie is een structuur waar je aan het begin voor kiest, of
 waar je later voor betaalt om haar in te bouwen.

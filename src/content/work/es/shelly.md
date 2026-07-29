@@ -86,7 +86,7 @@ amable. La mascota, Shelly, crece contigo, también en los días lentos.
 
 <figure class="fig fig--small">
   <img src="/work/shelly/shelly-progress-path.png" alt="Pantalla de progreso con un camino visual que crece con la persona, en lugar de cruces rojas por rachas rotas" loading="lazy" />
-  <figcaption>Un camino que crece, nunca una racha que se rompe.</figcaption>
+  <figcaption>Un camino que crece, sin nada que romper.</figcaption>
 </figure>
 
 <p class="note">03 · Apoyo</p>

@@ -55,7 +55,7 @@ deriva visual cuesta atención y debilita la sensación de control.
   <div><span>Errantes</span><span>controles de volver y cancelar entre pantallas</span></div>
 </div>
 
-> La inconsistencia a esta escala no es descuido. Es el aspecto que tiene de cerca una década de publicar deprisa.
+> La inconsistencia a esta escala es el aspecto que tiene de cerca una década de publicar deprisa.
 
 <p class="note">Trabajo de base</p>
 
@@ -118,5 +118,4 @@ paralelo. Exactamente eso lo hacía digno de estudio. La reconstrucción
 demostró que la estandarización completa es posible: iconos, botones,
 radios y tipografía bajo un sistema, controles que se quedan en su sitio,
 una estructura modular que podría crecer rápido. Lo que me llevé: la
-consistencia no es una capa de barniz al final. Es una estructura con la
-que te comprometes al principio, o que pagas por reconstruir después.
+consistencia es una estructura con la que te comprometes al principio, o que pagas por reconstruir después.

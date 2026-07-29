@@ -238,7 +238,7 @@ de omschrijving op drie en de hele kaart werd het klikdoel.
 Het verificatiedenken overleefde in code als de trust & safety-kaart op
 elke advertentie. Elk signaal heeft zijn eigen status: een profiel kan
 e-mail geverifieerd tonen terwijl telefoon en identiteit nog in behandeling
-zijn. Eerlijke states, geen binaire badge.
+zijn.
 
 In het ontwerpbestand waren de vier states een legenda: Active, Pending,
 Attention en Issue, één pil per signaal. In code had elke pil een bron van

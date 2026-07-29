@@ -84,8 +84,7 @@ Zo liep de build zelf ook. De hele site met AI gedeveloped, met mij als
 regisseur. Elk component gebriefd, gecontroleerd en teruggestuurd tot het
 zich gedroeg. Elke beslissing in deze case, de typfout van de hero, de
 schrikreactie van de wolf, de kantlijnlabels die de sectie-index voeden,
-van mij. Handgecodeerd betekent hier: handen aan het stuur, niet op elke
-toets.
+van mij.
 
 <figure class="fig fig--paper">
   <img src="/work/witty-wolf-site/astro-home-light.png" alt="De nieuwe Astro-homepage in het lichte thema: typemachine-hero met doorgestreepte pixels, de lijntekening van de wolf op warm papier" loading="lazy" />
@@ -138,7 +137,7 @@ Voor jezelf shippen betekent je eigen kritische ik tegenkomen, en die van
 mij is de lastigste klant die ik heb. Geen briefing om je achter te
 verschuilen, niemand anders om de schuld te geven. Een showcase houdt je
 ook in toom: het ontwerp moet uit de weg van het werk stappen, dus
-terughoudendheid is de opdracht, niet het compromis.
+terughoudendheid is de opdracht.
 
 De Framer-site kostte bijna vier maanden. Het meeste daarvan was niet
 bouwen, maar beslissen. Wat te laten zien, wat te schrappen, welke beelden

@@ -90,7 +90,7 @@ La historia va primero: por qué EVVO importa antes de qué vende EVVO.
 Ocho códigos SKU técnicos se convirtieron en categorías por actividad,
 para que cada persona se ubique al instante. Las tarjetas de producto
 siguen la misma lógica: primero imagen, luego una línea de beneficio, la
-especificación al final. Escanear para el valor, excavar para la prueba.
+especificación al final.
 
 <figure class="fig fig--paper fig--duo">
   <span class="fig__tile"><img src="/work/evvo/evvo-navigation.png" alt="El nuevo menú de navegación: categorías por actividad en lugar de códigos SKU técnicos" loading="lazy" /></span>
@@ -115,9 +115,8 @@ equivocado.
 
 ## Páginas de producto con historia
 
-La tecnología Michelin explicada con historia y visuales, no con una
-tabla. Los materiales reciclados argumentados como beneficios, no como
-características.
+La tecnología Michelin explicada con historia y visuales en vez de una
+tabla, los materiales reciclados argumentados como beneficios.
 
 <figure class="fig fig--paper fig--margin">
   <img src="/work/evvo/evvo-product-detail.png" alt="Página completa de detalle de producto con la tecnología Michelin y los materiales de origen biológico" loading="lazy" />
@@ -144,5 +143,5 @@ pruebas de usabilidad la gente entendía el producto más rápido y elegía
 con más seguridad.
 
 La conversión solo puede demostrarla una tienda viva. El juicio se
-sostiene igualmente: nadie compra una ficha técnica, compra la razón por
-la que existe, y ahora cada pantalla abre con esa razón.
+sostiene igualmente: una ficha técnica no convence a nadie, y ahora cada
+pantalla abre con la razón por la que existe el producto.
