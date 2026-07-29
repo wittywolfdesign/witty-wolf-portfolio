@@ -1,7 +1,7 @@
 ---
-title: "Een commandocentrum voor cashback"
+title: "Verkoop het verschil"
 client: "FLIZpay"
-tagline: "Een commandocentrum voor cashback"
+tagline: "Verkoop het verschil, niet de checklist"
 summary: "Het merchant-dashboard en de betaalapp van FLIZpay opnieuw ontworpen, rond de cashback die ze onderscheidt."
 year: "2026"
 role: "Product Designer, UX/UI · 12 weken, met het design- en engineeringteam van FLIZ"
@@ -240,7 +240,10 @@ met AI ook het scherpst. Ruwweg **1.150 lagen** hernoemd naar sentence case en
 zo'n **50 localisation strings** gefixt in EN/DE, met een pass over de
 capitalisatie: AI deed het bulkwerk op een precieze opdracht en stelde
 taalvarianten voor, ik koos en controleerde het resultaat laag voor laag. Zo las
-het design system als één stem in plaats van vijf. Dezelfde verdeling gold voor
+het design system als één stem in plaats van vijf. En zodat dat zo bleef zonder
+mij, schreef ik er de handleidingen bij: hoe je met de variabelen werkt, hoe je
+met localisation omgaat. Documentatie die de volgende designer sneller maakt
+zonder iemand ernaast. Dezelfde verdeling gold voor
 het brandwerk. De identiteit had net een nieuwe richting gekregen onder de
 design lead. Ik werkte met haar om die overal door te voeren, iconografie
 meegerekend, vaak met Gemini als generator en mij als filter. Delegeer de

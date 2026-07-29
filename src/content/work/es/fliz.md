@@ -1,7 +1,7 @@
 ---
-title: "Un centro de mando para el cashback"
+title: "Vende la diferencia"
 client: "FLIZpay"
-tagline: "Un centro de mando para el cashback"
+tagline: "Vende la diferencia, no la checklist"
 summary: "Rediseñar el panel de comercios y la app de pago de FLIZpay en torno al cashback que los distingue."
 year: "2026"
 role: "Product Designer, UX/UI · 12 semanas, con el equipo de diseño e ingeniería de FLIZ"
@@ -242,7 +242,10 @@ tareas con la IA fue más nítido. Unas **1.150 capas** renombradas a sentence c
 y cerca de **50 localisation strings** arregladas en EN/DE, con una pasada por
 las mayúsculas: la IA hizo el grueso con un encargo preciso y propuso las
 variantes de idioma, yo elegía entre ellas y comprobaba el resultado capa a
-capa, para que el design system se leyera con una sola voz en vez de cinco. El
+capa, para que el design system se leyera con una sola voz en vez de cinco. Y
+para que siguiera así sin mí, escribí las guías que lo acompañan: cómo trabajar
+con las variables, cómo manejar la localisation. Documentación que hace más
+rápido al siguiente diseñador sin nadie en la sala. El
 mismo reparto llevó el trabajo de marca. La identidad acababa de tomar una nueva
 dirección bajo la design lead, y trabajé con ella para llevarla a todas partes,
 iconografía incluida, con Gemini generando y yo filtrando. Delegar la

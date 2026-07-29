@@ -1,7 +1,7 @@
 ---
-title: "A command centre for cashback"
+title: "Sell the difference"
 client: "FLIZpay"
-tagline: "A command centre for cashback"
+tagline: "Sell the difference, not the checklist"
 summary: "Redesigning FLIZpay's merchant dashboard and payment app around the cashback that sets them apart."
 year: "2026"
 role: "Product Designer, UX/UI · 12-week engagement, with the FLIZ design and engineering team"
@@ -239,7 +239,10 @@ labour with AI was sharpest. Roughly **1,150 layers** renamed to sentence case
 and around **50 localisation strings** fixed across EN/DE, with a pass over
 capitalisation throughout: AI did the bulk on a precise brief and proposed the
 language variants, I chose between them and checked the result layer by layer,
-so the design system read as one voice instead of five. The same split carried
+so the design system read as one voice instead of five. And so it would stay
+that way without me, I wrote the guides to go with it: how to work with the
+variables, how to handle localisation. Documentation that makes the next
+designer faster with nobody in the room. The same split carried
 the brand work. The identity had just taken a new direction under the design
 lead, and I worked with her to push it through everywhere, iconography included,
 Gemini generating, me curating. Delegate the repetition, keep the judgment. I
