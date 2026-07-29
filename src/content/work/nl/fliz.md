@@ -203,17 +203,27 @@ De app is het betaalsysteem van FLIZpay: het is hoe mensen echt betalen, direct
 vanaf hun bank. De cashback-offers liggen daar bovenop, en die laag zat verstopt.
 De catalogus, saved offers en filters zaten twee of drie taps diep, zonder ingang
 vanaf de homepage. De beste reden om de app te openen was zo het moeilijkst te
-bereiken. Ik bracht de hele flow in kaart en stelde een route voor: een nieuwe
-bottom nav (**Balance · Catalogue · QR · Send**), ingangen op de homepage die
-offers op het eerste scherm zetten (categorie-chips, een saved-offers-tegel, een
-deal-of-the-week-kaart), een cataloguhub, en een *keep browsing?*-flow na aankoop,
-zodat een afgeronde betaling ergens heen leidt in plaats van te eindigen. De
-richting werd onafhankelijk gevalideerd door de lead engineer.
+bereiken. De claim had bewijs nodig, dus bouwde ik de volledige userflow van de app
+in FigJam en maakte er een ticket van: de belangrijkste functie zat te diep
+verstopt. De CEO, de CTO en de design lead beaamden het alle drie. Het naar
+de voorgrond halen werd het werk: op het homescreen, en prominent in een
+menu.
+
+Mijn eerste voorstel was een hub-knop. Ik kilde mijn eigen concept voor een
+bottom nav (**Balance · Catalogue · QR · Send**), met de saaie functies,
+settings en profiel, achter een profielknop bovenin. Daaromheen: ingangen
+op de homepage die offers op het eerste scherm zetten (categorie-chips, een
+saved-offers-tegel, een deal-of-the-week-kaart), een cataloguhub, en een
+*keep browsing?*-flow na aankoop, zodat een afgeronde betaling ergens heen
+leidt in plaats van te eindigen. De richting werd onafhankelijk gevalideerd
+door de lead engineer, en groeide later door naar een iteratie met
+glass-effect. De scherpste snee was niet van mij: de productmanager en de
+CEO schrapten de verstuur- en ontvangstfuncties volledig uit de app.
 
 <div class="fz-gallery" data-fz-gallery>
   <div class="fz-gallery__track" data-fz-track>
-    <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-concept-a-bottom-nav.png" alt="Consumenten-app concept A: een homescreen met categorie-chips, een saved-offers-rij, een deal-of-the-week-kaart en een bottom nav" loading="lazy" /></span><figcaption>Concept A · ingangen op de homepage + bottom nav</figcaption></figure>
-    <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-concept-b-hub-button.png" alt="Consumenten-app concept B: een navigatiepatroon met een centrale hub-knop" loading="lazy" /></span><figcaption>Concept B · centrale hub-knop</figcaption></figure>
+    <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-concept-a-bottom-nav.png" alt="Consumenten-app concept A: een homescreen met categorie-chips, een saved-offers-rij, een deal-of-the-week-kaart en een bottom nav" loading="lazy" /></span><figcaption>Concept A · ingangen op de homepage + bottom nav, de richting die won</figcaption></figure>
+    <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-concept-b-hub-button.png" alt="Consumenten-app concept B: een navigatiepatroon met een centrale hub-knop" loading="lazy" /></span><figcaption>Concept B · de hub-knop, mijn eerste voorstel, zelf gekild</figcaption></figure>
     <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-concept-c-gift-card.png" alt="Consumenten-app concept C: een browse-patroon in de vorm van een gift-card-wereld" loading="lazy" /></span><figcaption>Concept C · gift-card-wereld</figcaption></figure>
     <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-app-homescreen.png" alt="Het homescreen van de consumenten-app met send funds en offers meteen zichtbaar" loading="lazy" /></span><figcaption>Homescreen · offers meteen zichtbaar</figcaption></figure>
     <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-deal-of-the-week.png" alt="De deal-of-the-week-kaart met een tijd-resterend-badge, gemarkeerd met een vlam voor urgentie" loading="lazy" /></span><figcaption>Deal of the week · tijd-resterend-badge</figcaption></figure>

@@ -206,17 +206,28 @@ La app es el sistema de pago de FLIZpay: es cómo paga la gente de verdad,
 directamente desde su banco. Las ofertas de cashback van encima, y esa capa estaba
 enterrada. El catálogo, las saved offers y los filtros estaban a dos o tres taps de
 distancia, sin entrada desde la homepage, así que la mejor razón para abrir la app
-era lo más difícil de alcanzar. Mapeé todo el flujo y propuse un camino: una nueva
-bottom nav (**Balance · Catalogue · QR · Send**), entradas en la homepage que ponen
-las ofertas en la primera pantalla (chips de categoría, un tile de saved offers, una
-tarjeta de deal of the week), un hub de catálogo, y un flujo *keep browsing?* tras
-la compra, para que un pago completado lleve a algún sitio en vez de terminar. La
-dirección la validó de forma independiente el lead engineer.
+era lo más difícil de alcanzar. La afirmación necesitaba prueba, así que construí el flujo completo de la
+app en FigJam y lo convertí en un ticket: la función más importante estaba
+demasiado enterrada para encontrarla. El CEO, el CTO y la design lead lo
+confirmaron los tres, y traerla al primer plano se convirtió en el trabajo:
+en el homescreen, y prominente en un menú.
+
+Mi primera propuesta fue un botón de hub. Maté mi propio concepto a favor
+de una bottom nav (**Balance · Catalogue · QR · Send**), con las funciones
+aburridas, ajustes y perfil, detrás de un botón de perfil arriba.
+Alrededor: entradas en la homepage que ponen las ofertas en la primera
+pantalla (chips de categoría, un tile de saved offers, una tarjeta de deal
+of the week), un hub de catálogo, y un flujo *keep browsing?* tras la
+compra, para que un pago completado lleve a algún sitio en vez de terminar.
+La dirección la validó de forma independiente el lead engineer, y más tarde
+evolucionó hacia una iteración con efecto glass. El corte más duro no fue
+mío: el product manager y el CEO eliminaron por completo las funciones de
+enviar y recibir de la app.
 
 <div class="fz-gallery" data-fz-gallery>
   <div class="fz-gallery__track" data-fz-track>
-    <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-concept-a-bottom-nav.png" alt="App de consumidor concepto A: un homescreen con chips de categoría, una fila de saved offers, una tarjeta de deal of the week y una bottom nav" loading="lazy" /></span><figcaption>Concept A · entradas en la homepage + bottom nav</figcaption></figure>
-    <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-concept-b-hub-button.png" alt="App de consumidor concepto B: un patrón de navegación con un botón de hub central" loading="lazy" /></span><figcaption>Concept B · botón de hub central</figcaption></figure>
+    <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-concept-a-bottom-nav.png" alt="App de consumidor concepto A: un homescreen con chips de categoría, una fila de saved offers, una tarjeta de deal of the week y una bottom nav" loading="lazy" /></span><figcaption>Concept A · entradas en la homepage + bottom nav, la dirección que ganó</figcaption></figure>
+    <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-concept-b-hub-button.png" alt="App de consumidor concepto B: un patrón de navegación con un botón de hub central" loading="lazy" /></span><figcaption>Concept B · el botón de hub, mi primera propuesta, la maté yo</figcaption></figure>
     <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-concept-c-gift-card.png" alt="App de consumidor concepto C: un patrón de navegación tipo mundo de gift cards" loading="lazy" /></span><figcaption>Concept C · mundo de gift cards</figcaption></figure>
     <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-app-homescreen.png" alt="El homescreen de la app de consumidor con send funds y las ofertas visibles al entrar" loading="lazy" /></span><figcaption>Homescreen · ofertas visibles al entrar</figcaption></figure>
     <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-deal-of-the-week.png" alt="La tarjeta de deal of the week con un badge de tiempo restante, marcado con una llama para dar urgencia" loading="lazy" /></span><figcaption>Deal of the week · badge de tiempo restante</figcaption></figure>

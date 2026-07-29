@@ -202,17 +202,26 @@ The app is FLIZpay's payment system: it is how people actually pay, straight fro
 their bank. The cashback offers ride on top of it, and that layer was buried. The
 catalogue, saved offers and filters all sat two or three taps deep, with no way in
 from the homepage, so the best reason to open the app was the hardest thing to
-reach. I mapped the full flow,
-then proposed a way through it: a new bottom nav (**Balance · Catalogue · QR ·
-Send**), homepage entry points that put offers on the first screen (category
-chips, a saved-offers tile, a deal-of-the-week card), a catalogue hub, and a
-post-purchase *keep browsing?* return flow so a completed payment leads somewhere
-instead of ending. The direction was independently validated by the lead engineer.
+reach. The claim needed proof, so I built the app's full user flow in FigJam and
+turned it into a ticket: the most important function sat too deep to find.
+The CEO, the CTO and the design lead all confirmed it, and bringing it to
+the foreground became the work: on the homescreen, and prominent in a menu.
+
+My first proposal was a hub button. I killed my own concept for a bottom
+nav (**Balance · Catalogue · QR · Send**), with the boring functions,
+settings and profile, tucked behind a profile button up top. Around it:
+homepage entry points that put offers on the first screen (category chips,
+a saved-offers tile, a deal-of-the-week card), a catalogue hub, and a
+post-purchase *keep browsing?* return flow so a completed payment leads
+somewhere instead of ending. The direction was independently validated by
+the lead engineer, and later evolved toward a glass-effect iteration. The
+sharpest cut was not mine: the product manager and the CEO scrapped the
+app's send and receive functions entirely.
 
 <div class="fz-gallery" data-fz-gallery>
   <div class="fz-gallery__track" data-fz-track>
-    <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-concept-a-bottom-nav.png" alt="Consumer app concept A: a homescreen with category chips, a saved-offers row, a deal-of-the-week card and a bottom navigation bar" loading="lazy" /></span><figcaption>Concept A · homepage entry points + bottom nav</figcaption></figure>
-    <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-concept-b-hub-button.png" alt="Consumer app concept B: a central hub button navigation pattern" loading="lazy" /></span><figcaption>Concept B · central hub button</figcaption></figure>
+    <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-concept-a-bottom-nav.png" alt="Consumer app concept A: a homescreen with category chips, a saved-offers row, a deal-of-the-week card and a bottom navigation bar" loading="lazy" /></span><figcaption>Concept A · homepage entry points + bottom nav, the direction that won</figcaption></figure>
+    <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-concept-b-hub-button.png" alt="Consumer app concept B: a central hub button navigation pattern" loading="lazy" /></span><figcaption>Concept B · the hub button, my first proposal, killed by me</figcaption></figure>
     <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-concept-c-gift-card.png" alt="Consumer app concept C: a gift-card-world browsing pattern" loading="lazy" /></span><figcaption>Concept C · gift-card world</figcaption></figure>
     <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-app-homescreen.png" alt="The consumer app homescreen with send-funds and offers surfaced on entry" loading="lazy" /></span><figcaption>Homescreen · offers surfaced on entry</figcaption></figure>
     <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-deal-of-the-week.png" alt="The deal-of-the-week card with a time-left badge marked by a flame for urgency" loading="lazy" /></span><figcaption>Deal of the week · time-left badge</figcaption></figure>
