@@ -257,8 +257,7 @@ met localisation omgaat. Documentatie die de volgende designer sneller maakt
 zonder iemand ernaast. Dezelfde verdeling gold voor
 het brandwerk. De identiteit had net een nieuwe richting gekregen onder de
 design lead. Ik werkte met haar om die overal door te voeren, iconografie
-meegerekend, vaak met Gemini als generator en mij als filter. Delegeer de
-herhaling, houd het oordeel. Ik deed hands-on QA op TestFlight en draaide Clarity-tests van begin tot
+meegerekend, vaak met Gemini als generator en mij als filter. Ik deed hands-on QA op TestFlight en draaide Clarity-tests van begin tot
 eind: de research, de interpretatie, de rapportage. En ik diende
 **vijf-plus post-release UX-taken ongevraagd** in, elk niet als bug maar als een
 retentie- of activatieprobleem dat het oplossen waard was.
@@ -267,14 +266,14 @@ retentie- of activatieprobleem dat het oplossen waard was.
 
 ## AI-gebruik
 
-AI vulde de
-concurrentiematrix, op parameters die ik vastlegde; ik controleerde elke
-conclusie in de apps van de concurrenten zelf. AI deed het bulkwerk van de
-1.150 hernoemde lagen en de localisation-fixes, op precieze opdrachten; ik
-koos uit de varianten en controleerde laag voor laag. Gemini genereerde
-iconografie voor de nieuwe merkrichting; de design lead en ik stuurden en
-cureerden. Niets van AI ging ongecontroleerd live. Delegeer de herhaling,
-houd het oordeel.
+AI liep door bijna elk deel van dit werk, van research tot QA. De
+duidelijkste voorbeelden: het vulde de concurrentiematrix op parameters
+die ik vastlegde, en ik controleerde elke conclusie in de apps van de
+concurrenten zelf. Het deed het bulkwerk van de 1.150 hernoemde lagen en
+de localisation-fixes, op precieze opdrachten, en ik koos uit de varianten
+en controleerde laag voor laag. Gemini genereerde iconografie voor de
+nieuwe merkrichting, en de design lead en ik stuurden en cureerden. Niets
+van AI ging ongecontroleerd live.
 
 <p class="note">Wat ik ervan leerde</p>
 

@@ -261,8 +261,7 @@ con las variables, cómo manejar la localisation. Documentación que hace más
 rápido al siguiente diseñador sin nadie en la sala. El
 mismo reparto llevó el trabajo de marca. La identidad acababa de tomar una nueva
 dirección bajo la design lead, y trabajé con ella para llevarla a todas partes,
-iconografía incluida, con Gemini generando y yo filtrando. Delegar la
-repetición, quedarse con el criterio. Hice QA a mano en TestFlight y llevé tests de Clarity de principio a fin:
+iconografía incluida, con Gemini generando y yo filtrando. Hice QA a mano en TestFlight y llevé tests de Clarity de principio a fin:
 la research, la interpretación, el informe. Y presenté
 **cinco y pico tareas de UX post-lanzamiento sin que me lo pidieran**, cada una
 planteada no como un bug sino como un problema de retención o activación que
@@ -272,14 +271,14 @@ valía la pena resolver.
 
 ## Uso de IA
 
-La IA rellenó
-la matriz competitiva con parámetros que fijé yo; verifiqué cada
-conclusión en las apps de los propios rivales. La IA hizo el grueso del
-renombrado de 1.150 capas y de los arreglos de localisation, con encargos
-precisos; yo elegía entre sus variantes y comprobaba capa a capa. Gemini
-generó iconografía para la nueva dirección de marca; la design lead y yo
-dirigimos y filtramos. Nada producido por la IA salió sin revisar. Delegar
-la repetición, quedarse con el criterio.
+La IA atravesó casi todas las partes de este trabajo, de la research al
+QA. Los ejemplos más claros: rellenó la matriz competitiva con parámetros
+que fijé yo, y verifiqué cada conclusión en las apps de los propios
+rivales. Hizo el grueso del renombrado de 1.150 capas y de los arreglos de
+localisation, con encargos precisos, y yo elegía entre sus variantes y
+comprobaba capa a capa. Gemini generó iconografía para la nueva dirección
+de marca, y la design lead y yo dirigimos y filtramos. Nada producido por
+la IA salió sin revisar.
 
 <p class="note">Lo que me enseñó</p>
 
