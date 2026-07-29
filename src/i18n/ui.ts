@@ -27,7 +27,7 @@ const en = {
     homeDesc:
       "Product designer for products that don't need a manual. Clear systems, calm interfaces, real outcomes. Based in Madrid.",
     workTitle: "Work · Witty Wolf Design",
-    workDesc: "Five case studies. Five real problems. No discover-define-deliver templates.",
+    workDesc: "Six case studies. Six real problems. No discover-define-deliver templates.",
     aboutTitle: "About · Marco Ramos · Witty Wolf Design",
     aboutDesc:
       "From selling vintage clothes in Amsterdam to product design in Madrid. 15 years of making sense of messy systems, now applied to digital products.",
@@ -76,9 +76,9 @@ const en = {
   },
   work: {
     heading: [
-      { text: "Five case studies." },
+      { text: "Six case studies." },
       { br: true },
-      { text: "Five real problems." },
+      { text: "Six real problems." },
     ] as Seg[],
     lead: "No discover–define–deliver templates. Just the problem, what I did about it and what changed.",
     allWork: "All work",
@@ -174,7 +174,7 @@ const nl: typeof en = {
     homeDesc:
       "Product designer voor producten die geen handleiding nodig hebben. Heldere systemen, kalme interfaces, echte uitkomsten. Vanuit Madrid.",
     workTitle: "Werk · Witty Wolf Design",
-    workDesc: "Vijf cases. Vijf echte problemen. Geen discover-define-deliver-sjablonen.",
+    workDesc: "Zes cases. Zes echte problemen. Geen discover-define-deliver-sjablonen.",
     aboutTitle: "Over · Marco Ramos · Witty Wolf Design",
     aboutDesc:
       "Van vintage kleding verkopen in Amsterdam naar product design in Madrid. Vijftien jaar orde scheppen in rommelige systemen, nu toegepast op digitale producten.",
@@ -223,9 +223,9 @@ const nl: typeof en = {
   },
   work: {
     heading: [
-      { text: "Vijf cases." },
+      { text: "Zes cases." },
       { br: true },
-      { text: "Vijf echte problemen." },
+      { text: "Zes echte problemen." },
     ] as Seg[],
     lead: "Geen discover–define–deliver-sjablonen. Gewoon het probleem, wat ik eraan deed en wat er veranderde.",
     allWork: "Al het werk",
@@ -319,7 +319,7 @@ const es: typeof en = {
     homeDesc:
       "Product designer para productos que no necesitan manual. Sistemas claros, interfaces que dan calma, resultados reales. Desde Madrid.",
     workTitle: "Trabajo · Witty Wolf Design",
-    workDesc: "Cinco casos. Cinco problemas reales. Nada de plantillas discover-define-deliver.",
+    workDesc: "Seis casos. Seis problemas reales. Nada de plantillas discover-define-deliver.",
     aboutTitle: "Sobre mí · Marco Ramos · Witty Wolf Design",
     aboutDesc:
       "De vender ropa vintage en Ámsterdam al diseño de producto en Madrid. Quince años poniendo orden en sistemas caóticos, ahora aplicados a productos digitales.",
@@ -368,9 +368,9 @@ const es: typeof en = {
   },
   work: {
     heading: [
-      { text: "Cinco casos." },
+      { text: "Seis casos." },
       { br: true },
-      { text: "Cinco problemas reales." },
+      { text: "Seis problemas reales." },
     ] as Seg[],
     lead: "Nada de plantillas discover–define–deliver. El problema, lo que hice y lo que cambió.",
     allWork: "Todo el trabajo",
