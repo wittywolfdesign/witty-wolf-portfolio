@@ -37,9 +37,12 @@ along the way I took on product strategy, the design system and QA.
 
 Every payment tool competes on the same checklist: invoicing, reporting,
 permissions, roles. Useful, expected, and never the reason anyone switches. I
-spent the early weeks pulling that field apart feature by feature, and the pattern
-was the same everywhere. The checklist was table stakes. It was never the
-battleground.
+spent the early weeks pulling that field apart feature by feature: first my own
+close look at the nearest rivals, then AI filling the comparison matrix against
+parameters I had fixed, which showed me the ones I had missed, then a last pass
+where I walked the competitors' apps and sites myself, because an unverified
+matrix is an opinion. The pattern was the same everywhere. The checklist was
+table stakes. It was never the battleground.
 
 > The one thing FLIZpay did that nobody else did was the thing the product talked
 > about least.
@@ -231,12 +234,18 @@ gone.
 
 ## Under the hood
 
-Under the visible work sat the unglamorous kind. I renamed roughly **1,150
-layers** to sentence case and fixed around **50 localisation strings** across
-EN/DE, with a pass over capitalisation throughout, so the design system read as
-one voice instead of five. I did hands-on QA on TestFlight, and filed **five-plus
-post-release UX tasks unprompted**, each framed not as a bug but as a retention or
-activation problem worth fixing.
+Under the visible work sat the unglamorous kind, and it is where my division of
+labour with AI was sharpest. Roughly **1,150 layers** renamed to sentence case
+and around **50 localisation strings** fixed across EN/DE, with a pass over
+capitalisation throughout: AI did the bulk on a precise brief and proposed the
+language variants, I chose between them and checked the result layer by layer,
+so the design system read as one voice instead of five. The same split carried
+the brand work. The identity had just taken a new direction under the design
+lead, and I worked with her to push it through everywhere, iconography included,
+Gemini generating, me curating. Delegate the repetition, keep the judgment. I
+did hands-on QA on TestFlight, and filed **five-plus post-release UX tasks
+unprompted**, each framed not as a bug but as a retention or activation problem
+worth fixing.
 
 <p class="note">What it taught me</p>
 

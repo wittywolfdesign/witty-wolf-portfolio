@@ -37,8 +37,12 @@ design system en QA op.
 
 Elk betaalproduct concurreert op dezelfde checklist: facturatie, rapportage,
 rechten, rollen. Nuttig, verwacht, en nooit de reden om over te stappen. In de
-eerste weken pluisde ik dat veld uit, feature voor feature. Overal hetzelfde
-patroon. De checklist was instapniveau. Nooit het slagveld.
+eerste weken pluisde ik dat veld uit, feature voor feature. Eerst zelf goed
+kijken naar de naaste concurrenten. Daarna vulde AI de vergelijkingsmatrix, op
+parameters die ik had vastgelegd, en zag ik welke ik zelf had gemist. Als
+laatste liep ik zelf de apps en sites van de concurrentie door. Geen blind
+vertrouwen. Overal hetzelfde patroon. De checklist was instapniveau. Nooit het
+slagveld.
 
 > Wat FLIZpay uniek maakte, was precies waar het product het minst over sprak.
 
@@ -231,12 +235,18 @@ iconen, twee frustraties minder.
 
 ## Onder de motorkap
 
-Onder het zichtbare werk zat het ongrappige soort. Ik hernoemde ruwweg **1.150
-lagen** naar sentence case en fixte zo'n **50 localisation strings** in EN/DE, met
-een pass over de capitalisatie, zodat het design system als één stem las in plaats
-van vijf. Ik deed hands-on QA op TestFlight, en diende **vijf-plus post-release
-UX-taken ongevraagd** in, elk niet als bug maar als een retentie- of
-activatieprobleem dat het oplossen waard was.
+Onder het zichtbare werk zat het ongrappige soort. Daar was mijn taakverdeling
+met AI ook het scherpst. Ruwweg **1.150 lagen** hernoemd naar sentence case en
+zo'n **50 localisation strings** gefixt in EN/DE, met een pass over de
+capitalisatie: AI deed het bulkwerk op een precieze opdracht en stelde
+taalvarianten voor, ik koos en controleerde het resultaat laag voor laag. Zo las
+het design system als één stem in plaats van vijf. Dezelfde verdeling gold voor
+het brandwerk. De identiteit had net een nieuwe richting gekregen onder de
+design lead. Ik werkte met haar om die overal door te voeren, iconografie
+meegerekend, vaak met Gemini als generator en mij als filter. Delegeer de
+herhaling, houd het oordeel. Ik deed hands-on QA op TestFlight, en diende
+**vijf-plus post-release UX-taken ongevraagd** in, elk niet als bug maar als een
+retentie- of activatieprobleem dat het oplossen waard was.
 
 <p class="note">Wat ik ervan leerde</p>
 

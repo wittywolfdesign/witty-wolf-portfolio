@@ -36,9 +36,14 @@ asumí la estrategia de producto, el design system y QA.
 ## El diferenciador que estaba escondido
 
 Toda herramienta de pago compite en la misma checklist: facturación, informes,
-permisos, roles. Útil, esperado, y nunca la razón por la que alguien cambia. En las
-primeras semanas desmenucé ese campo, feature a feature, y el patrón se repetía en
-todas partes. La checklist era lo mínimo. Nunca fue el campo de batalla.
+permisos, roles. Útil, esperado, y nunca la razón por la que alguien cambia. En
+las primeras semanas desmenucé ese campo, feature a feature: primero un vistazo
+de cerca a los rivales más próximos, por mi cuenta; después la IA rellenando la
+matriz de comparación según parámetros que yo había fijado, que me enseñó los
+que se me habían escapado; y al final un último repaso recorriendo yo mismo las
+apps y las webs de la competencia, porque una matriz sin verificar es una
+opinión. El patrón se repetía en todas partes. La checklist era lo mínimo. Nunca
+fue el campo de batalla.
 
 > Lo único que FLIZpay hacía que nadie más hacía era aquello de lo que el producto
 > menos hablaba.
@@ -232,12 +237,19 @@ fricciones menos.
 
 ## Bajo el capó
 
-Bajo el trabajo visible estaba el tipo poco lucido. Renombré unas **1.150 capas** a
-sentence case y arreglé cerca de **50 localisation strings** en EN/DE, con una pasada
-por las mayúsculas, para que el design system se leyera con una sola voz en vez de
-cinco. Hice QA a mano en TestFlight, y presenté **cinco y pico tareas de UX
-post-lanzamiento sin que me lo pidieran**, cada una planteada no como un bug sino
-como un problema de retención o activación que valía la pena resolver.
+Bajo el trabajo visible estaba el tipo poco lucido, y ahí es donde mi reparto de
+tareas con la IA fue más nítido. Unas **1.150 capas** renombradas a sentence case
+y cerca de **50 localisation strings** arregladas en EN/DE, con una pasada por
+las mayúsculas: la IA hizo el grueso con un encargo preciso y propuso las
+variantes de idioma, yo elegía entre ellas y comprobaba el resultado capa a
+capa, para que el design system se leyera con una sola voz en vez de cinco. El
+mismo reparto llevó el trabajo de marca. La identidad acababa de tomar una nueva
+dirección bajo la design lead, y trabajé con ella para llevarla a todas partes,
+iconografía incluida, con Gemini generando y yo filtrando. Delegar la
+repetición, quedarse con el criterio. Hice QA a mano en TestFlight, y presenté
+**cinco y pico tareas de UX post-lanzamiento sin que me lo pidieran**, cada una
+planteada no como un bug sino como un problema de retención o activación que
+valía la pena resolver.
 
 <p class="note">Lo que me enseñó</p>
 
