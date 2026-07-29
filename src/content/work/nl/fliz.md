@@ -227,6 +227,7 @@ CEO schrapten de verstuur- en ontvangstfuncties volledig uit de app.
     <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-concept-c-gift-card.png" alt="Consumenten-app concept C: een browse-patroon in de vorm van een gift-card-wereld" loading="lazy" /></span><figcaption>Concept C · gift-card-wereld</figcaption></figure>
     <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-app-homescreen.png" alt="Het homescreen van de consumenten-app met send funds en offers meteen zichtbaar" loading="lazy" /></span><figcaption>Homescreen · offers meteen zichtbaar</figcaption></figure>
     <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-deal-of-the-week.png" alt="De deal-of-the-week-kaart met een tijd-resterend-badge, gemarkeerd met een vlam voor urgentie" loading="lazy" /></span><figcaption>Deal of the week · tijd-resterend-badge</figcaption></figure>
+    <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-nav-glass.png" alt="De latere glass-effect-iteratie van het app-homescreen: transacties, prepaid deals en een zwevend glazen bottom-menu over de content" loading="lazy" /></span><figcaption>De glass-iteratie · waar de richting landde</figcaption></figure>
   </div>
   <p class="fz-gallery__hint" aria-hidden="true">Scroll →</p>
 </div>

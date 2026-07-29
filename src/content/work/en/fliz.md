@@ -225,6 +225,7 @@ app's send and receive functions entirely.
     <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-concept-c-gift-card.png" alt="Consumer app concept C: a gift-card-world browsing pattern" loading="lazy" /></span><figcaption>Concept C · gift-card world</figcaption></figure>
     <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-app-homescreen.png" alt="The consumer app homescreen with send-funds and offers surfaced on entry" loading="lazy" /></span><figcaption>Homescreen · offers surfaced on entry</figcaption></figure>
     <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-deal-of-the-week.png" alt="The deal-of-the-week card with a time-left badge marked by a flame for urgency" loading="lazy" /></span><figcaption>Deal of the week · time-left badge</figcaption></figure>
+    <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-nav-glass.png" alt="The later glass-effect iteration of the app homescreen: transactions, prepaid deals and a floating glass bottom menu over the content" loading="lazy" /></span><figcaption>The glass iteration · where the direction landed</figcaption></figure>
   </div>
   <p class="fz-gallery__hint" aria-hidden="true">Scroll →</p>
 </div>

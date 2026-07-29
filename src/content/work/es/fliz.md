@@ -231,6 +231,7 @@ enviar y recibir de la app.
     <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-concept-c-gift-card.png" alt="App de consumidor concepto C: un patrón de navegación tipo mundo de gift cards" loading="lazy" /></span><figcaption>Concept C · mundo de gift cards</figcaption></figure>
     <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-app-homescreen.png" alt="El homescreen de la app de consumidor con send funds y las ofertas visibles al entrar" loading="lazy" /></span><figcaption>Homescreen · ofertas visibles al entrar</figcaption></figure>
     <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-deal-of-the-week.png" alt="La tarjeta de deal of the week con un badge de tiempo restante, marcado con una llama para dar urgencia" loading="lazy" /></span><figcaption>Deal of the week · badge de tiempo restante</figcaption></figure>
+    <figure class="fz-slide"><span class="fz-phone"><img src="/work/fliz/fliz-nav-glass.png" alt="La iteración posterior con efecto glass del homescreen de la app: transacciones, prepaid deals y un menú inferior de cristal flotando sobre el contenido" loading="lazy" /></span><figcaption>La iteración glass · donde acabó la dirección</figcaption></figure>
   </div>
   <p class="fz-gallery__hint" aria-hidden="true">Scroll →</p>
 </div>
