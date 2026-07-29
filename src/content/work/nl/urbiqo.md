@@ -181,9 +181,7 @@ developer die het moest repareren, dus de iteratieslag draaide in minuten,
 niet in sprints. Het product op staging is het resultaat.
 
 De grootste kill was mijn eigen ontwerp: hosts kregen eerst een aparte
-verificatieflow. Ik voegde hem samen met de listingflow, één pagina. Een
-plek online zetten moet simpel zijn, en een tweede flow was structuur die
-zichzelf verdedigde tegen de gebruiker.
+verificatieflow. Ik voegde hem samen met de listingflow, één pagina. Een plek online zetten moet simpel zijn.
 
 Eén detail verscheen pas toen er een front-end was om het op te draaien:
 elke sectiekop tekent zichzelf van links in, achter de terracotta skyline.
@@ -285,11 +283,10 @@ kappen die het Engels nooit onder druk zette.
 Twee soorten, niet te verwarren. De build: het hele platform met AI
 gedeveloped onder mijn regie. AI schreef de code, ik briefde, controleerde
 en stuurde terug tot het klopte. Het product: Urbiqo draait zelf op AI die
-het fout kan hebben. OCR leest de verificatiedocumenten. Dus ontwierp ik
-voor de misser, niet voor de demo: manual review vangt de randgevallen,
+het fout kan hebben. OCR leest de verificatiedocumenten. Dus ontwierp ik voor de
+momenten dat die het fout heeft: manual review vangt de randgevallen,
 risk scoring schaalt op naar een mens, en elke status-pill vertelt eerlijk
-waarom hij rood is. Blind vertrouwen op AI is een ontwerpfout. Ontwerpen
-voor de fouten is het vak.
+waarom hij rood is.
 
 ## Wat ik ervan leerde
 

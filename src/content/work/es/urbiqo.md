@@ -183,8 +183,7 @@ resultado.
 
 Lo más grande que maté fue un diseño propio: los hosts tenían un flujo de
 verificación aparte. Lo fusioné con el flujo de publicación, una sola
-página. Poner un sitio online tiene que ser simple, y un segundo flujo era
-estructura defendiéndose del usuario.
+página. Poner un sitio online tiene que ser simple.
 
 Un detalle solo apareció cuando hubo un front-end donde ejecutarlo: cada
 título de sección se dibuja entrando desde la izquierda, detrás del
@@ -289,11 +288,9 @@ Dos usos, que no conviene confundir. La build: toda la plataforma
 desarrollada con IA bajo mi dirección, la IA escribía el código, yo daba
 el encargo, revisaba y devolvía hasta que cuadraba. El producto: el propio
 Urbiqo funciona con una IA que puede equivocarse, el OCR lee los
-documentos de verificación. Así que diseñé para el fallo, no para la demo:
+documentos de verificación. Así que diseñé para cuando se equivoca:
 la revisión manual atrapa los casos límite, el risk scoring escala a una
 persona, y cada status pill dice la verdad sobre por qué está en rojo.
-Fiarse a ciegas de la IA es un error de diseño; diseñar para sus fallos es
-el oficio.
 
 ## Lo que aprendí
 

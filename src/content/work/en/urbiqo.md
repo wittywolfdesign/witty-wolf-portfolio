@@ -176,8 +176,7 @@ the result.
 
 The biggest kill was my own design: hosts originally got a separate
 verification flow. I folded it into the listing flow, one page, because
-putting a place online has to be simple, and a second flow was structure
-defending itself against the user.
+putting a place online has to be simple.
 
 One detail only appeared once there was a front end to run it: every section
 heading draws itself in from the left, behind the terracotta skyline. A motion
@@ -276,10 +275,9 @@ Two kinds, and they should not be confused. The build: the entire
 platform was AI-developed under my direction, AI wrote the code, I
 briefed, reviewed and sent back until it matched the design. The product:
 Urbiqo itself runs on AI that can be wrong, OCR reads the verification
-documents. So I designed for the miss, not the demo: manual review
+documents. So I designed for the times it gets it wrong: manual review
 catches the edge cases, risk scoring escalates to a human, and every
-status pill tells the truth about why it is red. Trusting AI blindly is a
-design flaw; designing for its failures is the job.
+status pill tells the truth about why it is red.
 
 ## What I learned
 

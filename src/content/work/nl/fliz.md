@@ -267,7 +267,7 @@ retentie- of activatieprobleem dat het oplossen waard was.
 
 ## AI-gebruik
 
-Voor wie de balans wil zien, de verdeling op één plek. AI vulde de
+AI vulde de
 concurrentiematrix, op parameters die ik vastlegde; ik controleerde elke
 conclusie in de apps van de concurrenten zelf. AI deed het bulkwerk van de
 1.150 hernoemde lagen en de localisation-fixes, op precieze opdrachten; ik
@@ -280,8 +280,8 @@ houd het oordeel.
 
 ## Wat ik ervan leerde
 
-- **Verkoop het verschil, niet de checklist.** Feature-pariteit is de toegangsprijs,
-  nooit de reden om over te stappen. De ontwerptaak was om de echte onderscheidende
+- **Verkoop het verschil, niet de checklist.** Niemand stapt over omdat je dezelfde
+  features hebt als de rest. De ontwerptaak was om de echte onderscheidende
   factor van de voetnoten naar de kop te halen.
 - **Voor een publiek dat al binnen is, laat waarde zien, herhaal de pitch niet.** Een
   merchant die zich heeft aangemeld, hoef je niet opnieuw te overtuigen. Hij wil de

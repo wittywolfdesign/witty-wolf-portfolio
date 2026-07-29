@@ -264,8 +264,7 @@ worth fixing.
 
 ## Use of AI
 
-For the reader keeping score, the split in one place. AI filled the
-competitive matrix on parameters I fixed; I verified every conclusion in
+AI filled the competitive matrix on parameters I fixed; I verified every conclusion in
 the rivals' own apps. AI did the bulk of the 1,150-layer rename and the
 localisation fixes on precise briefs; I chose between its variants and
 checked the result layer by layer. Gemini generated iconography for the
@@ -277,8 +276,8 @@ judgment.
 
 ## What it taught me
 
-- **Sell the difference, not the checklist.** Feature parity is the price of
-  entry, never the reason to switch. The design job was to move the one true
+- **Sell the difference, not the checklist.** Nobody switches because you have
+  the same features as everyone else. The design job was to move the one true
   differentiator from the footnotes to the headline.
 - **For an already-onboarded audience, show value, don't repeat the pitch.** A
   merchant who has signed up does not need convincing again; they need the payoff

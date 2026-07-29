@@ -272,7 +272,7 @@ valía la pena resolver.
 
 ## Uso de IA
 
-Para quien quiera el balance, el reparto en un solo sitio. La IA rellenó
+La IA rellenó
 la matriz competitiva con parámetros que fijé yo; verifiqué cada
 conclusión en las apps de los propios rivales. La IA hizo el grueso del
 renombrado de 1.150 capas y de los arreglos de localisation, con encargos
@@ -285,8 +285,8 @@ la repetición, quedarse con el criterio.
 
 ## Lo que me enseñó
 
-- **Vende la diferencia, no la checklist.** La paridad de features es el precio de
-  entrada, nunca la razón para cambiar. El trabajo de diseño era mover el verdadero
+- **Vende la diferencia, no la checklist.** Nadie se cambia porque tengas las
+  mismas features que los demás. El trabajo de diseño era mover el verdadero
   diferenciador de las notas al pie al titular.
 - **Para un público que ya está dentro, muestra valor, no repitas el pitch.** A un
   comercio que ya se ha registrado no hay que convencerlo otra vez; necesita que la
