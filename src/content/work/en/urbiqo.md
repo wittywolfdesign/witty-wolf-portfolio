@@ -162,7 +162,9 @@ as its own reference.
 ## Designing it was the easy part
 
 The design was defined, the system documented, the flows mapped. Then I
-built it, on Next.js. Building your own design is the most honest usability
+built it, on Next.js, the entire build AI-developed with me directing: AI
+wrote the code, I briefed it, reviewed it and sent it back until it matched
+the design. Building your own design is the most honest usability
 test it will ever get. Every screen I signed off as a designer had to earn
 its way through real components, real data and real states.
 
@@ -263,7 +265,8 @@ And Spanish runs long enough to truncate cards the English never stressed.
 
 ## What I learned
 
-Designed end to end, then built end to end, by one person, on Next.js.
+Designed end to end, then built end to end, by one person directing AI, on
+Next.js.
 That is the outcome: a two-sided platform running on staging in two
 languages, from search to application. No user metrics yet, the launch is
 still ahead, so what follows is what shipping it taught, not what the

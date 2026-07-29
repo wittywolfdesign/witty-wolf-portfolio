@@ -167,7 +167,9 @@ eigen referentie.
 ## Ontwerpen was het makkelijke deel
 
 Het ontwerp stond, het systeem was gedocumenteerd, de flows in kaart. Toen
-bouwde ik het, op Next.js. Je eigen ontwerp bouwen is de eerlijkste
+bouwde ik het, op Next.js. De hele build met AI gedeveloped, met mij aan het
+stuur: AI schreef de code, ik briefde, controleerde en stuurde terug tot het
+klopte met het ontwerp. Je eigen ontwerp bouwen is de eerlijkste
 usabilitytest die het ooit zal krijgen. Elk scherm dat ik als ontwerper had
 afgetekend, moest zich bewijzen in echte componenten, echte data en echte
 states.
@@ -273,8 +275,8 @@ kappen die het Engels nooit onder druk zette.
 
 ## Wat ik ervan leerde
 
-End-to-end ontworpen en daarna end-to-end gebouwd, door één persoon, op
-Next.js. Dat is de uitkomst: een tweezijdig platform dat in twee talen op
+End-to-end ontworpen en daarna end-to-end gebouwd, door één persoon die AI
+aanstuurde, op Next.js. Dat is de uitkomst: een tweezijdig platform dat in twee talen op
 staging draait, van zoeken tot aanvraag. Nog geen gebruikersdata, de launch
 komt nog, dus wat volgt is wat het bouwen me leerde, niet wat de markt zei.
 

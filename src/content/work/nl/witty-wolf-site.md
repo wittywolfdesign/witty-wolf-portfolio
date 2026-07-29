@@ -5,7 +5,7 @@
 title: "Je template moet dood"
 client: "Witty Wolf"
 tagline: "De site die je nu leest is de case study"
-summary: "Het portfolio zelf: een Framer-template met pensioen gestuurd voor een handgecodeerde Astro-site. Dezelfde ziel in de copy, een nieuw vat, elke regel van mij."
+summary: "Het portfolio zelf: een Framer-template met pensioen gestuurd voor een Astro-site, met AI gebouwd, door mij aangestuurd. Dezelfde ziel in de copy, een nieuw vat, elke keuze van mij."
 year: "2026"
 role: "Product designer & developer"
 discipline: ["Art direction", "Front-end", "Design system"]
@@ -15,12 +15,12 @@ ink: "#1A1714"
 order: 1
 featured: true
 status: "published"
-context: "Het portfolio waar je nu naar kijkt, herbouwd van een Framer-template naar een handgecodeerde Astro-site."
+context: "Het portfolio waar je nu naar kijkt, herbouwd van een Framer-template naar een Astro-site, met AI gebouwd onder mijn regie."
 problem: "Een template kan je werk huisvesten. Voor je spreken kan het niet."
-outcome: "Een statische, handgecodeerde Astro-site in de field-notes-richting; elk detail uit deze case staat live op de pagina die je nu leest."
+outcome: "Een statische Astro-site in de field-notes-richting, met AI gedeveloped onder mijn regie; elk detail uit deze case staat live op de pagina die je nu leest."
 metrics:
   - value: "Statisch"
-    label: "Astro, met de hand gecodeerd, template met pensioen"
+    label: "Astro, met AI gebouwd, template met pensioen"
   - value: "2"
     label: "Lettertypen, beide self-hosted"
   - value: "1"
@@ -71,14 +71,21 @@ dan een layout die iemand anders al duizend keer had verkocht.
 
 ## Dezelfde ziel, een nieuw vat
 
-De beslissing: de template met pensioen en een statische Astro-site met de
-hand coderen. De stem van de copy behouden, alles waar die op stond
-vervangen. De art direction werd field notes: warm papier, inkt, een vaag
+De beslissing: de template met pensioen en een statische Astro-site
+bouwen. AI schreef de code, ik stuurde. De stem van de copy behouden, alles
+waar die op stond vervangen. De art direction werd field notes: warm papier, inkt, een vaag
 hulpraster, dun lijnwerk en één amberkleurig accent, zuinig uitgegeven.
 Twee lettertypen, beide self-hosted: Geist Mono als de stem voor koppen,
 navigatie, labels en cijfers, Work Sans alleen voor lange leesteksten. Het
 oude afgeronde displaylettertype ging overal met pensioen, ook in het merk
 zelf.
+
+Zo liep de build zelf ook. De hele site met AI gedeveloped, met mij als
+regisseur. Elk component gebriefd, gecontroleerd en teruggestuurd tot het
+zich gedroeg. Elke beslissing in deze case, de typfout van de hero, de
+schrikreactie van de wolf, de kantlijnlabels die de sectie-index voeden,
+van mij. Handgecodeerd betekent hier: handen aan het stuur, niet op elke
+toets.
 
 <figure class="fig fig--paper">
   <img src="/work/witty-wolf-site/astro-home-light.png" alt="De nieuwe Astro-homepage in het lichte thema: typemachine-hero met doorgestreepte pixels, de lijntekening van de wolf op warm papier" loading="lazy" />

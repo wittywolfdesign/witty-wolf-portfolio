@@ -167,8 +167,10 @@ guardado como su propia referencia.
 ## Diseñarlo era la parte fácil
 
 El diseño estaba definido, el sistema documentado, los flujos mapeados.
-Entonces lo construí, en Next.js. Construir tu propio diseño es la prueba
-de usabilidad más honesta que va a tener jamás. Cada pantalla que yo había
+Entonces lo construí, en Next.js, con toda la build desarrollada con IA y
+yo dirigiendo: la IA escribía el código, yo daba el encargo, revisaba y
+devolvía hasta que cuadraba con el diseño. Construir tu propio diseño es la
+prueba de usabilidad más honesta que va a tener jamás. Cada pantalla que yo había
 firmado como diseñador tuvo que ganarse el sitio pasando por componentes
 reales, datos reales y estados reales.
 
@@ -277,7 +279,7 @@ nunca puso a prueba.
 ## Lo que aprendí
 
 Diseñado de punta a punta y luego construido de punta a punta, por una
-persona, en Next.js. Ese es el resultado: una plataforma de dos lados
+persona dirigiendo a la IA, en Next.js. Ese es el resultado: una plataforma de dos lados
 corriendo en staging en dos idiomas, de la búsqueda a la solicitud. Sin
 métricas de usuarios todavía, el lanzamiento aún no ha llegado, así que lo
 que sigue es lo que me enseñó construirlo, no lo que dijo el mercado.

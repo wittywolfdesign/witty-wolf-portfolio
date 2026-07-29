@@ -5,7 +5,7 @@
 title: "Mata tu plantilla"
 client: "Witty Wolf"
 tagline: "La web que estás leyendo es el caso de estudio"
-summary: "El propio portfolio: una plantilla de Framer jubilada a favor de una web Astro escrita a mano. La misma alma en los textos, un envase nuevo, cada línea mía."
+summary: "El propio portfolio: una plantilla de Framer jubilada a favor de una web Astro construida con IA, dirigida por mí. La misma alma en los textos, un envase nuevo, cada decisión mía."
 year: "2026"
 role: "Product designer & developer"
 discipline: ["Art direction", "Front-end", "Design system"]
@@ -15,12 +15,12 @@ ink: "#1A1714"
 order: 1
 featured: true
 status: "published"
-context: "El portfolio que estás mirando, reconstruido de una plantilla de Framer a una web Astro escrita a mano."
+context: "El portfolio que estás mirando, reconstruido de una plantilla de Framer a una web Astro construida con IA bajo mi dirección."
 problem: "Una plantilla puede alojar tu trabajo. Hablar por ti, no puede."
-outcome: "Una web Astro estática y escrita a mano en la dirección field-notes; cada detalle de este caso está vivo en la página que estás leyendo."
+outcome: "Una web Astro estática en la dirección field-notes, desarrollada con IA conmigo al mando; cada detalle de este caso está vivo en la página que estás leyendo."
 metrics:
   - value: "Estática"
-    label: "Astro, escrita a mano, plantilla jubilada"
+    label: "Astro, construida con IA, plantilla jubilada"
   - value: "2"
     label: "Tipografías, ambas self-hosted"
   - value: "1"
@@ -72,14 +72,21 @@ vendido mil veces.
 
 ## La misma alma, un envase nuevo
 
-La decisión: jubilar la plantilla y escribir a mano una web Astro
-estática. Conservar la voz de los textos, sustituir todo lo que la
-sostenía. La dirección de arte se volvió field notes: papel cálido, tinta,
+La decisión: jubilar la plantilla y construir una web Astro estática, la
+IA escribiendo el código, yo dirigiendo. Conservar la voz de los textos,
+sustituir todo lo que la sostenía. La dirección de arte se volvió field notes: papel cálido, tinta,
 una cuadrícula tenue, línea fina y un solo acento ámbar, gastado con
 cuidado. Dos tipografías, ambas self-hosted: Geist Mono como voz para
 títulos, navegación, etiquetas y números, Work Sans solo para lectura
 larga. La antigua display redondeada se jubiló en todas partes, también en
 la propia marca.
+
+Así corrió también la propia build: toda la web desarrollada con IA,
+conmigo de director. Cada componente con su encargo, revisado y devuelto
+hasta que se comportaba; cada decisión que describe este caso, la errata
+de la máquina de escribir, el susto del lobo, las etiquetas de margen que
+alimentan el índice, mía. Escrita a mano significa aquí manos en el
+volante, no manos en cada tecla.
 
 <figure class="fig fig--paper">
   <img src="/work/witty-wolf-site/astro-home-light.png" alt="La nueva home en Astro con el tema claro: hero de máquina de escribir con la palabra tachada, el lobo de línea dibujado sobre papel cálido" loading="lazy" />

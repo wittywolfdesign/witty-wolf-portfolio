@@ -4,7 +4,7 @@
 title: "Kill your template"
 client: "Witty Wolf"
 tagline: "The site you are reading is the case study"
-summary: "The portfolio itself: a Framer template retired in favour of a hand-coded Astro site. Same copy soul, new vessel, every line mine."
+summary: "The portfolio itself: a Framer template retired in favour of an Astro site built with AI, directed by me. Same copy soul, new vessel, every call mine."
 year: "2026"
 role: "Product designer & developer"
 discipline: ["Art direction", "Front-end", "Design system"]
@@ -16,12 +16,12 @@ ink: "#1A1714"
 order: 1
 featured: true
 status: "published"
-context: "The portfolio you are looking at, rebuilt from a Framer template into a hand-coded Astro site."
+context: "The portfolio you are looking at, rebuilt from a Framer template into an Astro site built with AI under my direction."
 problem: "A template can host your work. It cannot speak for you."
-outcome: "A static, hand-coded Astro site in the field-notes direction; every detail this case describes is live on the page you are reading."
+outcome: "A static Astro site in the field-notes direction, AI-developed with me directing; every detail this case describes is live on the page you are reading."
 metrics:
   - value: "Static"
-    label: "Astro, hand-coded, template retired"
+    label: "Astro, built with AI, template retired"
   - value: "2"
     label: "Typefaces, both self-hosted"
   - value: "1"
@@ -71,13 +71,20 @@ a layout someone else had already sold a thousand times.
 
 ## Same soul, new vessel
 
-The decision: retire the template and hand-code a static Astro site. Keep
-the copy's voice, replace everything it stood on. The art direction became
+The decision: retire the template and build a static Astro site, AI
+writing the code, me directing it. Keep the copy's voice, replace
+everything it stood on. The art direction became
 field notes: warm paper, ink, a faint guide grid, thin line work and one
 amber accent, spent carefully. Two typefaces, both self-hosted: Geist Mono
 as the voice for headings, navigation, labels and numbers, Work Sans for
 long-form reading only. The old rounded display face was retired
 everywhere, including the brand itself.
+
+That is also how the build itself ran: the whole site AI-developed, with
+me as the director. Every component briefed, reviewed and sent back until
+it behaved; every decision this case describes, the typewriter's mistake,
+the wolf's spook, the margin labels feeding the section index, mine.
+Hand-coded, here, means hands on the wheel, not hands on every key.
 
 <figure class="fig fig--paper">
   <img src="/work/witty-wolf-site/astro-home-light.png" alt="The new Astro home page in the light theme: typewriter hero with pixels struck through, the line-art wolf drawn in on warm paper" loading="lazy" />
