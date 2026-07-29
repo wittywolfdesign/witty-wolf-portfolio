@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="FLIZpay">
+  <rect width="480" height="360" fill="#80ed99"/>
+  <circle cx="240" cy="180" r="118" fill="#001f3f"/>
+  <g transform="translate(163 132) scale(0.6)" fill="#80ed99">
+    <path d="M10 10 H80 V32 H32 V52 H66 V72 H32 V110 H10 Z"/>
+    <path d="M96 10 H186 V32 L129 88 H186 V110 H96 V88 L153 32 H96 Z"/>
+  </g>
+</svg>

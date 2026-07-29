@@ -22,6 +22,12 @@ const prefix = locale === "en" ? "" : `/${locale}`;
 /* content lives under <locale>/<slug>; the public slug drops the prefix */
 const cleanSlug = entry.slug.split("/").pop();
 const nextSlug = next.slug.split("/").pop();
+/* FLIZ is the one case that opts into the Emote-style scroll layer (Lenis +
+   GSAP): a pinned KPI moment, scrubbed horizontal gallery, heading wipes and
+   framed parallax. The hero itself is the shared case hero (typewriter title +
+   lead summary), like every other case. Everything is gated on this flag / the
+   [data-fliz] hook, so every other case is untouched. */
+const isFliz = cleanSlug === "fliz";
 
 /* Section index, single source of truth: the `<p class="note">` labels already
    written into the case markdown, in document order. Parsed from the raw body
@@ -85,8 +91,9 @@ const line2 =
        Urbiqo's skyline stays terracotta, EVVO's mark stays its own blue, etc.
        d.accent also still drives the page-transition wash via data-accent. -->
   <article
-    class="case"
+    class:list={["case", { "case--fliz": isFliz }]}
     style={`--brand-accent:${d.accent}`}
+    data-fliz={isFliz ? "" : undefined}
     data-ui-lookcloser={T.caseUi.lookCloser}
     data-ui-close={T.caseUi.close}
   >
@@ -859,6 +866,275 @@ const line2 =
   .nextcard:hover .nextcard__client { background-size: 100% 1px; }
   .nextcard .arrow { display: inline-block; transition: transform 0.4s var(--ease); }
   .nextcard:hover .arrow { transform: translateX(8px); }
+
+  /* ============================================================
+     FLIZ case: the Emote-style scroll layer. All of this is scoped to the
+     one case (.case--fliz / [data-fliz]) so no other page is affected.
+     --brand-accent is the FLIZ green (#80ed99, from frontmatter, swappable);
+     --fz-navy is the FLIZ "Skyline at Dusk" navy. Both exposed as variables.
+     ============================================================ */
+  .case--fliz {
+    --fz-navy: #001f3f;
+    /* neutral device/browser frame that reads in both themes */
+    --fz-frame: #e7e4dc;
+    --fz-frame-line: rgba(26, 23, 20, 0.14);
+    --fz-bezel: #14110d;
+  }
+  :global([data-theme="dark"]) .case--fliz {
+    --fz-frame: #2b2721;
+    --fz-frame-line: rgba(244, 242, 236, 0.16);
+    --fz-bezel: #0c0a07;
+  }
+
+  /* FLIZ uses the shared case hero (typewriter title + lead summary), matching
+     every other case study — no bespoke hero here. */
+
+  /* ---------- shared: framed screenshots in .prose ---------- */
+  /* neutralise the field-notes tilt/mat for framed FLIZ shots */
+  .prose :global(.fz-shot) {
+    width: 100%;
+    max-width: min(880px, 100%);
+    transform: none !important;
+    margin: clamp(2rem, 5vw, 3.25rem) 0;
+  }
+  .prose :global(.fz-browser) {
+    display: block;
+    border: 1px solid var(--fz-frame-line);
+    border-radius: 12px;
+    background: var(--fz-frame);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+  }
+  .prose :global(.fz-browser__bar) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.6rem 0.85rem;
+    background: color-mix(in srgb, var(--fz-frame) 88%, #000 12%);
+    border-bottom: 1px solid var(--fz-frame-line);
+  }
+  .prose :global(.fz-browser__bar i) {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: color-mix(in srgb, var(--fz-frame-line) 60%, var(--ink) 40%);
+  }
+  .prose :global(.fz-browser__bar b) {
+    margin-left: 0.6rem;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.68rem;
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .prose :global(.fz-browser img) {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    max-height: none;
+  }
+  /* tall shots (dashboard, installation guide): ONLY when GSAP is running, cap
+     the frame and let the tall screenshot scroll inside it (GSAP drives the
+     inner y). Without JS / reduced motion the frame is uncapped and the whole
+     screenshot shows in normal flow. */
+  .case--fliz.fz-motion .prose :global(.fz-shot--tall .fz-browser) {
+    height: clamp(360px, 76vh, 760px);
+  }
+
+  /* ---------- 01 value cards (marketing) ---------- */
+  .prose :global(.fz-cards) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(0.75rem, 2vw, 1.25rem);
+    margin: clamp(2rem, 5vw, 3rem) 0;
+    max-width: 52ch;
+  }
+  .prose :global(.fz-card) {
+    margin: 0;
+    background: var(--fz-navy);
+    border: 1px solid color-mix(in srgb, var(--fz-navy) 70%, #fff 30%);
+    border-radius: 12px;
+    padding: 0.75rem;
+    overflow: hidden;
+  }
+  .prose :global(.fz-card img) { border-radius: 6px; width: 100%; }
+  .prose :global(.fz-card figcaption) {
+    margin-top: 0.55rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.03em;
+    color: #d9f7e1;
+    padding-left: 0.5rem;
+    border-left: 2px solid var(--brand-accent);
+  }
+  @media (max-width: 620px) { .prose :global(.fz-cards) { grid-template-columns: 1fr; } }
+
+  /* ---------- KPI moment ---------- */
+  .prose :global(.fz-kpi-pin) { margin: clamp(2rem, 6vw, 3.5rem) 0; }
+  .prose :global(.fz-kpi) {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(0.6rem, 1.5vw, 1rem);
+  }
+  .prose :global(.fz-kpi__card) {
+    display: grid;
+    gap: 0.35rem;
+    padding: clamp(0.9rem, 2vw, 1.4rem);
+    background: var(--bg-elevated);
+    border: 1px solid var(--line);
+    border-top: 2px solid var(--brand-accent);
+    border-radius: 10px;
+  }
+  .prose :global(.fz-kpi__label) {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+  }
+  .prose :global(.fz-kpi__value) {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    line-height: 1.05;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .prose :global(.fz-kpi__sub) {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: color-mix(in srgb, var(--brand-accent) 55%, var(--ink) 45%);
+  }
+  .prose :global(.fz-kpi-note) {
+    margin-top: 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    max-width: 62ch;
+  }
+  @media (max-width: 720px) {
+    .prose :global(.fz-kpi) { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ---------- status system (reproduced, navy cards) ---------- */
+  .prose :global(.fz-status) {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(0.6rem, 1.5vw, 1rem);
+    margin: clamp(2rem, 5vw, 3rem) 0;
+  }
+  .prose :global(.fz-status__card) {
+    display: grid;
+    gap: 0.7rem;
+    align-content: start;
+    padding: 1.1rem 1rem 1.2rem;
+    background: var(--fz-navy);
+    border: 1px solid color-mix(in srgb, var(--fz-navy) 62%, #fff 38%);
+    border-radius: 12px;
+  }
+  .prose :global(.fz-status__card p) {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #cdd8e4;
+    max-width: none;
+  }
+  .prose :global(.fz-pill) {
+    justify-self: start;
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.72rem;
+    color: #06231a;
+  }
+  .prose :global(.fz-pill--done)     { background: #63d493; color: #06231a; }
+  .prose :global(.fz-pill--pending)  { background: #e5a52a; color: #2a1c00; }
+  .prose :global(.fz-pill--failed)   { background: #ef6a6a; color: #2a0606; }
+  .prose :global(.fz-pill--canceled) { background: #8a97a6; color: #10171f; }
+  @media (max-width: 860px) {
+    .prose :global(.fz-status) { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 460px) {
+    .prose :global(.fz-status) { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- consumer app: phones + horizontal gallery ---------- */
+  .prose :global(.fz-phone) {
+    display: block;
+    padding: 8px;
+    background: var(--fz-bezel);
+    border-radius: 26px;
+    box-shadow: 0 20px 46px rgba(0, 0, 0, 0.32);
+  }
+  .prose :global(.fz-phone img) {
+    display: block;
+    width: 100%;
+    border-radius: 18px;
+    background: #fff;
+  }
+  /* pinned + scrubbed horizontal track, contained to the reading column (no
+     transform on the pinned element, so ScrollTrigger's pin stays clean).
+     Static fallback (no GSAP): a normal horizontal-scroll strip. */
+  .prose :global(.fz-gallery) {
+    position: relative;
+    margin: clamp(2.5rem, 7vw, 4.5rem) 0;
+    padding: 0.5rem 0;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .prose :global(.fz-gallery__track) {
+    display: flex;
+    gap: clamp(1rem, 3vw, 2rem);
+    width: max-content;
+    align-items: start;
+  }
+  .prose :global(.fz-slide) {
+    margin: 0;
+    flex: 0 0 auto;
+    width: clamp(200px, 40vw, 260px);
+  }
+  .prose :global(.fz-slide figcaption) {
+    margin-top: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    padding-left: 0.6rem;
+    border-left: 2px solid var(--brand-accent);
+  }
+  .prose :global(.fz-gallery__hint) {
+    margin: 0.9rem 0 0;
+    padding-inline: max(var(--gutter), calc(50vw - var(--wrap) / 2));
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+  }
+  /* when GSAP pins + scrubs the gallery, it owns the horizontal scroll:
+     drop the native scrollbar and the hint */
+  .case--fliz.fz-motion .prose :global(.fz-gallery) { overflow: visible; }
+  .case--fliz.fz-motion .prose :global(.fz-gallery__hint) { display: none; }
+
+  /* ---------- heading colour-wipe (motion only) ---------- */
+  @media (prefers-reduced-motion: no-preference) {
+    .case--fliz.fz-motion .prose :global(h2) {
+      --wipe: 0;
+      -webkit-mask-image: linear-gradient(#000, #000);
+      mask-image: linear-gradient(#000, #000);
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: calc(var(--wipe) * 100%) 100%;
+      mask-size: calc(var(--wipe) * 100%) 100%;
+    }
+  }
+
+  /* ---------- Lenis smooth-scroll (only present while active on FLIZ) ------- */
+  :global(html.lenis),
+  :global(html.lenis body) { height: auto; }
+  :global(.lenis.lenis-smooth) { scroll-behavior: auto !important; }
+  :global(.lenis.lenis-smooth [data-lenis-prevent]) { overscroll-behavior: contain; }
+  :global(.lenis.lenis-stopped) { overflow: clip; }
+  :global(.lenis.lenis-smooth iframe) { pointer-events: none; }
 </style>
 
 <script>
@@ -1030,4 +1306,245 @@ const line2 =
     ensureBox();
     document.addEventListener("astro:page-load", ensureBox);
   })();
+</script>
+
+<script>
+  // FLIZ Emote-style scroll layer. Loaded ONLY on the FLIZ case (guarded on
+  // [data-fliz]); GSAP + Lenis come in via dynamic import(), so they are a
+  // separate chunk that never ships to any other case page. Torn down on
+  // navigation away; fully skipped under prefers-reduced-motion.
+  interface FzCtx {
+    lenis: any;
+    ticker: (t: number) => void;
+    gsap: any;
+    ScrollTrigger: any;
+  }
+  let fz: FzCtx | null = null;
+  let fzBooting = false;
+
+  // never leave the armed hero hidden if motion cannot run
+  function fzRevealStatic() {
+    document
+      .querySelector<HTMLElement>("[data-fz-hero]")
+      ?.classList.remove("is-armed");
+  }
+
+  async function initFliz() {
+    const root = document.querySelector<HTMLElement>("[data-fliz]");
+    if (!root) return; // not the FLIZ page
+    if (fz || fzBooting) return; // already up / booting
+    // ?nofz previews the static / reduced-motion fallback (no Lenis, no GSAP)
+    if (
+      new URLSearchParams(location.search).has("nofz") ||
+      matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      fzRevealStatic();
+      return;
+    }
+    fzBooting = true;
+    try {
+      const [{ gsap }, stMod, lenisMod] = await Promise.all([
+        import("gsap"),
+        import("gsap/ScrollTrigger"),
+        import("lenis"),
+      ]);
+      // a fast nav away could have dropped the page mid-import
+      if (!document.querySelector("[data-fliz]")) {
+        fzBooting = false;
+        return;
+      }
+      const ScrollTrigger = (stMod as any).ScrollTrigger || (stMod as any).default;
+      const Lenis = (lenisMod as any).default;
+      gsap.registerPlugin(ScrollTrigger);
+
+      // smooth scroll, driving ScrollTrigger from Lenis (per the brief)
+      const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+      lenis.on("scroll", ScrollTrigger.update);
+      const ticker = (t: number) => lenis.raf(t * 1000);
+      gsap.ticker.add(ticker);
+      gsap.ticker.lagSmoothing(0);
+
+      root.classList.add("fz-motion");
+      fz = { lenis, ticker, gsap, ScrollTrigger };
+
+      // FLIZ uses the shared case hero (typewriter title), so there is no
+      // bespoke hero animation here — the Emote layer starts at the body.
+
+      // 1) heading colour-wipe, once
+      gsap.utils.toArray<HTMLElement>("[data-fliz] .prose h2").forEach((h) => {
+        gsap.fromTo(
+          h,
+          { "--wipe": 0 },
+          {
+            "--wipe": 1,
+            duration: 0.9,
+            ease: "power3.inOut",
+            scrollTrigger: { trigger: h, start: "top 84%", once: true },
+          }
+        );
+      });
+
+      // 3) staggered reveal of grouped cards (marketing + status)
+      gsap.utils.toArray<HTMLElement>("[data-fz-in]").forEach((group) => {
+        const kids = Array.from(group.children) as HTMLElement[];
+        gsap.from(kids, {
+          y: 26,
+          opacity: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: 0.1,
+          scrollTrigger: { trigger: group, start: "top 82%", once: true },
+        });
+      });
+
+      // 4) KPI: pin the moment, stagger the cards, count up (sample values only)
+      const kpiPin = document.querySelector<HTMLElement>("[data-fz-kpi]");
+      if (kpiPin && window.innerWidth > 720) {
+        ScrollTrigger.create({
+          trigger: kpiPin,
+          start: "top 20%",
+          end: "+=52%",
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
+        });
+      }
+      const kpiCards = gsap.utils.toArray<HTMLElement>(".fz-kpi__card");
+      if (kpiCards.length) {
+        gsap.from(kpiCards, {
+          y: 24,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power3.out",
+          stagger: 0.08,
+          scrollTrigger: { trigger: ".fz-kpi", start: "top 80%", once: true },
+        });
+      }
+      // counters: animate 0 -> the exact value already printed in the markup
+      const makeFmt = (dec: number, euro: boolean) =>
+        new Intl.NumberFormat(euro ? "de-DE" : "en-US", {
+          minimumFractionDigits: dec,
+          maximumFractionDigits: dec,
+        });
+      gsap.utils.toArray<HTMLElement>("[data-fz-count]").forEach((el) => {
+        const to = parseFloat(el.dataset.countTo || "0");
+        const dec = parseInt(el.dataset.countDec || "0", 10);
+        const euro = el.dataset.countEuro === "1";
+        const prefix = euro ? "€ " : "";
+        const suffix = el.dataset.countSuffix || "";
+        const fmt = makeFmt(dec, euro);
+        const state = { v: 0 };
+        const write = (n: number) =>
+          (el.textContent = prefix + fmt.format(n) + suffix);
+        gsap.to(state, {
+          v: to,
+          duration: 1.4,
+          ease: "power2.out",
+          scrollTrigger: { trigger: el, start: "top 88%", once: true },
+          onUpdate: () => write(state.v),
+          onComplete: () => write(to),
+        });
+      });
+
+      // 5) horizontal gallery: pin + scrub, contained to the column
+      const gallery = document.querySelector<HTMLElement>("[data-fz-gallery]");
+      const track = gallery?.querySelector<HTMLElement>("[data-fz-track]");
+      if (gallery && track && window.innerWidth > 720) {
+        const dist = () => Math.max(0, track.scrollWidth - gallery.offsetWidth);
+        gsap.to(track, {
+          x: () => -dist(),
+          ease: "none",
+          scrollTrigger: {
+            trigger: gallery,
+            start: "center center",
+            end: () => "+=" + dist(),
+            scrub: 0.6,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+      }
+
+      // 6) framed-screenshot parallax
+      gsap.utils.toArray<HTMLElement>("[data-fz-parallax]").forEach((fig) => {
+        const img = fig.querySelector<HTMLElement>("img");
+        const frame = fig.querySelector<HTMLElement>(".fz-browser");
+        if (!img || !frame) return;
+        if (fig.classList.contains("fz-shot--tall")) {
+          // tall: scroll the whole screenshot inside the capped frame
+          const bar = frame.querySelector<HTMLElement>(".fz-browser__bar");
+          gsap.fromTo(
+            img,
+            { y: 0 },
+            {
+              y: () => {
+                const barH = bar ? bar.offsetHeight : 0;
+                return -Math.max(0, img.offsetHeight - (frame.clientHeight - barH));
+              },
+              ease: "none",
+              scrollTrigger: {
+                trigger: fig,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+                invalidateOnRefresh: true,
+              },
+            }
+          );
+        } else {
+          // short: gentle whole-image drift
+          gsap.fromTo(
+            img,
+            { yPercent: -4 },
+            {
+              yPercent: 4,
+              ease: "none",
+              scrollTrigger: {
+                trigger: fig,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            }
+          );
+        }
+      });
+
+      // settle triggers once fonts + images have influenced layout
+      const refresh = () => ScrollTrigger.refresh();
+      (document as any).fonts?.ready?.then(refresh);
+      window.addEventListener("load", refresh, { once: true });
+      root.querySelectorAll("img").forEach((im) => {
+        if (!(im as HTMLImageElement).complete)
+          im.addEventListener("load", refresh, { once: true });
+      });
+      setTimeout(refresh, 500);
+    } catch (err) {
+      fzRevealStatic(); // motion failed to load: keep the page readable
+    } finally {
+      fzBooting = false;
+    }
+  }
+
+  function teardownFliz() {
+    document
+      .querySelector<HTMLElement>("[data-fliz]")
+      ?.classList.remove("fz-motion");
+    if (!fz) return;
+    try {
+      fz.ScrollTrigger.getAll().forEach((t: any) => t.kill());
+    } catch {}
+    try {
+      fz.gsap.ticker.remove(fz.ticker);
+    } catch {}
+    try {
+      fz.lenis.destroy();
+    } catch {}
+    fz = null;
+  }
+
+  document.addEventListener("astro:before-swap", teardownFliz);
+  initFliz();
+  document.addEventListener("astro:page-load", initFliz);
 </script>
