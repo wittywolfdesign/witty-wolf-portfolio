@@ -57,15 +57,15 @@ onderscheid waar niemand het kan missen.
   <figure class="fz-card"><img src="/work/fliz/fliz-card-self-service.png" alt="FLIZpay-marketingkaart: self-service opzet, discounts instellen en betalingen aannemen zonder onboardingsgesprekken" loading="lazy" /><figcaption>Self service</figcaption></figure>
 </div>
 
-<p class="note">02 · Commandocentrum</p>
+<p class="note">02 · De overhaul</p>
 
-## Het bedrijfsaccount, herbouwd als commandocentrum
+## Het bedrijfsaccount, herbouwd rond de cashback
 
 Een merchant moet niet inloggen om naar het account te *kijken*. Hij moet inloggen
 om het te *runnen*. Het dashboard heeft één taak, en dat is niet betalingen
 aannemen, dat doet de app. Het is waar een merchant de cashback instelt, de
 prestaties volgt en de winkel verbonden houdt. Dus bouwden we het FLIZ Company
-Account om tot een commandocentrum: de cashback, de prestaties en de instelling
+Account om rond precies die taak: de cashback, de prestaties en de instelling
 ervan, allemaal in één oogopslag. Ik deed veel van het vroege werk, de research,
 de structuur en de MVP die de richting bewees, steeds onder leiding van de design
 lead en met engineering aan tafel. (De interface noemt het percentage een
@@ -77,9 +77,9 @@ structuur, genoeg om de richting te bewijzen voor de high-fidelity-slag.
 <figure class="fig fig--bare fz-shot fz-shot--wire" data-fz-parallax>
   <span class="fz-browser">
     <span class="fz-browser__bar" aria-hidden="true"><i></i><i></i><i></i><b>dashboard · MVP</b></span>
-    <img src="/work/fliz/fliz-dashboard-wireframe.png" alt="De MVP voor de overhaul van het FLIZpay-dashboard: de commandocentrum-structuur, een KPI-rij, een transactietabel en de discount-onderdelen, opgezet voor de high-fidelity-slag" loading="lazy" />
+    <img src="/work/fliz/fliz-dashboard-wireframe.png" alt="De MVP voor de overhaul van het FLIZpay-dashboard: de dashboardstructuur, een KPI-rij, een transactietabel en de discount-onderdelen, opgezet voor de high-fidelity-slag" loading="lazy" />
   </span>
-  <figcaption>De MVP voor de overhaul: de commandocentrum-structuur, voor de high-fidelity-slag.</figcaption>
+  <figcaption>De MVP voor de overhaul: de dashboardstructuur, voor de high-fidelity-slag.</figcaption>
 </figure>
 
 De echte onderdelen doen het werk: een KPI-strip, een filterbare transactietabel,
@@ -91,7 +91,7 @@ account leesbaar, en bestuurbaar, vanaf één scherm.
     <span class="fz-browser__bar" aria-hidden="true"><i></i><i></i><i></i><b>FLIZ Company Account · Dashboard</b></span>
     <img src="/work/fliz/fliz-dashboard.png" alt="Het high-fidelity FLIZpay merchant-dashboard: een KPI-strip met vier kaarten, een doorzoekbare en filterbare transactietabel met status-pills, een discount-instelpaneel, een discount-prestatiegrafiek en een installatiegids" loading="lazy" />
   </span>
-  <figcaption>Het commandocentrum in high fidelity: KPI's, transacties, discount instellen en prestaties, één scherm om vanuit te werken.</figcaption>
+  <figcaption>Het dashboard in high fidelity: KPI's, transacties, discount instellen en prestaties, één scherm om vanuit te werken.</figcaption>
 </figure>
 
 <p class="note">Het KPI-moment</p>
@@ -161,7 +161,7 @@ grijs gestopt.
 ## Discount, gepromoveerd tot een eigen plek
 
 Het mechanisme dat FLIZ anders maakt, stond waar niemand kijkt: een regel in de
-instellingen. Ik stelde voor het naar een eigen plek op het commandocentrum te
+instellingen. Ik stelde voor het naar een eigen plek op het dashboard te
 halen, en daar kwam het. Een merchant stelt twee percentages in, een
 first-purchase-cashback om nieuwe klanten binnen te halen en een
 standaardpercentage voor daarna, ziet het effect in een live preview, en

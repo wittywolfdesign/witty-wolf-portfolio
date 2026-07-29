@@ -57,15 +57,15 @@ matching the checklist, and put the difference where it cannot be missed.
   <figure class="fz-card"><img src="/work/fliz/fliz-card-self-service.png" alt="FLIZpay marketing card: self-service setup, configuring discounts and accepting payments without onboarding calls" loading="lazy" /><figcaption>Self service</figcaption></figure>
 </div>
 
-<p class="note">02 · Command centre</p>
+<p class="note">02 · The overhaul</p>
 
-## The company account, rebuilt as a command centre
+## The company account, rebuilt around the cashback
 
 A merchant should not log in to *look* at their account. They should log in to
 *run* it. The dashboard has one job, and it is not taking payments, the app does
 that. It is where a merchant sets their cashback rate, watches it perform, and
-keeps the shop connected. So we rebuilt the FLIZ Company Account as a command
-centre: the cashback, its performance and its setup all one glance away. I owned
+keeps the shop connected. So we rebuilt the FLIZ Company
+Account around that one job: the cashback, its performance and its setup all one glance away. I owned
 much of the early work, the research, the structure and the MVP that proved the
 direction, always under the design lead's guidance and with engineering at the
 table. (The interface labels the rate a *discount*; the customer receives it as
@@ -77,9 +77,9 @@ structure, enough to prove the direction before the high-fidelity pass.
 <figure class="fig fig--bare fz-shot fz-shot--wire" data-fz-parallax>
   <span class="fz-browser">
     <span class="fz-browser__bar" aria-hidden="true"><i></i><i></i><i></i><b>dashboard · MVP</b></span>
-    <img src="/work/fliz/fliz-dashboard-wireframe.png" alt="The MVP for the FLIZpay dashboard overhaul: the command-centre structure — a KPI row, a transactions table and the discount areas — laid out before the high-fidelity pass" loading="lazy" />
+    <img src="/work/fliz/fliz-dashboard-wireframe.png" alt="The MVP for the FLIZpay dashboard overhaul: the dashboard structure — a KPI row, a transactions table and the discount areas — laid out before the high-fidelity pass" loading="lazy" />
   </span>
-  <figcaption>The MVP for the overhaul: the command-centre structure, before the high-fidelity pass.</figcaption>
+  <figcaption>The MVP for the overhaul: the dashboard structure, before the high-fidelity pass.</figcaption>
 </figure>
 
 The real areas do the work: a KPI strip, a filterable transactions table, discount
@@ -91,7 +91,7 @@ account readable, and runnable, from one screen.
     <span class="fz-browser__bar" aria-hidden="true"><i></i><i></i><i></i><b>FLIZ Company Account · Dashboard</b></span>
     <img src="/work/fliz/fliz-dashboard.png" alt="The high-fidelity FLIZpay merchant dashboard: a four-card KPI strip, a searchable and filterable transactions table with status pills, a discount setup panel, a discount-performance chart, and an installation guide" loading="lazy" />
   </span>
-  <figcaption>The command centre in high fidelity: KPIs, transactions, discount setup and performance, one screen you act from.</figcaption>
+  <figcaption>The dashboard in high fidelity: KPIs, transactions, discount setup and performance, one screen you act from.</figcaption>
 </figure>
 
 <p class="note">The KPI moment</p>
@@ -161,8 +161,8 @@ amber waiting, red failed, grey stopped.
 ## Discount, promoted to a first-class area
 
 The mechanic that makes FLIZ different used to live where nobody looks: a row
-inside settings. I proposed pulling it out into its own space on the command
-centre, and that is where it went. A
+inside settings. I proposed pulling it out into its own space on the
+dashboard, and that is where it went. A
 merchant sets two rates, a **first-purchase** cashback to pull new customers in
 and a **standard** rate for everyone after, sees the effect in a live preview, and
 publishes. The thing the company is best at is now the thing the dashboard makes

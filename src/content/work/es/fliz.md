@@ -59,14 +59,15 @@ el diferenciador donde no se pueda pasar por alto.
   <figure class="fz-card"><img src="/work/fliz/fliz-card-self-service.png" alt="Tarjeta de marketing de FLIZpay: configuración self-service, ajustar descuentos y aceptar pagos sin llamadas de onboarding" loading="lazy" /><figcaption>Self service</figcaption></figure>
 </div>
 
-<p class="note">02 · Centro de mando</p>
+<p class="note">02 · La renovación</p>
 
-## La cuenta de empresa, reconstruida como centro de mando
+## La cuenta de empresa, reconstruida en torno al cashback
 
 Un comercio no debería entrar para *mirar* su cuenta. Debería entrar para
 *gestionarla*. El panel tiene un solo trabajo, y no es aceptar pagos, eso lo hace la
 app. Es donde un comercio fija su cashback, ve cómo rinde y mantiene la tienda
-conectada. Así que reconstruimos el FLIZ Company Account como un centro de mando: el
+conectada. Así que reconstruimos el FLIZ Company Account en torno a
+ese trabajo: el
 cashback, su rendimiento y su configuración, todo a un golpe de vista. Yo me
 encargué de buena parte del trabajo inicial, la research, la estructura y el MVP que
 probó la dirección, siempre bajo la guía de la design lead y con ingeniería en la
@@ -79,9 +80,9 @@ justo para probar la dirección antes del pase a alta fidelidad.
 <figure class="fig fig--bare fz-shot fz-shot--wire" data-fz-parallax>
   <span class="fz-browser">
     <span class="fz-browser__bar" aria-hidden="true"><i></i><i></i><i></i><b>dashboard · MVP</b></span>
-    <img src="/work/fliz/fliz-dashboard-wireframe.png" alt="El MVP para la renovación del panel de FLIZpay: la estructura del centro de mando, una fila de KPIs, una tabla de transacciones y las áreas de descuento, dispuestas antes del pase a alta fidelidad" loading="lazy" />
+    <img src="/work/fliz/fliz-dashboard-wireframe.png" alt="El MVP para la renovación del panel de FLIZpay: la estructura del panel, una fila de KPIs, una tabla de transacciones y las áreas de descuento, dispuestas antes del pase a alta fidelidad" loading="lazy" />
   </span>
-  <figcaption>El MVP para la renovación: la estructura del centro de mando, antes del pase a alta fidelidad.</figcaption>
+  <figcaption>El MVP para la renovación: la estructura del panel, antes del pase a alta fidelidad.</figcaption>
 </figure>
 
 Las áreas de verdad hacen el trabajo: una franja de KPIs, una tabla de transacciones
@@ -94,7 +95,7 @@ pantalla.
     <span class="fz-browser__bar" aria-hidden="true"><i></i><i></i><i></i><b>FLIZ Company Account · Dashboard</b></span>
     <img src="/work/fliz/fliz-dashboard.png" alt="El panel de comercios de FLIZpay en alta fidelidad: una franja de KPIs de cuatro tarjetas, una tabla de transacciones buscable y filtrable con status pills, un panel para configurar el descuento, un gráfico de rendimiento del descuento y una guía de instalación" loading="lazy" />
   </span>
-  <figcaption>El centro de mando en alta fidelidad: KPIs, transacciones, configuración y rendimiento del descuento, una sola pantalla desde la que actuar.</figcaption>
+  <figcaption>El panel en alta fidelidad: KPIs, transacciones, configuración y rendimiento del descuento, una sola pantalla desde la que actuar.</figcaption>
 </figure>
 
 <p class="note">El momento KPI</p>
@@ -164,7 +165,7 @@ esperando, rojo fallido, gris detenido.
 ## El descuento, ascendido a área de primer nivel
 
 El mecanismo que hace distinto a FLIZ vivía donde nadie mira: una fila dentro de
-ajustes. Propuse sacarlo a su propio espacio en el centro de mando, y ahí fue. Un
+ajustes. Propuse sacarlo a su propio espacio en el panel, y ahí fue. Un
 comercio fija dos porcentajes, un cashback de primera compra para atraer clientes
 nuevos y un porcentaje estándar para después, ve el efecto en una vista previa en
 vivo, y publica. Aquello en lo que la empresa es mejor es ahora lo más fácil de
