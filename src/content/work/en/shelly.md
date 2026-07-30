@@ -55,39 +55,42 @@ The answer became a tortoise philosophy: slow, steady, flexible habits.
 
 <figure class="fig fig--paper fig--duo">
   <span class="fig__tile"><img src="/work/shelly/shelly-affinity-diagram.png" alt="Affinity diagram organising the research findings into four pillars, physical activity and mental wellbeing among them" loading="lazy" /></span>
-  <span class="fig__tile"><img src="/work/shelly/shelly-typography-mascot.png" alt="Shelly typography guide alongside the turtle mascot giving a peace sign" loading="lazy" /></span>
+  <span class="fig__tile fig__tile--pin"><img src="/work/shelly/shelly-typography-mascot.png" alt="Shelly typography guide alongside the turtle mascot giving a peace sign" loading="lazy" /></span>
   <figcaption>The research wall, and the identity decision it led to: rounded type, a mascot that never scolds.</figcaption>
 </figure>
 
-**MARIA · busy urban professional, Barcelona.** An agency job with
-irregular hours and the wish for a healthier routine. She does not need
-another plan to fail at; she needs a schedule that bends around hers.
+<div class="persona-sticky">
+  <p><strong>MARIA · busy urban professional, Barcelona.</strong> An
+  agency job with irregular hours and the wish for a healthier routine.
+  She does not need another plan to fail at; she needs a schedule that
+  bends around hers.</p>
+</div>
 
 <div class="chapters">
   <div class="chapters-track">
     <div class="chapter-cell">
-      <div class="chapter-textwrap">
-        <p class="note">01 · Flexibility</p>
-        <h2><span>Adaptive scheduling</span></h2>
-        <p>The app asks about your day before it asks anything of you.</p>
+      <p class="note">01 · Flexibility</p>
+      <h2>Adaptive scheduling</h2>
+      <p>Maria's schedule is irregular, so the schedule adapts to her, not the other way around.</p>
+      <div class="chapter-print">
+        <img src="/work/shelly/shelly-adaptive-scheduling.png" alt="Shelly screen asking the user how their day looks before proposing a routine" loading="lazy" />
       </div>
-      <img src="/work/shelly/shelly-new-routine.png" alt="Redrawn Shelly routine screen: three turtle-handled sliders for days per week, minutes per day and how hard it should feel" loading="lazy" />
     </div>
     <div class="chapter-cell">
-      <div class="chapter-textwrap">
-        <p class="note">02 · Positive reinforcement</p>
-        <h2><span>Visualising progress</span></h2>
-        <p>Progress that celebrates, not punishes: a weekly harvest, nothing left to break.</p>
+      <p class="note">02 · Positive reinforcement</p>
+      <h2>Visualising progress</h2>
+      <p>Broken streaks and red crosses became a gentle visual path. The mascot, Shelly, grows with you, even on slow days.</p>
+      <div class="chapter-print">
+        <img src="/work/shelly/shelly-progress-path.png" alt="Progress screen with a visual path that grows with the user instead of red crosses for broken streaks" loading="lazy" />
       </div>
-      <img src="/work/shelly/shelly-new-dashboard.png" alt="Redrawn Shelly harvest dashboard: a weekly strawberry count, goal-day chips and a recap of the week's activities" loading="lazy" />
     </div>
     <div class="chapter-cell">
-      <div class="chapter-textwrap">
-        <p class="note">03 · Support</p>
-        <h2><span>Contextual nudges</span></h2>
-        <p>One suggestion, plainly given, no lecture attached.</p>
+      <p class="note">03 · Support</p>
+      <h2>Contextual nudges</h2>
+      <p>Micro-coaching that adapts to the user's state. Stressed? Shelly suggests a breathing exercise. Energetic? Shelly suggests a run.</p>
+      <div class="chapter-print">
+        <img src="/work/shelly/shelly-contextual-nudges.png" alt="Notification screen where the app detects stress and suggests a breathing exercise" loading="lazy" />
       </div>
-      <img src="/work/shelly/shelly-new-suggestion.png" alt="Redrawn Shelly exercise screen suggesting fifteen minutes of walking" loading="lazy" />
     </div>
   </div>
 </div>

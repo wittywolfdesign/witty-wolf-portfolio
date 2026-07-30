@@ -56,40 +56,42 @@ schildpadfilosofie: langzame, gestage, flexibele gewoontes.
 
 <figure class="fig fig--paper fig--duo">
   <span class="fig__tile"><img src="/work/shelly/shelly-affinity-diagram.png" alt="Affiniteitsdiagram dat de researchbevindingen ordent in vier pijlers, waaronder beweging en mentaal welzijn" loading="lazy" /></span>
-  <span class="fig__tile"><img src="/work/shelly/shelly-typography-mascot.png" alt="Shelly-typografiegids naast de schildpadmascotte die een vredesteken maakt" loading="lazy" /></span>
+  <span class="fig__tile fig__tile--pin"><img src="/work/shelly/shelly-typography-mascot.png" alt="Shelly-typografiegids naast de schildpadmascotte die een vredesteken maakt" loading="lazy" /></span>
   <figcaption>De researchmuur, en de identiteitsbeslissing die eruit volgde: afgeronde letters, een mascotte die nooit moppert.</figcaption>
 </figure>
 
-**MARIA · drukke stedelijke professional, Barcelona.** Een bureaubaan
-met onregelmatige uren en de wens voor een gezondere routine. Ze heeft
-geen nieuw plan nodig om in te falen; ze heeft een schema nodig dat om
-het hare heen buigt.
+<div class="persona-sticky">
+  <p><strong>MARIA · drukke stedelijke professional, Barcelona.</strong>
+  Een bureaubaan met onregelmatige uren en de wens voor een gezondere
+  routine. Ze heeft geen nieuw plan nodig om in te falen; ze heeft een
+  schema nodig dat om het hare heen buigt.</p>
+</div>
 
 <div class="chapters">
   <div class="chapters-track">
     <div class="chapter-cell">
-      <div class="chapter-textwrap">
-        <p class="note">01 · Flexibiliteit</p>
-        <h2><span>Aanpasbaar plannen</span></h2>
-        <p>De app vraagt naar je dag voordat hij iets van je vraagt.</p>
+      <p class="note">01 · Flexibiliteit</p>
+      <h2>Aanpasbaar plannen</h2>
+      <p>Maria's agenda is onregelmatig, dus past het schema zich aan haar aan, niet andersom.</p>
+      <div class="chapter-print">
+        <img src="/work/shelly/shelly-adaptive-scheduling.png" alt="Shelly-scherm dat vraagt hoe je dag eruitziet voordat het een routine voorstelt" loading="lazy" />
       </div>
-      <img src="/work/shelly/shelly-new-routine.png" alt="Herschetst Shelly-routinescherm: drie sliders met schildpad-handvat voor dagen per week, minuten per dag en hoe zwaar het moet voelen" loading="lazy" />
     </div>
     <div class="chapter-cell">
-      <div class="chapter-textwrap">
-        <p class="note">02 · Positieve bekrachtiging</p>
-        <h2><span>Voortgang zichtbaar maken</span></h2>
-        <p>Voortgang die viert, niet straft: een wekelijkse oogst, niets meer om te breken.</p>
+      <p class="note">02 · Positieve bekrachtiging</p>
+      <h2>Voortgang zichtbaar maken</h2>
+      <p>Gebroken streaks en rode kruisjes werden een zacht visueel pad. De mascotte, Shelly, groeit met je mee, ook op trage dagen.</p>
+      <div class="chapter-print">
+        <img src="/work/shelly/shelly-progress-path.png" alt="Voortgangsscherm met een visueel pad dat met de gebruiker meegroeit, in plaats van rode kruisjes voor gebroken streaks" loading="lazy" />
       </div>
-      <img src="/work/shelly/shelly-new-dashboard.png" alt="Herschetst Shelly-oogstdashboard: een wekelijkse aardbeientelling, doeldag-chips en een overzicht van de activiteiten van de week" loading="lazy" />
     </div>
     <div class="chapter-cell">
-      <div class="chapter-textwrap">
-        <p class="note">03 · Steun</p>
-        <h2><span>Contextuele duwtjes</span></h2>
-        <p>Eén suggestie, gewoon gegeven, zonder preek erbij.</p>
+      <p class="note">03 · Steun</p>
+      <h2>Contextuele duwtjes</h2>
+      <p>Microcoaching die zich aanpast aan hoe de gebruiker erbij zit. Gestrest? Shelly stelt een ademhalingsoefening voor. Energiek? Shelly stelt een rondje hardlopen voor.</p>
+      <div class="chapter-print">
+        <img src="/work/shelly/shelly-contextual-nudges.png" alt="Notificatiescherm waarin de app stress herkent en een ademhalingsoefening voorstelt" loading="lazy" />
       </div>
-      <img src="/work/shelly/shelly-new-suggestion.png" alt="Herschetst Shelly-oefeningscherm dat vijftien minuten wandelen voorstelt" loading="lazy" />
     </div>
   </div>
 </div>
