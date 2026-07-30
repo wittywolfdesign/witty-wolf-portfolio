@@ -611,7 +611,12 @@ Safe areas per notes.md: nothing essential left of x460, text inside
 x500..1310. preview.html mocks desktop overlap with the real portrait and
 a centre-76% mobile crop. Upload files: png/banner-pXX[-dark]-1584x396.png.
 
-## Shelly 2026 act: three interactive demos (29 July 2026)
+## SUPERSEDED · Shelly 2026 act: three interactive demos (29 July 2026)
+SUPERSEDED 30 July 2026: Marco reviewed this act as too literal a clone
+of the Figma screens. The whole act (markdown block in all three locales
+plus the scoped .shd CSS/JS in [slug].astro) was deleted and replaced by
+the comparison act described in the 30 July entry below. This entry stays
+as history only.
 The Shelly case gained a closing act in all three locales: note "2026 ·
 Second lap" / "2026 · Tweede ronde" / "2026 · Segunda vuelta", heading "Two
 years later, Shelly learned to move". Frontmatter extended (summary and
@@ -654,6 +659,58 @@ re-initialise after view transitions (away and back), Urbiqo control page
 unchanged. Known pre-existing, NOT from this act: at 360 the nav language
 switcher pokes ~15px past the viewport on every case page, invisible
 because global.css clips overflow-x; same on the untouched control.
+
+## Shelly rework: facts, persona, comparison act, Use of AI (30 July 2026)
+Four changes to the Shelly case, all three locales, replacing the
+superseded demo act above.
+- Facts and copy: year corrected to 2025 (the sprint with Anna was 2025,
+  not 2024), the opening line softened to the guilt beat, and the Maria
+  persona moved out of the cork-board card into a plain bold-led prose
+  paragraph. The Shelly board is gone; Urbiqo's own board is untouched.
+  The summary/role frontmatter was reverted to the pre-act wording
+  because the deleted act's "rebuilt in working code" claim no longer
+  matched the page.
+- New closing act "2026 · Two days with markers" (NL "Twee dagen met
+  stiften", ES "Dos días con rotuladores"): an old-vs-new comparison of
+  two independently scrolling filmstrips (native overflow-x + scroll
+  snap), the six original 2025 screens as static images on top
+  (public/work/shelly/old/shelly-old-*.png, exported from the Shelly
+  Figma) and the Field Journal redraw alive underneath. Six per-screen
+  labels are English in every locale by the product-UI rule: Greeting ·
+  Set my routine · Loading · Suggestions · Exercise · Progress. NOTE:
+  the bottom cell labelled "Suggestions" carries the journal's exercise
+  INTRO screen (the suggestion detail) since the approved direction has
+  no suggestions-list screen; the top image is the real 2025 list.
+- The bottom strip is the approved Field Journal direction ported from
+  shelly-concepts.html concept c1 into [slug].astro as the .sj system
+  (scope fence: everything under .sj-compare; the throwaway
+  shelly-concepts.html itself is untouched and stays uncommitted).
+  Phones are designed at 292px and shown scaled 0.863 in fixed cells.
+  The markdown markup IS the no-JS poster; the script only adds life:
+  ink-in reveal on scroll, self-running demo cadences (press ripple,
+  strawberry firework, wave-to-peace pose, wandering slider turtles,
+  the one-ball loading traffic light on the word cadence, exercise
+  countdown with working pause, dashboard leafing week/month/year with
+  counting numbers and re-drawing charts, the hare), plus real drags,
+  taps and segment clicks. Cadences only run while the act is on
+  screen; reduced motion gets the complete static state; everything
+  tears down on astro:before-swap. Gochi Hand and EB Garamond are
+  self-hosted via Fontsource (GDPR-conscious client, no Google CDN),
+  with @font-face emitted only on the Shelly page. Quicksand and Baloo 2
+  from the exploration file belong to the unused concepts 2 and 3 and
+  were deliberately not installed.
+- New last section "Use of AI" (NL "AI-gebruik", ES "Uso de IA"),
+  matching the pattern of the other cases: the 2025 sprint was human
+  work with Anna, the 2026 chapter is a two-day AI-assisted visual
+  iteration with Marco directing.
+- VERIFIED against the clean build: 42 checks across the three locales
+  (anchors + section index, board really gone, strips 2x6 and scrolling
+  independently, word/ball cadence, wandering sliders, dashboard cycle
+  and manual clicks, berry burst, ticking countdown, desktop + 360 in
+  both themes, reduced motion with zero running animations, no-JS
+  posters), and EVVO confirmed unchanged by pixel diff (the only
+  differing pixels are the live Madrid clocks and the typewriter title's
+  per-load random ink, everything below the hero pixel-identical).
 
 ## How to run
 Marco runs the dev server himself in his own terminal (background servers
