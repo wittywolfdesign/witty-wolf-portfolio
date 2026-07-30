@@ -35,28 +35,31 @@ El envase tenía una suscripción.
 
 ## El envase de otro
 
-La plantilla hablaba primero, y hablaba sobre todo en stock. La foto del
-hero era mía, un atardecer que hice en los Houthavens de Ámsterdam, pero
-la página de trabajo abría con un render 3D de una fototeca y el contacto
-se escondía tras un skyline de ciudad que podría vender cualquier cosa.
-Debajo había un logotipo en una tipografía display redondeada que ya ha
-sido retirada de la marca por completo.
-
-<figure class="fig">
-  <img src="/work/witty-wolf-site/framer-landing.png" alt="La antigua landing de Framer: la foto de atardecer con veleros que Marco hizo en los Houthavens de Ámsterdam, con Witty Wolf Design en la antigua tipografía display redondeada" loading="lazy" />
-  <figcaption>La antigua landing: mi atardecer de los Houthavens, la tipografía jubilada, los textos ya queriendo salir de ahí.</figcaption>
-</figure>
+Empezó como una plantilla que hablaba en stock. Mi propio atardecer de los
+Houthavens estaba en el hero, pero la página de trabajo abría con un render
+3D de una fototeca y el contacto se escondía tras un skyline de ciudad que
+podría vender cualquier cosa. Debajo había un logotipo en una tipografía
+display redondeada que ya ha sido retirada de la marca por completo.
 
 <figure class="fig fig--paper fig--duo">
-  <span class="fig__tile"><img src="/work/witty-wolf-site/framer-work-stock.jpg" alt="El antiguo hero de la página de trabajo: un render 3D genérico de stock con átomos y esferas orbitando" loading="lazy" /></span>
-  <span class="fig__tile"><img src="/work/witty-wolf-site/framer-contact.png" alt="La antigua página de contacto: una foto de stock de larga exposición de un skyline con un título gigante de Contact" loading="lazy" /></span>
-  <figcaption>Átomos de stock presentando los casos, un skyline de stock cogiendo el teléfono.</figcaption>
+  <span class="fig__tile"><img src="/work/witty-wolf-site/framer-landing.png" alt="La landing de Framer de 2025: la foto de atardecer con veleros que Marco hizo en los Houthavens de Ámsterdam, con Witty Wolf Design en la antigua tipografía display redondeada" loading="lazy" /></span>
+  <span class="fig__tile"><img src="/work/witty-wolf-site/framer-work-stock.jpg" alt="El hero de la página de trabajo de 2025: un render 3D genérico de stock con átomos y esferas orbitando" loading="lazy" /></span>
+  <figcaption>Donde empezó: mi propio atardecer en el hero, átomos de stock presentando los casos.</figcaption>
+</figure>
+
+Así que lo rediseñé, dentro de Framer. El stock se fue. La tipografía
+redondeada se fue. Un statement ocupó el hero y la web aprendió un tema
+claro y uno oscuro. Al final no quedaba nada prestado en pantalla.
+
+<figure class="fig fig--paper fig--duo">
+  <span class="fig__tile"><img src="/work/witty-wolf-site/framer-final-light.png" alt="El último diseño en Framer en tema claro: la marca del lobo en línea y el hero que dice I don't care about your product, I care about the people trying to use it" loading="lazy" /></span>
+  <span class="fig__tile"><img src="/work/witty-wolf-site/framer-final-dark.png" alt="El mismo último diseño en Framer en tema oscuro: el mismo hero sobre casi negro, la segunda línea en ámbar" loading="lazy" /></span>
+  <figcaption>La última versión en Framer, ambos temas. Ya sin stock, y aún así un piso de alquiler.</figcaption>
 </figure>
 
 El pensamiento de marca era real y merecía conservarse: el ingenio como
 principio de trabajo, lenguaje llano, personalidad al servicio de la
-claridad. Merecía algo mejor que un layout que otra persona ya había
-vendido mil veces.
+claridad. Lo que no podía conseguir en Framer era la propiedad.
 
 <figure class="fig fig--mid fig--pin">
   <img src="/work/witty-wolf-site/framer-brand-sheet.png" alt="La antigua hoja de marca: visión de marca, tono de voz y principios de imagen de Witty Wolf Design" loading="lazy" />

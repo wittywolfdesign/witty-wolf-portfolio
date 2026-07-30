@@ -35,27 +35,33 @@ ziel. Het vat had een abonnement.
 
 ## Andermans vat
 
-De template sprak als eerste, en vooral in stockbeeld. De herofoto was van
-mij, een zonsondergang die ik schoot in de Houthavens in Amsterdam, maar de
-werkpagina opende op een 3D-render uit een fotobibliotheek en contact
-verschool zich achter een stadssilhouet dat alles had kunnen verkopen.
-Daaronder stond een woordmerk in een afgerond displaylettertype dat
-inmiddels volledig uit het merk is verdwenen.
-
-<figure class="fig">
-  <img src="/work/witty-wolf-site/framer-landing.png" alt="De oude Framer-landingspagina: Marco's eigen zonsondergangfoto van zeilboten in de Houthavens, Amsterdam, met Witty Wolf Design in het oude afgeronde displaylettertype" loading="lazy" />
-  <figcaption>De oude landing: mijn eigen Houthavens-zonsondergang, het gepensioneerde lettertype, de copy die er al uit wilde.</figcaption>
-</figure>
+Het begon als een template die in stockbeeld sprak. Mijn eigen
+Houthavens-zonsondergang stond in de hero, maar de werkpagina opende op een
+3D-render uit een fotobibliotheek en contact verschool zich achter een
+stadssilhouet dat alles had kunnen verkopen. Daaronder stond een woordmerk
+in een afgerond displaylettertype dat inmiddels volledig uit het merk is
+verdwenen.
 
 <figure class="fig fig--paper fig--duo">
-  <span class="fig__tile"><img src="/work/witty-wolf-site/framer-work-stock.jpg" alt="De oude hero van de werkpagina: een generieke stock-3D-render van atomen en draaiende bollen" loading="lazy" /></span>
-  <span class="fig__tile"><img src="/work/witty-wolf-site/framer-contact.png" alt="De oude contactpagina: een stockfoto met lange sluitertijd van een skyline en een gigantische titel Contact" loading="lazy" /></span>
-  <figcaption>Stockatomen die de cases aankondigen, een stockskyline die de telefoon opneemt.</figcaption>
+  <span class="fig__tile"><img src="/work/witty-wolf-site/framer-landing.png" alt="De Framer-landingspagina uit 2025: Marco's eigen zonsondergangfoto van zeilboten in de Houthavens, Amsterdam, met Witty Wolf Design in het oude afgeronde displaylettertype" loading="lazy" /></span>
+  <span class="fig__tile"><img src="/work/witty-wolf-site/framer-work-stock.jpg" alt="De hero van de werkpagina uit 2025: een generieke stock-3D-render van atomen en draaiende bollen" loading="lazy" /></span>
+  <figcaption>Waar het begon: mijn eigen zonsondergang in de hero, stockatomen die de cases aankondigen.</figcaption>
+</figure>
+
+Dus heb ik het opnieuw ontworpen, binnen Framer. Het stockbeeld ging eruit.
+Het afgeronde lettertype ging eruit. Een statement nam de hero over en de
+site leerde een licht en een donker thema. Op het eind was er op het scherm
+niets meer geleend.
+
+<figure class="fig fig--paper fig--duo">
+  <span class="fig__tile"><img src="/work/witty-wolf-site/framer-final-light.png" alt="Het laatste Framer-ontwerp in het lichte thema: het wolvenmerk in lijnwerk en de hero met I don't care about your product, I care about the people trying to use it" loading="lazy" /></span>
+  <span class="fig__tile"><img src="/work/witty-wolf-site/framer-final-dark.png" alt="Hetzelfde laatste Framer-ontwerp in het donkere thema: dezelfde hero op bijna zwart, de tweede regel in amber" loading="lazy" /></span>
+  <figcaption>De laatste Framer-versie, beide thema's. Geen stockbeeld meer, en nog steeds een huurwoning.</figcaption>
 </figure>
 
 Het merkdenken was echt en het bewaren waard: humor als werkprincipe,
-gewone taal, persoonlijkheid in dienst van helderheid. Het verdiende beter
-dan een layout die iemand anders al duizend keer had verkocht.
+gewone taal, persoonlijkheid in dienst van helderheid. Wat het bij Framer
+niet kon krijgen, was eigendom.
 
 <figure class="fig fig--mid fig--pin">
   <img src="/work/witty-wolf-site/framer-brand-sheet.png" alt="Het oude merkdocument: branding vision, tone of voice en beeldprincipes voor Witty Wolf Design" loading="lazy" />

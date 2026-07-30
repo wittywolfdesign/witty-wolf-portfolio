@@ -2,8 +2,8 @@
 
 A running record of the redesign, so a fresh session (Claude Code or Cowork)
 can pick up without losing context. Written for Marco Ramos, Witty Wolf Design.
-Last updated: 29 July 2026, after the Shelly 2026 act (three interactive
-demos; see the entry near the end).
+Last updated: 30 July 2026, after correcting the Witty Wolf old-site imagery
+(see the entry near the end). Previous: 29 July 2026, the Shelly 2026 act.
 
 ## Marco's working preferences (apply to everything)
 - UK English. Metric units. No Oxford comma. No em-dashes, use commas or full stops.
@@ -849,6 +849,32 @@ or a note book with lines or something."
   border/background, all 8 notes/index entries intact — full pass on
   EN, lightweight structural-parity check only on NL/ES per the process
   note above, no-JS content intact).
+
+## Witty Wolf case: old-site imagery corrected (30 July 2026)
+Factual fix to the "Someone else's vessel" section of the Witty Wolf case,
+in all three locales (EN, NL, ES). It was showing the November 2025 Framer
+site, not the version that was actually retired.
+
+Cause: the case-study screenshots were sourced from the "2025-202606 Archive
+(Framer and pet projects)" folder instead of the live Framer project, so the
+"old site" images were a design that had already been replaced.
+
+Fix, scoped to that one section only:
+- Added the real final Framer state as a light + dark duo (framer-final-light.png,
+  framer-final-dark.png): line-art wolf mark, hero reading "I don't care about
+  your product / I care about the people trying to use it", second line in amber.
+- Kept one historical pair for context, now a duo: framer-landing.png (my own
+  Houthavens sunset, retired rounded display face) + framer-work-stock.jpg
+  (stock atoms). The old single-landing figure and the stock-skyline contact
+  shot are gone.
+- Deleted framer-contact.png. No longer referenced in any locale (grep clean).
+- Left the framer-brand-sheet figure and the framer-editor figure that follows
+  untouched. Only existing fig classes used (fig--paper fig--duo, fig--mid
+  fig--pin). No other section, case, component or CSS touched.
+- EN frontmatter comment updated to record the imagery source and this date.
+
+All 7 notes/index entries and anchors unchanged (heading kept verbatim). Both
+new figures render as two-up duos at desktop and stack at 360px, in both themes.
 
 ## How to run
 Marco runs the dev server himself in his own terminal (background servers

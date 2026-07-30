@@ -1,6 +1,10 @@
 ---
 # Facts sourced from HANDOVER.md only.
 # Title, tagline, accent and publish-as-closer approved by Marco, 10 July 2026.
+# Old-site imagery ("Someone else's vessel"): the LAST Framer state (light + dark)
+# plus one historical pair (landing + stock work-page hero). Corrected 30 July 2026,
+# because the earlier version wrongly used November 2025 archive screenshots of a
+# design that had already been replaced.
 title: "Kill your template"
 client: "Witty Wolf"
 tagline: "The site you are reading is the case study"
@@ -36,26 +40,31 @@ The vessel had a subscription.
 
 ## Someone else's vessel
 
-The template spoke first, and it mostly spoke in stock. The hero photo was
-mine, a sunset I shot in the Houthavens in Amsterdam, but the work page
-opened on a 3D render from a photo library and contact hid behind a city
-skyline that could sell anything. Underneath sat a wordmark in a rounded
-display face that has since been retired from the brand entirely.
-
-<figure class="fig">
-  <img src="/work/witty-wolf-site/framer-landing.png" alt="The old Framer landing page: Marco's own sunset photo of sailing boats in the Houthavens, Amsterdam, with Witty Wolf Design set in the old rounded display face" loading="lazy" />
-  <figcaption>The old landing: my own Houthavens sunset, the retired typeface, the copy already trying to get out.</figcaption>
-</figure>
+It began as a template speaking in stock. My own Houthavens sunset sat in
+the hero, but the work page opened on a 3D render from a photo library and
+contact hid behind a city skyline that could sell anything. Underneath sat
+a wordmark in a rounded display face that has since been retired from the
+brand entirely.
 
 <figure class="fig fig--paper fig--duo">
-  <span class="fig__tile"><img src="/work/witty-wolf-site/framer-work-stock.jpg" alt="The old work page hero: a generic stock 3D render of atoms and orbiting spheres" loading="lazy" /></span>
-  <span class="fig__tile"><img src="/work/witty-wolf-site/framer-contact.png" alt="The old contact page: a stock long-exposure skyline photo with a giant Contact title" loading="lazy" /></span>
-  <figcaption>Stock atoms introducing the case studies, a stock skyline answering the phone.</figcaption>
+  <span class="fig__tile"><img src="/work/witty-wolf-site/framer-landing.png" alt="The 2025 Framer landing page: Marco's own sunset photo of sailing boats in the Houthavens, Amsterdam, with Witty Wolf Design set in the old rounded display face" loading="lazy" /></span>
+  <span class="fig__tile"><img src="/work/witty-wolf-site/framer-work-stock.jpg" alt="The 2025 work page hero: a generic stock 3D render of atoms and orbiting spheres" loading="lazy" /></span>
+  <figcaption>Where it started: my own sunset in the hero, stock atoms introducing the case studies.</figcaption>
+</figure>
+
+So I redesigned it, inside Framer. The stock went. The rounded face went. A
+statement took the hero, and the site learned a light and a dark theme. By
+the end nothing on screen was borrowed.
+
+<figure class="fig fig--paper fig--duo">
+  <span class="fig__tile"><img src="/work/witty-wolf-site/framer-final-light.png" alt="The last Framer design in the light theme: the line-art wolf mark, and the hero reading I don't care about your product, I care about the people trying to use it" loading="lazy" /></span>
+  <span class="fig__tile"><img src="/work/witty-wolf-site/framer-final-dark.png" alt="The same last Framer design in the dark theme: the same hero on near-black, the second line in amber" loading="lazy" /></span>
+  <figcaption>The last Framer state, both themes. Nothing stock left, and still a rented flat.</figcaption>
 </figure>
 
 The brand thinking was real and worth keeping: wit as a working principle,
-plain language, personality in service of clarity. It deserved better than
-a layout someone else had already sold a thousand times.
+plain language, personality in service of clarity. What it could not get
+from Framer was ownership.
 
 <figure class="fig fig--mid fig--pin">
   <img src="/work/witty-wolf-site/framer-brand-sheet.png" alt="The old brand guidelines sheet: branding vision, tone of voice and imagery principles for Witty Wolf Design" loading="lazy" />
