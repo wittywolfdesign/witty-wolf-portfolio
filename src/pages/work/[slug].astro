@@ -161,7 +161,7 @@ const line2 =
         <dl class="case-meta">
           <div><dt>{T.caseUi.role}</dt><dd>{d.role}</dd></div>
           <div><dt>{T.caseUi.discipline}</dt><dd>{d.discipline.join(" · ")}</dd></div>
-          <div><dt>{T.caseUi.year}</dt><dd>{d.year}{isShelly && <span class="year-sharpie">{{ en: "Redraw", nl: "Herschets", es: "Rediseño" }[locale]}</span>}</dd></div>
+          <div><dt>{T.caseUi.year}</dt><dd>{d.year}</dd></div>
         </dl>
 
         {/* live-site CTA, URL read from frontmatter (single source, see liveUrl) */}
@@ -377,19 +377,6 @@ const line2 =
   .case-meta dt { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.3rem; }
   .case-meta dd { font-family: var(--font-mono); font-weight: 600; font-size: var(--step-0); color: var(--ink); font-variant-numeric: tabular-nums; }
   @media (max-width: 680px) { .case-meta { grid-template-columns: 1fr; gap: 1rem; } }
-  /* Shelly only: "Redraw" scrawled next to the year, like a marker note
-     stuck on the metadata. Self-hosted Gochi Hand (already loaded for
-     this page), the site's own hot accent, never the .sj system's fixed
-     palette, since this lives in the ordinary case chrome. */
-  .year-sharpie {
-    display: inline-block;
-    margin-left: 0.5rem;
-    font-family: "Gochi Hand", cursive;
-    font-weight: 400;
-    font-size: 1.15em;
-    color: var(--accent-hot);
-    transform: rotate(-6deg);
-  }
 
   /* live-site CTA: mono link in the secondary self-drawing-underline style
      (same mechanic as the next-case link), tinted with the case accent */
@@ -608,60 +595,6 @@ const line2 =
     background: radial-gradient(circle at 34% 30%,
       color-mix(in srgb, var(--pin) 40%, #fff) 0%, var(--pin) 58%);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
-  }
-
-  /* the research cluster: the diagram duo, the persona sticky pinned right
-     beneath it, and ONE shared caption underneath everything, instead of
-     the duo carrying its own figcaption separately from the sticky */
-  .prose :global(.research-cluster) { margin: clamp(2rem, 5vw, 3rem) 0; }
-  .prose :global(.research-cluster .fig--duo) { margin-bottom: 0; }
-  .prose :global(.research-cluster .persona-sticky) { margin-top: 0.75rem; }
-  .prose :global(.research-cluster .cluster-caption) {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.02em;
-    color: var(--text-muted);
-    margin-top: 0.6rem;
-    padding-left: 0.75rem;
-    border-left: 2px solid var(--case-accent, var(--accent));
-    max-width: 56ch;
-  }
-
-  /* Maria: off the cork board, but still set apart from body prose as a
-     small sticky note, tilted, stuck on with a strip of tape */
-  .prose :global(.persona-sticky) {
-    position: relative;
-    width: fit-content;
-    max-width: 46ch;
-    /* left-anchored, not centred in the full prose column: the duo above
-       it is width:fit-content and narrower, so centring here made the
-       note drift out to the right of everything above it */
-    margin: 1rem 0 clamp(1.5rem, 4vw, 2rem);
-    padding: 1.1rem 1.25rem 1.2rem;
-    background: #FBF3C7;
-    box-shadow: 0 6px 14px rgba(26, 23, 20, 0.16);
-    transform: rotate(-0.8deg);
-  }
-  :global([data-theme="dark"]) .prose :global(.persona-sticky) {
-    background: #E4D89A;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-  }
-  .prose :global(.persona-sticky::before) {
-    content: "";
-    position: absolute;
-    top: -10px; left: 50%;
-    width: 54px; height: 20px;
-    margin-left: -27px;
-    background: color-mix(in srgb, var(--paper) 55%, transparent);
-    border: 1px solid rgba(26, 23, 20, 0.12);
-    transform: rotate(1.5deg);
-  }
-  .prose :global(.persona-sticky p) {
-    margin: 0;
-    max-width: none;
-    font-size: 0.92rem;
-    line-height: 1.6;
-    color: #2A2620;
   }
 
   /* build-stage detail, ported from the live Urbiqo site: the terracotta
@@ -1256,55 +1189,25 @@ const line2 =
 
 <style is:global>
   /* ==========================================================================
-     Shelly journal act (.sj): the old-vs-new comparison filmstrips.
-     SCOPE FENCE: every rule is fenced under .sj-compare; the Field Journal
-     palette, paper and hand-wobble exist nowhere else on the site. The
-     phones inside are paper artefacts and stay light in dark mode (dimmed
-     by the same brightness treatment as case images). Animation is
-     transform/opacity/filter only; prefers-reduced-motion gets the
-     complete static state (the markdown markup IS the poster).
+     Shelly journal act (.sj): four live 2026-redraw screens, each embedded
+     inline in its own chapter of the case study.
+     SCOPE FENCE: every rule is fenced under .sj-compare, applied to each of
+     the four figures individually; the Field Journal palette, paper and
+     hand-wobble exist nowhere else on the site. The phones are paper
+     artefacts and stay light in dark mode (dimmed by the same brightness
+     treatment as case images). Animation is transform/opacity/filter only;
+     prefers-reduced-motion gets the complete static state.
      ========================================================================== */
   .sj-compare {
     --sjpaper: #F6F1E3; --sjink: #2A2921; --sjmoss: #8FAF77; --sjfern: #4C6B45;
     --sjberry: #C94F42; --sjochre: #D9A441;
     max-width: 100%;
-    margin: clamp(2rem, 5vw, 3rem) 0;
   }
-  /* ---------- the filmstrips ---------- */
-  .sj-strip {
-    display: flex;
-    gap: 14px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding: 4px 2px 12px;
-  }
-  .sj-strip + .sj-strip { margin-top: 0.75rem; }
-  .sj-cell { flex: 0 0 auto; scroll-snap-align: start; margin: 0; }
-  .sj-cap, .sj-cell--old figcaption {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.02em;
-    color: var(--text-muted);
-    margin: 0.5rem 0 0;
-    text-align: center;
-    border: 0;
-    padding: 0;
-    max-width: none;
-  }
-  .sj-cell--old img {
-    display: block;
-    width: 252px;
-    aspect-ratio: 393 / 852;
-    object-fit: cover;
-    object-position: top;
-    border-radius: 20px;
-    border: 1px solid var(--line);
-    cursor: default;
-  }
-  [data-theme="dark"] .sj-cell--old img { filter: brightness(0.9); }
   /* the scaled phone: designed at 292x580, shown at 0.863 */
   .sj-ph { width: 252px; height: 501px; overflow: hidden; border-radius: 18px; }
+  /* craft-layer treatment: a smaller print, same ratio */
+  .sj-ph--small { width: 196px; height: 390px; }
+  .sj-ph--small .sj-phone { transform: scale(0.673); }
   .sj-phone {
     width: 292px; height: 580px;
     transform: scale(0.863);
@@ -1334,7 +1237,6 @@ const line2 =
   /* reset the prose type inside the phones: the journal speaks for itself */
   .prose .sj-compare .sj-phone p,
   .prose .sj-compare .sj-phone h3 { margin: 0; max-width: none; font-size: inherit; line-height: 1.3; }
-  .prose .sj-compare .sj-cap { max-width: none; }
   .sj-phone button { font: inherit; cursor: pointer; }
   .sj-phone button:focus-visible { outline: 2px solid var(--accent-hot); outline-offset: 2px; }
   .sj-h {
@@ -1541,54 +1443,6 @@ const line2 =
     .sj-handle.sj-moving svg { animation: sj-waddle 0.42s ease-in-out infinite; }
   }
   @keyframes sj-waddle { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
-  /* ---------- the hare ---------- */
-  .sj-hares { position: absolute; left: 0; right: 0; bottom: 56px; height: 70px; pointer-events: none; overflow: visible; z-index: 1; }
-  .sj-hare { position: absolute; left: -90px; bottom: 0; width: 84px; opacity: 0; }
-  .sj-hare svg { width: 100%; height: auto; overflow: visible; display: block; transform: rotate(-2deg); }
-  .sj-hare .h-eye { fill: var(--sjink); }
-  .sj-hare .h-wash { fill: var(--sjochre); opacity: 0.45; mix-blend-mode: multiply; stroke: none; }
-  @media (prefers-reduced-motion: no-preference) {
-    .sj-hare.sj-dash { animation: sj-haredash 1.5s cubic-bezier(0.3, 0, 0.7, 1) forwards; }
-  }
-  @keyframes sj-haredash {
-    0% { transform: translateX(0); opacity: 0; }
-    6% { opacity: 1; }
-    94% { opacity: 1; }
-    100% { transform: translateX(480px); opacity: 0; }
-  }
-  /* ---------- loading: word + one-ball traffic light ---------- */
-  .sj-cover { display: grid; place-items: center; }
-  [data-sj-loadword] { transition: opacity 0.28s ease; min-height: 1.1em; }
-  [data-sj-loadword].sj-swapw { opacity: 0; }
-  .sj-orbs { position: relative; width: 150px; height: 88px; margin: 2.2rem auto 0; }
-  .sj-orbs i {
-    position: absolute; left: 50%; top: 50%;
-    width: 68px; height: 68px; margin: -34px 0 0 -34px;
-    border-radius: 52% 48% 55% 45% / 48% 55% 45% 52%;
-    border: 2.2px solid var(--sjink);
-    display: block;
-    transform: translateX(var(--x, 0px)) scale(var(--sc, 1));
-    opacity: var(--o, 1);
-  }
-  .sj-orbs i::before {
-    content: ""; position: absolute; inset: -3px;
-    border-radius: 46% 54% 49% 51% / 55% 45% 56% 44%;
-    mix-blend-mode: multiply;
-    transform: translate(4px, 3px) rotate(8deg);
-  }
-  .sj-orbs i.cg::before { background: var(--sjmoss); opacity: 0.75; }
-  .sj-orbs i.co::before { background: var(--sjochre); opacity: 0.7; transform: translate(-4px, 3px) rotate(-6deg); }
-  .sj-orbs i.cr::before { background: var(--sjberry); opacity: 0.6; transform: translate(3px, -3px) rotate(5deg); }
-  /* peek loop: arms part, the eyes appear, arms close again */
-  @media (prefers-reduced-motion: no-preference) {
-    .sj-orbs i { transition: transform 0.65s cubic-bezier(0.3, 0.75, 0.3, 1), opacity 0.5s ease; }
-    .sj-cover .armL { transform-box: fill-box; transform-origin: 15% 90%; animation: sj-peekL 5.5s ease-in-out infinite; }
-    .sj-cover .armR { transform-box: fill-box; transform-origin: 85% 90%; animation: sj-peekR 5.5s ease-in-out infinite; }
-    .sj-cover .t-peek { animation: sj-peekeyes 5.5s steps(1) infinite; }
-  }
-  @keyframes sj-peekL { 0%, 55%, 100% { transform: rotate(0); } 65%, 88% { transform: rotate(-16deg); } }
-  @keyframes sj-peekR { 0%, 55%, 100% { transform: rotate(0); } 65%, 88% { transform: rotate(16deg); } }
-  @keyframes sj-peekeyes { 0%, 60% { opacity: 0; } 66%, 88% { opacity: 1; } 92%, 100% { opacity: 0; } }
   /* ---------- exercise plates ---------- */
   .sj-xrow {
     position: absolute; top: 36px; left: 16px; right: 16px;
@@ -2130,55 +1984,51 @@ const line2 =
 </script>
 
 <script>
-  // Shelly journal act (.sj): the living bottom filmstrip. Vanilla only,
-  // ported from the approved Field Journal direction. The markdown markup
-  // is the complete static poster; this script only adds the life: the
-  // ink-in reveal, the self-running demo cadences (press, burst, peace
-  // pose, wandering sliders, the loading traffic light, the exercise
-  // countdown, the dashboard leafing through its modes) and the real
-  // interactions. Everything idles unless the act is on screen, is fully
-  // skipped under prefers-reduced-motion, and tears down on view swaps.
+  // Shelly journal act (.sj): four live Field Journal screens, each
+  // embedded inline in its own chapter of the case study. Vanilla only.
+  // No self-running demo loops: this is a linear read, not a showcase
+  // reel. Handles the ink-in reveal (once per screen, on scroll into
+  // view) and the screens' real interactions: draggable sliders, the
+  // greeting's CTA, the dashboard's week/month/year switch, and the
+  // exercise timer/pause. Fully skipped under prefers-reduced-motion,
+  // and tears down on view swaps.
   let sjTimers: number[] = [];
   let sjIOs: IntersectionObserver[] = [];
   let sjInited = false;
-  let sjVisible = false;
 
   function sjTeardown() {
     sjTimers.forEach((t) => clearInterval(t));
     sjIOs.forEach((io) => io.disconnect());
     sjTimers = []; sjIOs = [];
-    sjInited = false; sjVisible = false;
+    sjInited = false;
   }
 
   function sjBerrySVG() {
     return '<svg class="sj-berry" viewBox="0 0 24 27" aria-hidden="true"><path class="s-berry s-line" d="M12 25C6 25 2.6 19.4 2.6 14.2 2.6 9.6 6.2 7.4 12 7.4s9.4 2.2 9.4 6.8C21.4 19.4 18 25 12 25Z"/><path class="s-leaf s-line" d="M12 7.6C10 5 7.4 4.1 5 4.6 6.8 7 9.2 8 12 7.6Zm0 0c2-2.6 4.6-3.5 7-3C17.2 7 14.8 8 12 7.6Z"/><path class="s-stem s-line" d="M12 7.2 Q11.4 4.4 12.6 2.4"/><circle class="s-seed" cx="8" cy="13.4" r="1"/><circle class="s-seed" cx="16" cy="13.4" r="1"/><circle class="s-seed" cx="12" cy="17.6" r="1"/></svg>';
   }
-  function sjHareSVG() {
-    return '<svg viewBox="0 0 90 56" aria-hidden="true"><ellipse class="h-wash" cx="42" cy="34" rx="26" ry="12" transform="rotate(-6 42 34)"/><path class="sjl" d="M14 42 Q18 26 40 25 Q60 24 70 30"/><path class="sjl" d="M20 44 Q40 50 62 42"/><ellipse class="sjl" cx="66" cy="12" rx="3.5" ry="9" transform="rotate(-28 66 12)"/><ellipse class="sjl" cx="72" cy="11" rx="3.5" ry="9" transform="rotate(-12 72 11)"/><circle class="sjl" cx="74" cy="26" r="7"/><circle class="h-eye" cx="75.5" cy="24" r="1.3"/><path class="sjl" d="M81 27.5 l4 1"/><circle class="sjl" cx="13" cy="38" r="4"/><path class="sjl" d="M20 42 Q10 50 2 48"/><path class="sjl" d="M26 44 Q22 52 14 53"/><path class="sjl" d="M58 40 Q66 48 76 46"/><path class="sjl" d="M64 37 Q74 40 82 36"/></svg>';
-  }
 
   function initSj() {
-    const box = document.querySelector<HTMLElement>("[data-sj-compare]");
-    if (!box || sjInited) return;
+    if (sjInited) return;
     sjInited = true;
     const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // reveal once + gate the cadences to the act being on screen
-    const gate = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((en) => {
-          sjVisible = en.isIntersecting;
-          if (en.isIntersecting && !REDUCE) box.classList.add("sj-play");
-        });
-      },
-      { threshold: 0.12 },
-    );
-    gate.observe(box);
-    sjIOs.push(gate);
-    const live = () => sjVisible && !document.hidden;
+    // ---- ink-in reveal: each screen plays once as it scrolls into view ----
+    const scenes = document.querySelectorAll<HTMLElement>(".sj-compare");
+    if (scenes.length) {
+      if (REDUCE) {
+        scenes.forEach((sc) => sc.classList.add("sj-play"));
+      } else {
+        const gate = new IntersectionObserver(
+          (entries) => entries.forEach((en) => { if (en.isIntersecting) en.target.classList.add("sj-play"); }),
+          { threshold: 0.12 },
+        );
+        scenes.forEach((sc) => gate.observe(sc));
+        sjIOs.push(gate);
+      }
+    }
 
-    // ---- sliders: drag for real, wander on their own ----
-    box.querySelectorAll<HTMLElement>(".sj-slider").forEach((sl) => {
+    // ---- sliders: drag or arrow-key, for real ----
+    document.querySelectorAll<HTMLElement>(".sj-slider").forEach((sl) => {
       const vals = (sl.dataset.vals || "").split(",");
       const steps = vals.length - 1;
       const track = sl.querySelector<HTMLElement>(".sj-track")!;
@@ -2196,16 +2046,7 @@ const line2 =
         idx = Math.round(Math.min(1, Math.max(0, (clientX - r.left) / r.width)) * steps);
         render();
       };
-      sl.addEventListener("sj-autostep", () => {
-        let next = idx;
-        while (next === idx) next = Math.floor(Math.random() * (steps + 1));
-        idx = next;
-        render();
-      });
       handle.addEventListener("pointerdown", (e) => {
-        sl.dataset.user = "1"; // a real hand takes over: the demo lets go
-        handle.classList.remove("sj-auto", "sj-moving");
-        fill.classList.remove("sj-auto");
         handle.setPointerCapture(e.pointerId);
       });
       handle.addEventListener("pointermove", (e) => {
@@ -2233,11 +2074,11 @@ const line2 =
       window.setTimeout(() => ring.remove(), 550);
       window.setTimeout(() => btn.classList.remove("sj-press"), 320);
     }
-    function rainAndPeace() {
-      const layer = box.querySelector<HTMLElement>(".sj-rain");
-      const btn = box.querySelector<HTMLElement>("[data-sj-press]");
-      if (!layer || !btn) return;
-      const phone = layer.closest<HTMLElement>(".sj-phone")!;
+    function rainAndPeace(btn: HTMLElement) {
+      pressButton(btn);
+      const phone = btn.closest<HTMLElement>(".sj-phone")!;
+      const layer = phone.querySelector<HTMLElement>(".sj-rain");
+      if (!layer) return;
       const sc = phone.getBoundingClientRect().width / phone.offsetWidth;
       const br = btn.getBoundingClientRect();
       const pr = layer.getBoundingClientRect();
@@ -2260,8 +2101,8 @@ const line2 =
         layer.appendChild(b);
         window.setTimeout(() => b.remove(), 2800);
       }
-      const wave = box.querySelector<HTMLElement>('[data-pose="wave"]');
-      const peace = box.querySelector<HTMLElement>('[data-pose="peace"]');
+      const wave = phone.querySelector<HTMLElement>('[data-pose="wave"]');
+      const peace = phone.querySelector<HTMLElement>('[data-pose="peace"]');
       if (!wave || !peace) return;
       wave.classList.add("sj-hide");
       peace.classList.remove("sj-hide");
@@ -2270,74 +2111,14 @@ const line2 =
         wave.classList.remove("sj-hide");
       }, 3000);
     }
-    box.querySelectorAll<HTMLElement>("[data-sj-press]").forEach((btn) =>
-      btn.addEventListener("click", () => { if (!REDUCE) rainAndPeace(); }));
-
-    // ---- loading: word trio + one-ball traffic light, one cadence ----
-    const LOADWORDS = ["Loading....", "Almost....", "Ready?"];
-    const WORDCOL = ["cr", "co", "cg"];
-    let lwIdx = 0;
-    const lwEl = box.querySelector<HTMLElement>("[data-sj-loadword]");
-    const orbBox = box.querySelector<HTMLElement>(".sj-orbs");
-    let orbCurrent = orbBox?.querySelector<HTMLElement>("i") ?? null;
-    function makeOrb(colcls: string, x: number, scv: string, o: string) {
-      const el = document.createElement("i");
-      el.className = colcls;
-      el.style.setProperty("--x", x + "px");
-      el.style.setProperty("--sc", scv);
-      el.style.setProperty("--o", o);
-      orbBox!.appendChild(el);
-      return el;
-    }
-    function pushOrb(colcls: string, onImpact: () => void) {
-      if (!orbBox) return;
-      const inc = makeOrb(colcls, -132, "0.92", "0");
-      void inc.offsetWidth;
-      inc.style.transition = "transform 0.42s cubic-bezier(0.55, 0, 0.85, 0.55), opacity 0.18s ease";
-      inc.style.setProperty("--x", "-52px"); // presses INTO the sitting ball
-      inc.style.setProperty("--o", "1");
-      const out = orbCurrent;
-      orbCurrent = inc;
-      window.setTimeout(() => {
-        onImpact();
-        inc.style.transition = "transform 0.5s cubic-bezier(0.2, 1.25, 0.4, 1)";
-        inc.style.setProperty("--x", "0px");
-        inc.style.setProperty("--sc", "1.08");
-        if (out) out.style.setProperty("--sc", "0.92");
-        window.setTimeout(() => {
-          inc.style.transition = "transform 0.3s ease-out";
-          inc.style.setProperty("--sc", "1");
-        }, 190);
-        window.setTimeout(() => {
-          if (out) {
-            out.style.transition = "transform 0.55s cubic-bezier(0.1, 0.65, 0.3, 1), opacity 0.32s ease 0.2s";
-            out.style.setProperty("--x", "132px");
-            out.style.setProperty("--o", "0");
-            window.setTimeout(() => out.remove(), 800);
-          }
-        }, 70);
-      }, 430);
-    }
-    if (lwEl && orbBox && !REDUCE) {
-      sjTimers.push(window.setInterval(() => {
-        if (!live()) return;
-        const next = (lwIdx + 1) % LOADWORDS.length;
-        pushOrb(WORDCOL[next], () => {
-          lwEl.classList.add("sj-swapw");
-          window.setTimeout(() => {
-            lwIdx = next;
-            lwEl.textContent = LOADWORDS[lwIdx];
-            lwEl.classList.remove("sj-swapw");
-          }, 200);
-        });
-      }, 2600));
-    }
+    document.querySelectorAll<HTMLElement>("[data-sj-press]").forEach((btn) =>
+      btn.addEventListener("click", () => { if (!REDUCE) rainAndPeace(btn); }));
 
     // ---- exercise: countdown + pause (flipbook pauses with it) ----
     const xstate = { t: 72, paused: false };
-    const xtimer = box.querySelector<HTMLElement>("[data-sj-timer]");
-    const xpause = box.querySelector<HTMLElement>("[data-sj-pause]");
-    const xplate = box.querySelector<HTMLElement>("[data-sj-xplate]");
+    const xtimer = document.querySelector<HTMLElement>("[data-sj-timer]");
+    const xpause = document.querySelector<HTMLElement>("[data-sj-pause]");
+    const xplate = document.querySelector<HTMLElement>("[data-sj-xplate]");
     const xrender = () => {
       if (!xtimer) return;
       const m = Math.floor(xstate.t / 60), s = xstate.t % 60;
@@ -2349,15 +2130,22 @@ const line2 =
       xplate?.classList.toggle("sj-paused", xstate.paused);
     };
     if (xtimer && !REDUCE) {
+      let xVisible = false;
+      const xgate = new IntersectionObserver(
+        (entries) => entries.forEach((en) => { xVisible = en.isIntersecting; }),
+        { threshold: 0.12 },
+      );
+      xgate.observe(xtimer.closest<HTMLElement>(".sj-phone") ?? xtimer);
+      sjIOs.push(xgate);
       sjTimers.push(window.setInterval(() => {
-        if (!live() || xstate.paused) return;
+        if (!xVisible || document.hidden || xstate.paused) return;
         xstate.t = xstate.t > 0 ? xstate.t - 1 : 90;
         xrender();
       }, 1000));
     }
     xpause?.addEventListener("click", xtoggle);
 
-    // ---- dashboard: week / month / year leaf through by themselves ----
+    // ---- dashboard: week / month / year, switched by hand ----
     const DMODES: Record<string, { count: number; range: string; msg: string; recap: number[]; bars: number[][] }> = {
       week: { count: 189, range: "Aug 4th - Aug 10th", msg: "You met your goal 3 times!", recap: [3, 15, 15, 30],
         bars: [[60, 30, 80], [45, 90, 65], [70, 40, 55], [35, 75, 95]] },
@@ -2366,8 +2154,6 @@ const line2 =
       year: { count: 1402, range: "2025", msg: "Slow and steady, all year long.", recap: [38, 190, 120, 160],
         bars: [[35, 60, 90], [75, 85, 60], [55, 30, 70], [45, 95, 70]] },
     };
-    const DORDER = ["week", "month", "year"];
-    let dmode = "week";
     function countTo(el: HTMLElement | null, target: number, dur: number) {
       if (!el) return;
       const from = parseInt(String(el.textContent).replace(/\D/g, ""), 10) || 0;
@@ -2381,77 +2167,28 @@ const line2 =
       requestAnimationFrame(step);
     }
     function setDashMode(mode: string) {
-      dmode = mode;
       const M = DMODES[mode];
-      box.querySelectorAll<HTMLElement>("[data-sj-seg] span").forEach((sp) =>
+      document.querySelectorAll<HTMLElement>("[data-sj-seg] span").forEach((sp) =>
         sp.classList.toggle("on", sp.dataset.mode === mode));
-      const range = box.querySelector<HTMLElement>("[data-sj-range]");
+      const range = document.querySelector<HTMLElement>("[data-sj-range]");
       if (range) range.textContent = M.range;
-      const msg = box.querySelector<HTMLElement>("[data-sj-msg]");
+      const msg = document.querySelector<HTMLElement>("[data-sj-msg]");
       if (msg) msg.textContent = M.msg;
-      countTo(box.querySelector("[data-sj-count]"), M.count, 900);
-      box.querySelectorAll<HTMLElement>("[data-sj-recap]").forEach((el) =>
+      countTo(document.querySelector("[data-sj-count]"), M.count, 900);
+      document.querySelectorAll<HTMLElement>("[data-sj-recap]").forEach((el) =>
         countTo(el, M.recap[parseInt(el.dataset.sjRecap || "0", 10)], 550));
-      box.querySelectorAll<HTMLElement>(".sj-rcard").forEach((card, ci) => {
+      document.querySelectorAll<HTMLElement>(".sj-rcard").forEach((card, ci) => {
         card.querySelectorAll<HTMLElement>(".sj-bars i").forEach((bar, bi) => {
           bar.style.height = (M.bars[ci]?.[bi] ?? 50) + "%";
         });
       });
-      box.querySelectorAll<HTMLElement>("[data-sj-panel]").forEach((p) => {
+      document.querySelectorAll<HTMLElement>("[data-sj-panel]").forEach((p) => {
         if (p.dataset.sjPanel === mode) p.removeAttribute("hidden");
         else p.setAttribute("hidden", "");
       });
     }
-    box.querySelectorAll<HTMLElement>("[data-sj-seg] span").forEach((sp) =>
+    document.querySelectorAll<HTMLElement>("[data-sj-seg] span").forEach((sp) =>
       sp.addEventListener("click", () => setDashMode(sp.dataset.mode || "week")));
-
-    // ---- the self-running demo, only while the act is on screen ----
-    if (!REDUCE) {
-      sjTimers.push(window.setInterval(() => { // a slider turtle wanders
-        if (!live()) return;
-        const sliders = [...box.querySelectorAll<HTMLElement>(".sj-slider")].filter((sl) => !sl.dataset.user);
-        if (!sliders.length) return;
-        const sl = sliders[Math.floor(Math.random() * sliders.length)];
-        const handle = sl.querySelector<HTMLElement>(".sj-handle")!;
-        sl.querySelector<HTMLElement>(".sj-fill")!.classList.add("sj-auto");
-        handle.classList.add("sj-auto", "sj-moving");
-        sl.dispatchEvent(new CustomEvent("sj-autostep"));
-        window.setTimeout(() => handle.classList.remove("sj-moving"), 1150);
-      }, 3400));
-      sjTimers.push(window.setInterval(() => { // the CTA presses itself
-        if (!live()) return;
-        const btn = box.querySelector<HTMLElement>("[data-sj-press]");
-        if (!btn) return;
-        pressButton(btn);
-        window.setTimeout(rainAndPeace, 200);
-      }, 8200));
-      sjTimers.push(window.setInterval(() => { // dashboard leafs through
-        if (!live()) return;
-        setDashMode(DORDER[(DORDER.indexOf(dmode) + 1) % DORDER.length]);
-      }, 5200));
-      sjTimers.push(window.setInterval(() => { // pause-tap demo on the exercise
-        if (!live() || !xpause) return;
-        pressButton(xpause);
-        xtoggle();
-        window.setTimeout(() => { if (xstate.paused) xtoggle(); }, 2100);
-      }, 11400));
-      sjTimers.push(window.setInterval(() => { // the hare tears past
-        if (!live()) return;
-        const lanes = [...box.querySelectorAll<HTMLElement>(".sj-hares")];
-        if (!lanes.length) return;
-        const lane = lanes[Math.floor(Math.random() * lanes.length)];
-        let hare = lane.querySelector<HTMLElement>(".sj-hare");
-        if (!hare) {
-          hare = document.createElement("span");
-          hare.className = "sj-hare";
-          hare.innerHTML = sjHareSVG();
-          lane.appendChild(hare);
-        }
-        hare.classList.remove("sj-dash");
-        void hare.offsetWidth;
-        hare.classList.add("sj-dash");
-      }, 6800));
-    }
   }
 
   document.addEventListener("astro:before-swap", sjTeardown);
