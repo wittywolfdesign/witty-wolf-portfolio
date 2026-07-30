@@ -712,6 +712,40 @@ superseded demo act above.
   differing pixels are the live Madrid clocks and the typewriter title's
   per-load random ink, everything below the hero pixel-identical).
 
+## Shelly: condensed case body (30 July 2026, later)
+Marco felt the top of the Shelly case (before the comparison act) took
+up too much space and asked for the former case study kept but with the
+old per-feature screenshots replaced by the redesign, chapters
+conserved, laid out horizontal rather than stacked.
+- The affinity diagram and the identity-decision image (previously a
+  full-width block near the top and a separate pinned image down in
+  "The craft layer") now sit together in one `fig--paper fig--duo`
+  pair right after the research intro. The craft layer keeps its note
+  and its paragraph, image-less.
+- The three feature chapters (01 Flexibility / Adaptive scheduling, 02
+  Positive reinforcement / Visualising progress, 03 Support /
+  Contextual nudges) each collapse from heading + paragraph + full
+  figure into one compact horizontal card: a screenshot beside the
+  chapter's text, alternating image-left/image-right. New scoped
+  component `.fig--feature` in [slug].astro (flex row, stacks under
+  620px, excluded from the "Look closer" lightbox hint and its caption
+  padding like fig--small/fig--margin already are).
+- The three screenshots inside those cards are NOT the old 2025
+  screenshots (which stay only in the comparison act's top filmstrip):
+  they are fresh captures of the actual redesign, shot live from the
+  .sj system (public/work/shelly/shelly-new-routine.png, -dashboard.png,
+  -suggestion.png) with Playwright against the built preview. Since the
+  new dashboard shows a strawberry harvest rather than the old "growing
+  path" metaphor, that chapter's copy was adjusted to describe what the
+  new screen actually shows (still the same positive-reinforcement
+  point, no fabricated claim); the other two captions needed no change.
+  The "same calm in light and dark mode" figure is cut outright; the
+  file (shelly-light-dark-mockups.png) stays on disk, just unreferenced.
+- VERIFIED: 27 checks (three locales' board/duo/feature counts and old
+  screenshots gone, eight notes/anchors intact, desktop+360 both themes
+  with no new horizontal overflow beyond the pre-existing 360 nav
+  overflow baseline, no-JS content intact).
+
 ## How to run
 Marco runs the dev server himself in his own terminal (background servers
 started by sessions get reaped):
