@@ -1,0 +1,108 @@
+{
+  "$ref": "#/definitions/work",
+  "definitions": {
+    "work": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "client": {
+          "type": "string"
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "year": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "discipline": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "thumb": {
+          "type": "string"
+        },
+        "accent": {
+          "type": "string"
+        },
+        "ink": {
+          "type": "string",
+          "default": "#ffffff"
+        },
+        "order": {
+          "type": "number"
+        },
+        "featured": {
+          "type": "boolean",
+          "default": true
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "published",
+            "draft"
+          ],
+          "default": "published"
+        },
+        "liveUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "context": {
+          "type": "string"
+        },
+        "problem": {
+          "type": "string"
+        },
+        "outcome": {
+          "type": "string"
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "value",
+              "label"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "client",
+        "tagline",
+        "summary",
+        "year",
+        "role",
+        "discipline",
+        "thumb",
+        "accent",
+        "order"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

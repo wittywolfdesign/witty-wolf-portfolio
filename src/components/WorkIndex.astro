@@ -16,6 +16,41 @@ const locale = (Astro.currentLocale ?? "en") as Locale;
 const T = t(locale);
 const prefix = locale === "en" ? "" : `/${locale}`;
 const { work, variant = "compact", label = T.home.selectedWork } = Astro.props;
+
+/* Hover cursor: each row swaps the pointer for that project's rubber
+   stamp, the same mark the case page presses over its title. Same
+   construction and ink recipe as the case stamp (240-unit canvas, rect
+   border, ink-bite filter), just smaller. Geometry mirrors
+   work/[slug].astro so the two stamps never drift apart. */
+const stampFiles = import.meta.glob("../../public/brand/stamps/*.svg", {
+  query: "?raw",
+  import: "default",
+  eager: true,
+});
+const SW = 240;
+const SPADX = 20;
+const SPADY = 16;
+const stamps = work
+  .map((w) => {
+    const slug = w.slug.split("/").pop()!;
+    const raw = stampFiles[`../../public/brand/stamps/${slug}.svg`] as string | undefined;
+    if (!raw) return null;
+    const vb = raw.match(/viewBox="([^"]+)"/)![1].split(/\s+/).map(Number);
+    const inner = raw.replace(/^.*?<svg[^>]*>/s, "").replace(/<\/svg>\s*$/s, "");
+    const sc = (SW - SPADX * 2) / vb[2];
+    const H = Math.round(vb[3] * sc + SPADY * 2);
+    return {
+      slug,
+      accent: w.data.accent,
+      W: SW,
+      H,
+      sc,
+      tx: SPADX - vb[0] * sc,
+      ty: SPADY - vb[1] * sc,
+      inner,
+    };
+  })
+  .filter((st) => st !== null);
 ---
 
 <div class="windex">
@@ -48,7 +83,76 @@ const { work, variant = "compact", label = T.home.selectedWork } = Astro.props;
       </li>
     ))}
   </ul>
+
+  <!-- the cursor stamp: fixed follower, one stamp per project, shown by
+       the script while the pointer is over that project's row. Hidden by
+       default so no-JS visitors keep the plain pointer. -->
+  <div class="windex-cursor" aria-hidden="true">
+    <svg width="0" height="0" focusable="false" aria-hidden="true">
+      <filter id="wx-stamp-fx" x="-8%" y="-12%" width="116%" height="124%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.38" numOctaves="2" seed="4" result="grain" />
+        <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 3.8 -0.6" result="grainA" />
+        <feComposite in="SourceGraphic" in2="grainA" operator="in" result="bitten" />
+        <feTurbulence type="fractalNoise" baseFrequency="0.02 0.028" numOctaves="2" seed="11" result="warp" />
+        <feDisplacementMap in="bitten" in2="warp" scale="2.5" />
+      </filter>
+    </svg>
+    {stamps.map((st) => (
+      <svg
+        class="wx-stamp"
+        data-cursor-stamp={st.slug}
+        viewBox={`0 0 ${st.W} ${st.H}`}
+        style={`--brand-accent:${st.accent}`}
+        hidden
+      >
+        <g filter="url(#wx-stamp-fx)">
+          <rect
+            x="2.5" y="2.5"
+            width={st.W - 5} height={st.H - 5}
+            rx="12"
+            fill="none" stroke="currentColor" stroke-width="2.5"
+          />
+          <g transform={`translate(${st.tx.toFixed(2)} ${st.ty.toFixed(2)}) scale(${st.sc.toFixed(4)})`} set:html={st.inner} />
+        </g>
+      </svg>
+    ))}
+  </div>
 </div>
+
+<script>
+  // swap the pointer for the hovered project's rubber stamp. Skipped on
+  // touch/coarse pointers and under prefers-reduced-motion, so those
+  // visitors keep the normal cursor.
+  function initWindexCursor() {
+    if (!matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    document.querySelectorAll<HTMLElement>(".windex").forEach((root) => {
+      if (root.dataset.stampCursor) return;
+      const cur = root.querySelector<HTMLElement>(".windex-cursor");
+      if (!cur) return;
+      root.dataset.stampCursor = "1";
+      const stamps = [...cur.querySelectorAll<SVGSVGElement>("[data-cursor-stamp]")];
+      let raf = 0, x = 0, y = 0;
+      const place = () => { raf = 0; cur.style.transform = `translate(${x}px, ${y}px)`; };
+      const move = (e: PointerEvent) => {
+        x = e.clientX; y = e.clientY;
+        if (!raf) raf = requestAnimationFrame(place);
+      };
+      root.querySelectorAll<HTMLAnchorElement>(".row").forEach((row) => {
+        const slug = (row.getAttribute("href") || "").split("/").pop();
+        row.addEventListener("pointerenter", (e) => {
+          stamps.forEach((s) => s.toggleAttribute("hidden", s.dataset.cursorStamp !== slug));
+          x = e.clientX; y = e.clientY; place();
+          cur.classList.add("is-on");
+        });
+        row.addEventListener("pointermove", move);
+        row.addEventListener("pointerleave", () => cur.classList.remove("is-on"));
+      });
+    });
+  }
+  initWindexCursor();
+  document.addEventListener("astro:page-load", initWindexCursor);
+</script>
 
 <style>
   .windex { position: relative; }
@@ -130,6 +234,62 @@ const { work, variant = "compact", label = T.home.selectedWork } = Astro.props;
       display: flex; flex-wrap: wrap; gap: 0.25rem 1rem;
       text-align: left;
       margin-top: 0.4rem;
+    }
+  }
+
+  /* ---------- the cursor stamp ---------- */
+  /* only once the script has taken over does the native pointer go away */
+  .windex[data-stamp-cursor] .row { cursor: none; }
+  .windex-cursor {
+    position: fixed;
+    left: 0; top: 0;
+    width: 112px;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0;
+  }
+  .windex-cursor.is-on { opacity: 1; }
+  .wx-stamp {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    transform: translate(-50%, -50%) rotate(-13deg);
+    /* same ink recipe as the case-page stamp: brand hue forced to a mid
+       lightness so it reads on both themes, same alpha, just smaller */
+    --wx-ink: color-mix(in srgb, var(--brand-accent) 70%, var(--ink) 30%);
+    --wx-ink: oklch(from var(--brand-accent) 0.56 c h);
+    color: var(--wx-ink);
+    opacity: 0.5;
+  }
+  :global([data-theme="dark"]) .wx-stamp {
+    --wx-ink: color-mix(in srgb, var(--brand-accent) 55%, var(--ink) 45%);
+    --wx-ink: oklch(from var(--brand-accent) 0.68 c h);
+    opacity: 0.55;
+  }
+  /* FLIZ's bright green gets the same pull-back as on its case page */
+  .wx-stamp[data-cursor-stamp="fliz"] {
+    --wx-ink: color-mix(in srgb, var(--brand-accent) 35%, var(--grey-400) 65%);
+    --wx-ink: oklch(from var(--brand-accent) 0.62 calc(c * 0.45) h);
+    opacity: 0.3;
+  }
+  :global([data-theme="dark"]) .wx-stamp[data-cursor-stamp="fliz"] {
+    --wx-ink: color-mix(in srgb, var(--brand-accent) 35%, var(--grey-600) 65%);
+    --wx-ink: oklch(from var(--brand-accent) 0.52 calc(c * 0.45) h);
+    opacity: 0.34;
+  }
+  .wx-stamp[hidden] { display: none; }
+  /* the same 150ms punch the case stamp lands with, re-fired per row
+     because the hidden toggle restarts the animation */
+  @media (prefers-reduced-motion: no-preference) {
+    .windex-cursor.is-on .wx-stamp:not([hidden]) {
+      animation: wx-punch 0.15s cubic-bezier(0.19, 1, 0.22, 1) both;
+    }
+  }
+  @keyframes wx-punch {
+    from {
+      transform: translate(-50%, -50%) rotate(-13deg) scale(1.2);
+      opacity: 0;
     }
   }
 </style>
