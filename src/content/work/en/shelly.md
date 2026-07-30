@@ -3,7 +3,7 @@ title: "Your streak broke"
 client: "Shelly"
 tagline: "Wellness app for people who hate wellness apps"
 summary: "Building health routines through flexibility, not pressure. Rebuilt in working code, 2026."
-year: "2024"
+year: "2025"
 role: "UX/UI Designer · 4-week team sprint, with Anna · 2026 code revisit, solo"
 discipline: ["Product design", "Behavioural UX", "Branding"]
 thumb: "/thumbs/shelly.svg"
@@ -24,8 +24,8 @@ metrics:
     label: "Core flow completion in testing"
 ---
 
-Your streak broke. So now you feel like shit. Shelly is a routine-building
-app that refuses to work that way.
+Your streak broke. Right on cue, the guilt kicks in. Shelly is a
+routine-building app that refuses to work that way.
 
 The client, the Daily Health Conference, is a non-profit promoting
 wellness since 1983. The expertise is real; the technology lagged, and
@@ -55,14 +55,9 @@ The answer became a tortoise philosophy: slow, steady, flexible habits.
   <figcaption>The research wall: sixteen participants, four pillars.</figcaption>
 </figure>
 
-<div class="board">
-  <div>
-    <p class="persona__k">MARIA · busy urban professional, Barcelona</p>
-    <p>An agency job with irregular hours and the wish for a healthier
-    routine. She does not need another plan to fail at; she needs a
-    schedule that bends around hers.</p>
-  </div>
-</div>
+**MARIA · busy urban professional, Barcelona.** An agency job with
+irregular hours and the wish for a healthier routine. She does not need
+another plan to fail at; she needs a schedule that bends around hers.
 
 <p class="note">01 · Flexibility</p>
 

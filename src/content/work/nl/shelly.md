@@ -3,7 +3,7 @@ title: "Je streak is gebroken"
 client: "Shelly"
 tagline: "Wellness-app voor mensen die wellness-apps haten"
 summary: "Gezonde routines opbouwen met flexibiliteit, niet met druk. In 2026 herbouwd in werkende code."
-year: "2024"
+year: "2025"
 role: "UX/UI Designer · 4 weken teamsprint, met Anna · 2026 code-revisit, solo"
 discipline: ["Product design", "Behavioural UX", "Branding"]
 thumb: "/thumbs/shelly.svg"
@@ -24,8 +24,8 @@ metrics:
     label: "Voltooiing van de kernflow in tests"
 ---
 
-Je streak is gebroken. Dus nu voel je je klote. Shelly is een routine-app
-die weigert zo te werken.
+Je streak is gebroken. Precies op cue slaat het schuldgevoel toe.
+Shelly is een routine-app die weigert zo te werken.
 
 De klant, de Daily Health Conference, is een non-profit die sinds 1983
 wellness promoot. De expertise is echt; de technologie bleef achter, en de
@@ -56,14 +56,10 @@ schildpadfilosofie: langzame, gestage, flexibele gewoontes.
   <figcaption>De researchmuur: zestien deelnemers, vier pijlers.</figcaption>
 </figure>
 
-<div class="board">
-  <div>
-    <p class="persona__k">MARIA · drukke stedelijke professional, Barcelona</p>
-    <p>Een bureaubaan met onregelmatige uren en de wens voor een gezondere
-    routine. Ze heeft geen nieuw plan nodig om in te falen; ze heeft een
-    schema nodig dat om het hare heen buigt.</p>
-  </div>
-</div>
+**MARIA · drukke stedelijke professional, Barcelona.** Een bureaubaan
+met onregelmatige uren en de wens voor een gezondere routine. Ze heeft
+geen nieuw plan nodig om in te falen; ze heeft een schema nodig dat om
+het hare heen buigt.
 
 <p class="note">01 · Flexibiliteit</p>
 

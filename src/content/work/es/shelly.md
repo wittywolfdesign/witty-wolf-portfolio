@@ -3,7 +3,7 @@ title: "Se te rompió la racha"
 client: "Shelly"
 tagline: "Una app de bienestar para gente que odia las apps de bienestar"
 summary: "Construir rutinas de salud con flexibilidad, no con presión. Reconstruida en código real, 2026."
-year: "2024"
+year: "2025"
 role: "UX/UI Designer · Sprint de equipo de 4 semanas, con Anna · Vuelta al código en 2026, en solitario"
 discipline: ["Product design", "Behavioural UX", "Branding"]
 thumb: "/thumbs/shelly.svg"
@@ -24,7 +24,7 @@ metrics:
     label: "Completaron el flujo principal en las pruebas"
 ---
 
-Se te rompió la racha. Y ahora te sientes como una mierda. Shelly es una
+Se te rompió la racha. Justo a tiempo, llega la culpa. Shelly es una
 app de rutinas que se niega a funcionar así.
 
 El cliente, la Daily Health Conference, es una organización sin ánimo de
@@ -56,14 +56,10 @@ lentos, constantes, flexibles.
   <figcaption>El muro de research: dieciséis participantes, cuatro pilares.</figcaption>
 </figure>
 
-<div class="board">
-  <div>
-    <p class="persona__k">MARIA · profesional urbana ocupada, Barcelona</p>
-    <p>Un trabajo de agencia con horarios irregulares y las ganas de una
-    rutina más sana. No necesita otro plan en el que fallar; necesita un
-    horario que se doble alrededor del suyo.</p>
-  </div>
-</div>
+**MARIA · profesional urbana ocupada, Barcelona.** Un trabajo de
+agencia con horarios irregulares y las ganas de una rutina más sana. No
+necesita otro plan en el que fallar; necesita un horario que se doble
+alrededor del suyo.
 
 <p class="note">01 · Flexibilidad</p>
 
