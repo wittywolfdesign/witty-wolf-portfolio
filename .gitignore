@@ -14,3 +14,7 @@ npm-debug.log*
 
 # local Claude Code session config, machine-specific
 .claude/
+
+# local reference / scratch, never shipped
+shelly-concepts.html
+_to_delete/
