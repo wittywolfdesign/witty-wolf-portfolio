@@ -578,65 +578,78 @@ const line2 =
   }
   .prose :global(.fig--margin img) { width: 100%; }
 
-  /* compact horizontal feature row: a screenshot beside its own heading and
-     copy in one banded figure, so a feature chapter reads in one glance
-     instead of heading-then-paragraph-then-figure stacked three deep.
-     Image side floats fixed-width; text side takes the rest. No tilt, no
-     pin: this is a clean product callout, not a pinned print. */
-  .prose :global(.fig--feature) {
+  /* the three pillar chapters as one horizontal scroll strip: the redrawn
+     screens sit straight on the paper like every other figure (same
+     alternating tilt, no mat, no border, no card), scroll-snapped. Each
+     chapter's note + heading + one-liner sit ON TOP of its own screen, in
+     the upper area, as highlighter-style inline scrim lines (per text
+     line, not one rectangle) so nothing reads as a boxed media card. */
+  .prose :global(.chapters) { margin: clamp(2rem, 5vw, 3rem) 0; }
+  .prose :global(.chapters-track) {
     display: flex;
-    align-items: center;
-    gap: clamp(1.5rem, 4vw, 2.75rem);
-    width: 100%;
-    max-width: 100%;
-    margin: clamp(2rem, 5vw, 3rem) 0;
-    transform: none;
-    padding: clamp(1.25rem, 3vw, 1.75rem);
-    border: 1px solid var(--line);
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.5rem 0.25rem 1rem;
   }
-  .prose :global(.fig--feature:nth-of-type(even)) { flex-direction: row-reverse; }
-  .prose :global(.fig--feature img) {
+  .prose :global(.chapter-cell) {
     flex: 0 0 auto;
-    width: clamp(120px, 16vw, 152px);
-    max-height: 60vh;
+    scroll-snap-align: start;
+    position: relative;
+    width: clamp(190px, 24vw, 236px);
+  }
+  .prose :global(.chapter-cell:nth-of-type(odd)) { transform: rotate(0.45deg); }
+  .prose :global(.chapter-cell:nth-of-type(even)) { transform: rotate(-0.55deg); }
+  .prose :global(.chapter-cell img) {
     display: block;
+    width: 100%;
+    max-height: 70vh;
   }
-  .prose :global(.fig--feature figcaption) {
-    flex: 1 1 auto;
-    border-left: 0;
-    padding-left: 0;
-    margin-top: 0;
-    max-width: 44ch;
+  :global([data-theme="dark"]) .prose :global(.chapter-cell img) { filter: brightness(0.88); }
+  /* a soft paper scrim fades from solid (top) to nothing, no edge, no
+     border: fully masks whatever the screenshot itself shows underneath
+     (every redrawn screen carries its own heading up there). Fixed to the
+     redraw's own cream/ink pair, not the site's --paper/--ink: the
+     screenshot beneath never changes with the theme, so neither does the
+     scrim sitting on it (same logic as the .sj system's own fixed palette
+     in the comparison act below). */
+  .prose :global(.chapter-textwrap) {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 1;
+    padding: 12px 12px 40px;
+    background: linear-gradient(to bottom,
+      rgba(246, 241, 227, 0.95) 0%,
+      rgba(246, 241, 227, 0.95) 72%,
+      rgba(246, 241, 227, 0) 100%);
   }
-  .prose :global(.fig--feature .fig__feature-note) {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--text-muted);
-    letter-spacing: 0.02em;
-    margin-bottom: 0.4rem;
+  .prose :global(.chapter-cell .note) {
+    display: block;
+    float: none;
+    width: auto;
+    margin: 0 0 0.3rem;
+    font-size: 0.66rem;
+    color: #6d6a5e !important;
   }
-  .prose :global(.fig--feature .fig__feature-title) {
-    font-size: var(--step-1);
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    margin-bottom: 0.5rem;
-    max-width: none;
-  }
-  .prose :global(.fig--feature .fig__feature-body) {
-    font-size: 0.92rem;
-    line-height: 1.6;
-    color: var(--charcoal);
-    max-width: none;
+  .prose :global(.chapter-cell h2) {
+    display: block;
     margin: 0;
+    max-width: none;
   }
-  @media (max-width: 620px) {
-    .prose :global(.fig--feature),
-    .prose :global(.fig--feature:nth-of-type(even)) {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .prose :global(.fig--feature img) { width: clamp(110px, 40vw, 150px); }
+  .prose :global(.chapter-cell h2 span) {
+    font-size: 1rem;
+    line-height: 1.3;
+    font-weight: 600;
+    color: #2a2921;
+  }
+  .prose :global(.chapter-cell p) {
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 1.45;
+    margin: 0.3rem 0 0;
+    max-width: none;
+    color: #4a473e;
   }
 
   /* build-stage detail, ported from the live Urbiqo site: the terracotta
@@ -877,12 +890,11 @@ const line2 =
   .prose :global(.fig:focus-within .fig__zoom-t) { background-size: 100% 1px; }
   /* keep the smallest artefacts and margin asides clean, no hint overlay */
   .prose :global(.fig--small .fig__zoom),
-  .prose :global(.fig--margin .fig__zoom),
-  .prose :global(.fig--feature .fig__zoom) { display: none; }
+  .prose :global(.fig--margin .fig__zoom) { display: none; }
   /* the hint sits at the figure's bottom-right, which on a short caption is the
      caption row: reserve room there so caption text never runs under it (most
      visible when the caption wraps on narrow screens) */
-  .prose :global(.fig:not(.fig--small):not(.fig--margin):not(.fig--feature) figcaption) { padding-right: 6.5rem; }
+  .prose :global(.fig:not(.fig--small):not(.fig--margin) figcaption) { padding-right: 6.5rem; }
   @media (prefers-reduced-motion: reduce) {
     .prose :global(.fig__zoom-t) { transition: none; }
   }

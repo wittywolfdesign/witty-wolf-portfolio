@@ -2,9 +2,9 @@
 title: "Je streak is gebroken"
 client: "Shelly"
 tagline: "Wellness-app voor mensen die wellness-apps haten"
-summary: "Gezonde routines opbouwen met flexibiliteit, niet met druk."
+summary: "Gezonde routines opbouwen met flexibiliteit, niet met druk. Herschetst en in beweging gezet, 2026."
 year: "2025"
-role: "UX/UI Designer · 4 weken teamsprint, met Anna"
+role: "UX/UI Designer · 4 weken teamsprint, met Anna · 2026-herschets, solo"
 discipline: ["Product design", "Behavioural UX", "Branding"]
 thumb: "/thumbs/shelly.svg"
 accent: "#ECEFF1"
@@ -26,6 +26,9 @@ metrics:
 
 Je streak is gebroken. Precies op cue slaat het schuldgevoel toe.
 Shelly is een routine-app die weigert zo te werken.
+
+*De schermen op deze pagina zijn de herschets van 2026. Het originele
+prototype van 2025 staat onderaan, er zij aan zij mee.*
 
 De klant, de Daily Health Conference, is een non-profit die sinds 1983
 wellness promoot. De expertise is echt; de technologie bleef achter, en de
@@ -62,41 +65,34 @@ met onregelmatige uren en de wens voor een gezondere routine. Ze heeft
 geen nieuw plan nodig om in te falen; ze heeft een schema nodig dat om
 het hare heen buigt.
 
-<p class="note">01 · Flexibiliteit</p>
-
-## Aanpasbaar plannen
-
-<figure class="fig fig--feature">
-  <img src="/work/shelly/shelly-new-routine.png" alt="Herschetst Shelly-routinescherm: drie sliders met schildpad-handvat voor dagen per week, minuten per dag en hoe zwaar het moet voelen" loading="lazy" />
-  <figcaption>
-    <span class="fig__feature-title">De app vraagt naar je dag voordat hij iets van je vraagt.</span>
-    <p class="fig__feature-body">Maria's agenda is onregelmatig, dus past het schema zich aan haar aan, niet andersom.</p>
-  </figcaption>
-</figure>
-
-<p class="note">02 · Positieve bekrachtiging</p>
-
-## Voortgang zichtbaar maken
-
-<figure class="fig fig--feature">
-  <img src="/work/shelly/shelly-new-dashboard.png" alt="Herschetst Shelly-oogstdashboard: een wekelijkse aardbeientelling, doeldag-chips en een overzicht van de activiteiten van de week" loading="lazy" />
-  <figcaption>
-    <span class="fig__feature-title">Voortgang die viert, niet straft.</span>
-    <p class="fig__feature-body">Gebroken streaks en rode kruisjes werden een wekelijkse oogst: verdiende aardbeien, gehaalde doeldagen, niets meer om te breken.</p>
-  </figcaption>
-</figure>
-
-<p class="note">03 · Steun</p>
-
-## Contextuele duwtjes
-
-<figure class="fig fig--feature">
-  <img src="/work/shelly/shelly-new-suggestion.png" alt="Herschetst Shelly-oefeningscherm dat vijftien minuten wandelen voorstelt" loading="lazy" />
-  <figcaption>
-    <span class="fig__feature-title">Eén suggestie, gewoon gegeven.</span>
-    <p class="fig__feature-body">Microcoaching die zich aanpast aan hoe de gebruiker erbij zit, gestrest of energiek. Geen preek, gewoon een duidelijke volgende stap.</p>
-  </figcaption>
-</figure>
+<div class="chapters">
+  <div class="chapters-track">
+    <div class="chapter-cell">
+      <div class="chapter-textwrap">
+        <p class="note">01 · Flexibiliteit</p>
+        <h2><span>Aanpasbaar plannen</span></h2>
+        <p>De app vraagt naar je dag voordat hij iets van je vraagt.</p>
+      </div>
+      <img src="/work/shelly/shelly-new-routine.png" alt="Herschetst Shelly-routinescherm: drie sliders met schildpad-handvat voor dagen per week, minuten per dag en hoe zwaar het moet voelen" loading="lazy" />
+    </div>
+    <div class="chapter-cell">
+      <div class="chapter-textwrap">
+        <p class="note">02 · Positieve bekrachtiging</p>
+        <h2><span>Voortgang zichtbaar maken</span></h2>
+        <p>Voortgang die viert, niet straft: een wekelijkse oogst, niets meer om te breken.</p>
+      </div>
+      <img src="/work/shelly/shelly-new-dashboard.png" alt="Herschetst Shelly-oogstdashboard: een wekelijkse aardbeientelling, doeldag-chips en een overzicht van de activiteiten van de week" loading="lazy" />
+    </div>
+    <div class="chapter-cell">
+      <div class="chapter-textwrap">
+        <p class="note">03 · Steun</p>
+        <h2><span>Contextuele duwtjes</span></h2>
+        <p>Eén suggestie, gewoon gegeven, zonder preek erbij.</p>
+      </div>
+      <img src="/work/shelly/shelly-new-suggestion.png" alt="Herschetst Shelly-oefeningscherm dat vijftien minuten wandelen voorstelt" loading="lazy" />
+    </div>
+  </div>
+</div>
 
 <p class="note">De vaklaag</p>
 

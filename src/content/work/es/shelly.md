@@ -2,9 +2,9 @@
 title: "Se te rompió la racha"
 client: "Shelly"
 tagline: "Una app de bienestar para gente que odia las apps de bienestar"
-summary: "Construir rutinas de salud con flexibilidad, no con presión."
+summary: "Construir rutinas de salud con flexibilidad, no con presión. Redibujada y puesta en movimiento, 2026."
 year: "2025"
-role: "UX/UI Designer · Sprint de equipo de 4 semanas, con Anna"
+role: "UX/UI Designer · Sprint de equipo de 4 semanas, con Anna · Rediseño 2026, en solitario"
 discipline: ["Product design", "Behavioural UX", "Branding"]
 thumb: "/thumbs/shelly.svg"
 accent: "#ECEFF1"
@@ -26,6 +26,9 @@ metrics:
 
 Se te rompió la racha. Justo a tiempo, llega la culpa. Shelly es una
 app de rutinas que se niega a funcionar así.
+
+*Las pantallas de esta página son el rediseño de 2026. El prototipo
+original de 2025 está al final, junto a él.*
 
 El cliente, la Daily Health Conference, es una organización sin ánimo de
 lucro que promueve el bienestar desde 1983. La experiencia es real; la
@@ -62,41 +65,34 @@ agencia con horarios irregulares y las ganas de una rutina más sana. No
 necesita otro plan en el que fallar; necesita un horario que se doble
 alrededor del suyo.
 
-<p class="note">01 · Flexibilidad</p>
-
-## Planificación adaptable
-
-<figure class="fig fig--feature">
-  <img src="/work/shelly/shelly-new-routine.png" alt="Pantalla de rutina de Shelly rediseñada: tres sliders con tirador de tortuga para días por semana, minutos al día y cuán intenso debe sentirse" loading="lazy" />
-  <figcaption>
-    <span class="fig__feature-title">La app pregunta por tu día antes de pedirte nada.</span>
-    <p class="fig__feature-body">La agenda de Maria es irregular, así que el horario se adapta a ella, no al revés.</p>
-  </figcaption>
-</figure>
-
-<p class="note">02 · Refuerzo positivo</p>
-
-## Visualizar el progreso
-
-<figure class="fig fig--feature">
-  <img src="/work/shelly/shelly-new-dashboard.png" alt="Panel de cosecha de Shelly rediseñado: un recuento semanal de fresas, chips de días de meta y un resumen de las actividades de la semana" loading="lazy" />
-  <figcaption>
-    <span class="fig__feature-title">Progreso que celebra, no que castiga.</span>
-    <p class="fig__feature-body">Las rachas rotas y las cruces rojas se convirtieron en una cosecha semanal: fresas ganadas, días de meta marcados, nada más que romper.</p>
-  </figcaption>
-</figure>
-
-<p class="note">03 · Apoyo</p>
-
-## Empujones con contexto
-
-<figure class="fig fig--feature">
-  <img src="/work/shelly/shelly-new-suggestion.png" alt="Pantalla de ejercicio de Shelly rediseñada que sugiere quince minutos de caminata" loading="lazy" />
-  <figcaption>
-    <span class="fig__feature-title">Una sugerencia, dada sin rodeos.</span>
-    <p class="fig__feature-body">Microcoaching que se adapta a cómo estás, con estrés o con energía. Sin sermón, solo un siguiente paso claro.</p>
-  </figcaption>
-</figure>
+<div class="chapters">
+  <div class="chapters-track">
+    <div class="chapter-cell">
+      <div class="chapter-textwrap">
+        <p class="note">01 · Flexibilidad</p>
+        <h2><span>Planificación adaptable</span></h2>
+        <p>La app pregunta por tu día antes de pedirte nada.</p>
+      </div>
+      <img src="/work/shelly/shelly-new-routine.png" alt="Pantalla de rutina de Shelly rediseñada: tres sliders con tirador de tortuga para días por semana, minutos al día y cuán intenso debe sentirse" loading="lazy" />
+    </div>
+    <div class="chapter-cell">
+      <div class="chapter-textwrap">
+        <p class="note">02 · Refuerzo positivo</p>
+        <h2><span>Visualizar el progreso</span></h2>
+        <p>Progreso que celebra, no que castiga: una cosecha semanal, nada más que romper.</p>
+      </div>
+      <img src="/work/shelly/shelly-new-dashboard.png" alt="Panel de cosecha de Shelly rediseñado: un recuento semanal de fresas, chips de días de meta y un resumen de las actividades de la semana" loading="lazy" />
+    </div>
+    <div class="chapter-cell">
+      <div class="chapter-textwrap">
+        <p class="note">03 · Apoyo</p>
+        <h2><span>Empujones con contexto</span></h2>
+        <p>Una sugerencia, dada sin rodeos, sin sermón añadido.</p>
+      </div>
+      <img src="/work/shelly/shelly-new-suggestion.png" alt="Pantalla de ejercicio de Shelly rediseñada que sugiere quince minutos de caminata" loading="lazy" />
+    </div>
+  </div>
+</div>
 
 <p class="note">La capa de oficio</p>
 

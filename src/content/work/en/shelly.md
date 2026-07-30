@@ -2,9 +2,9 @@
 title: "Your streak broke"
 client: "Shelly"
 tagline: "Wellness app for people who hate wellness apps"
-summary: "Building health routines through flexibility, not pressure."
+summary: "Building health routines through flexibility, not pressure. Redrawn and set in motion, 2026."
 year: "2025"
-role: "UX/UI Designer · 4-week team sprint, with Anna"
+role: "UX/UI Designer · 4-week team sprint, with Anna · 2026 redraw, solo"
 discipline: ["Product design", "Behavioural UX", "Branding"]
 thumb: "/thumbs/shelly.svg"
 accent: "#ECEFF1"
@@ -26,6 +26,9 @@ metrics:
 
 Your streak broke. Right on cue, the guilt kicks in. Shelly is a
 routine-building app that refuses to work that way.
+
+*The screens on this page are the 2026 redraw. The original 2025
+prototype is at the end, side by side with it.*
 
 The client, the Daily Health Conference, is a non-profit promoting
 wellness since 1983. The expertise is real; the technology lagged, and
@@ -60,41 +63,34 @@ The answer became a tortoise philosophy: slow, steady, flexible habits.
 irregular hours and the wish for a healthier routine. She does not need
 another plan to fail at; she needs a schedule that bends around hers.
 
-<p class="note">01 · Flexibility</p>
-
-## Adaptive scheduling
-
-<figure class="fig fig--feature">
-  <img src="/work/shelly/shelly-new-routine.png" alt="Redrawn Shelly routine screen: three turtle-handled sliders for days per week, minutes per day and how hard it should feel" loading="lazy" />
-  <figcaption>
-    <span class="fig__feature-title">The app asks about your day before it asks anything of you.</span>
-    <p class="fig__feature-body">Maria's schedule is irregular, so the schedule adapts to her, not the other way around.</p>
-  </figcaption>
-</figure>
-
-<p class="note">02 · Positive reinforcement</p>
-
-## Visualising progress
-
-<figure class="fig fig--feature">
-  <img src="/work/shelly/shelly-new-dashboard.png" alt="Redrawn Shelly harvest dashboard: a weekly strawberry count, goal-day chips and a recap of the week's activities" loading="lazy" />
-  <figcaption>
-    <span class="fig__feature-title">Progress that celebrates, not punishes.</span>
-    <p class="fig__feature-body">Broken streaks and red crosses became a weekly harvest: strawberries earned, goal days marked, nothing left to break.</p>
-  </figcaption>
-</figure>
-
-<p class="note">03 · Support</p>
-
-## Contextual nudges
-
-<figure class="fig fig--feature">
-  <img src="/work/shelly/shelly-new-suggestion.png" alt="Redrawn Shelly exercise screen suggesting fifteen minutes of walking" loading="lazy" />
-  <figcaption>
-    <span class="fig__feature-title">One suggestion, plainly given.</span>
-    <p class="fig__feature-body">Micro-coaching that adapts to the user's state, stressed or energetic. No lecture, just a clear next step.</p>
-  </figcaption>
-</figure>
+<div class="chapters">
+  <div class="chapters-track">
+    <div class="chapter-cell">
+      <div class="chapter-textwrap">
+        <p class="note">01 · Flexibility</p>
+        <h2><span>Adaptive scheduling</span></h2>
+        <p>The app asks about your day before it asks anything of you.</p>
+      </div>
+      <img src="/work/shelly/shelly-new-routine.png" alt="Redrawn Shelly routine screen: three turtle-handled sliders for days per week, minutes per day and how hard it should feel" loading="lazy" />
+    </div>
+    <div class="chapter-cell">
+      <div class="chapter-textwrap">
+        <p class="note">02 · Positive reinforcement</p>
+        <h2><span>Visualising progress</span></h2>
+        <p>Progress that celebrates, not punishes: a weekly harvest, nothing left to break.</p>
+      </div>
+      <img src="/work/shelly/shelly-new-dashboard.png" alt="Redrawn Shelly harvest dashboard: a weekly strawberry count, goal-day chips and a recap of the week's activities" loading="lazy" />
+    </div>
+    <div class="chapter-cell">
+      <div class="chapter-textwrap">
+        <p class="note">03 · Support</p>
+        <h2><span>Contextual nudges</span></h2>
+        <p>One suggestion, plainly given, no lecture attached.</p>
+      </div>
+      <img src="/work/shelly/shelly-new-suggestion.png" alt="Redrawn Shelly exercise screen suggesting fifteen minutes of walking" loading="lazy" />
+    </div>
+  </div>
+</div>
 
 <p class="note">The craft layer</p>
 
