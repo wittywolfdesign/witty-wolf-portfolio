@@ -808,6 +808,48 @@ page (Urbiqo) captured the same way, not a real bug, not touched.
   horizontal chapter strip, craft layer, impact and quote, the "2026 ·
   Two days with markers" comparison act, Use of AI.
 
+## Shelly: real screens back, no text-over-image, pin restored, sticky Maria (30 July 2026, yet later)
+Marco's read on the previous pass, in his own words: "Top still needs
+to be old case study", "the way the text now sits on top of it, or
+covering it, is not the way to go", "what happened to all the tape in
+my case studies, holding up the images?... I never asked to get rid of
+those", and Maria needs to be "set apart from the text, use a sticky,
+or a note book with lines or something."
+- The three chapter strip cells (01/02/03) go back to the REAL 2025
+  screenshots (shelly-adaptive-scheduling / -progress-path /
+  -contextual-nudges, with their original body copy) instead of the
+  redrawn ones from the prior pass. The redraw stays exclusively in
+  the "2026 · Two days with markers" comparison act lower down; the
+  top of the page is the actual tested case study again.
+- Text no longer sits on or covers the image at all: each cell is
+  note + heading + paragraph in normal document flow, THEN the print
+  below it. Verified geometrically (paragraph bottom <= print top on
+  every cell) rather than just eyeballed.
+- The print itself carries the site's standard push-pin + alternating
+  tilt (the same `.fig--pin::before` dot, same rotate 0.45/-0.55deg
+  every other small figure gets) — restoring what chapter figures never
+  had before is new, but the identity-decision image (originally the
+  ONE Shelly figure with fig--pin) had LOST its pin when it moved into
+  the research duo two rounds ago; that was never asked for. Fixed
+  with a new `.fig__tile--pin` variant so a single tile inside a
+  fig--duo can carry its own centred pin without the dot trying to
+  straddle both tiles.
+- Maria moves off the plain bold paragraph onto a small tilted sticky
+  note (`.persona-sticky`: pale paper background, drop shadow, a taped
+  strip across the top edge) — set apart from body prose again without
+  going back to the cork-board card he'd already asked to remove.
+- Process note Marco gave mid-round: build and confirm the structure
+  on EN first, THEN mirror to NL/ES, instead of iterating all three
+  locales in lockstep every round — costs too many tokens and too much
+  time repeated three times per pass. Apply this going forward.
+- VERIFIED: 14 checks (real screenshots confirmed back, zero redraw
+  images left in the strip, text-never-over-image confirmed by
+  geometry on every cell, pins present on the strip prints and the duo
+  tile, sticky note present, board still gone, cells still carry no
+  border/background, all 8 notes/index entries intact — full pass on
+  EN, lightweight structural-parity check only on NL/ES per the process
+  note above, no-JS content intact).
+
 ## How to run
 Marco runs the dev server himself in his own terminal (background servers
 started by sessions get reaped):
