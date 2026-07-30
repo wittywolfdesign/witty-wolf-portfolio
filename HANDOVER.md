@@ -2,8 +2,9 @@
 
 A running record of the redesign, so a fresh session (Claude Code or Cowork)
 can pick up without losing context. Written for Marco Ramos, Witty Wolf Design.
-Last updated: 30 July 2026, after correcting the Witty Wolf old-site imagery
-(see the entry near the end). Previous: 29 July 2026, the Shelly 2026 act.
+Last updated: 30 July 2026, after the AI-slop copy pass on the Witty Wolf
+case (see the entry near the end). Earlier the same day: old-site imagery
+corrected. Previous: 29 July 2026, the Shelly 2026 act.
 
 ## Marco's working preferences (apply to everything)
 - UK English. Metric units. No Oxford comma. No em-dashes, use commas or full stops.
@@ -876,9 +877,28 @@ Fix, scoped to that one section only:
 All 7 notes/index entries and anchors unchanged (heading kept verbatim). Both
 new figures render as two-up duos at desktop and stack at 360px, in both themes.
 
-## How to run
-Marco runs the dev server himself in his own terminal (background servers
-started by sessions get reaped):
+## Witty Wolf case: AI-slop copy pass (30 July 2026)
+Marco flagged that AI writing patterns ran through the whole Witty Wolf
+case. Full copy pass on body prose and figcaptions in all three locales;
+facts, notes, headings, anchors and the section index untouched, frontmatter
+title/tagline/summary untouched (approved 10 July), `problem` softened from
+a two-sentence drum into one sentence.
+
+Patterns removed, for future writing on this site:
+- Mic-drop fragment pairs ("The copy had soul. The vessel had a
+  subscription.") and end-of-paragraph punchlines ("Then it gets
+  polished.", "restraint is the job", "the client notices everything").
+- Staccato repetition ("The stock went. The rounded face went.").
+- "X, not Y" antithesis drums ("a first-class theme, not an inversion",
+  "not building, it was deciding").
+- Personification of the product ("the site learned a theme", "animations
+  stand down", "the theme lands", "the footer answers", "I raise my tools").
+- Clichés and borrowed phrases ("killing my darlings") and filler
+  intensifiers ("tiny", "on this very page", "quietly started to resent").
+- Inverted colon openers ("The decision: ...", "What I keep by hand: ...").
+Dry wit stays where it is concrete and earns its place (the upgrade-button
+figcaption, the rented-flat image, used once each). One closing line kept
+as the single allowed closer.
 ```
 cd "04 Website & portfolio/witty-wolf-portfolio"
 npm run dev   # http://localhost:4321

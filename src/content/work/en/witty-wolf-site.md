@@ -21,7 +21,7 @@ order: 1
 featured: true
 status: "published"
 context: "The portfolio you are looking at, rebuilt from a Framer template into an Astro site built with AI under my direction."
-problem: "A template can host your work. It cannot speak for you."
+problem: "A template can host your work, but it cannot speak for you."
 outcome: "A static Astro site in the field-notes direction, AI-developed with me directing; every detail this case describes is live on the page you are reading."
 metrics:
   - value: "Static"
@@ -33,18 +33,18 @@ metrics:
 ---
 
 The old portfolio lived in a Framer template. It did the job the way a
-rented flat does: everything works, nothing is yours. The copy had soul.
-The vessel had a subscription.
+rented flat does: everything works, nothing is yours. The copy was worth
+keeping; the platform was a monthly bill.
 
 <p class="note">The vessel problem</p>
 
 ## Someone else's vessel
 
-It began as a template speaking in stock. My own Houthavens sunset sat in
-the hero, but the work page opened on a 3D render from a photo library and
-contact hid behind a city skyline that could sell anything. Underneath sat
-a wordmark in a rounded display face that has since been retired from the
-brand entirely.
+It began as a template full of stock. My own Houthavens sunset sat in the
+hero, but the work page opened on a 3D render from a photo library and
+contact hid behind a city skyline that could have sold anything. Under it
+sat a wordmark in a rounded display face that has since been retired from
+the brand entirely.
 
 <figure class="fig fig--paper fig--duo">
   <span class="fig__tile"><img src="/work/witty-wolf-site/framer-landing.png" alt="The 2025 Framer landing page: Marco's own sunset photo of sailing boats in the Houthavens, Amsterdam, with Witty Wolf Design set in the old rounded display face" loading="lazy" /></span>
@@ -52,14 +52,14 @@ brand entirely.
   <figcaption>Where it started: my own sunset in the hero, stock atoms introducing the case studies.</figcaption>
 </figure>
 
-So I redesigned it, inside Framer. The stock went. The rounded face went. A
-statement took the hero, and the site learned a light and a dark theme. By
-the end nothing on screen was borrowed.
+So I redesigned it inside Framer: my own imagery instead of the stock, the
+rounded face dropped, a statement in the hero and a proper light and dark
+theme.
 
 <figure class="fig fig--paper fig--duo">
   <span class="fig__tile"><img src="/work/witty-wolf-site/framer-final-light.png" alt="The last Framer design in the light theme: the line-art wolf mark, and the hero reading I don't care about your product, I care about the people trying to use it" loading="lazy" /></span>
   <span class="fig__tile"><img src="/work/witty-wolf-site/framer-final-dark.png" alt="The same last Framer design in the dark theme: the same hero on near-black, the second line in amber" loading="lazy" /></span>
-  <figcaption>The last Framer state, both themes. Nothing stock left, and still a rented flat.</figcaption>
+  <figcaption>The last Framer state, both themes: no stock left anywhere.</figcaption>
 </figure>
 
 The brand thinking was real and worth keeping: wit as a working principle,
@@ -73,15 +73,15 @@ from Framer was ownership.
 
 <figure class="fig fig--paper">
   <img src="/work/witty-wolf-site/framer-editor.png" alt="The Witty Wolf site open inside the Framer editor, variant panels and an Upgrade Now button visible" loading="lazy" />
-  <figcaption>The vessel itself: my site, someone else's editor, an upgrade button where a commit should be.</figcaption>
+  <figcaption>My site in someone else's editor, an upgrade button where a commit should be.</figcaption>
 </figure>
 
 <p class="note">The move</p>
 
 ## Same soul, new vessel
 
-The decision: retire the template and build a static Astro site, AI
-writing the code, me directing it. Keep the copy's voice, replace
+The decision was to retire the template and build a static Astro site, AI
+writing the code, me directing it: keep the copy's voice, replace
 everything it stood on. The art direction became
 field notes: warm paper, ink, a faint guide grid, thin line work and one
 amber accent, spent carefully. Two typefaces, both self-hosted: Geist Mono
@@ -89,14 +89,14 @@ as the voice for headings, navigation, labels and numbers, Work Sans for
 long-form reading only. The old rounded display face was retired
 everywhere, including the brand itself.
 
-That is also how the build itself ran: the whole site AI-developed, with
-me as the director. Every component briefed, reviewed and sent back until
-it behaved; every decision this case describes, the typewriter's mistake,
-the wolf's spook, the margin labels feeding the section index, mine.
+The build ran the same way: AI wrote the code, I directed it. Every
+component was briefed, reviewed and sent back until it behaved, and every
+decision this case describes, from the typewriter's mistake to the wolf's
+spook, was mine.
 
 <figure class="fig fig--paper">
   <img src="/work/witty-wolf-site/astro-home-light.png" alt="The new Astro home page in the light theme: typewriter hero with pixels struck through, the line-art wolf drawn in on warm paper" loading="lazy" />
-  <figcaption>The same address after the move: paper, ink, mono voice and the wolf drawn in strokes.</figcaption>
+  <figcaption>After the move: paper, ink, the mono voice and the wolf drawn in strokes.</figcaption>
 </figure>
 
 <p class="note">01 · The craft</p>
@@ -109,62 +109,62 @@ drawn as stroke-only line art that sketches itself in, no fills except the
 amber tongue. An amber scent trail draws down the page as you scroll, a
 live clock keeps Madrid time in the meta line and the footer answers in
 terminal. Dark mode arrives without a flash of the wrong theme, honours
-the system preference, and flipping it earns a beat: the wolf leans in,
-trembles, flashes an amber eye, then the lamp flickers and the theme
-lands. Every animation stands down when reduced motion is on.
+the system preference, and flipping it plays one short sequence: the wolf
+leans in, trembles, flashes an amber eye, then the lamp flickers and the
+theme switches. Every animation is disabled when reduced motion is on.
 
 <figure class="fig fig--paper">
   <img src="/work/witty-wolf-site/astro-home-dark.png" alt="The new Astro home page in the dark theme: the same hero with the wolf line work in paper tone on near-black" loading="lazy" />
-  <figcaption>Dark mode is a first-class theme, not an inversion: the wolf trades ink for paper.</figcaption>
+  <figcaption>Dark mode is drawn as its own theme: the wolf's line work switches to paper tone.</figcaption>
 </figure>
 
 <p class="note">02 · The system</p>
 
 ## One source of truth
 
-The case pages run on a small system rather than a pile of decisions. The
-margin labels you see on this very page are the single source of truth for
-the section index: the scroll-spy rail on desktop, the floating pill on
-mobile and the anchor links that keep working with JavaScript off, stamped
-in at build by a tiny rehype plugin. Figures share one field-notes
-treatment, tape and pins for images only, never for type. Each case opens
-under a rubber stamp of its client's own mark, punched in after the title
-finishes typing.
+The case pages run on a small system. The margin labels on this page are
+the single source of truth for the section index: the scroll-spy rail on
+desktop, the floating pill on mobile and the anchor links that keep
+working with JavaScript off, stamped in at build by a rehype plugin.
+Figures share one field-notes treatment, tape and pins for images only,
+never for type. Each case opens under a rubber stamp of its client's mark,
+punched in after the title finishes typing.
 
 <figure class="fig fig--paper">
   <img src="/work/witty-wolf-site/astro-case-index.png" alt="A case-study spread on the new site: the section index rail on the left, a margin label and heading, and a live product screenshot below" loading="lazy" />
-  <figcaption>The section rail, fed by the margin labels: write the note once, the index follows.</figcaption>
+  <figcaption>The section rail on a case page, generated from the margin labels at build.</figcaption>
 </figure>
 
 <p class="note">My worst client</p>
 
 ## I am my worst client
 
-Shipping for yourself means meeting your own critical self, and mine is the
-hardest client I have. No brief to hide behind, no one else to blame. A
-showcase also stops you going wild: the design has to step out of the way of
-the process, so restraint is the job.
+Shipping for yourself means answering to your own critical self, and mine
+is the hardest client I have: there is no brief to hide behind and nobody
+else to blame. A showcase also keeps you restrained, because the design has
+to stay out of the way of the work it presents.
 
-The Framer site took nearly four months. Most of that was not building, it was
-deciding. What to show, what to cut, which images earned their place, where the
-balance sat. This rebuild was faster, because the deciding was already done.
-The work was redaction, cutting what was abundant and what I had quietly
-started to resent. The hardest part was killing my darlings.
+The Framer site took nearly four months. Most of that was deciding rather
+than building: what to show, what to cut, which images deserved a place,
+where the balance sat. This rebuild went faster because those decisions
+were already made. What remained was cutting, both the excess and a few
+things I was still attached to.
 
-Criticism from a client or an employer is easier to take than from me. I am
-merciless when I have to criticise my own work. Then it gets polished.
+Criticism from a client or an employer is easier to take than my own. I am
+merciless when reviewing my own work, and the polish on this site comes out
+of that.
 
 <p class="note">Use of AI</p>
 
 ## Use of AI
 
 The code was AI-written from start to finish, with me directing every
-step; that story is above. What I keep by hand: the words. Every text on
-this site is mine, it is where most of the hours go, and I want it that
-way. The brand lives in a skill file that teaches
-the AI the house style once, tone, type, the wolf's rules, so no session
-starts from zero. The rebuild took days, not months, because the thinking
-was already done and the typing no longer costs anything.
+step; that story is above. The words are the exception: every text on this
+site is written by hand, most of the hours go into them, and I want it
+that way. The brand lives in a skill file that teaches the AI the house
+style once, tone, type, the wolf's rules, so no session starts from zero.
+The rebuild took days rather than months, because the thinking was already
+done and the code was the fast part.
 
 <p class="note">Honestly, though</p>
 
@@ -179,7 +179,6 @@ was already done and the typing no longer costs anything.
 
 A portfolio has no conversion numbers worth quoting, so I will not invent
 any. The outcome is ownership: every line of this site is mine to change,
-and changes take minutes, not a support thread. Urbiqo taught me that
-building your own design is the most honest usability test it gets; here
-the lesson came home, because this time the client was me, and the client
-notices everything.
+and a change takes minutes, not a support thread. Urbiqo taught me that
+building your own design is the most honest usability test there is. This
+time the client was me, and I notice everything.

@@ -16,7 +16,7 @@ order: 1
 featured: true
 status: "published"
 context: "El portfolio que estás mirando, reconstruido de una plantilla de Framer a una web Astro construida con IA bajo mi dirección."
-problem: "Una plantilla puede alojar tu trabajo. Hablar por ti, no puede."
+problem: "Una plantilla puede alojar tu trabajo, pero no puede hablar por ti."
 outcome: "Una web Astro estática en la dirección field-notes, desarrollada con IA conmigo al mando; cada detalle de este caso está vivo en la página que estás leyendo."
 metrics:
   - value: "Estática"
@@ -28,18 +28,19 @@ metrics:
 ---
 
 El portfolio antiguo vivía en una plantilla de Framer. Cumplía como cumple
-un piso de alquiler: todo funciona, nada es tuyo. Los textos tenían alma.
-El envase tenía una suscripción.
+un piso de alquiler: todo funciona, nada es tuyo. Los textos merecían
+conservarse; la plataforma era una factura mensual.
 
 <p class="note">El problema del envase</p>
 
 ## El envase de otro
 
-Empezó como una plantilla que hablaba en stock. Mi propio atardecer de los
+Empezó como una plantilla llena de stock. Mi propio atardecer de los
 Houthavens estaba en el hero, pero la página de trabajo abría con un render
 3D de una fototeca y el contacto se escondía tras un skyline de ciudad que
-podría vender cualquier cosa. Debajo había un logotipo en una tipografía
-display redondeada que ya ha sido retirada de la marca por completo.
+podría haber vendido cualquier cosa. Debajo había un logotipo en una
+tipografía display redondeada que ya ha sido retirada de la marca por
+completo.
 
 <figure class="fig fig--paper fig--duo">
   <span class="fig__tile"><img src="/work/witty-wolf-site/framer-landing.png" alt="La landing de Framer de 2025: la foto de atardecer con veleros que Marco hizo en los Houthavens de Ámsterdam, con Witty Wolf Design en la antigua tipografía display redondeada" loading="lazy" /></span>
@@ -47,14 +48,14 @@ display redondeada que ya ha sido retirada de la marca por completo.
   <figcaption>Donde empezó: mi propio atardecer en el hero, átomos de stock presentando los casos.</figcaption>
 </figure>
 
-Así que lo rediseñé, dentro de Framer. El stock se fue. La tipografía
-redondeada se fue. Un statement ocupó el hero y la web aprendió un tema
-claro y uno oscuro. Al final no quedaba nada prestado en pantalla.
+Así que lo rediseñé dentro de Framer: imágenes propias en lugar del stock,
+la display redondeada fuera, un statement en el hero y un tema claro y uno
+oscuro como es debido.
 
 <figure class="fig fig--paper fig--duo">
   <span class="fig__tile"><img src="/work/witty-wolf-site/framer-final-light.png" alt="El último diseño en Framer en tema claro: la marca del lobo en línea y el hero que dice I don't care about your product, I care about the people trying to use it" loading="lazy" /></span>
   <span class="fig__tile"><img src="/work/witty-wolf-site/framer-final-dark.png" alt="El mismo último diseño en Framer en tema oscuro: el mismo hero sobre casi negro, la segunda línea en ámbar" loading="lazy" /></span>
-  <figcaption>La última versión en Framer, ambos temas. Ya sin stock, y aún así un piso de alquiler.</figcaption>
+  <figcaption>La última versión en Framer, ambos temas: sin stock en ninguna parte.</figcaption>
 </figure>
 
 El pensamiento de marca era real y merecía conservarse: el ingenio como
@@ -68,31 +69,31 @@ claridad. Lo que no podía conseguir en Framer era la propiedad.
 
 <figure class="fig fig--paper">
   <img src="/work/witty-wolf-site/framer-editor.png" alt="La web de Witty Wolf abierta dentro del editor de Framer, con paneles de variantes y un botón de Upgrade Now visible" loading="lazy" />
-  <figcaption>El envase en persona: mi web, el editor de otro, un botón de upgrade donde debería haber un commit.</figcaption>
+  <figcaption>Mi web en el editor de otro, un botón de upgrade donde debería haber un commit.</figcaption>
 </figure>
 
 <p class="note">La mudanza</p>
 
 ## La misma alma, un envase nuevo
 
-La decisión: jubilar la plantilla y construir una web Astro estática, la
-IA escribiendo el código, yo dirigiendo. Conservar la voz de los textos,
-sustituir todo lo que la sostenía. La dirección de arte se volvió field notes: papel cálido, tinta,
+La decisión fue jubilar la plantilla y construir una web Astro estática,
+la IA escribiendo el código, yo dirigiendo: conservar la voz de los
+textos, sustituir todo lo que la sostenía. La dirección de arte se volvió
+field notes: papel cálido, tinta,
 una cuadrícula tenue, línea fina y un solo acento ámbar, gastado con
 cuidado. Dos tipografías, ambas self-hosted: Geist Mono como voz para
 títulos, navegación, etiquetas y números, Work Sans solo para lectura
 larga. La antigua display redondeada se jubiló en todas partes, también en
 la propia marca.
 
-Así corrió también la propia build: toda la web desarrollada con IA,
-conmigo de director. Cada componente con su encargo, revisado y devuelto
-hasta que se comportaba; cada decisión que describe este caso, la errata
-de la máquina de escribir, el susto del lobo, las etiquetas de margen que
-alimentan el índice, mía.
+La build corrió de la misma manera: la IA escribió el código, yo dirigí.
+Cada componente con su encargo, revisado y devuelto hasta que se
+comportaba, y cada decisión que describe este caso, de la errata de la
+máquina de escribir al susto del lobo, fue mía.
 
 <figure class="fig fig--paper">
   <img src="/work/witty-wolf-site/astro-home-light.png" alt="La nueva home en Astro con el tema claro: hero de máquina de escribir con la palabra tachada, el lobo de línea dibujado sobre papel cálido" loading="lazy" />
-  <figcaption>La misma dirección después de la mudanza: papel, tinta, voz mono y el lobo dibujado a trazos.</figcaption>
+  <figcaption>Después de la mudanza: papel, tinta, la voz mono y el lobo dibujado a trazos.</figcaption>
 </figure>
 
 <p class="note">01 · El oficio</p>
@@ -105,67 +106,65 @@ dibujado como línea pura que se esboza a sí misma, sin rellenos salvo la
 lengua ámbar. Un rastro ámbar se dibuja página abajo mientras haces
 scroll, un reloj vivo marca la hora de Madrid en la línea de metadatos y
 el footer contesta en modo terminal. El modo oscuro llega sin destello del
-tema equivocado, respeta la preferencia del sistema, y cambiarlo se gana
-un momento: el lobo se inclina, tiembla, enciende un ojo ámbar, la lámpara
-parpadea y el tema aterriza. Toda animación se apaga cuando reduced motion
-está activo.
+tema equivocado, respeta la preferencia del sistema, y cambiarlo reproduce
+una secuencia corta: el lobo se inclina, tiembla, enciende un ojo ámbar,
+la lámpara parpadea y el tema cambia. Toda animación se desactiva cuando
+reduced motion está activo.
 
 <figure class="fig fig--paper">
   <img src="/work/witty-wolf-site/astro-home-dark.png" alt="La nueva home en Astro con el tema oscuro: el mismo hero con la línea del lobo en tono papel sobre casi negro" loading="lazy" />
-  <figcaption>El modo oscuro es un tema de pleno derecho, no una inversión: el lobo cambia tinta por papel.</figcaption>
+  <figcaption>El modo oscuro está dibujado como tema propio: la línea del lobo pasa a tono papel.</figcaption>
 </figure>
 
 <p class="note">02 · El sistema</p>
 
 ## Una sola fuente de verdad
 
-Las páginas de caso corren sobre un sistema pequeño, no sobre un montón de
-decisiones. Las etiquetas de margen que ves en esta misma página son la
-única fuente de verdad del índice de secciones: el raíl con scroll-spy en
-escritorio, la píldora flotante en móvil y los enlaces ancla que siguen
-funcionando sin JavaScript, sellados en la build por un pequeño plugin de
-rehype. Las figuras comparten un solo tratamiento field-notes, cinta y
-chinchetas solo para imágenes, nunca para el texto. Cada caso abre bajo un
-sello de goma con la marca de su cliente, estampado cuando el título
-termina de escribirse.
+Las páginas de caso corren sobre un sistema pequeño. Las etiquetas de
+margen de esta página son la única fuente de verdad del índice de
+secciones: el raíl con scroll-spy en escritorio, la píldora flotante en
+móvil y los enlaces ancla que siguen funcionando sin JavaScript, sellados
+en la build por un plugin de rehype. Las figuras comparten un solo
+tratamiento field-notes, cinta y chinchetas solo para imágenes, nunca para
+el texto. Cada caso abre bajo un sello de goma con la marca de su cliente,
+estampado cuando el título termina de escribirse.
 
 <figure class="fig fig--paper">
   <img src="/work/witty-wolf-site/astro-case-index.png" alt="Una doble página de caso en la nueva web: el raíl del índice a la izquierda, una etiqueta de margen y un título, y debajo una captura del producto vivo" loading="lazy" />
-  <figcaption>El raíl de secciones, alimentado por las etiquetas de margen: escribe la nota una vez, el índice la sigue.</figcaption>
+  <figcaption>El raíl de secciones en una página de caso, generado en la build a partir de las etiquetas de margen.</figcaption>
 </figure>
 
 <p class="note">Mi peor cliente</p>
 
 ## Soy mi peor cliente
 
-Publicar para ti mismo significa conocer a tu propio yo crítico, y el mío
-es el cliente más difícil que tengo. Sin briefing tras el que esconderse,
-sin nadie más a quien culpar. Un escaparate también te frena: el diseño
-tiene que apartarse del camino del trabajo, así que la contención es el
-encargo.
+Publicar para ti mismo significa responder ante tu propio yo crítico, y el
+mío es el cliente más difícil que tengo: no hay briefing tras el que
+esconderse ni nadie más a quien culpar. Un escaparate también te frena,
+porque el diseño tiene que apartarse del camino del trabajo que enseña.
 
-La web de Framer llevó casi cuatro meses. La mayor parte no fue construir,
-fue decidir. Qué enseñar, qué cortar, qué imágenes se ganaban el sitio,
-dónde estaba el equilibrio. Esta reconstrucción fue más rápida, porque lo
-decidido ya estaba decidido. El trabajo fue redacción en el sentido de
-tachar: cortar lo que sobraba y lo que en silencio había empezado a
-detestar. Lo más difícil fue matar a mis favoritos.
+La web de Framer llevó casi cuatro meses. La mayor parte fue decidir, no
+construir: qué enseñar, qué cortar, qué imágenes merecían un sitio, dónde
+estaba el equilibrio. Esta reconstrucción fue más rápida porque esas
+decisiones ya estaban tomadas. Lo que quedaba era cortar, tanto lo que
+sobraba como algunas cosas a las que aún tenía cariño.
 
 La crítica de un cliente o de un jefe la encajo mejor que la mía. Soy
-implacable cuando me toca juzgar mi propio trabajo. Después, se pule.
+implacable cuando juzgo mi propio trabajo, y de ahí sale el acabado de
+esta web.
 
 <p class="note">Uso de IA</p>
 
 ## Uso de IA
 
 El código lo escribió la IA de principio a fin, conmigo dirigiendo cada
-paso; esa historia está arriba. Lo que sigo haciendo a mano: las palabras.
-Cada texto de esta web es mío, ahí se van la mayoría de las horas, y así
-lo quiero. La marca vive en un archivo
-de skill que le enseña a la IA el estilo de la casa una sola vez, tono,
-tipografía, las reglas del lobo, para que ninguna sesión empiece de cero.
-La reconstrucción llevó días, no meses, porque el pensamiento ya estaba
-hecho y teclear ya no cuesta nada.
+paso; esa historia está arriba. Las palabras son la excepción: cada texto
+de esta web está escrito a mano, ahí se van la mayoría de las horas, y así
+lo quiero. La marca vive en un archivo de skill que le enseña a la IA el
+estilo de la casa una sola vez, tono, tipografía, las reglas del lobo,
+para que ninguna sesión empiece de cero. La reconstrucción llevó días en
+lugar de meses, porque el pensamiento ya estaba hecho y el código era la
+parte rápida.
 
 <p class="note">Siendo honestos</p>
 
@@ -173,7 +172,6 @@ hecho y teclear ya no cuesta nada.
 
 Un portfolio no tiene cifras de conversión que merezcan citarse, así que
 no pienso inventarlas. El resultado es propiedad: cada línea de esta web
-es mía y cambiarla lleva minutos, no un ticket de soporte. Urbiqo me
+es mía y un cambio lleva minutos, no un ticket de soporte. Urbiqo me
 enseñó que construir tu propio diseño es la prueba de usabilidad más
-honesta que hay; aquí la lección volvió a casa, porque esta vez el cliente
-era yo, y el cliente se fija en todo.
+honesta que existe. Esta vez el cliente era yo, y yo me fijo en todo.
