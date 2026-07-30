@@ -578,6 +578,67 @@ const line2 =
   }
   .prose :global(.fig--margin img) { width: 100%; }
 
+  /* compact horizontal feature row: a screenshot beside its own heading and
+     copy in one banded figure, so a feature chapter reads in one glance
+     instead of heading-then-paragraph-then-figure stacked three deep.
+     Image side floats fixed-width; text side takes the rest. No tilt, no
+     pin: this is a clean product callout, not a pinned print. */
+  .prose :global(.fig--feature) {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 2.75rem);
+    width: 100%;
+    max-width: 100%;
+    margin: clamp(2rem, 5vw, 3rem) 0;
+    transform: none;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    border: 1px solid var(--line);
+  }
+  .prose :global(.fig--feature:nth-of-type(even)) { flex-direction: row-reverse; }
+  .prose :global(.fig--feature img) {
+    flex: 0 0 auto;
+    width: clamp(120px, 16vw, 152px);
+    max-height: 60vh;
+    display: block;
+  }
+  .prose :global(.fig--feature figcaption) {
+    flex: 1 1 auto;
+    border-left: 0;
+    padding-left: 0;
+    margin-top: 0;
+    max-width: 44ch;
+  }
+  .prose :global(.fig--feature .fig__feature-note) {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.4rem;
+  }
+  .prose :global(.fig--feature .fig__feature-title) {
+    font-size: var(--step-1);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    max-width: none;
+  }
+  .prose :global(.fig--feature .fig__feature-body) {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--charcoal);
+    max-width: none;
+    margin: 0;
+  }
+  @media (max-width: 620px) {
+    .prose :global(.fig--feature),
+    .prose :global(.fig--feature:nth-of-type(even)) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .prose :global(.fig--feature img) { width: clamp(110px, 40vw, 150px); }
+  }
+
   /* build-stage detail, ported from the live Urbiqo site: the terracotta
      skyline divider and the section heading below it wipe in together from
      the left (a mask grown 0%->100%), on scroll into view and on hover.
@@ -816,11 +877,12 @@ const line2 =
   .prose :global(.fig:focus-within .fig__zoom-t) { background-size: 100% 1px; }
   /* keep the smallest artefacts and margin asides clean, no hint overlay */
   .prose :global(.fig--small .fig__zoom),
-  .prose :global(.fig--margin .fig__zoom) { display: none; }
+  .prose :global(.fig--margin .fig__zoom),
+  .prose :global(.fig--feature .fig__zoom) { display: none; }
   /* the hint sits at the figure's bottom-right, which on a short caption is the
      caption row: reserve room there so caption text never runs under it (most
      visible when the caption wraps on narrow screens) */
-  .prose :global(.fig:not(.fig--small):not(.fig--margin) figcaption) { padding-right: 6.5rem; }
+  .prose :global(.fig:not(.fig--small):not(.fig--margin):not(.fig--feature) figcaption) { padding-right: 6.5rem; }
   @media (prefers-reduced-motion: reduce) {
     .prose :global(.fig__zoom-t) { transition: none; }
   }

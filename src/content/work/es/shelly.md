@@ -51,9 +51,10 @@ así que la gente se va. Y una mayoría antepone el bienestar mental a las
 métricas físicas. La respuesta fue una filosofía de tortuga: hábitos
 lentos, constantes, flexibles.
 
-<figure class="fig fig--paper fig--bleed">
-  <img src="/work/shelly/shelly-affinity-diagram.png" alt="Diagrama de afinidad que ordena los hallazgos de la research en cuatro pilares, entre ellos actividad física y bienestar mental" loading="lazy" />
-  <figcaption>El muro de research: dieciséis participantes, cuatro pilares.</figcaption>
+<figure class="fig fig--paper fig--duo">
+  <span class="fig__tile"><img src="/work/shelly/shelly-affinity-diagram.png" alt="Diagrama de afinidad que ordena los hallazgos de la research en cuatro pilares, entre ellos actividad física y bienestar mental" loading="lazy" /></span>
+  <span class="fig__tile"><img src="/work/shelly/shelly-typography-mascot.png" alt="Guía tipográfica de Shelly junto a la mascota tortuga haciendo el signo de la paz" loading="lazy" /></span>
+  <figcaption>El muro de research, y la decisión de identidad a la que llevó: letra redondeada, una mascota que nunca regaña.</figcaption>
 </figure>
 
 **MARIA · profesional urbana ocupada, Barcelona.** Un trabajo de
@@ -65,36 +66,36 @@ alrededor del suyo.
 
 ## Planificación adaptable
 
-La agenda de Maria es irregular, así que el horario se adapta a ella, no
-al revés.
-
-<figure class="fig fig--small">
-  <img src="/work/shelly/shelly-adaptive-scheduling.png" alt="Pantalla de Shelly que pregunta cómo pinta tu día antes de proponerte una rutina" loading="lazy" />
-  <figcaption>La app pregunta por tu día antes de pedirte nada.</figcaption>
+<figure class="fig fig--feature">
+  <img src="/work/shelly/shelly-new-routine.png" alt="Pantalla de rutina de Shelly rediseñada: tres sliders con tirador de tortuga para días por semana, minutos al día y cuán intenso debe sentirse" loading="lazy" />
+  <figcaption>
+    <span class="fig__feature-title">La app pregunta por tu día antes de pedirte nada.</span>
+    <p class="fig__feature-body">La agenda de Maria es irregular, así que el horario se adapta a ella, no al revés.</p>
+  </figcaption>
 </figure>
 
 <p class="note">02 · Refuerzo positivo</p>
 
 ## Visualizar el progreso
 
-Las rachas rotas y las cruces rojas se convirtieron en un camino visual
-amable. La mascota, Shelly, crece contigo, también en los días lentos.
-
-<figure class="fig fig--small">
-  <img src="/work/shelly/shelly-progress-path.png" alt="Pantalla de progreso con un camino visual que crece con la persona, en lugar de cruces rojas por rachas rotas" loading="lazy" />
-  <figcaption>Un camino que crece, sin nada que romper.</figcaption>
+<figure class="fig fig--feature">
+  <img src="/work/shelly/shelly-new-dashboard.png" alt="Panel de cosecha de Shelly rediseñado: un recuento semanal de fresas, chips de días de meta y un resumen de las actividades de la semana" loading="lazy" />
+  <figcaption>
+    <span class="fig__feature-title">Progreso que celebra, no que castiga.</span>
+    <p class="fig__feature-body">Las rachas rotas y las cruces rojas se convirtieron en una cosecha semanal: fresas ganadas, días de meta marcados, nada más que romper.</p>
+  </figcaption>
 </figure>
 
 <p class="note">03 · Apoyo</p>
 
 ## Empujones con contexto
 
-Microcoaching que se adapta a cómo estás. ¿Con estrés? Shelly propone un
-ejercicio de respiración. ¿Con energía? Shelly propone salir a correr.
-
-<figure class="fig fig--small">
-  <img src="/work/shelly/shelly-contextual-nudges.png" alt="Pantalla de notificación en la que la app detecta estrés y sugiere un ejercicio de respiración" loading="lazy" />
-  <figcaption>Coaching que sabe leer la habitación.</figcaption>
+<figure class="fig fig--feature">
+  <img src="/work/shelly/shelly-new-suggestion.png" alt="Pantalla de ejercicio de Shelly rediseñada que sugiere quince minutos de caminata" loading="lazy" />
+  <figcaption>
+    <span class="fig__feature-title">Una sugerencia, dada sin rodeos.</span>
+    <p class="fig__feature-body">Microcoaching que se adapta a cómo estás, con estrés o con energía. Sin sermón, solo un siguiente paso claro.</p>
+  </figcaption>
 </figure>
 
 <p class="note">La capa de oficio</p>
@@ -104,16 +105,6 @@ ejercicio de respiración. ¿Con energía? Shelly propone salir a correr.
 Una identidad visual de verdes naturales y amarillos cálidos. Tipografía y
 UI redondeada afinadas para bajar la carga cognitiva y quitarle la
 ansiedad.
-
-<figure class="fig fig--small fig--pin">
-  <img src="/work/shelly/shelly-typography-mascot.png" alt="Guía tipográfica de Shelly junto a la mascota tortuga haciendo el signo de la paz" loading="lazy" />
-  <figcaption>La decisión de identidad que importa: letra redondeada y una mascota que nunca regaña.</figcaption>
-</figure>
-
-<figure class="fig">
-  <img src="/work/shelly/shelly-light-dark-mockups.png" alt="Pantallas de la app Shelly en modo claro y oscuro, con el mismo lenguaje visual en calma" loading="lazy" />
-  <figcaption>La misma calma en modo claro y oscuro.</figcaption>
-</figure>
 
 <p class="note">Siendo honestos</p>
 

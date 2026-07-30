@@ -51,9 +51,10 @@ veroordeelt je, dus mensen haken af. En een meerderheid zet mentaal
 welzijn boven fysieke cijfers. Het antwoord werd een
 schildpadfilosofie: langzame, gestage, flexibele gewoontes.
 
-<figure class="fig fig--paper fig--bleed">
-  <img src="/work/shelly/shelly-affinity-diagram.png" alt="Affiniteitsdiagram dat de researchbevindingen ordent in vier pijlers, waaronder beweging en mentaal welzijn" loading="lazy" />
-  <figcaption>De researchmuur: zestien deelnemers, vier pijlers.</figcaption>
+<figure class="fig fig--paper fig--duo">
+  <span class="fig__tile"><img src="/work/shelly/shelly-affinity-diagram.png" alt="Affiniteitsdiagram dat de researchbevindingen ordent in vier pijlers, waaronder beweging en mentaal welzijn" loading="lazy" /></span>
+  <span class="fig__tile"><img src="/work/shelly/shelly-typography-mascot.png" alt="Shelly-typografiegids naast de schildpadmascotte die een vredesteken maakt" loading="lazy" /></span>
+  <figcaption>De researchmuur, en de identiteitsbeslissing die eruit volgde: afgeronde letters, een mascotte die nooit moppert.</figcaption>
 </figure>
 
 **MARIA · drukke stedelijke professional, Barcelona.** Een bureaubaan
@@ -65,37 +66,36 @@ het hare heen buigt.
 
 ## Aanpasbaar plannen
 
-Maria's agenda is onregelmatig, dus past het schema zich aan haar aan, niet
-andersom.
-
-<figure class="fig fig--small">
-  <img src="/work/shelly/shelly-adaptive-scheduling.png" alt="Shelly-scherm dat vraagt hoe je dag eruitziet voordat het een routine voorstelt" loading="lazy" />
-  <figcaption>De app vraagt naar je dag voordat hij iets van je vraagt.</figcaption>
+<figure class="fig fig--feature">
+  <img src="/work/shelly/shelly-new-routine.png" alt="Herschetst Shelly-routinescherm: drie sliders met schildpad-handvat voor dagen per week, minuten per dag en hoe zwaar het moet voelen" loading="lazy" />
+  <figcaption>
+    <span class="fig__feature-title">De app vraagt naar je dag voordat hij iets van je vraagt.</span>
+    <p class="fig__feature-body">Maria's agenda is onregelmatig, dus past het schema zich aan haar aan, niet andersom.</p>
+  </figcaption>
 </figure>
 
 <p class="note">02 · Positieve bekrachtiging</p>
 
 ## Voortgang zichtbaar maken
 
-Gebroken streaks en rode kruisjes werden een zacht visueel pad. De
-mascotte, Shelly, groeit met je mee, ook op trage dagen.
-
-<figure class="fig fig--small">
-  <img src="/work/shelly/shelly-progress-path.png" alt="Voortgangsscherm met een visueel pad dat met de gebruiker meegroeit, in plaats van rode kruisjes voor gebroken streaks" loading="lazy" />
-  <figcaption>Een pad dat groeit, met niets dat kan breken.</figcaption>
+<figure class="fig fig--feature">
+  <img src="/work/shelly/shelly-new-dashboard.png" alt="Herschetst Shelly-oogstdashboard: een wekelijkse aardbeientelling, doeldag-chips en een overzicht van de activiteiten van de week" loading="lazy" />
+  <figcaption>
+    <span class="fig__feature-title">Voortgang die viert, niet straft.</span>
+    <p class="fig__feature-body">Gebroken streaks en rode kruisjes werden een wekelijkse oogst: verdiende aardbeien, gehaalde doeldagen, niets meer om te breken.</p>
+  </figcaption>
 </figure>
 
 <p class="note">03 · Steun</p>
 
 ## Contextuele duwtjes
 
-Microcoaching die zich aanpast aan hoe de gebruiker erbij zit. Gestrest?
-Shelly stelt een ademhalingsoefening voor. Energiek? Shelly stelt een
-rondje hardlopen voor.
-
-<figure class="fig fig--small">
-  <img src="/work/shelly/shelly-contextual-nudges.png" alt="Notificatiescherm waarin de app stress herkent en een ademhalingsoefening voorstelt" loading="lazy" />
-  <figcaption>Coaching die de kamer aanvoelt.</figcaption>
+<figure class="fig fig--feature">
+  <img src="/work/shelly/shelly-new-suggestion.png" alt="Herschetst Shelly-oefeningscherm dat vijftien minuten wandelen voorstelt" loading="lazy" />
+  <figcaption>
+    <span class="fig__feature-title">Eén suggestie, gewoon gegeven.</span>
+    <p class="fig__feature-body">Microcoaching die zich aanpast aan hoe de gebruiker erbij zit, gestrest of energiek. Geen preek, gewoon een duidelijke volgende stap.</p>
+  </figcaption>
 </figure>
 
 <p class="note">De vaklaag</p>
@@ -105,16 +105,6 @@ rondje hardlopen voor.
 Een visuele identiteit van natuurlijke groenen en warme gelen. Typografie
 en afgeronde UI afgesteld om de cognitieve last te verlagen en de spanning
 eruit te halen.
-
-<figure class="fig fig--small fig--pin">
-  <img src="/work/shelly/shelly-typography-mascot.png" alt="Shelly-typografiegids naast de schildpadmascotte die een vredesteken maakt" loading="lazy" />
-  <figcaption>De identiteitsbeslissing die telt: afgeronde letters en een mascotte die nooit moppert.</figcaption>
-</figure>
-
-<figure class="fig">
-  <img src="/work/shelly/shelly-light-dark-mockups.png" alt="Shelly-appschermen in lichte en donkere modus, met dezelfde kalme beeldtaal" loading="lazy" />
-  <figcaption>Dezelfde kalmte in lichte en donkere modus.</figcaption>
-</figure>
 
 <p class="note">Eerlijk gezegd</p>
 
