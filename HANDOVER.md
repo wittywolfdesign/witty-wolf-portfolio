@@ -746,6 +746,68 @@ conserved, laid out horizontal rather than stacked.
   with no new horizontal overflow beyond the pre-existing 360 nav
   overflow baseline, no-JS content intact).
 
+## Shelly: signal the redraw, kill the boxes (30 July 2026, later still)
+Marco's reaction to the previous condensing pass: "my whole old case
+study disappeared instead of being condensed on top", "nothing in the
+header signals a new iteration", "and those boxes???". Diagnosed by
+opening the built page top to bottom before touching anything (per his
+explicit instruction this round): the case study was never actually
+gone, every chapter and section was still there, but (a) the header
+made zero mention of 2026 so the page read as a plain repeat of the
+2025 case, and (b) the fig--feature cards from the prior pass were
+exactly the bordered media-object boxes the house rules already ban
+("no card grids"). A third thing looked broken in my own diagnostic
+screenshot (a solid orange band) but turned out to be the well-known
+.wash fullPage-capture artifact (position:fixed curtain parked one
+viewport below the fold, repeats at the same on-screen spot in every
+stitched frame) — confirmed absent on a real scroll and on a control
+page (Urbiqo) captured the same way, not a real bug, not touched.
+- Header now signals the iteration in all three locales: the
+  frontmatter summary gets a second sentence ("Redrawn and set in
+  motion, 2026." / NL "Herschetst en in beweging gezet, 2026." / ES
+  "Redibujada y puesta en movimiento, 2026.") and role gets a "· 2026
+  redraw, solo" suffix. One italic orientation line sits right after
+  the opening paragraph, before the client paragraph, stating plainly
+  that the screens on the page are the 2026 redraw and the 2025
+  original is at the end.
+- fig--feature (bordered horizontal cards, one pass old) is deleted
+  outright, markdown and CSS, nothing else referenced it. The three
+  pillar chapters (01 Flexibility, 02 Positive reinforcement, 03
+  Support) are now ONE horizontal scroll-snap strip (`.chapters` /
+  `.chapters-track` / `.chapter-cell`, new in [slug].astro's main
+  style block, not the .sj-compare fence since this is ordinary site
+  chrome): the three redrawn screenshots (shelly-new-routine/-dashboard
+  /-suggestion) sit flat on the paper with the SAME alternating tilt
+  every other .fig gets, no border, no background, scroll-snapped,
+  three-per-row on desktop shrinking to one visible + peek on mobile.
+  Each chapter's `<p class="note">` + heading + one-line body sit
+  inside a `.chapter-textwrap` overlay in the upper area of its own
+  cell — GOTCHA found and fixed live: a first attempt used a per-line
+  "highlighter" scrim (box-decoration-break: clone) which left gaps
+  where the screenshot's OWN baked-in heading peeked through beside the
+  new text, unreadable double-heading collision. Fixed with one
+  continuous soft gradient scrim (solid near the top, fading to nothing
+  by ~72% down, no hard edge) that fully covers whatever the screenshot
+  shows underneath. Second gotcha: the scrim first rode the site's
+  theme-flipping --paper/--ink, which meant a muddy DARK patch over the
+  screenshot's ALWAYS-cream face in dark mode; fixed by hardcoding the
+  scrim and its text to the redraw's own fixed cream/ink pair (same
+  reasoning as the .sj system's own fixed palette below it on the
+  page), so it reads identically in both site themes. Notes stay in
+  normal document flow (nested inside the textwrap is fine, both the
+  rehype id-stamper and the CaseIndex regex parser recurse/scan
+  regardless of nesting) so the section index is unaffected.
+- VERIFIED: 43 checks — three locales' header copy and orientation
+  line, fig--feature gone, three cells with zero border/background,
+  all eight notes and index entries intact, research duo and the
+  earlier board-removal untouched, desktop+360 in both themes with no
+  new horizontal overflow beyond the pre-existing 360 nav baseline,
+  reduced motion, no-JS, and EVVO as an unaffected control. Full-page
+  screenshots taken desktop+360, both themes, confirm the read top to
+  bottom: hero signals 2026, stats, research duo, Maria, the new flat
+  horizontal chapter strip, craft layer, impact and quote, the "2026 ·
+  Two days with markers" comparison act, Use of AI.
+
 ## How to run
 Marco runs the dev server himself in his own terminal (background servers
 started by sessions get reaped):
