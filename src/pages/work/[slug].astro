@@ -5,6 +5,13 @@ import CaseIndex from "../../components/CaseIndex.astro";
 import { slug } from "../../scripts/slug.mjs";
 import { casePaths } from "../../i18n/casePaths";
 import { t, type Locale } from "../../i18n/ui";
+/* Shelly journal act only: two faces self-hosted via Fontsource (the case
+   is a GDPR-conscious client, so no third-party font CDN). The @font-face
+   rules are emitted only on the Shelly page, and the files only download
+   where the families are actually used. */
+import sjGochi from "@fontsource/gochi-hand/files/gochi-hand-latin-400-normal.woff2?url";
+import sjGaramond from "@fontsource/eb-garamond/files/eb-garamond-latin-400-normal.woff2?url";
+import sjGaramondItalic from "@fontsource/eb-garamond/files/eb-garamond-latin-400-italic.woff2?url";
 
 /* English routes; the /nl and /es wrappers build their own paths from
    their own content folders and render this same page component */
@@ -28,6 +35,12 @@ const nextSlug = next.slug.split("/").pop();
    lead summary), like every other case. Everything is gated on this flag / the
    [data-fliz] hook, so every other case is untouched. */
 const isFliz = cleanSlug === "fliz";
+/* Shelly opts into the journal comparison act (fonts + the .sj system) */
+const isShelly = cleanSlug === "shelly";
+const sjFontCSS =
+  `@font-face{font-family:"Gochi Hand";font-style:normal;font-weight:400;font-display:swap;src:url(${sjGochi}) format("woff2")}` +
+  `@font-face{font-family:"EB Garamond";font-style:normal;font-weight:400;font-display:swap;src:url(${sjGaramond}) format("woff2")}` +
+  `@font-face{font-family:"EB Garamond";font-style:italic;font-weight:400;font-display:swap;src:url(${sjGaramondItalic}) format("woff2")}`;
 
 /* Section index, single source of truth: the `<p class="note">` labels already
    written into the case markdown, in document order. Parsed from the raw body
@@ -82,6 +95,7 @@ const line2 =
 ---
 
 <Base title={baseTitle} description={d.summary}>
+  {isShelly && <style set:html={sjFontCSS}></style>}
   <!-- Case hero. Two accents, kept separate:
        --case-accent is MY brand accent (var(--accent), theme-aware) and drives
        every FUNCTIONAL accent: hairlines, borders, the section index, hover and
@@ -863,6 +877,8 @@ const line2 =
     :global(.lightbox__img) { transform: none; }
   }
 
+  /* (the Shelly journal act's styles live in the is:global block below,
+     fenced under .sj-compare) */
   .nextcard { display: block; margin-top: clamp(3rem, 8vw, 6rem); padding-block: clamp(3rem, 7vw, 5rem); }
   .nextcard__label { color: rgba(242, 239, 231, 0.55); }
   .nextcard__inner { display: grid; gap: 0.6rem; }
@@ -1150,6 +1166,469 @@ const line2 =
   :global(.lenis.lenis-smooth [data-lenis-prevent]) { overscroll-behavior: contain; }
   :global(.lenis.lenis-stopped) { overflow: clip; }
   :global(.lenis.lenis-smooth iframe) { pointer-events: none; }
+</style>
+
+<style is:global>
+  /* ==========================================================================
+     Shelly journal act (.sj): the old-vs-new comparison filmstrips.
+     SCOPE FENCE: every rule is fenced under .sj-compare; the Field Journal
+     palette, paper and hand-wobble exist nowhere else on the site. The
+     phones inside are paper artefacts and stay light in dark mode (dimmed
+     by the same brightness treatment as case images). Animation is
+     transform/opacity/filter only; prefers-reduced-motion gets the
+     complete static state (the markdown markup IS the poster).
+     ========================================================================== */
+  .sj-compare {
+    --sjpaper: #F6F1E3; --sjink: #2A2921; --sjmoss: #8FAF77; --sjfern: #4C6B45;
+    --sjberry: #C94F42; --sjochre: #D9A441;
+    max-width: 100%;
+    margin: clamp(2rem, 5vw, 3rem) 0;
+  }
+  /* ---------- the filmstrips ---------- */
+  .sj-strip {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px 2px 12px;
+  }
+  .sj-strip + .sj-strip { margin-top: 0.75rem; }
+  .sj-cell { flex: 0 0 auto; scroll-snap-align: start; margin: 0; }
+  .sj-cap, .sj-cell--old figcaption {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    margin: 0.5rem 0 0;
+    text-align: center;
+    border: 0;
+    padding: 0;
+    max-width: none;
+  }
+  .sj-cell--old img {
+    display: block;
+    width: 252px;
+    aspect-ratio: 393 / 852;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 20px;
+    border: 1px solid var(--line);
+    cursor: default;
+  }
+  [data-theme="dark"] .sj-cell--old img { filter: brightness(0.9); }
+  /* the scaled phone: designed at 292x580, shown at 0.863 */
+  .sj-ph { width: 252px; height: 501px; overflow: hidden; border-radius: 18px; }
+  .sj-phone {
+    width: 292px; height: 580px;
+    transform: scale(0.863);
+    transform-origin: top left;
+    position: relative;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background:
+      radial-gradient(120% 90% at 20% 8%, rgba(143, 175, 119, 0.16), transparent 55%),
+      radial-gradient(100% 80% at 85% 95%, rgba(217, 164, 65, 0.13), transparent 50%),
+      var(--sjpaper);
+    border: 2px solid var(--sjink);
+    border-radius: 18px 22px 20px 24px / 22px 18px 24px 20px;
+    color: var(--sjink);
+    padding: 2.7rem 1.3rem 10rem;
+    gap: 0.9rem;
+    justify-content: center;
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 1rem;
+  }
+  [data-theme="dark"] .sj-phone { filter: brightness(0.9); }
+  /* the page content is promoted above the rain/nature layers; chrome is not */
+  .sj-phone > :not(.sj-sbar):not(.sj-tbar):not(.sj-rain):not(.sj-nature):not(.sj-hares):not(.sj-dock):not(.sj-xrow) { position: relative; z-index: 1; }
+  .sj-phone > .sj-rain { z-index: 0; }
+  /* reset the prose type inside the phones: the journal speaks for itself */
+  .prose .sj-compare .sj-phone p,
+  .prose .sj-compare .sj-phone h3 { margin: 0; max-width: none; font-size: inherit; line-height: 1.3; }
+  .prose .sj-compare .sj-cap { max-width: none; }
+  .sj-phone button { font: inherit; cursor: pointer; }
+  .sj-phone button:focus-visible { outline: 2px solid var(--accent-hot); outline-offset: 2px; }
+  .sj-h {
+    font-family: "Gochi Hand", cursive;
+    font-weight: 400;
+    font-size: 1.9rem !important;
+    line-height: 1.05 !important;
+  }
+  .sj-sub { font-style: italic; color: #56534a; font-size: 0.98rem !important; line-height: 1.45 !important; }
+  .sj-slogan, .sj-lbl, .sj-xmeta, .sj-platecap, .sj-range, .sj-goalmsg {
+    font-family: "Gochi Hand", cursive;
+  }
+  .sj-slogan { color: #6d6a5e; font-size: 0.95rem !important; }
+  /* skeletons: hero (mascot high), mid (centered), x (exercise), app (dashboard) */
+  .sj-phone--hero { justify-content: flex-start; padding-top: 5.95rem; }
+  .sj-phone--hero > *, .sj-phone--x > *, .sj-phone--app > * { flex-shrink: 0; }
+  .sj-phone--x { justify-content: flex-start; padding-top: 4.3rem; gap: 0.85rem; }
+  .sj-phone--app { justify-content: flex-start; gap: 0.45rem; padding-top: 2.7rem; padding-bottom: 3.2rem; }
+  /* ---------- native mockup chrome ---------- */
+  .sj-sbar {
+    position: absolute; top: 0; left: 0; right: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 9px 18px 0;
+    font: 600 0.72rem/1 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    letter-spacing: 0.01em;
+    color: #0a0a0a;
+    pointer-events: none;
+    z-index: 5;
+  }
+  .sj-sbar > i {
+    position: absolute; left: 50%; top: 8px;
+    width: 76px; height: 21px;
+    margin-left: -38px;
+    border-radius: 999px;
+    background: #000;
+  }
+  .sj-sbi { display: flex; gap: 4.5px; align-items: center; }
+  .sj-sbi svg { display: block; height: 10px; width: auto; stroke: currentColor; }
+  .sj-tbar {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to top,
+      var(--sjpaper) 0%, var(--sjpaper) 58%,
+      color-mix(in srgb, var(--sjpaper) 55%, transparent) 84%, transparent 100%);
+    display: flex; justify-content: space-around; align-items: flex-end;
+    padding: 1rem 0.6rem 0.55rem;
+    font-family: "Gochi Hand", cursive; font-size: 0.72rem;
+    z-index: 2;
+  }
+  .sj-titem { display: grid; justify-items: center; gap: 2px; color: #7a766a; position: relative; padding: 2px 10px; }
+  .sj-titem svg { width: 19px; height: 19px; }
+  .sj-titem .ti { fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .sj-titem.on { color: var(--sjink); }
+  .sj-titem.on::before {
+    content: ""; position: absolute; inset: -1px 2px 1px;
+    background: color-mix(in srgb, var(--sjochre) 45%, var(--sjpaper));
+    border-radius: 9px 12px 10px 13px / 12px 9px 13px 10px;
+    z-index: -1; mix-blend-mode: multiply;
+  }
+  /* ---------- the ghosted landscape ---------- */
+  .sj-nature { position: absolute; inset: 0; pointer-events: none; opacity: 0.22; z-index: 0; }
+  .sj-nature svg { width: 100%; height: 100%; display: block; }
+  .sj-compare .sjl { fill: none; stroke: var(--sjink); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .sj-compare .sjw { stroke: none; mix-blend-mode: multiply; }
+  /* ---------- the turtle skins (line + wash) ---------- */
+  .sj-mascot .tsvg, .sj-cover .tsvg { width: 150px; height: auto; overflow: visible; }
+  .sj-compare .tsvg .sjl { stroke-width: 2.4; }
+  .sj-compare .tsvg .t-grid { stroke-width: 1.7; opacity: 0.8; }
+  .sj-compare .tsvg .t-eye, .sj-compare .tsvg .t-nose { fill: var(--sjink); stroke: none; }
+  .sj-compare .tsvg .t-shine { fill: var(--sjpaper); stroke: none; }
+  .sj-compare .tsvg .t-mouthfill { fill: var(--sjink); stroke: none; }
+  .sj-compare .tsvg .t-smile { stroke-width: 2.4; }
+  .sj-compare .tsvg .t-spotdot { fill: var(--sjfern); fill-opacity: 0.55; }
+  .sj-compare .tsvg .t-orangedot { fill: var(--sjochre); fill-opacity: 0.7; }
+  .sj-compare .tsvg .sjw-skin { fill: var(--sjmoss); opacity: 0.7; }
+  .sj-compare .tsvg .sjw-belly { fill: var(--sjochre); opacity: 0.6; }
+  .sj-compare .tsvg .sjw-shell { fill: var(--sjfern); opacity: 0.55; }
+  .sj-compare .tsvg .sjw-cheek { fill: var(--sjberry); opacity: 0.4; }
+  /* pose swap: quiet crossfade, nothing moves vertically */
+  .sj-swap { position: relative; display: grid; place-items: center; }
+  .sj-swap .sj-mswap { grid-area: 1 / 1; transition: opacity 0.28s ease; }
+  .sj-swap .sj-mswap.sj-hide { opacity: 0; pointer-events: none; }
+  /* ---------- the ink-in reveal (plays once, on scroll into view) ---------- */
+  @media (prefers-reduced-motion: no-preference) {
+    .sj-play .tsvg .sjl {
+      stroke-dasharray: 1; stroke-dashoffset: 1;
+      animation: sj-draw 0.9s ease-out forwards;
+      animation-delay: calc(0.25s + var(--i, 0) * 0.07s);
+    }
+    .sj-play .tsvg .t-eye, .sj-play .tsvg .t-nose, .sj-play .tsvg .t-mouthfill {
+      opacity: 0; animation: sj-dot 0.3s ease-out forwards;
+      animation-delay: calc(0.9s + var(--i, 0) * 0.07s);
+    }
+    .sj-play .tsvg .sjw {
+      opacity: 0; transform: scale(0.75); transform-box: fill-box; transform-origin: center;
+      animation-duration: 1.1s; animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
+      animation-fill-mode: forwards;
+      animation-delay: calc(1.15s + var(--i, 0) * 0.12s);
+    }
+    .sj-play .tsvg .sjw-skin  { animation-name: sj-bloom-70; }
+    .sj-play .tsvg .sjw-belly { animation-name: sj-bloom-60; }
+    .sj-play .tsvg .sjw-shell { animation-name: sj-bloom-55; }
+    .sj-play .tsvg .sjw-cheek { animation-name: sj-bloom-40; }
+    .sj-play [data-sjink] {
+      opacity: 0; transform: translateY(6px);
+      animation: sj-rise 0.7s ease-out forwards;
+      animation-delay: calc(0.15s + var(--k, 0) * 0.22s);
+    }
+  }
+  @keyframes sj-draw { to { stroke-dashoffset: 0; } }
+  @keyframes sj-dot { to { opacity: 1; } }
+  @keyframes sj-bloom-70 { to { transform: scale(1); opacity: 0.7; } }
+  @keyframes sj-bloom-60 { to { transform: scale(1); opacity: 0.6; } }
+  @keyframes sj-bloom-55 { to { transform: scale(1); opacity: 0.55; } }
+  @keyframes sj-bloom-40 { to { transform: scale(1); opacity: 0.4; } }
+  @keyframes sj-rise { to { opacity: 1; transform: none; } }
+  /* ---------- buttons, dock ---------- */
+  .sj-btn {
+    font-family: "Gochi Hand", cursive;
+    font-size: 1.15rem;
+    color: var(--sjink);
+    background: none;
+    border: 2px solid var(--sjink);
+    border-radius: 10px 14px 12px 16px / 14px 10px 16px 12px;
+    padding: 0.5rem 1.5rem;
+    position: relative;
+  }
+  .sj-btn::after {
+    content: ""; position: absolute; inset: 3px -4px -5px 4px;
+    border-radius: inherit;
+    background: var(--sjmoss); opacity: 0.4;
+    z-index: -1; mix-blend-mode: multiply;
+    transform: rotate(-1.2deg);
+    transition: opacity 0.12s ease, transform 0.12s ease, inset 0.12s ease;
+  }
+  .sj-btn:active, .sj-btn.sj-press { transform: translateY(3px) scale(0.965); }
+  .sj-btn:active::after, .sj-btn.sj-press::after { inset: 1px; opacity: 0.8; transform: none; }
+  .sj-dock {
+    position: absolute; left: 0; right: 0; bottom: 64px;
+    display: grid; justify-items: center; align-content: end; gap: 0.55rem;
+    z-index: 1;
+  }
+  .sj-tapring {
+    position: absolute; width: 34px; height: 34px; border-radius: 50%;
+    pointer-events: none; border: 2px solid currentColor; opacity: 0; z-index: 6;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .sj-tapring { animation: sj-tapring 0.5s ease-out forwards; }
+  }
+  @keyframes sj-tapring { 0% { opacity: 0.8; transform: scale(0.4); } 100% { opacity: 0; transform: scale(1.5); } }
+  /* ---------- strawberry fireworks ---------- */
+  .sj-rain { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .sj-rainberry { position: absolute; width: var(--s); opacity: 0; margin: calc(var(--s) / -2); }
+  @media (prefers-reduced-motion: no-preference) {
+    .sj-rainberry { animation: sj-burst var(--dur) cubic-bezier(0.2, 0.6, 0.4, 1) var(--dl) forwards; }
+  }
+  @keyframes sj-burst {
+    0% { transform: translate(0, 0) scale(0.3) rotate(0); opacity: 0; }
+    14% { opacity: 0.95; }
+    70% { opacity: 0.85; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(1.12) rotate(var(--r)); opacity: 0; }
+  }
+  /* ---------- the strawberry ---------- */
+  .sj-berry { display: inline-block; }
+  .sj-compare .sj-berry .s-berry { fill: var(--sjberry); opacity: 0.85; }
+  .sj-compare .sj-berry .s-leaf { fill: var(--sjfern); opacity: 0.85; }
+  .sj-compare .sj-berry .s-seed { fill: var(--sjpaper); }
+  .sj-compare .sj-berry .s-stem { fill: none; }
+  .sj-compare .sj-berry .s-line { stroke: var(--sjink); stroke-width: 1.6; fill-rule: evenodd; }
+  .sj-compare .sj-berry .s-berry.s-line, .sj-compare .sj-berry .s-leaf.s-line { fill-rule: nonzero; }
+  /* ---------- sliders ---------- */
+  .sj-sliders { width: 100%; }
+  .sj-slider { width: 100%; text-align: left; font-family: "Gochi Hand", cursive; }
+  .sj-slider + .sj-slider { margin-top: 1.05rem; }
+  .sj-lbl { font-size: 1.02rem !important; margin-bottom: 2px !important; }
+  .sj-scale { display: flex; justify-content: space-between; font-size: 0.8rem; padding: 0 2px 4px; color: #7a766a; }
+  .sj-track { position: relative; height: 26px; }
+  .sj-track::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 50%;
+    border-top: 2px solid var(--sjink); opacity: 0.75;
+    transform: translateY(-50%) rotate(-0.35deg);
+  }
+  .sj-fill {
+    position: absolute; left: 0; top: 50%; height: 5px; width: 100%;
+    transform: translateY(-50%) scaleX(var(--p, 0.15));
+    transform-origin: left center;
+    pointer-events: none;
+    background: var(--sjberry); opacity: 0.55; mix-blend-mode: multiply;
+    border-radius: 3px 6px 4px 7px;
+  }
+  .sj-handle {
+    position: absolute; top: 50%; left: 0;
+    width: 44px; height: 34px;
+    margin: -17px 0 0 -22px;
+    transform: translateX(var(--px, 30px));
+    background: none; border: 0; padding: 0;
+    touch-action: none;
+  }
+  .sj-handle svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  .sj-handle .tt { fill: color-mix(in srgb, var(--sjmoss) 75%, var(--sjpaper)); stroke: var(--sjink); stroke-width: 1.5; }
+  .sj-handle .tt-line { fill: none; stroke: var(--sjink); stroke-width: 1.3; opacity: 0.75; }
+  .sj-handle .tt-eye { fill: var(--sjink); }
+  .sj-handle.sj-auto, .sj-fill.sj-auto { transition: transform 1.1s cubic-bezier(0.45, 0, 0.25, 1); }
+  @media (prefers-reduced-motion: no-preference) {
+    .sj-handle.sj-moving svg { animation: sj-waddle 0.42s ease-in-out infinite; }
+  }
+  @keyframes sj-waddle { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
+  /* ---------- the hare ---------- */
+  .sj-hares { position: absolute; left: 0; right: 0; bottom: 56px; height: 70px; pointer-events: none; overflow: visible; z-index: 1; }
+  .sj-hare { position: absolute; left: -90px; bottom: 0; width: 84px; opacity: 0; }
+  .sj-hare svg { width: 100%; height: auto; overflow: visible; display: block; transform: rotate(-2deg); }
+  .sj-hare .h-eye { fill: var(--sjink); }
+  .sj-hare .h-wash { fill: var(--sjochre); opacity: 0.45; mix-blend-mode: multiply; stroke: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sj-hare.sj-dash { animation: sj-haredash 1.5s cubic-bezier(0.3, 0, 0.7, 1) forwards; }
+  }
+  @keyframes sj-haredash {
+    0% { transform: translateX(0); opacity: 0; }
+    6% { opacity: 1; }
+    94% { opacity: 1; }
+    100% { transform: translateX(480px); opacity: 0; }
+  }
+  /* ---------- loading: word + one-ball traffic light ---------- */
+  .sj-cover { display: grid; place-items: center; }
+  [data-sj-loadword] { transition: opacity 0.28s ease; min-height: 1.1em; }
+  [data-sj-loadword].sj-swapw { opacity: 0; }
+  .sj-orbs { position: relative; width: 150px; height: 88px; margin: 2.2rem auto 0; }
+  .sj-orbs i {
+    position: absolute; left: 50%; top: 50%;
+    width: 68px; height: 68px; margin: -34px 0 0 -34px;
+    border-radius: 52% 48% 55% 45% / 48% 55% 45% 52%;
+    border: 2.2px solid var(--sjink);
+    display: block;
+    transform: translateX(var(--x, 0px)) scale(var(--sc, 1));
+    opacity: var(--o, 1);
+  }
+  .sj-orbs i::before {
+    content: ""; position: absolute; inset: -3px;
+    border-radius: 46% 54% 49% 51% / 55% 45% 56% 44%;
+    mix-blend-mode: multiply;
+    transform: translate(4px, 3px) rotate(8deg);
+  }
+  .sj-orbs i.cg::before { background: var(--sjmoss); opacity: 0.75; }
+  .sj-orbs i.co::before { background: var(--sjochre); opacity: 0.7; transform: translate(-4px, 3px) rotate(-6deg); }
+  .sj-orbs i.cr::before { background: var(--sjberry); opacity: 0.6; transform: translate(3px, -3px) rotate(5deg); }
+  /* peek loop: arms part, the eyes appear, arms close again */
+  @media (prefers-reduced-motion: no-preference) {
+    .sj-orbs i { transition: transform 0.65s cubic-bezier(0.3, 0.75, 0.3, 1), opacity 0.5s ease; }
+    .sj-cover .armL { transform-box: fill-box; transform-origin: 15% 90%; animation: sj-peekL 5.5s ease-in-out infinite; }
+    .sj-cover .armR { transform-box: fill-box; transform-origin: 85% 90%; animation: sj-peekR 5.5s ease-in-out infinite; }
+    .sj-cover .t-peek { animation: sj-peekeyes 5.5s steps(1) infinite; }
+  }
+  @keyframes sj-peekL { 0%, 55%, 100% { transform: rotate(0); } 65%, 88% { transform: rotate(-16deg); } }
+  @keyframes sj-peekR { 0%, 55%, 100% { transform: rotate(0); } 65%, 88% { transform: rotate(16deg); } }
+  @keyframes sj-peekeyes { 0%, 60% { opacity: 0; } 66%, 88% { opacity: 1; } 92%, 100% { opacity: 0; } }
+  /* ---------- exercise plates ---------- */
+  .sj-xrow {
+    position: absolute; top: 36px; left: 16px; right: 16px;
+    display: flex; justify-content: space-between;
+    font-family: "Gochi Hand", cursive; font-size: 1.25rem; line-height: 1;
+    z-index: 2; pointer-events: none;
+  }
+  .sj-plate {
+    width: 196px;
+    border: 2px solid var(--sjink);
+    border-radius: 12px 16px 13px 17px / 16px 12px 17px 13px;
+    padding: 0.7rem 0.6rem 0.45rem;
+    background: radial-gradient(90% 70% at 60% 30%, rgba(143, 175, 119, 0.14), transparent 60%);
+  }
+  .sj-plate > svg { width: 100%; height: auto; overflow: visible; display: block; }
+  .sj-platecap { font-size: 0.78rem !important; color: #6d6a5e; margin-top: 0.3rem !important; text-align: center; }
+  /* the flipbook: three redrawn poses, frame to frame, no tweening */
+  .sj-plate .sjf { opacity: 0; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sj-plate .sjf { animation: sj-flip 1.8s steps(1, end) infinite; }
+    .sj-plate .sjf.f2 { animation-delay: 0.6s; }
+    .sj-plate .sjf.f3 { animation-delay: 1.2s; }
+    .sj-plate.sj-paused .sjf { animation-play-state: paused; }
+    .sj-plate .sj-breathwash {
+      transform-box: fill-box; transform-origin: center;
+      animation: sj-washbreathe 4s ease-in-out infinite alternate;
+    }
+    .sj-plate.sj-paused .sj-breathwash { animation-play-state: paused; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sj-plate .sjf.f1 { opacity: 1; }
+  }
+  @keyframes sj-flip { 0% { opacity: 1; } 33.34% { opacity: 0; } 100% { opacity: 0; } }
+  @keyframes sj-washbreathe { from { transform: scale(0.92); } to { transform: scale(1.12); } }
+  .sj-xmid { height: 58px; display: grid; place-content: center; gap: 4px; }
+  .sj-h--x { font-size: 1.5rem !important; }
+  .sj-xmeta { font-size: 0.85rem !important; color: #6d6a5e; }
+  .sj-xtimer { font-family: "Gochi Hand", cursive; font-size: 2rem !important; line-height: 1 !important; font-variant-numeric: tabular-nums; }
+  .sj-xctl { display: flex; align-items: center; justify-content: center; gap: 1rem; }
+  .sj-skipc {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 2px solid var(--sjink); background: none;
+    font-family: "Gochi Hand", cursive; font-size: 0.66rem; color: var(--sjink);
+    display: grid; place-items: center; line-height: 1;
+  }
+  .sj-pausebtn {
+    width: 52px; height: 52px; border-radius: 50%;
+    border: 2.4px solid var(--sjink);
+    background: color-mix(in srgb, var(--sjmoss) 35%, var(--sjpaper));
+    display: grid; place-items: center;
+    position: relative;
+    transition: transform 0.12s ease, background 0.12s ease;
+  }
+  .sj-pausebtn i {
+    width: 5px; height: 17px; background: var(--sjink); border-radius: 2px;
+    box-shadow: 9px 0 0 var(--sjink); margin-left: -9px; display: block;
+  }
+  .sj-pausebtn.sj-playing i {
+    width: 0; height: 0; background: none; box-shadow: none; margin-left: 2px;
+    border-left: 15px solid var(--sjink); border-top: 9px solid transparent; border-bottom: 9px solid transparent;
+    border-radius: 2px;
+  }
+  .sj-pausebtn:active, .sj-pausebtn.sj-press { transform: translateY(2px) scale(0.94); background: color-mix(in srgb, var(--sjmoss) 55%, var(--sjpaper)); }
+  /* ---------- dashboard ---------- */
+  .sj-h--app { font-size: 1.4rem !important; }
+  .sj-seg {
+    display: inline-flex; border: 2px solid var(--sjink);
+    border-radius: 8px 11px 9px 12px / 11px 8px 12px 9px; overflow: hidden;
+    font-family: "Gochi Hand", cursive; font-size: 0.85rem;
+  }
+  .sj-seg span { padding: 0.22rem 0.7rem; position: relative; cursor: pointer; }
+  .sj-seg span + span { border-left: 2px solid var(--sjink); }
+  .sj-seg .on { background: color-mix(in srgb, var(--sjochre) 55%, var(--sjpaper)); }
+  .sj-range { font-size: 0.9rem !important; color: #56534a; }
+  .sj-range b { font-weight: 400; margin: 0 0.5rem; }
+  .sj-bigcount { display: flex; align-items: center; gap: 0.55rem; justify-content: center; font-family: "Gochi Hand", cursive; font-size: 2.35rem !important; line-height: 1 !important; }
+  .sj-bigcount .sj-berry { width: 30px; height: auto; }
+  .sj-bigcount .flip { transform: scaleX(-1); display: inline-flex; }
+  .sj-bigcount .flip .sj-berry { width: 30px; }
+  .sj-goalmsg { font-size: 1rem !important; }
+  .sj-dpanels { display: grid; place-items: center; width: 100%; height: 152px; }
+  .sj-dpanel { grid-area: 1 / 1; width: 100%; display: grid; place-items: center; transition: opacity 0.4s ease; }
+  .sj-dpanel[hidden] { opacity: 0; pointer-events: none; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s; }
+  .sj-chips { display: flex; gap: 5px; justify-content: center; }
+  .sj-chip {
+    width: 32px; padding: 3px 0 4px;
+    border: 2px solid var(--sjink);
+    border-radius: 8px 11px 9px 12px / 11px 8px 12px 9px;
+    font-family: "Gochi Hand", cursive; font-size: 0.66rem; line-height: 1.25;
+    display: grid; justify-items: center;
+  }
+  .sj-chip b { font-weight: 400; font-size: 0.8rem; }
+  .sj-chip.goal { background: color-mix(in srgb, var(--sjochre) 50%, var(--sjpaper)); }
+  .sj-cal { display: grid; grid-template-columns: repeat(7, 20px) 16px; gap: 3px; justify-content: center; font-family: "Gochi Hand", cursive; font-size: 0.6rem; }
+  .sj-cal .h { color: #7a766a; }
+  .sj-cal .d { height: 19px; display: grid; place-items: center; border: 1.6px solid transparent; border-radius: 6px 8px 7px 9px / 8px 6px 9px 7px; }
+  .sj-cal .d.goal { border-color: var(--sjink); background: color-mix(in srgb, var(--sjmoss) 45%, var(--sjpaper)); }
+  .sj-cal .d.today { border-color: var(--sjberry); }
+  .sj-smiley { display: grid; place-items: center; }
+  .sj-smiley svg { width: 13px; height: 13px; }
+  .sj-smiley .sm { fill: none; stroke: var(--sjink); stroke-width: 1.6; stroke-linecap: round; }
+  .sj-smiley circle:not(.sm) { fill: var(--sjink); }
+  .sj-yeargrid { display: grid; grid-template-columns: repeat(6, 34px); gap: 5px; justify-content: center; font-family: "Gochi Hand", cursive; font-size: 0.7rem; }
+  .sj-yeargrid span { height: 30px; display: grid; place-items: center; border: 1.7px solid var(--sjink); border-radius: 7px 10px 8px 11px / 10px 7px 11px 8px; }
+  .sj-yeargrid .goal { background: color-mix(in srgb, var(--sjmoss) 45%, var(--sjpaper)); }
+  .sj-yeargrid .best { background: color-mix(in srgb, var(--sjochre) 55%, var(--sjpaper)); }
+  .sj-recap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; width: 100%; margin-top: 0.35rem; }
+  .sj-rcard {
+    border: 2px solid var(--sjink);
+    border-radius: 9px 13px 10px 14px / 13px 9px 14px 10px;
+    padding: 0.28rem 0.4rem 0.35rem;
+    text-align: left;
+    font-family: "Gochi Hand", cursive;
+    min-width: 0;
+  }
+  .sj-rcard .rk { font-size: 0.66rem !important; color: #56534a; white-space: nowrap; }
+  .sj-rcard .rv { font-size: 0.98rem !important; line-height: 1.1 !important; }
+  .sj-rcard .rv small { font-size: 0.64rem; }
+  .sj-bars { display: flex; gap: 3px; align-items: flex-end; height: 16px; margin-top: 3px; border-bottom: 2px solid var(--sjink); }
+  .sj-bars i { width: 9px; display: block; background: var(--sjmoss); opacity: 0.75; mix-blend-mode: multiply; border-radius: 3px 3px 0 0; border: 1.6px solid var(--sjink); border-bottom: 0; transition: height 0.55s ease; }
+  .sj-bars i:nth-child(2) { background: var(--sjochre); }
+  .sj-bars i:nth-child(3) { background: var(--sjberry); opacity: 0.6; }
+  @media (prefers-reduced-motion: reduce) {
+    .sj-compare * { animation: none !important; }
+    .sj-bars i, .sj-orbs i, .sj-dpanel { transition: none !important; }
+  }
 </style>
 
 <script>
@@ -1562,4 +2041,334 @@ const line2 =
   document.addEventListener("astro:before-swap", teardownFliz);
   initFliz();
   document.addEventListener("astro:page-load", initFliz);
+</script>
+
+<script>
+  // Shelly journal act (.sj): the living bottom filmstrip. Vanilla only,
+  // ported from the approved Field Journal direction. The markdown markup
+  // is the complete static poster; this script only adds the life: the
+  // ink-in reveal, the self-running demo cadences (press, burst, peace
+  // pose, wandering sliders, the loading traffic light, the exercise
+  // countdown, the dashboard leafing through its modes) and the real
+  // interactions. Everything idles unless the act is on screen, is fully
+  // skipped under prefers-reduced-motion, and tears down on view swaps.
+  let sjTimers: number[] = [];
+  let sjIOs: IntersectionObserver[] = [];
+  let sjInited = false;
+  let sjVisible = false;
+
+  function sjTeardown() {
+    sjTimers.forEach((t) => clearInterval(t));
+    sjIOs.forEach((io) => io.disconnect());
+    sjTimers = []; sjIOs = [];
+    sjInited = false; sjVisible = false;
+  }
+
+  function sjBerrySVG() {
+    return '<svg class="sj-berry" viewBox="0 0 24 27" aria-hidden="true"><path class="s-berry s-line" d="M12 25C6 25 2.6 19.4 2.6 14.2 2.6 9.6 6.2 7.4 12 7.4s9.4 2.2 9.4 6.8C21.4 19.4 18 25 12 25Z"/><path class="s-leaf s-line" d="M12 7.6C10 5 7.4 4.1 5 4.6 6.8 7 9.2 8 12 7.6Zm0 0c2-2.6 4.6-3.5 7-3C17.2 7 14.8 8 12 7.6Z"/><path class="s-stem s-line" d="M12 7.2 Q11.4 4.4 12.6 2.4"/><circle class="s-seed" cx="8" cy="13.4" r="1"/><circle class="s-seed" cx="16" cy="13.4" r="1"/><circle class="s-seed" cx="12" cy="17.6" r="1"/></svg>';
+  }
+  function sjHareSVG() {
+    return '<svg viewBox="0 0 90 56" aria-hidden="true"><ellipse class="h-wash" cx="42" cy="34" rx="26" ry="12" transform="rotate(-6 42 34)"/><path class="sjl" d="M14 42 Q18 26 40 25 Q60 24 70 30"/><path class="sjl" d="M20 44 Q40 50 62 42"/><ellipse class="sjl" cx="66" cy="12" rx="3.5" ry="9" transform="rotate(-28 66 12)"/><ellipse class="sjl" cx="72" cy="11" rx="3.5" ry="9" transform="rotate(-12 72 11)"/><circle class="sjl" cx="74" cy="26" r="7"/><circle class="h-eye" cx="75.5" cy="24" r="1.3"/><path class="sjl" d="M81 27.5 l4 1"/><circle class="sjl" cx="13" cy="38" r="4"/><path class="sjl" d="M20 42 Q10 50 2 48"/><path class="sjl" d="M26 44 Q22 52 14 53"/><path class="sjl" d="M58 40 Q66 48 76 46"/><path class="sjl" d="M64 37 Q74 40 82 36"/></svg>';
+  }
+
+  function initSj() {
+    const box = document.querySelector<HTMLElement>("[data-sj-compare]");
+    if (!box || sjInited) return;
+    sjInited = true;
+    const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // reveal once + gate the cadences to the act being on screen
+    const gate = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((en) => {
+          sjVisible = en.isIntersecting;
+          if (en.isIntersecting && !REDUCE) box.classList.add("sj-play");
+        });
+      },
+      { threshold: 0.12 },
+    );
+    gate.observe(box);
+    sjIOs.push(gate);
+    const live = () => sjVisible && !document.hidden;
+
+    // ---- sliders: drag for real, wander on their own ----
+    box.querySelectorAll<HTMLElement>(".sj-slider").forEach((sl) => {
+      const vals = (sl.dataset.vals || "").split(",");
+      const steps = vals.length - 1;
+      const track = sl.querySelector<HTMLElement>(".sj-track")!;
+      const handle = sl.querySelector<HTMLElement>(".sj-handle")!;
+      const fill = sl.querySelector<HTMLElement>(".sj-fill")!;
+      let idx = parseInt(sl.dataset.start || "0", 10);
+      const render = () => {
+        const p = idx / steps;
+        handle.style.setProperty("--px", p * track.clientWidth + "px");
+        fill.style.setProperty("--p", String(Math.max(p, 0.02)));
+      };
+      new ResizeObserver(render).observe(track);
+      const toIdx = (clientX: number) => {
+        const r = track.getBoundingClientRect();
+        idx = Math.round(Math.min(1, Math.max(0, (clientX - r.left) / r.width)) * steps);
+        render();
+      };
+      sl.addEventListener("sj-autostep", () => {
+        let next = idx;
+        while (next === idx) next = Math.floor(Math.random() * (steps + 1));
+        idx = next;
+        render();
+      });
+      handle.addEventListener("pointerdown", (e) => {
+        sl.dataset.user = "1"; // a real hand takes over: the demo lets go
+        handle.classList.remove("sj-auto", "sj-moving");
+        fill.classList.remove("sj-auto");
+        handle.setPointerCapture(e.pointerId);
+      });
+      handle.addEventListener("pointermove", (e) => {
+        if (handle.hasPointerCapture(e.pointerId)) toIdx(e.clientX);
+      });
+      handle.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === "ArrowUp") { idx = Math.min(steps, idx + 1); render(); e.preventDefault(); }
+        if (e.key === "ArrowLeft" || e.key === "ArrowDown") { idx = Math.max(0, idx - 1); render(); e.preventDefault(); }
+      });
+      render();
+    });
+
+    // ---- press ripple + strawberry firework + peace pose ----
+    function pressButton(btn: HTMLElement) {
+      btn.classList.add("sj-press");
+      const ring = document.createElement("span");
+      ring.className = "sj-tapring";
+      const phone = btn.closest<HTMLElement>(".sj-phone")!;
+      const r = btn.getBoundingClientRect();
+      const pr = phone.getBoundingClientRect();
+      const sc = pr.width / phone.offsetWidth; // the phone is scaled
+      ring.style.left = (r.left - pr.left) / sc + r.width / sc * 0.62 - 17 + "px";
+      ring.style.top = (r.top - pr.top) / sc + r.height / sc * 0.7 - 17 + "px";
+      phone.appendChild(ring);
+      window.setTimeout(() => ring.remove(), 550);
+      window.setTimeout(() => btn.classList.remove("sj-press"), 320);
+    }
+    function rainAndPeace() {
+      const layer = box.querySelector<HTMLElement>(".sj-rain");
+      const btn = box.querySelector<HTMLElement>("[data-sj-press]");
+      if (!layer || !btn) return;
+      const phone = layer.closest<HTMLElement>(".sj-phone")!;
+      const sc = phone.getBoundingClientRect().width / phone.offsetWidth;
+      const br = btn.getBoundingClientRect();
+      const pr = layer.getBoundingClientRect();
+      const ox = (br.left - pr.left + br.width / 2) / sc;
+      const oy = (br.top - pr.top + br.height / 2) / sc;
+      for (let i = 0; i < 10; i++) {
+        const b = document.createElement("span");
+        b.className = "sj-rainberry";
+        b.innerHTML = sjBerrySVG();
+        const ang = (-90 + (Math.random() * 150 - 75)) * (Math.PI / 180);
+        const dist = 60 + Math.random() * 85;
+        b.style.left = ox + "px";
+        b.style.top = oy + "px";
+        b.style.setProperty("--tx", (Math.cos(ang) * dist).toFixed(0) + "px");
+        b.style.setProperty("--ty", (Math.sin(ang) * dist).toFixed(0) + "px");
+        b.style.setProperty("--s", 14 + Math.random() * 10 + "px");
+        b.style.setProperty("--dl", Math.random() * 0.3 + "s");
+        b.style.setProperty("--dur", 1.5 + Math.random() * 0.7 + "s");
+        b.style.setProperty("--r", Math.random() * 90 - 45 + "deg");
+        layer.appendChild(b);
+        window.setTimeout(() => b.remove(), 2800);
+      }
+      const wave = box.querySelector<HTMLElement>('[data-pose="wave"]');
+      const peace = box.querySelector<HTMLElement>('[data-pose="peace"]');
+      if (!wave || !peace) return;
+      wave.classList.add("sj-hide");
+      peace.classList.remove("sj-hide");
+      window.setTimeout(() => {
+        peace.classList.add("sj-hide");
+        wave.classList.remove("sj-hide");
+      }, 3000);
+    }
+    box.querySelectorAll<HTMLElement>("[data-sj-press]").forEach((btn) =>
+      btn.addEventListener("click", () => { if (!REDUCE) rainAndPeace(); }));
+
+    // ---- loading: word trio + one-ball traffic light, one cadence ----
+    const LOADWORDS = ["Loading....", "Almost....", "Ready?"];
+    const WORDCOL = ["cr", "co", "cg"];
+    let lwIdx = 0;
+    const lwEl = box.querySelector<HTMLElement>("[data-sj-loadword]");
+    const orbBox = box.querySelector<HTMLElement>(".sj-orbs");
+    let orbCurrent = orbBox?.querySelector<HTMLElement>("i") ?? null;
+    function makeOrb(colcls: string, x: number, scv: string, o: string) {
+      const el = document.createElement("i");
+      el.className = colcls;
+      el.style.setProperty("--x", x + "px");
+      el.style.setProperty("--sc", scv);
+      el.style.setProperty("--o", o);
+      orbBox!.appendChild(el);
+      return el;
+    }
+    function pushOrb(colcls: string, onImpact: () => void) {
+      if (!orbBox) return;
+      const inc = makeOrb(colcls, -132, "0.92", "0");
+      void inc.offsetWidth;
+      inc.style.transition = "transform 0.42s cubic-bezier(0.55, 0, 0.85, 0.55), opacity 0.18s ease";
+      inc.style.setProperty("--x", "-52px"); // presses INTO the sitting ball
+      inc.style.setProperty("--o", "1");
+      const out = orbCurrent;
+      orbCurrent = inc;
+      window.setTimeout(() => {
+        onImpact();
+        inc.style.transition = "transform 0.5s cubic-bezier(0.2, 1.25, 0.4, 1)";
+        inc.style.setProperty("--x", "0px");
+        inc.style.setProperty("--sc", "1.08");
+        if (out) out.style.setProperty("--sc", "0.92");
+        window.setTimeout(() => {
+          inc.style.transition = "transform 0.3s ease-out";
+          inc.style.setProperty("--sc", "1");
+        }, 190);
+        window.setTimeout(() => {
+          if (out) {
+            out.style.transition = "transform 0.55s cubic-bezier(0.1, 0.65, 0.3, 1), opacity 0.32s ease 0.2s";
+            out.style.setProperty("--x", "132px");
+            out.style.setProperty("--o", "0");
+            window.setTimeout(() => out.remove(), 800);
+          }
+        }, 70);
+      }, 430);
+    }
+    if (lwEl && orbBox && !REDUCE) {
+      sjTimers.push(window.setInterval(() => {
+        if (!live()) return;
+        const next = (lwIdx + 1) % LOADWORDS.length;
+        pushOrb(WORDCOL[next], () => {
+          lwEl.classList.add("sj-swapw");
+          window.setTimeout(() => {
+            lwIdx = next;
+            lwEl.textContent = LOADWORDS[lwIdx];
+            lwEl.classList.remove("sj-swapw");
+          }, 200);
+        });
+      }, 2600));
+    }
+
+    // ---- exercise: countdown + pause (flipbook pauses with it) ----
+    const xstate = { t: 72, paused: false };
+    const xtimer = box.querySelector<HTMLElement>("[data-sj-timer]");
+    const xpause = box.querySelector<HTMLElement>("[data-sj-pause]");
+    const xplate = box.querySelector<HTMLElement>("[data-sj-xplate]");
+    const xrender = () => {
+      if (!xtimer) return;
+      const m = Math.floor(xstate.t / 60), s = xstate.t % 60;
+      xtimer.textContent = String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+    };
+    const xtoggle = () => {
+      xstate.paused = !xstate.paused;
+      xpause?.classList.toggle("sj-playing", xstate.paused);
+      xplate?.classList.toggle("sj-paused", xstate.paused);
+    };
+    if (xtimer && !REDUCE) {
+      sjTimers.push(window.setInterval(() => {
+        if (!live() || xstate.paused) return;
+        xstate.t = xstate.t > 0 ? xstate.t - 1 : 90;
+        xrender();
+      }, 1000));
+    }
+    xpause?.addEventListener("click", xtoggle);
+
+    // ---- dashboard: week / month / year leaf through by themselves ----
+    const DMODES: Record<string, { count: number; range: string; msg: string; recap: number[]; bars: number[][] }> = {
+      week: { count: 189, range: "Aug 4th - Aug 10th", msg: "You met your goal 3 times!", recap: [3, 15, 15, 30],
+        bars: [[60, 30, 80], [45, 90, 65], [70, 40, 55], [35, 75, 95]] },
+      month: { count: 357, range: "August 2025", msg: "You're on a roll this month!", recap: [9, 45, 25, 40],
+        bars: [[45, 70, 35], [80, 55, 95], [30, 60, 85], [65, 90, 50]] },
+      year: { count: 1402, range: "2025", msg: "Slow and steady, all year long.", recap: [38, 190, 120, 160],
+        bars: [[35, 60, 90], [75, 85, 60], [55, 30, 70], [45, 95, 70]] },
+    };
+    const DORDER = ["week", "month", "year"];
+    let dmode = "week";
+    function countTo(el: HTMLElement | null, target: number, dur: number) {
+      if (!el) return;
+      const from = parseInt(String(el.textContent).replace(/\D/g, ""), 10) || 0;
+      if (REDUCE || !dur) { el.textContent = String(target); return; }
+      const t0 = performance.now();
+      const step = (now: number) => {
+        const p = Math.min(1, (now - t0) / dur);
+        el.textContent = String(Math.round(from + (target - from) * (1 - Math.pow(1 - p, 3))));
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+    function setDashMode(mode: string) {
+      dmode = mode;
+      const M = DMODES[mode];
+      box.querySelectorAll<HTMLElement>("[data-sj-seg] span").forEach((sp) =>
+        sp.classList.toggle("on", sp.dataset.mode === mode));
+      const range = box.querySelector<HTMLElement>("[data-sj-range]");
+      if (range) range.textContent = M.range;
+      const msg = box.querySelector<HTMLElement>("[data-sj-msg]");
+      if (msg) msg.textContent = M.msg;
+      countTo(box.querySelector("[data-sj-count]"), M.count, 900);
+      box.querySelectorAll<HTMLElement>("[data-sj-recap]").forEach((el) =>
+        countTo(el, M.recap[parseInt(el.dataset.sjRecap || "0", 10)], 550));
+      box.querySelectorAll<HTMLElement>(".sj-rcard").forEach((card, ci) => {
+        card.querySelectorAll<HTMLElement>(".sj-bars i").forEach((bar, bi) => {
+          bar.style.height = (M.bars[ci]?.[bi] ?? 50) + "%";
+        });
+      });
+      box.querySelectorAll<HTMLElement>("[data-sj-panel]").forEach((p) => {
+        if (p.dataset.sjPanel === mode) p.removeAttribute("hidden");
+        else p.setAttribute("hidden", "");
+      });
+    }
+    box.querySelectorAll<HTMLElement>("[data-sj-seg] span").forEach((sp) =>
+      sp.addEventListener("click", () => setDashMode(sp.dataset.mode || "week")));
+
+    // ---- the self-running demo, only while the act is on screen ----
+    if (!REDUCE) {
+      sjTimers.push(window.setInterval(() => { // a slider turtle wanders
+        if (!live()) return;
+        const sliders = [...box.querySelectorAll<HTMLElement>(".sj-slider")].filter((sl) => !sl.dataset.user);
+        if (!sliders.length) return;
+        const sl = sliders[Math.floor(Math.random() * sliders.length)];
+        const handle = sl.querySelector<HTMLElement>(".sj-handle")!;
+        sl.querySelector<HTMLElement>(".sj-fill")!.classList.add("sj-auto");
+        handle.classList.add("sj-auto", "sj-moving");
+        sl.dispatchEvent(new CustomEvent("sj-autostep"));
+        window.setTimeout(() => handle.classList.remove("sj-moving"), 1150);
+      }, 3400));
+      sjTimers.push(window.setInterval(() => { // the CTA presses itself
+        if (!live()) return;
+        const btn = box.querySelector<HTMLElement>("[data-sj-press]");
+        if (!btn) return;
+        pressButton(btn);
+        window.setTimeout(rainAndPeace, 200);
+      }, 8200));
+      sjTimers.push(window.setInterval(() => { // dashboard leafs through
+        if (!live()) return;
+        setDashMode(DORDER[(DORDER.indexOf(dmode) + 1) % DORDER.length]);
+      }, 5200));
+      sjTimers.push(window.setInterval(() => { // pause-tap demo on the exercise
+        if (!live() || !xpause) return;
+        pressButton(xpause);
+        xtoggle();
+        window.setTimeout(() => { if (xstate.paused) xtoggle(); }, 2100);
+      }, 11400));
+      sjTimers.push(window.setInterval(() => { // the hare tears past
+        if (!live()) return;
+        const lanes = [...box.querySelectorAll<HTMLElement>(".sj-hares")];
+        if (!lanes.length) return;
+        const lane = lanes[Math.floor(Math.random() * lanes.length)];
+        let hare = lane.querySelector<HTMLElement>(".sj-hare");
+        if (!hare) {
+          hare = document.createElement("span");
+          hare.className = "sj-hare";
+          hare.innerHTML = sjHareSVG();
+          lane.appendChild(hare);
+        }
+        hare.classList.remove("sj-dash");
+        void hare.offsetWidth;
+        hare.classList.add("sj-dash");
+      }, 6800));
+    }
+  }
+
+  document.addEventListener("astro:before-swap", sjTeardown);
+  initSj();
+  document.addEventListener("astro:page-load", initSj);
 </script>
