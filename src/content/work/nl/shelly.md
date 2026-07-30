@@ -2,9 +2,9 @@
 title: "Je streak is gebroken"
 client: "Shelly"
 tagline: "Wellness-app voor mensen die wellness-apps haten"
-summary: "Gezonde routines opbouwen met flexibiliteit, niet met druk. In 2026 herbouwd in werkende code."
+summary: "Gezonde routines opbouwen met flexibiliteit, niet met druk."
 year: "2025"
-role: "UX/UI Designer · 4 weken teamsprint, met Anna · 2026 code-revisit, solo"
+role: "UX/UI Designer · 4 weken teamsprint, met Anna"
 discipline: ["Product design", "Behavioural UX", "Branding"]
 thumb: "/thumbs/shelly.svg"
 accent: "#ECEFF1"
@@ -128,92 +128,3 @@ missen vergeeft, houdt mensen in beweging.
 > Eindelijk een app die als een vriend voelt.
 
 De regel hierboven kwam van een deelnemer in de laatste testronde.
-
-<p class="note">2026 · Tweede ronde</p>
-
-## Twee jaar later leerde Shelly bewegen
-
-De sprint van 2024 eindigde waar sprints eindigen: een getest
-hi-fi prototype, stilstaand in Figma. In 2026 ging ik er alleen op
-terug, met meer tijd dan Anna en ik toen hadden en met gereedschap dat
-nog niet bestond. Ik herbouwde de kernflows in werkende code, met AI als
-assistent en elke ontwerpbeslissing van mij. De filosofie blijft
-onaangeraakt. Wat veranderde is dat een app gebouwd rond zachte beweging
-eindelijk beweegt. De drie schermen hieronder zijn geen screenshots.
-Toe maar, druk ergens op.
-
-<figure class="fig fig--pin shd" data-shd="checkin">
-  <div class="shd-phone" role="group" aria-label="Interactieve demo: Shelly vraagt naar je dag">
-    <div class="shd-screen is-on" data-s="0">
-      <p class="shd-hi">Hi! I'm Shelly</p>
-      <svg class="sh" viewBox="0 0 120 140" aria-hidden="true"><g class="sh-body"><circle cx="60" cy="46" r="30" fill="#57944B" stroke="#17281A" stroke-width="3"/><ellipse cx="48" cy="26" rx="6" ry="4.5" fill="#3F7A38"/><ellipse cx="63" cy="21" rx="7" ry="5" fill="#3F7A38"/><ellipse cx="76" cy="30" rx="5" ry="4" fill="#3F7A38"/><circle cx="54" cy="18" r="2.4" fill="#E8912E"/><circle cx="72" cy="31" r="2" fill="#E8912E"/><ellipse cx="60" cy="100" rx="34" ry="26" fill="#2E5B2B" stroke="#17281A" stroke-width="3"/><g class="sh-armL"><ellipse cx="27" cy="98" rx="7" ry="14" transform="rotate(24 27 98)" fill="#8CBF83" stroke="#17281A" stroke-width="3"/></g><g class="sh-arm"><ellipse cx="93" cy="98" rx="7" ry="14" transform="rotate(-24 93 98)" fill="#8CBF83" stroke="#17281A" stroke-width="3"/></g><ellipse cx="48" cy="130" rx="9" ry="7" fill="#8CBF83" stroke="#17281A" stroke-width="3"/><ellipse cx="72" cy="130" rx="9" ry="7" fill="#8CBF83" stroke="#17281A" stroke-width="3"/><circle cx="60" cy="60" r="24" fill="#8CBF83" stroke="#17281A" stroke-width="3"/><g class="sh-eye"><circle cx="51" cy="58" r="3" fill="#17281A"/></g><g class="sh-eye sh-eye2"><circle cx="69" cy="58" r="3" fill="#17281A"/></g><circle cx="58" cy="65" r="0.9" fill="#17281A"/><circle cx="62" cy="65" r="0.9" fill="#17281A"/><path d="M53 69 Q60 78 67 69 Q60 73 53 69 Z" fill="#17281A"/><rect x="40" y="82" width="40" height="44" rx="16" fill="#F2C158" stroke="#17281A" stroke-width="3"/><path d="M60 84 V124 M41 96 H79 M41 110 H79" fill="none" stroke="#17281A" stroke-width="2"/></g></svg>
-      <p class="shd-sub">Your steady routine buddy</p>
-      <button type="button" class="shd-btn" data-go="1">Let's go!</button>
-    </div>
-    <div class="shd-screen" data-s="1">
-      <p class="shd-q">How does your day look?</p>
-      <div class="shd-opts">
-        <button type="button" class="shd-opt" data-day="packed">Packed</button>
-        <button type="button" class="shd-opt" data-day="normal">Normal</button>
-        <button type="button" class="shd-opt" data-day="open">Open</button>
-      </div>
-    </div>
-    <div class="shd-screen" data-s="2">
-      <p class="shd-q">Shelly's suggestions for today</p>
-      <div class="shd-pills">
-        <div class="shd-pill" data-k="breathe"><strong>1 minute of deep breathing</strong><span>Earn 3 strawberries <svg class="shd-straw" viewBox="0 0 24 26" aria-hidden="true"><path d="M12 24C6 24 2.5 18.5 2.5 13.5 2.5 9 6 7 12 7s9.5 2 9.5 6.5C21.5 18.5 18 24 12 24Z" fill="#FC848A" stroke="#17281A" stroke-width="1.6"/><path d="M12 7C10 4.6 7.6 3.8 5.4 4.2 7 6.4 9.3 7.4 12 7Zm0 0c2-2.4 4.4-3.2 6.6-2.8C17 6.4 14.7 7.4 12 7Z" fill="#5B944D" stroke="#17281A" stroke-width="1.2"/><circle cx="8.4" cy="13" r=".9" fill="#7A1E23"/><circle cx="15.6" cy="13" r=".9" fill="#7A1E23"/><circle cx="12" cy="17" r=".9" fill="#7A1E23"/></svg></span></div>
-        <div class="shd-pill" data-k="walk"><strong>15 minutes of walking</strong><span>Earn 45 strawberries <svg class="shd-straw" viewBox="0 0 24 26" aria-hidden="true"><path d="M12 24C6 24 2.5 18.5 2.5 13.5 2.5 9 6 7 12 7s9.5 2 9.5 6.5C21.5 18.5 18 24 12 24Z" fill="#FC848A" stroke="#17281A" stroke-width="1.6"/><path d="M12 7C10 4.6 7.6 3.8 5.4 4.2 7 6.4 9.3 7.4 12 7Zm0 0c2-2.4 4.4-3.2 6.6-2.8C17 6.4 14.7 7.4 12 7Z" fill="#5B944D" stroke="#17281A" stroke-width="1.2"/><circle cx="8.4" cy="13" r=".9" fill="#7A1E23"/><circle cx="15.6" cy="13" r=".9" fill="#7A1E23"/><circle cx="12" cy="17" r=".9" fill="#7A1E23"/></svg></span></div>
-        <div class="shd-pill" data-k="stretch"><strong>5 minutes of stretching</strong><span>Earn 15 strawberries <svg class="shd-straw" viewBox="0 0 24 26" aria-hidden="true"><path d="M12 24C6 24 2.5 18.5 2.5 13.5 2.5 9 6 7 12 7s9.5 2 9.5 6.5C21.5 18.5 18 24 12 24Z" fill="#FC848A" stroke="#17281A" stroke-width="1.6"/><path d="M12 7C10 4.6 7.6 3.8 5.4 4.2 7 6.4 9.3 7.4 12 7Zm0 0c2-2.4 4.4-3.2 6.6-2.8C17 6.4 14.7 7.4 12 7Z" fill="#5B944D" stroke="#17281A" stroke-width="1.2"/><circle cx="8.4" cy="13" r=".9" fill="#7A1E23"/><circle cx="15.6" cy="13" r=".9" fill="#7A1E23"/><circle cx="12" cy="17" r=".9" fill="#7A1E23"/></svg></span></div>
-      </div>
-      <button type="button" class="shd-reset" data-go="1">&#8635; Again</button>
-    </div>
-    <span class="shd-home" aria-hidden="true"></span>
-  </div>
-  <figcaption>Vraagt nog steeds eerst naar je dag. Nu antwoordt hij ook terug.</figcaption>
-</figure>
-
-<figure class="fig fig--pin shd" data-shd="week">
-  <div class="shd-phone" role="group" aria-label="Interactieve demo: aardbeien verdiend deze week">
-    <div class="shd-screen is-on">
-      <p class="shd-q">Strawberries earned this week</p>
-      <p class="shd-count"><svg class="shd-straw" viewBox="0 0 24 26" aria-hidden="true"><path d="M12 24C6 24 2.5 18.5 2.5 13.5 2.5 9 6 7 12 7s9.5 2 9.5 6.5C21.5 18.5 18 24 12 24Z" fill="#FC848A" stroke="#17281A" stroke-width="1.6"/><path d="M12 7C10 4.6 7.6 3.8 5.4 4.2 7 6.4 9.3 7.4 12 7Zm0 0c2-2.4 4.4-3.2 6.6-2.8C17 6.4 14.7 7.4 12 7Z" fill="#5B944D" stroke="#17281A" stroke-width="1.2"/><circle cx="8.4" cy="13" r=".9" fill="#7A1E23"/><circle cx="15.6" cy="13" r=".9" fill="#7A1E23"/><circle cx="12" cy="17" r=".9" fill="#7A1E23"/></svg><span class="shd-num">189</span></p>
-      <div class="shd-days">
-        <span class="shd-day is-done">Mo</span>
-        <span class="shd-day is-goal"><i class="shd-fill"></i><b>Tu</b></span>
-        <span class="shd-day is-off">We</span>
-        <span class="shd-day is-done">Th</span>
-        <span class="shd-day is-goal"><i class="shd-fill"></i><b>Fr</b></span>
-        <span class="shd-day is-done">Sa</span>
-        <span class="shd-day is-goal"><i class="shd-fill"></i><b>Su</b></span>
-      </div>
-      <p class="shd-msg">You reached your goal 3 times!</p>
-      <svg class="sh" viewBox="0 0 120 140" aria-hidden="true"><g class="sh-body"><circle cx="60" cy="46" r="30" fill="#57944B" stroke="#17281A" stroke-width="3"/><ellipse cx="48" cy="26" rx="6" ry="4.5" fill="#3F7A38"/><ellipse cx="63" cy="21" rx="7" ry="5" fill="#3F7A38"/><ellipse cx="76" cy="30" rx="5" ry="4" fill="#3F7A38"/><circle cx="54" cy="18" r="2.4" fill="#E8912E"/><circle cx="72" cy="31" r="2" fill="#E8912E"/><ellipse cx="60" cy="100" rx="34" ry="26" fill="#2E5B2B" stroke="#17281A" stroke-width="3"/><g class="sh-armL"><ellipse cx="27" cy="98" rx="7" ry="14" transform="rotate(24 27 98)" fill="#8CBF83" stroke="#17281A" stroke-width="3"/></g><g class="sh-arm"><ellipse cx="93" cy="98" rx="7" ry="14" transform="rotate(-24 93 98)" fill="#8CBF83" stroke="#17281A" stroke-width="3"/></g><ellipse cx="48" cy="130" rx="9" ry="7" fill="#8CBF83" stroke="#17281A" stroke-width="3"/><ellipse cx="72" cy="130" rx="9" ry="7" fill="#8CBF83" stroke="#17281A" stroke-width="3"/><circle cx="60" cy="60" r="24" fill="#8CBF83" stroke="#17281A" stroke-width="3"/><g class="sh-eye"><circle cx="51" cy="58" r="3" fill="#17281A"/></g><g class="sh-eye sh-eye2"><circle cx="69" cy="58" r="3" fill="#17281A"/></g><circle cx="58" cy="65" r="0.9" fill="#17281A"/><circle cx="62" cy="65" r="0.9" fill="#17281A"/><path d="M53 69 Q60 78 67 69 Q60 73 53 69 Z" fill="#17281A"/><rect x="40" y="82" width="40" height="44" rx="16" fill="#F2C158" stroke="#17281A" stroke-width="3"/><path d="M60 84 V124 M41 96 H79 M41 110 H79" fill="none" stroke="#17281A" stroke-width="2"/></g></svg>
-    </div>
-    <span class="shd-home" aria-hidden="true"></span>
-  </div>
-  <figcaption>Eén lege dag in de week, en niets moppert.</figcaption>
-</figure>
-
-<figure class="fig fig--pin shd" data-shd="breath">
-  <div class="shd-phone" role="group" aria-label="Interactieve demo: één minuut ademhalen">
-    <div class="shd-screen is-on" data-s="0">
-      <div class="shd-pill shd-pill--solo"><strong>1 minute of deep breathing</strong><span>Earn 3 strawberries <svg class="shd-straw" viewBox="0 0 24 26" aria-hidden="true"><path d="M12 24C6 24 2.5 18.5 2.5 13.5 2.5 9 6 7 12 7s9.5 2 9.5 6.5C21.5 18.5 18 24 12 24Z" fill="#FC848A" stroke="#17281A" stroke-width="1.6"/><path d="M12 7C10 4.6 7.6 3.8 5.4 4.2 7 6.4 9.3 7.4 12 7Zm0 0c2-2.4 4.4-3.2 6.6-2.8C17 6.4 14.7 7.4 12 7Z" fill="#5B944D" stroke="#17281A" stroke-width="1.2"/><circle cx="8.4" cy="13" r=".9" fill="#7A1E23"/><circle cx="15.6" cy="13" r=".9" fill="#7A1E23"/><circle cx="12" cy="17" r=".9" fill="#7A1E23"/></svg></span></div>
-      <button type="button" class="shd-btn" data-go="breathe">Let's go!</button>
-    </div>
-    <div class="shd-screen" data-s="1">
-      <button type="button" class="shd-circle" aria-label="Pause or resume"><svg class="sh" viewBox="0 0 120 140" aria-hidden="true"><g class="sh-body"><circle cx="60" cy="46" r="30" fill="#57944B" stroke="#17281A" stroke-width="3"/><ellipse cx="48" cy="26" rx="6" ry="4.5" fill="#3F7A38"/><ellipse cx="63" cy="21" rx="7" ry="5" fill="#3F7A38"/><ellipse cx="76" cy="30" rx="5" ry="4" fill="#3F7A38"/><circle cx="54" cy="18" r="2.4" fill="#E8912E"/><circle cx="72" cy="31" r="2" fill="#E8912E"/><ellipse cx="60" cy="100" rx="34" ry="26" fill="#2E5B2B" stroke="#17281A" stroke-width="3"/><g class="sh-armL"><ellipse cx="27" cy="98" rx="7" ry="14" transform="rotate(24 27 98)" fill="#8CBF83" stroke="#17281A" stroke-width="3"/></g><g class="sh-arm"><ellipse cx="93" cy="98" rx="7" ry="14" transform="rotate(-24 93 98)" fill="#8CBF83" stroke="#17281A" stroke-width="3"/></g><ellipse cx="48" cy="130" rx="9" ry="7" fill="#8CBF83" stroke="#17281A" stroke-width="3"/><ellipse cx="72" cy="130" rx="9" ry="7" fill="#8CBF83" stroke="#17281A" stroke-width="3"/><circle cx="60" cy="60" r="24" fill="#8CBF83" stroke="#17281A" stroke-width="3"/><g class="sh-eye"><circle cx="51" cy="58" r="3" fill="#17281A"/></g><g class="sh-eye sh-eye2"><circle cx="69" cy="58" r="3" fill="#17281A"/></g><circle cx="58" cy="65" r="0.9" fill="#17281A"/><circle cx="62" cy="65" r="0.9" fill="#17281A"/><path d="M53 69 Q60 78 67 69 Q60 73 53 69 Z" fill="#17281A"/><rect x="40" y="82" width="40" height="44" rx="16" fill="#F2C158" stroke="#17281A" stroke-width="3"/><path d="M60 84 V124 M41 96 H79 M41 110 H79" fill="none" stroke="#17281A" stroke-width="2"/></g></svg></button>
-      <p class="shd-cue">Breathe in</p>
-      <p class="shd-time">1:00</p>
-    </div>
-    <div class="shd-screen" data-s="2">
-      <p class="shd-hi">You did it!</p>
-      <p class="shd-plus"><svg class="shd-straw" viewBox="0 0 24 26" aria-hidden="true"><path d="M12 24C6 24 2.5 18.5 2.5 13.5 2.5 9 6 7 12 7s9.5 2 9.5 6.5C21.5 18.5 18 24 12 24Z" fill="#FC848A" stroke="#17281A" stroke-width="1.6"/><path d="M12 7C10 4.6 7.6 3.8 5.4 4.2 7 6.4 9.3 7.4 12 7Zm0 0c2-2.4 4.4-3.2 6.6-2.8C17 6.4 14.7 7.4 12 7Z" fill="#5B944D" stroke="#17281A" stroke-width="1.2"/><circle cx="8.4" cy="13" r=".9" fill="#7A1E23"/><circle cx="15.6" cy="13" r=".9" fill="#7A1E23"/><circle cx="12" cy="17" r=".9" fill="#7A1E23"/></svg><span>+3</span></p>
-      <button type="button" class="shd-reset" data-go="0">&#8635; Again</button>
-    </div>
-    <span class="shd-home" aria-hidden="true"></span>
-  </div>
-  <figcaption>Eén minuut ademhalen. Shelly gaat voor.</figcaption>
-</figure>
-
-Dit is de tweede helft die de eerste eerlijk houdt, twee jaar
-te laat en zonder deadline.
