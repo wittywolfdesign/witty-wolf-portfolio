@@ -54,46 +54,37 @@ así que la gente se va. Y una mayoría antepone el bienestar mental a las
 métricas físicas. La respuesta fue una filosofía de tortuga: hábitos
 lentos, constantes, flexibles.
 
-<figure class="fig fig--paper fig--duo">
-  <span class="fig__tile"><img src="/work/shelly/shelly-affinity-diagram.png" alt="Diagrama de afinidad que ordena los hallazgos de la research en cuatro pilares, entre ellos actividad física y bienestar mental" loading="lazy" /></span>
-  <span class="fig__tile fig__tile--pin"><img src="/work/shelly/shelly-typography-mascot.png" alt="Guía tipográfica de Shelly junto a la mascota tortuga haciendo el signo de la paz" loading="lazy" /></span>
-  <figcaption>El muro de research, y la decisión de identidad a la que llevó: letra redondeada, una mascota que nunca regaña.</figcaption>
-</figure>
-
-<div class="persona-sticky">
-  <p><strong>MARIA · profesional urbana ocupada, Barcelona.</strong> Un
-  trabajo de agencia con horarios irregulares y las ganas de una rutina
-  más sana. No necesita otro plan en el que fallar; necesita un horario
-  que se doble alrededor del suyo.</p>
+<div class="research-cluster">
+  <figure class="fig fig--paper fig--duo">
+    <span class="fig__tile"><img src="/work/shelly/shelly-affinity-diagram.png" alt="Diagrama de afinidad que ordena los hallazgos de la research en cuatro pilares, entre ellos actividad física y bienestar mental" loading="lazy" /></span>
+    <span class="fig__tile fig__tile--pin"><img src="/work/shelly/shelly-typography-mascot.png" alt="Guía tipográfica de Shelly junto a la mascota tortuga haciendo el signo de la paz" loading="lazy" /></span>
+  </figure>
+  <div class="persona-sticky">
+    <p><strong>MARIA · profesional urbana ocupada, Barcelona.</strong> Un
+    trabajo de agencia con horarios irregulares y las ganas de una rutina
+    más sana. No necesita otro plan en el que fallar; necesita un horario
+    que se doble alrededor del suyo.</p>
+  </div>
+  <p class="cluster-caption">El muro de research, y la decisión de identidad a la que llevó: letra redondeada, una mascota que nunca regaña.</p>
 </div>
 
-<div class="chapters">
-  <div class="chapters-track">
-    <div class="chapter-cell">
-      <p class="note">01 · Flexibilidad</p>
-      <h2>Planificación adaptable</h2>
-      <p>La agenda de Maria es irregular, así que el horario se adapta a ella, no al revés.</p>
-      <div class="chapter-print">
-        <img src="/work/shelly/shelly-adaptive-scheduling.png" alt="Pantalla de Shelly que pregunta cómo pinta tu día antes de proponerte una rutina" loading="lazy" />
-      </div>
-    </div>
-    <div class="chapter-cell">
-      <p class="note">02 · Refuerzo positivo</p>
-      <h2>Visualizar el progreso</h2>
-      <p>Las rachas rotas y las cruces rojas se convirtieron en un camino visual amable. La mascota, Shelly, crece contigo, también en los días lentos.</p>
-      <div class="chapter-print">
-        <img src="/work/shelly/shelly-progress-path.png" alt="Pantalla de progreso con un camino visual que crece con la persona, en lugar de cruces rojas por rachas rotas" loading="lazy" />
-      </div>
-    </div>
-    <div class="chapter-cell">
-      <p class="note">03 · Apoyo</p>
-      <h2>Empujones con contexto</h2>
-      <p>Microcoaching que se adapta a cómo estás. ¿Con estrés? Shelly propone un ejercicio de respiración. ¿Con energía? Shelly propone salir a correr.</p>
-      <div class="chapter-print">
-        <img src="/work/shelly/shelly-contextual-nudges.png" alt="Pantalla de notificación en la que la app detecta estrés y sugiere un ejercicio de respiración" loading="lazy" />
-      </div>
-    </div>
-  </div>
+<p class="note">Dentro de la app</p>
+
+## Flexible, alentadora, atenta
+
+La agenda de Maria dobla el plan a su alrededor, no al revés. Las
+rachas rotas y las cruces rojas se convirtieron en un camino visual
+amable que crece con ella, también en los días lentos. Y el coaching
+lee cómo está: un ejercicio de respiración si está estresada, una
+carrera sugerida si no lo está.
+
+<div class="sj-strip">
+  <figure class="sj-cell sj-cell--old"><img src="/work/shelly/old/shelly-old-greeting.png" alt="Pantalla original de bienvenida de 2025 con la mascota Shelly" loading="lazy" /><figcaption>Bienvenida</figcaption></figure>
+  <figure class="sj-cell sj-cell--old"><img src="/work/shelly/old/shelly-old-set-my-routine.png" alt="Pantalla original de rutina de 2025 con tres sliders" loading="lazy" /><figcaption>Rutina</figcaption></figure>
+  <figure class="sj-cell sj-cell--old"><img src="/work/shelly/old/shelly-old-loading.png" alt="Pantalla original de carga de 2025 con tres círculos" loading="lazy" /><figcaption>Cargando</figcaption></figure>
+  <figure class="sj-cell sj-cell--old"><img src="/work/shelly/old/shelly-old-suggestions.png" alt="Pantalla original de 2025 con las sugerencias de Shelly para hoy" loading="lazy" /><figcaption>Sugerencias</figcaption></figure>
+  <figure class="sj-cell sj-cell--old"><img src="/work/shelly/old/shelly-old-exercise.png" alt="Pantalla original del ejercicio de caminar de 2025" loading="lazy" /><figcaption>Ejercicio</figcaption></figure>
+  <figure class="sj-cell sj-cell--old"><img src="/work/shelly/old/shelly-old-progress.png" alt="Pantalla original de logros de 2025 con el progreso semanal" loading="lazy" /><figcaption>Progreso</figcaption></figure>
 </div>
 
 <p class="note">La capa de oficio</p>

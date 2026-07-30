@@ -161,7 +161,7 @@ const line2 =
         <dl class="case-meta">
           <div><dt>{T.caseUi.role}</dt><dd>{d.role}</dd></div>
           <div><dt>{T.caseUi.discipline}</dt><dd>{d.discipline.join(" · ")}</dd></div>
-          <div><dt>{T.caseUi.year}</dt><dd>{d.year}</dd></div>
+          <div><dt>{T.caseUi.year}</dt><dd>{d.year}{isShelly && <span class="year-sharpie">{{ en: "Redraw", nl: "Herschets", es: "Rediseño" }[locale]}</span>}</dd></div>
         </dl>
 
         {/* live-site CTA, URL read from frontmatter (single source, see liveUrl) */}
@@ -377,6 +377,19 @@ const line2 =
   .case-meta dt { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.3rem; }
   .case-meta dd { font-family: var(--font-mono); font-weight: 600; font-size: var(--step-0); color: var(--ink); font-variant-numeric: tabular-nums; }
   @media (max-width: 680px) { .case-meta { grid-template-columns: 1fr; gap: 1rem; } }
+  /* Shelly only: "Redraw" scrawled next to the year, like a marker note
+     stuck on the metadata. Self-hosted Gochi Hand (already loaded for
+     this page), the site's own hot accent, never the .sj system's fixed
+     palette, since this lives in the ordinary case chrome. */
+  .year-sharpie {
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-family: "Gochi Hand", cursive;
+    font-weight: 400;
+    font-size: 1.15em;
+    color: var(--accent-hot);
+    transform: rotate(-6deg);
+  }
 
   /* live-site CTA: mono link in the secondary self-drawing-underline style
      (same mechanic as the next-case link), tinted with the case accent */
@@ -578,73 +591,6 @@ const line2 =
   }
   .prose :global(.fig--margin img) { width: 100%; }
 
-  /* the three pillar chapters as one horizontal scroll strip: the ACTUAL
-     2025 screens (this is still the case study, just laid sideways), each
-     print pinned and tilted like every other figure. Text sits in normal
-     flow ABOVE its own print, never over the image: no overlay, no scrim,
-     no border, no card background. */
-  .prose :global(.chapters) { margin: clamp(2rem, 5vw, 3rem) 0; }
-  .prose :global(.chapters-track) {
-    display: flex;
-    align-items: flex-start;
-    gap: clamp(1.75rem, 4vw, 2.75rem);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding: 0.5rem 0.25rem 1rem;
-  }
-  .prose :global(.chapter-cell) {
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-    width: clamp(190px, 22vw, 220px);
-  }
-  .prose :global(.chapter-cell .note) {
-    float: none !important;
-    width: auto !important;
-    margin: 0 !important;
-  }
-  .prose :global(.chapter-cell h2) {
-    font-size: var(--step-0);
-    margin: 0.3rem 0 0.4rem;
-    max-width: none;
-  }
-  .prose :global(.chapter-cell p) {
-    font-size: 0.86rem;
-    line-height: 1.55;
-    margin: 0 0 1.1rem;
-    max-width: none;
-  }
-  /* the print itself: same pin + tilt language as every other small
-     figure on the site, just living inside the strip instead of the
-     normal prose column */
-  .prose :global(.chapter-print) {
-    position: relative;
-    width: fit-content;
-  }
-  .prose :global(.chapter-cell:nth-of-type(odd) .chapter-print) { transform: rotate(0.45deg); }
-  .prose :global(.chapter-cell:nth-of-type(even) .chapter-print) { transform: rotate(-0.55deg); }
-  .prose :global(.chapter-print::before) {
-    content: "";
-    position: absolute;
-    display: block;
-    z-index: 1;
-    pointer-events: none;
-    width: 13px; height: 13px;
-    top: -6px; left: 50%;
-    margin-left: -6.5px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 34% 30%,
-      color-mix(in srgb, var(--pin) 40%, #fff) 0%, var(--pin) 58%);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
-  }
-  .prose :global(.chapter-print img) {
-    display: block;
-    width: 100%;
-    max-width: 220px;
-    max-height: 70vh;
-  }
-  :global([data-theme="dark"]) .prose :global(.chapter-print img) { filter: brightness(0.9); }
-
   /* the mascot print inside the research duo keeps its pin even though it
      now shares a figure with the affinity diagram: a per-tile pin, not
      one centred on the whole duo */
@@ -664,13 +610,33 @@ const line2 =
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
   }
 
+  /* the research cluster: the diagram duo, the persona sticky pinned right
+     beneath it, and ONE shared caption underneath everything, instead of
+     the duo carrying its own figcaption separately from the sticky */
+  .prose :global(.research-cluster) { margin: clamp(2rem, 5vw, 3rem) 0; }
+  .prose :global(.research-cluster .fig--duo) { margin-bottom: 0; }
+  .prose :global(.research-cluster .persona-sticky) { margin-top: 0.75rem; }
+  .prose :global(.research-cluster .cluster-caption) {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    margin-top: 0.6rem;
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--case-accent, var(--accent));
+    max-width: 56ch;
+  }
+
   /* Maria: off the cork board, but still set apart from body prose as a
      small sticky note, tilted, stuck on with a strip of tape */
   .prose :global(.persona-sticky) {
     position: relative;
     width: fit-content;
     max-width: 46ch;
-    margin: clamp(1.75rem, 4vw, 2.5rem) auto;
+    /* left-anchored, not centred in the full prose column: the duo above
+       it is width:fit-content and narrower, so centring here made the
+       note drift out to the right of everything above it */
+    margin: 1rem 0 clamp(1.5rem, 4vw, 2rem);
     padding: 1.1rem 1.25rem 1.2rem;
     background: #FBF3C7;
     box-shadow: 0 6px 14px rgba(26, 23, 20, 0.16);

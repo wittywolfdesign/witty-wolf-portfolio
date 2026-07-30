@@ -54,46 +54,37 @@ veroordeelt je, dus mensen haken af. En een meerderheid zet mentaal
 welzijn boven fysieke cijfers. Het antwoord werd een
 schildpadfilosofie: langzame, gestage, flexibele gewoontes.
 
-<figure class="fig fig--paper fig--duo">
-  <span class="fig__tile"><img src="/work/shelly/shelly-affinity-diagram.png" alt="Affiniteitsdiagram dat de researchbevindingen ordent in vier pijlers, waaronder beweging en mentaal welzijn" loading="lazy" /></span>
-  <span class="fig__tile fig__tile--pin"><img src="/work/shelly/shelly-typography-mascot.png" alt="Shelly-typografiegids naast de schildpadmascotte die een vredesteken maakt" loading="lazy" /></span>
-  <figcaption>De researchmuur, en de identiteitsbeslissing die eruit volgde: afgeronde letters, een mascotte die nooit moppert.</figcaption>
-</figure>
-
-<div class="persona-sticky">
-  <p><strong>MARIA · drukke stedelijke professional, Barcelona.</strong>
-  Een bureaubaan met onregelmatige uren en de wens voor een gezondere
-  routine. Ze heeft geen nieuw plan nodig om in te falen; ze heeft een
-  schema nodig dat om het hare heen buigt.</p>
+<div class="research-cluster">
+  <figure class="fig fig--paper fig--duo">
+    <span class="fig__tile"><img src="/work/shelly/shelly-affinity-diagram.png" alt="Affiniteitsdiagram dat de researchbevindingen ordent in vier pijlers, waaronder beweging en mentaal welzijn" loading="lazy" /></span>
+    <span class="fig__tile fig__tile--pin"><img src="/work/shelly/shelly-typography-mascot.png" alt="Shelly-typografiegids naast de schildpadmascotte die een vredesteken maakt" loading="lazy" /></span>
+  </figure>
+  <div class="persona-sticky">
+    <p><strong>MARIA · drukke stedelijke professional, Barcelona.</strong>
+    Een bureaubaan met onregelmatige uren en de wens voor een gezondere
+    routine. Ze heeft geen nieuw plan nodig om in te falen; ze heeft een
+    schema nodig dat om het hare heen buigt.</p>
+  </div>
+  <p class="cluster-caption">De researchmuur, en de identiteitsbeslissing die eruit volgde: afgeronde letters, een mascotte die nooit moppert.</p>
 </div>
 
-<div class="chapters">
-  <div class="chapters-track">
-    <div class="chapter-cell">
-      <p class="note">01 · Flexibiliteit</p>
-      <h2>Aanpasbaar plannen</h2>
-      <p>Maria's agenda is onregelmatig, dus past het schema zich aan haar aan, niet andersom.</p>
-      <div class="chapter-print">
-        <img src="/work/shelly/shelly-adaptive-scheduling.png" alt="Shelly-scherm dat vraagt hoe je dag eruitziet voordat het een routine voorstelt" loading="lazy" />
-      </div>
-    </div>
-    <div class="chapter-cell">
-      <p class="note">02 · Positieve bekrachtiging</p>
-      <h2>Voortgang zichtbaar maken</h2>
-      <p>Gebroken streaks en rode kruisjes werden een zacht visueel pad. De mascotte, Shelly, groeit met je mee, ook op trage dagen.</p>
-      <div class="chapter-print">
-        <img src="/work/shelly/shelly-progress-path.png" alt="Voortgangsscherm met een visueel pad dat met de gebruiker meegroeit, in plaats van rode kruisjes voor gebroken streaks" loading="lazy" />
-      </div>
-    </div>
-    <div class="chapter-cell">
-      <p class="note">03 · Steun</p>
-      <h2>Contextuele duwtjes</h2>
-      <p>Microcoaching die zich aanpast aan hoe de gebruiker erbij zit. Gestrest? Shelly stelt een ademhalingsoefening voor. Energiek? Shelly stelt een rondje hardlopen voor.</p>
-      <div class="chapter-print">
-        <img src="/work/shelly/shelly-contextual-nudges.png" alt="Notificatiescherm waarin de app stress herkent en een ademhalingsoefening voorstelt" loading="lazy" />
-      </div>
-    </div>
-  </div>
+<p class="note">In de app</p>
+
+## Flexibel, bemoedigend, alert
+
+Maria's agenda buigt om haar heen, niet andersom. Gebroken streaks en
+rode kruisjes werden een zacht visueel pad dat met haar meegroeit, ook
+op trage dagen. En de coaching leest hoe ze erbij zit: een
+ademhalingsoefening als ze gestrest is, een voorstel om te rennen als
+dat niet zo is.
+
+<div class="sj-strip">
+  <figure class="sj-cell sj-cell--old"><img src="/work/shelly/old/shelly-old-greeting.png" alt="Origineel welkomstscherm uit 2025 met de Shelly-mascotte" loading="lazy" /><figcaption>Welkom</figcaption></figure>
+  <figure class="sj-cell sj-cell--old"><img src="/work/shelly/old/shelly-old-set-my-routine.png" alt="Origineel routinescherm uit 2025 met drie sliders" loading="lazy" /><figcaption>Routine instellen</figcaption></figure>
+  <figure class="sj-cell sj-cell--old"><img src="/work/shelly/old/shelly-old-loading.png" alt="Origineel laadscherm uit 2025 met drie cirkels" loading="lazy" /><figcaption>Laden</figcaption></figure>
+  <figure class="sj-cell sj-cell--old"><img src="/work/shelly/old/shelly-old-suggestions.png" alt="Origineel scherm uit 2025 met Shelly's suggesties voor vandaag" loading="lazy" /><figcaption>Suggesties</figcaption></figure>
+  <figure class="sj-cell sj-cell--old"><img src="/work/shelly/old/shelly-old-exercise.png" alt="Origineel wandeloefening-scherm uit 2025" loading="lazy" /><figcaption>Oefening</figcaption></figure>
+  <figure class="sj-cell sj-cell--old"><img src="/work/shelly/old/shelly-old-progress.png" alt="Origineel prestatiescherm uit 2025 met de weekvoortgang" loading="lazy" /><figcaption>Voortgang</figcaption></figure>
 </div>
 
 <p class="note">De vaklaag</p>
