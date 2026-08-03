@@ -12,8 +12,9 @@ ink: "#001f3f"
 order: 1.5
 featured: true
 status: "published"
-# TODO MARCO: add context, problem and outcome so the "In short" block
-# and the Article schema description can render on this case.
+context: "Een Duits open-banking betaalbedrijf: een consumentenapp die rechtstreeks vanaf je bank aan winkels betaalt, en een merchant-dashboard waar de cashback wordt ingesteld."
+problem: "Elke betaaltool concurreert op dezelfde checklist. Het enige dat FLIZpay anders deed dan de rest was nou net het ding waar het product het minst over sprak."
+outcome: "Twaalf weken binnen het FLIZ-team, op beide producten: het merchant-dashboard herbouwd rond de cashback, plus productstrategie, design system en QA."
 metrics:
   - value: "2 producten"
     label: "Merchant-dashboard en consumenten-betaalapp"

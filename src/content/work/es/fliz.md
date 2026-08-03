@@ -12,8 +12,9 @@ ink: "#001f3f"
 order: 1.5
 featured: true
 status: "published"
-# TODO MARCO: add context, problem and outcome so the "In short" block
-# and the Article schema description can render on this case.
+context: "Una empresa alemana de pagos open-banking: una app de consumo que paga a los comercios directamente desde tu banco, y un panel de comercios donde se configura el cashback."
+problem: "Cada herramienta de pago compite en la misma checklist. Lo único que FLIZpay hacía distinto era justo de lo que menos hablaba el producto."
+outcome: "Doce semanas dentro del equipo de FLIZ en los dos productos: el panel de comercios reconstruido alrededor del cashback, más estrategia de producto, design system y QA."
 metrics:
   - value: "2 productos"
     label: "Panel de comercios y app de pago de consumidor"

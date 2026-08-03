@@ -12,8 +12,9 @@ ink: "#001f3f"
 order: 1.5
 featured: true
 status: "published"
-# TODO MARCO: add context, problem and outcome so the "In short" block
-# and the Article schema description can render on this case.
+context: "A German open-banking payment company: a consumer app that pays merchants straight from your bank, and a merchant dashboard where the cashback is set up."
+problem: "Every payment tool competes on the same checklist. The one thing FLIZpay did that nobody else did was the thing the product talked about least."
+outcome: "Twelve weeks inside the FLIZ team across both surfaces: the merchant dashboard rebuilt around the cashback, plus product strategy, design system and QA."
 metrics:
   - value: "2 surfaces"
     label: "Merchant dashboard and consumer payment app"
