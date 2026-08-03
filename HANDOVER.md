@@ -948,11 +948,23 @@ work/[slug].astro).
   correctly left without one. Verified: every built page has exactly one
   `ld+json` block, all parse as valid JSON, spot-checked structure on the
   home page and both the `en` and `nl` Urbiqo case.
-- `npm run build` passes, 31 pages built. Committed to main
-  (38c4a31). Git CLI here has no push credentials — Marco needs to hit
-  Push origin in GitHub Desktop (repo: witty-wolf-portfolio, branch: main)
-  to actually ship this; the live `robots.txt` / `llms.txt` /
-  `sitemap-index.xml` have not been checked post-deploy yet.
+- `npm run build` passes, 31 pages built. Committed to main (38c4a31,
+  fe82169). Git CLI here had no push credentials, so Marco pushed via
+  GitHub Desktop; deploy confirmed live and verified in full afterwards:
+  - `robots.txt`, `llms.txt` and `sitemap-index.xml` all return 200 and
+    are byte-identical to a fresh local build off the same commit
+    (sitemap only differs in its build-timestamp `lastmod`, as expected).
+  - Live sitemap has all 30 URLs (10 pages × 3 locales), all 6 case slugs
+    in `en`/`nl`/`es`, zero `/404` entries; every `/nl/` and `/es/` URL in
+    it resolves with a live 200.
+  - A live case page (`/work/urbiqo/`) carries the correct JSON-LD graph
+    (Person, ProfessionalService, WebSite, BreadcrumbList, Article) with
+    `datePublished` correctly absent.
+  - hreflang checked both places: the sitemap's `xhtml:link` alternates
+    and each page's own `<head>` `<link rel="alternate">` tags (pre-existing,
+    untouched) agree with each other across all three locales of the
+    Urbiqo case, each carrying reciprocal en/nl/es links plus `x-default`
+    pointing at the English URL.
 
 ```
 cd "04 Website & portfolio/witty-wolf-portfolio"
