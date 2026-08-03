@@ -95,6 +95,7 @@ const en = {
     lookCloser: "Look closer",
     close: "Close",
     sectionsLabel: "Sections",
+    inShort: "In short",
   },
   about: {
     hero: "Fifteen years of making sense of messy systems.",
@@ -122,6 +123,17 @@ const en = {
       "Almost three years into UX/UI, and nobody has to hold my hand. Urbiqo started as a napkin idea; I turned it into a defined product, a design system and the code now running on staging, as co-founder, designer and developer. At FLIZpay I walked into the overhaul of their merchant dashboard and owned much of the early work that set up the project, pulling context from engineering, business and design into clear, shippable decisions.",
     ],
     seeWork: "See my work",
+    /* colophon block, low on /about: plain label/value facts, separate
+       structure from the hero `facts` row above (do not merge the two) */
+    colophon: [
+      { k: "Role", v: "Product designer & developer" },
+      { k: "Based", v: "Madrid, Spain" },
+      { k: "Languages", v: "English, Dutch, Spanish" },
+      { k: "Disciplines", v: "User research, product design, design systems, front-end" },
+      { k: "Builds with", v: "Astro, Next.js, React, Figma" },
+      { k: "Available", v: "Client and freelance projects through Witty Wolf Design, and open to a product design role" },
+      { k: "Contact", v: "howl@wittywolf.design" },
+    ],
   },
   contact: {
     title: "Let’s connect.",
@@ -141,6 +153,25 @@ const en = {
     sending: "Sending...",
     sent: "Sent.",
     failed: "Didn't send. Try howl@wittywolf.design",
+    faqLabel: "Frequently asked questions",
+    faq: [
+      {
+        q: "What can I hire you for?",
+        a: "Product design end to end: user research, interface design, design systems, and the front-end code to ship it. That has meant a two-sided rental marketplace, a merchant payments dashboard, an e-commerce redesign and a habit app. Currently available for client and freelance projects through Witty Wolf Design, and open to a product design role.",
+      },
+      {
+        q: "Do you build as well as design?",
+        a: "Yes. I designed Urbiqo and then built it on Next.js. The site you are reading is an Astro build I directed and shipped myself. Not every project needs it, but when it helps, the design does not stop at a handover file.",
+      },
+      {
+        q: "Where are you based, and which languages do you work in?",
+        a: "Madrid, Spain. I work in English, Dutch and Spanish, and this site is published in all three.",
+      },
+      {
+        q: "How does working together start?",
+        a: "There is no intake form. Tell me what is broken, and we work out from there whether I am the right person. Some projects start as a short look at what is going wrong, others as a full build.",
+      },
+    ],
   },
   consent: {
     label: "COOKIES, SORT OF",
@@ -242,6 +273,7 @@ const nl: typeof en = {
     lookCloser: "Van dichtbij",
     close: "Sluiten",
     sectionsLabel: "Secties",
+    inShort: "Kort samengevat",
   },
   about: {
     hero: "Vijftien jaar orde scheppen in rommelige systemen.",
@@ -269,6 +301,15 @@ const nl: typeof en = {
       "Bijna drie jaar in UX/UI, en niemand hoeft mijn hand vast te houden. Urbiqo begon als een idee op een servet; ik maakte er een gedefinieerd product van, een design system en de code die nu op staging draait, als co-founder, ontwerper en developer. Bij FLIZpay stapte ik in de vernieuwing van hun merchant-dashboard en droeg ik veel van het vroege werk dat het project neerzette, door context uit engineering, business en design samen te brengen tot heldere, bouwbare beslissingen.",
     ],
     seeWork: "Bekijk mijn werk",
+    colophon: [
+      { k: "Rol", v: "Product designer & developer" },
+      { k: "Locatie", v: "Madrid, Spanje" },
+      { k: "Talen", v: "Engels, Nederlands, Spaans" },
+      { k: "Disciplines", v: "Research, product design, design systems, front-end" },
+      { k: "Werkt met", v: "Astro, Next.js, React, Figma" },
+      { k: "Beschikbaar", v: "Klant- en freelanceprojecten via Witty Wolf Design, en open voor een vaste rol als product designer" },
+      { k: "Contact", v: "howl@wittywolf.design" },
+    ],
   },
   contact: {
     title: "Zeg het maar.",
@@ -288,6 +329,25 @@ const nl: typeof en = {
     sending: "Versturen...",
     sent: "Verstuurd.",
     failed: "Niet gelukt. Probeer howl@wittywolf.design",
+    faqLabel: "Veelgestelde vragen",
+    faq: [
+      {
+        q: "Waarvoor kan je mij inhuren?",
+        a: "Product design van begin tot eind: research, interfaceontwerp, design systems, en de front-end code om het te lanceren. Dat was tot nu toe een two-sided verhuurplatform, een merchant-dashboard voor betalingen, een e-commerce herontwerp en een habit-app. Op dit moment beschikbaar voor klant- en freelanceprojecten via Witty Wolf Design, en open voor een vaste rol als product designer.",
+      },
+      {
+        q: "Ontwerp je ook, of bouw je het zelf ook?",
+        a: "Ja. Ik ontwierp Urbiqo en bouwde het daarna zelf op Next.js. De site die je nu leest is een Astro-build die ik zelf heb geleid en gelanceerd. Niet elk project heeft dat nodig, maar waar het helpt, stopt het ontwerp niet bij een overdrachtsdocument.",
+      },
+      {
+        q: "Waar zit je, en in welke talen werk je?",
+        a: "Madrid, Spanje. Ik werk in het Engels, Nederlands en Spaans, en deze site staat in alle drie.",
+      },
+      {
+        q: "Hoe begint een samenwerking?",
+        a: "Er is geen intakeformulier. Vertel me wat er niet werkt, en we zoeken samen uit of ik de juiste persoon ben. Sommige projecten beginnen als een korte blik op wat er misgaat, andere als een volledige build.",
+      },
+    ],
   },
   consent: {
     label: "COOKIES, MIN OF MEER",
@@ -387,6 +447,7 @@ const es: typeof en = {
     lookCloser: "De cerca",
     close: "Cerrar",
     sectionsLabel: "Secciones",
+    inShort: "En resumen",
   },
   about: {
     hero: "Quince años poniendo orden en sistemas caóticos.",
@@ -414,6 +475,15 @@ const es: typeof en = {
       "Casi tres años en UX/UI, y nadie tiene que llevarme de la mano. Urbiqo empezó como una idea en una servilleta; la convertí en un producto definido, un design system y el código que ahora corre en staging, como co-founder, diseñador y developer. En FLIZpay entré en la renovación de su panel para comercios y llevé buena parte del trabajo inicial que montó el proyecto, juntando contexto de ingeniería, negocio y diseño en decisiones claras y construibles.",
     ],
     seeWork: "Ver mi trabajo",
+    colophon: [
+      { k: "Rol", v: "Product designer & developer" },
+      { k: "Ubicación", v: "Madrid, España" },
+      { k: "Idiomas", v: "Inglés, neerlandés, español" },
+      { k: "Disciplinas", v: "Research, product design, design systems, front-end" },
+      { k: "Trabaja con", v: "Astro, Next.js, React, Figma" },
+      { k: "Disponible", v: "Proyectos de cliente y freelance a través de Witty Wolf Design, y abierto a un puesto fijo de product designer" },
+      { k: "Contacto", v: "howl@wittywolf.design" },
+    ],
   },
   contact: {
     title: "Hablemos.",
@@ -433,6 +503,25 @@ const es: typeof en = {
     sending: "Enviando...",
     sent: "Enviado.",
     failed: "No se envió. Prueba howl@wittywolf.design",
+    faqLabel: "Preguntas frecuentes",
+    faq: [
+      {
+        q: "¿Para qué puedes contratarme?",
+        a: "Product design de principio a fin: research, diseño de interfaz, design systems y el código front-end para lanzarlo. Hasta ahora eso ha sido un marketplace de alquiler two-sided, un panel de pagos para comercios, un rediseño de e-commerce y una app de hábitos. Disponible ahora mismo para proyectos de cliente y freelance a través de Witty Wolf Design, y abierto a un puesto fijo de product designer.",
+      },
+      {
+        q: "¿Diseñas o también construyes?",
+        a: "Las dos cosas. Diseñé Urbiqo y luego lo construí en Next.js. La web que estás leyendo es un build en Astro que dirigí y lancé yo mismo. No todos los proyectos lo necesitan, pero cuando ayuda, el diseño no se queda en un documento de traspaso.",
+      },
+      {
+        q: "¿Dónde estás, y en qué idiomas trabajas?",
+        a: "Madrid, España. Trabajo en inglés, neerlandés y español, y esta web está publicada en los tres.",
+      },
+      {
+        q: "¿Cómo empieza una colaboración?",
+        a: "No hay formulario de intake. Cuéntame qué es lo que no funciona, y a partir de ahí vemos si soy la persona indicada. Algunos proyectos empiezan como una mirada corta a lo que va mal, otros como un build completo.",
+      },
+    ],
   },
   consent: {
     label: "COOKIES, MÁS O MENOS",

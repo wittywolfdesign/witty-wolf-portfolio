@@ -197,6 +197,19 @@ const article = {
       </div>
     </header>
 
+    <!-- "In short": problem + outcome, straight from front matter. Renders
+         only when BOTH are present (never falls back to summary) so a case
+         missing either simply skips this block, e.g. FLIZpay. -->
+    {d.problem && d.outcome && (
+      <section class="section--tight">
+        <div class="wrap">
+          <p class="mono in-short__label">{T.caseUi.inShort}</p>
+          <p class="in-short__p">{d.problem}</p>
+          <p class="in-short__p">{d.outcome}</p>
+        </div>
+      </section>
+    )}
+
     {d.metrics && (
       <section class="section--tight">
         <div class="wrap">
@@ -402,6 +415,25 @@ const article = {
   .case-meta dt { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.3rem; }
   .case-meta dd { font-family: var(--font-mono); font-weight: 600; font-size: var(--step-0); color: var(--ink); font-variant-numeric: tabular-nums; }
   @media (max-width: 680px) { .case-meta { grid-template-columns: 1fr; gap: 1rem; } }
+
+  /* "In short": a margin note that grew up, not a summary panel. Hairline
+     rule above the label only, no fill, no border box. */
+  .in-short__label {
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    color: var(--text-muted);
+    border-top: 1px solid var(--line);
+    padding-top: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  .in-short__p {
+    font-size: var(--step-0);
+    line-height: 1.7;
+    max-width: 62ch;
+    color: var(--charcoal);
+    margin-bottom: 0.75rem;
+  }
+  .in-short__p:last-child { margin-bottom: 0; }
   /* Shelly only: "redrawn, 2026" scrawled next to the year, hand-marker
      style with an arrow curling back at the 2025. Site accent, not the
      .sj palette, since this lives in the ordinary case chrome. */

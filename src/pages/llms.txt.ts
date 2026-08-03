@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
+import { ui } from "../i18n/ui";
 
 /* Generated, not hand-written: the case list is pulled from the en content
    collection so it can never drift out of sync with what the site actually
@@ -18,6 +19,10 @@ export const GET: APIRoute = async () => {
     return `- [${d.title}](https://wittywolf.design/work/${slug}/) - ${d.client}, ${d.year}. ${d.tagline}.${outcome}`;
   });
 
+  /* Same array the visible /contact FAQ and its FAQPage schema render
+     from, so this section can never drift from what the site says. */
+  const faqLines = ui.en.contact.faq.map((item) => `Q: ${item.q}\nA: ${item.a}`);
+
   const body = `# Witty Wolf Design
 
 > The design practice of Marco Ramos, product designer and developer based in
@@ -27,6 +32,8 @@ export const GET: APIRoute = async () => {
 
 - Person: Marco Ramos. Practice: Witty Wolf Design. Same practice, one person.
 - Location: Madrid, Spain. Working languages: English, Dutch, Spanish.
+- Available: client and freelance projects through Witty Wolf Design, and
+  open to a product design role.
 - Contact: howl@wittywolf.design
 - LinkedIn: https://www.linkedin.com/in/marcorramos
 - In his own words: "From selling vintage clothes in Amsterdam to product
@@ -36,6 +43,10 @@ export const GET: APIRoute = async () => {
 ## Case studies
 
 ${caseLines.join("\n")}
+
+## Common questions
+
+${faqLines.join("\n\n")}
 
 ## Other pages
 

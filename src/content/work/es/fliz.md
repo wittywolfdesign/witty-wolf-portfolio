@@ -12,6 +12,8 @@ ink: "#001f3f"
 order: 1.5
 featured: true
 status: "published"
+# TODO MARCO: add context, problem and outcome so the "In short" block
+# and the Article schema description can render on this case.
 metrics:
   - value: "2 productos"
     label: "Panel de comercios y app de pago de consumidor"

@@ -79,6 +79,17 @@ const studio = {
   ],
   description:
     "Product designer for products that don't need a manual. Clear systems, calm interfaces, real outcomes. Based in Madrid.",
+  makesOffer: [
+    "User research",
+    "Product design",
+    "Design systems",
+    "Front-end development",
+  ].map((name) => ({
+    "@type": "Service",
+    name,
+    provider: { "@id": studioId },
+    areaServed: "Worldwide",
+  })),
 };
 
 const website = {
