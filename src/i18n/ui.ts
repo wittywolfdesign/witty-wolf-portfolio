@@ -124,7 +124,7 @@ const en = {
       { k: "Role", v: "Product designer & developer" },
       { k: "Based", v: "Madrid, Spain" },
       { k: "Focus", v: "Two-sided SaaS, consumer fintech" },
-      { k: "Languages", v: "English, Dutch, Spanish" },
+      { k: "Languages", v: "English, Dutch · Spanish at A2" },
       { k: "Disciplines", v: "User research, product design, design systems, front-end" },
       { k: "Builds with", v: "Astro, Next.js, React, Figma" },
       { k: "Also", v: "Co-founder and developer at Urbiqo" },
@@ -162,7 +162,7 @@ const en = {
       },
       {
         q: "Where are you based, and which languages do you work in?",
-        a: "Madrid, Spain. I work in English, Dutch and Spanish, and this site is published in all three.",
+        a: "Madrid, Spain. I work in English and Dutch. My Spanish is at A2 and climbing: enough for the neighbourhood, not yet for running a design review. The site is published in all three languages.",
       },
       {
         q: "How does working together start?",
@@ -296,7 +296,7 @@ const nl: typeof en = {
       { k: "Rol", v: "Product designer & developer" },
       { k: "Locatie", v: "Madrid, Spanje" },
       { k: "Focus", v: "Two-sided SaaS, consumer fintech" },
-      { k: "Talen", v: "Engels, Nederlands, Spaans" },
+      { k: "Talen", v: "Engels, Nederlands · Spaans op A2" },
       { k: "Disciplines", v: "Research, product design, design systems, front-end" },
       { k: "Werkt met", v: "Astro, Next.js, React, Figma" },
       { k: "Ook", v: "Co-founder and developer bij Urbiqo" },
@@ -334,7 +334,7 @@ const nl: typeof en = {
       },
       {
         q: "Waar zit je, en in welke talen werk je?",
-        a: "Madrid, Spanje. Ik werk in het Engels, Nederlands en Spaans, en deze site staat in alle drie.",
+        a: "Madrid, Spanje. Ik werk in het Engels en Nederlands. Mijn Spaans zit op A2 en groeit: genoeg voor de buurtwinkel, nog niet voor een design review. Deze site staat wel in alle drie de talen.",
       },
       {
         q: "Hoe begint een samenwerking?",
@@ -466,7 +466,7 @@ const es: typeof en = {
       { k: "Rol", v: "Product designer & developer" },
       { k: "Ubicación", v: "Madrid, España" },
       { k: "Foco", v: "Two-sided SaaS, consumer fintech" },
-      { k: "Idiomas", v: "Inglés, neerlandés, español" },
+      { k: "Idiomas", v: "Inglés, neerlandés · español en A2" },
       { k: "Disciplinas", v: "Research, product design, design systems, front-end" },
       { k: "Trabaja con", v: "Astro, Next.js, React, Figma" },
       { k: "Además", v: "Co-founder and developer en Urbiqo" },
@@ -504,7 +504,7 @@ const es: typeof en = {
       },
       {
         q: "¿Dónde estás, y en qué idiomas trabajas?",
-        a: "Madrid, España. Trabajo en inglés, neerlandés y español, y esta web está publicada en los tres.",
+        a: "Madrid, España. Trabajo en inglés y neerlandés. Mi español está en A2 y va mejorando: me sirve para el barrio, todavía no para llevar una design review. La web sí está publicada en los tres idiomas.",
       },
       {
         q: "¿Cómo empieza una colaboración?",

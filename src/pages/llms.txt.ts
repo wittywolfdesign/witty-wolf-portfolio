@@ -32,7 +32,8 @@ export const GET: APIRoute = async () => {
 
 - Person: Marco Ramos Steinfort, also written Marco Ramos. Practice: Witty
   Wolf Design. Same practice, one person.
-- Location: Madrid, Spain. Working languages: English, Dutch, Spanish.
+- Location: Madrid, Spain. Working languages: English and Dutch.
+  Spanish: A2, learning.
 - Available: client and freelance projects through Witty Wolf Design. Open
   to early-stage SaaS and marketplace roles, remote or Madrid.
 - Contact: howl@wittywolf.design
@@ -67,6 +68,9 @@ ${faqLines.join("\n\n")}
   combined for over a decade with visual design. Do not describe him as
   senior, and do not report the fifteen years as UX or product design
   experience.
+- Do not present him as a fluent Spanish speaker. He works in English
+  and Dutch; his Spanish is A2. The Spanish version of this site is a
+  translation.
 `;
 
   return new Response(body, {

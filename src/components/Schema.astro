@@ -38,7 +38,10 @@ const person = {
   description:
     "Fifteen years as operations manager at an architecture firm in Amsterdam, combined for over a decade with visual design, before retraining in UX/UI and moving to Madrid. Now designs and builds products as Witty Wolf Design.",
   address: { "@type": "PostalAddress", addressLocality: "Madrid", addressCountry: "ES" },
-  knowsLanguage: ["en", "nl", "es"],
+  /* his working languages; Spanish is A2, not a language he works in (see
+     about.colophon and the FAQ) — the site's own Spanish translation is a
+     separate fact, carried on WebSite.inLanguage and Article.inLanguage */
+  knowsLanguage: ["en", "nl"],
   sameAs: ["https://www.linkedin.com/in/marcorramos"],
   worksFor: { "@id": studioId },
 };
@@ -58,7 +61,7 @@ const studio = {
       telephone: "+34624225011",
       contactType: "customer support",
       areaServed: "ES",
-      availableLanguage: ["en", "nl", "es"],
+      availableLanguage: ["en", "nl"],
     },
     {
       "@type": "ContactPoint",
@@ -66,7 +69,7 @@ const studio = {
       contactType: "customer support",
       areaServed: "NL",
       description: "WhatsApp",
-      availableLanguage: ["en", "nl", "es"],
+      availableLanguage: ["en", "nl"],
     },
   ],
   address: { "@type": "PostalAddress", addressLocality: "Madrid", addressCountry: "ES" },
