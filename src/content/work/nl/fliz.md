@@ -22,6 +22,8 @@ metrics:
     label: "Strategie, UX/UI, design system, testing"
   - value: "5+ UX-taken"
     label: "Post-release fixes, ongevraagd ingediend"
+  - value: "250.000+"
+    label: "Gebruikers van de live consumentenapp"
 ---
 
 FLIZpay is een Duits open-banking betaalbedrijf. De consumenten-app is het

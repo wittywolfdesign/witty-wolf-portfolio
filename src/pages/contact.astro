@@ -95,17 +95,21 @@ const channels = [
     </div>
   </section>
 
-  <!-- Visible FAQ, everything in the DOM at load (no accordion): the
-       FAQPage node above is built from this exact T.contact.faq array, so
-       the two can never say different things. -->
-  <section class="section--tight" aria-label={T.contact.faqLabel}>
+  <!-- FAQ: native <details>/<summary>, collapsed by default but the full
+       answer text ships in the server-rendered HTML regardless (view
+       source, not just the rendered page) — no JS-built accordion, so a
+       crawler reading raw HTML loses nothing. The FAQPage node in
+       Schema.astro is built from this exact T.contact.faq array, so the
+       two can never say different things. -->
+  <section class="section--tight" aria-labelledby="faq-heading">
     <div class="wrap">
+      <p class="mono faq__label" id="faq-heading">{T.contact.faqLabel}</p>
       <div class="faq">
         {T.contact.faq.map((item) => (
-          <div class="faq__item">
-            <p class="mono faq__q">{item.q}</p>
+          <details class="faq__item">
+            <summary class="mono faq__q">{item.q}</summary>
             <p class="faq__a">{item.a}</p>
-          </div>
+          </details>
         ))}
       </div>
     </div>
@@ -174,13 +178,31 @@ const channels = [
   @keyframes submit-blink { 50% { opacity: 0; } }
   @media (max-width: 820px) { .contact__grid { grid-template-columns: 1fr; } }
 
-  /* FAQ: hairline rows only, no accordion, no card. Question in mono
-     (the site's meta/label voice), answer in the reading face. */
+  /* FAQ: hairline rows only, no card. The native <details> disclosure
+     triangle is the only affordance, recoloured to the accent; question
+     in mono (the site's meta/label voice, matching "In short" on case
+     pages), answer in the reading face. */
+  .faq__label {
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    color: var(--text-muted);
+    border-top: 1px solid var(--line);
+    padding-top: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
   .faq { max-width: 62ch; }
-  .faq__item { padding-block: 1.5rem; border-top: 1px solid var(--line); }
+  .faq__item { padding-block: 1.25rem; border-top: 1px solid var(--line); }
   .faq__item:last-child { border-bottom: 1px solid var(--line); }
-  .faq__q { font-size: var(--step-0); font-weight: 600; color: var(--ink); margin-bottom: 0.5rem; }
-  .faq__a { font-size: var(--step-0); line-height: 1.7; color: var(--charcoal); }
+  .faq__q {
+    font-size: var(--step-0);
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .faq__q::marker { color: var(--accent); }
+  .faq__q:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .faq__item[open] .faq__q { margin-bottom: 0.5rem; }
+  .faq__a { font-size: var(--step-0); line-height: 1.7; color: var(--charcoal); margin-top: 0.5rem; }
 </style>
 
 <script>

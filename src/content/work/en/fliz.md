@@ -22,6 +22,8 @@ metrics:
     label: "Strategy, UX/UI, design system, testing"
   - value: "5+ UX tasks"
     label: "Post-release fixes filed unprompted"
+  - value: "250,000+"
+    label: "Users of the live consumer app"
 ---
 
 FLIZpay is a German open-banking payment company. The consumer app is the payment

@@ -30,7 +30,7 @@ const en = {
     workDesc: "Six case studies from Witty Wolf Design: the problem, what I did about it and what changed.",
     aboutTitle: "About · Marco Ramos Steinfort · Witty Wolf Design",
     aboutDesc:
-      "Fifteen years running operations at an Amsterdam architecture firm, with visual design alongside. Retrained in UX/UI, now designs and builds products in Madrid.",
+      "Sixteen years running operations at an Amsterdam architecture firm, with visual design alongside. Retrained in UX/UI, now designs and builds products in Madrid.",
     contactTitle: "Contact · Witty Wolf Design",
     contactDesc:
       "A project, a collaboration or just an idea worth talking through. The inbox is open, and I answer.",
@@ -98,7 +98,7 @@ const en = {
     inShort: "In short",
   },
   about: {
-    hero: "Fifteen years of making sense of messy systems.",
+    hero: "Sixteen years of making sense of messy systems.",
     shortLabel: "The short version",
     short1:
       "I am a product designer for products that don’t require a manual, designing for the user who’s already frustrated.",
@@ -124,7 +124,7 @@ const en = {
       { k: "Role", v: "Product designer & developer" },
       { k: "Based", v: "Madrid, Spain" },
       { k: "Focus", v: "Two-sided SaaS, consumer fintech" },
-      { k: "Languages", v: "English, Dutch · Spanish at A2" },
+      { k: "Languages", v: "English, Dutch · German at B1 · Spanish at A2" },
       { k: "Disciplines", v: "User research, product design, design systems, front-end" },
       { k: "Builds with", v: "Astro, Next.js, React, Figma" },
       { k: "Also", v: "Co-founder and developer at Urbiqo" },
@@ -150,7 +150,7 @@ const en = {
     sending: "Sending...",
     sent: "Sent.",
     failed: "Didn't send. Try howl@wittywolf.design",
-    faqLabel: "Frequently asked questions",
+    faqLabel: "Common questions",
     faq: [
       {
         q: "What can I hire you for?",
@@ -158,15 +158,15 @@ const en = {
       },
       {
         q: "Do you build as well as design?",
-        a: "Yes. I designed Urbiqo and then built it on Next.js. The site you are reading is an Astro build I directed and shipped myself. Not every project needs it, but when it helps, the design does not stop at a handover file.",
+        a: "Yes. I designed Urbiqo and then built it on Next.js myself, and the site you are reading is an Astro build I directed and shipped the same way. One person doing both means no handoff, no back-and-forth between a designer's file and a developer's interpretation of it. What you see designed is what ships, and it usually ships faster. Not every project needs it, but when it helps, the design does not stop at a handover file.",
       },
       {
         q: "Where are you based, and which languages do you work in?",
-        a: "Madrid, Spain. I work in English and Dutch. My Spanish is at A2 and climbing: enough for the neighbourhood, not yet for running a design review. The site is published in all three languages.",
+        a: "Madrid, Spain. My working languages are English and Dutch. German sits at a solid B1, useful in a working conversation but not yet independent. Spanish is A2 and climbing: enough for the neighbourhood, not yet for running a design review. The site is published in English, Dutch and Spanish.",
       },
       {
         q: "How does working together start?",
-        a: "There is no intake form. Tell me what is broken, and we work out from there whether I am the right person. Some projects start as a short look at what is going wrong, others as a full build.",
+        a: "It depends on what already exists. For a new site or product, I start with research: understanding the people using it before touching a screen. If something's already live, I start by analysing what's there: what works, what doesn't, what can improve. If I'm joining a team with an existing design system or under a lead designer, my role is more modest, working within what's there, without losing a critical eye on the parts that don't hold up.",
       },
     ],
   },
@@ -205,7 +205,7 @@ const nl: typeof en = {
     workDesc: "Zes cases van Witty Wolf Design: het probleem, wat ik eraan deed en wat er veranderde.",
     aboutTitle: "Over · Marco Ramos Steinfort · Witty Wolf Design",
     aboutDesc:
-      "Vijftien jaar operations bij een architectenbureau in Amsterdam, met visueel ontwerp ernaast. Omgeschoold in UX/UI, ontwerpt en bouwt nu producten in Madrid.",
+      "Zestien jaar operations bij een architectenbureau in Amsterdam, met visueel ontwerp ernaast. Omgeschoold in UX/UI, ontwerpt en bouwt nu producten in Madrid.",
     contactTitle: "Contact · Witty Wolf Design",
     contactDesc:
       "Een project, een samenwerking of gewoon een idee dat het bespreken waard is. De inbox staat open, en ik antwoord.",
@@ -273,7 +273,7 @@ const nl: typeof en = {
     inShort: "Kort samengevat",
   },
   about: {
-    hero: "Vijftien jaar orde scheppen in rommelige systemen.",
+    hero: "Zestien jaar orde scheppen in rommelige systemen.",
     shortLabel: "De korte versie",
     short1:
       "Ik ben product designer voor producten die geen handleiding nodig hebben, en ontwerp voor de gebruiker die al gefrustreerd is.",
@@ -296,7 +296,7 @@ const nl: typeof en = {
       { k: "Rol", v: "Product designer & developer" },
       { k: "Locatie", v: "Madrid, Spanje" },
       { k: "Focus", v: "Two-sided SaaS, consumer fintech" },
-      { k: "Talen", v: "Engels, Nederlands · Spaans op A2" },
+      { k: "Talen", v: "Engels, Nederlands · Duits op B1 · Spaans op A2" },
       { k: "Disciplines", v: "Research, product design, design systems, front-end" },
       { k: "Werkt met", v: "Astro, Next.js, React, Figma" },
       { k: "Ook", v: "Co-founder and developer bij Urbiqo" },
@@ -330,15 +330,15 @@ const nl: typeof en = {
       },
       {
         q: "Ontwerp je ook, of bouw je het zelf ook?",
-        a: "Ja. Ik ontwierp Urbiqo en bouwde het daarna zelf op Next.js. De site die je nu leest is een Astro-build die ik zelf heb geleid en gelanceerd. Niet elk project heeft dat nodig, maar waar het helpt, stopt het ontwerp niet bij een overdrachtsdocument.",
+        a: "Ja. Ik ontwierp Urbiqo en bouwde het daarna zelf op Next.js, en de site die je nu leest is een Astro-build die ik op dezelfde manier heb geleid en gelanceerd. Eén persoon die beide doet betekent geen overdracht, geen heen-en-weer tussen het bestand van een designer en de interpretatie van een developer. Wat je ziet ontworpen is ook wat er gebouwd wordt, en dat gaat meestal sneller. Niet elk project heeft dat nodig, maar waar het helpt, stopt het ontwerp niet bij een overdrachtsdocument.",
       },
       {
         q: "Waar zit je, en in welke talen werk je?",
-        a: "Madrid, Spanje. Ik werk in het Engels en Nederlands. Mijn Spaans zit op A2 en groeit: genoeg voor de buurtwinkel, nog niet voor een design review. Deze site staat wel in alle drie de talen.",
+        a: "Madrid, Spanje. Mijn werktalen zijn Engels en Nederlands. Duits zit op een stevige B1, genoeg voor een werkgesprek maar nog niet zelfstandig. Spaans zit op A2 en groeit: genoeg voor de buurtwinkel, nog niet voor een design review. Deze site staat in het Engels, Nederlands en Spaans.",
       },
       {
         q: "Hoe begint een samenwerking?",
-        a: "Er is geen intakeformulier. Vertel me wat er niet werkt, en we zoeken samen uit of ik de juiste persoon ben. Sommige projecten beginnen als een korte blik op wat er misgaat, andere als een volledige build.",
+        a: "Dat hangt af van wat er al is. Voor een nieuwe site of product begin ik met research: eerst begrijpen wie het gaat gebruiken, voordat er een scherm wordt aangeraakt. Staat er al iets live, dan begin ik met analyseren wat er is: wat werkt, wat niet, wat beter kan. Sluit ik aan bij een team met een bestaand design system of onder een lead designer, dan is mijn rol bescheidener: werken binnen wat er is, zonder de kritische blik te verliezen op de onderdelen die niet overeind blijven.",
       },
     ],
   },
@@ -375,7 +375,7 @@ const es: typeof en = {
     workDesc: "Seis casos de Witty Wolf Design: el problema, lo que hice y lo que cambió.",
     aboutTitle: "Sobre mí · Marco Ramos Steinfort · Witty Wolf Design",
     aboutDesc:
-      "Quince años en operaciones en un estudio de arquitectura en Ámsterdam, con diseño visual en paralelo. Reciclado en UX/UI, ahora diseña y construye en Madrid.",
+      "Dieciséis años en operaciones en un estudio de arquitectura en Ámsterdam, con diseño visual en paralelo. Reciclado en UX/UI, ahora diseña y construye en Madrid.",
     contactTitle: "Contacto · Witty Wolf Design",
     contactDesc:
       "Un proyecto, una colaboración o una idea a medio hacer que valga la pena comentar. El buzón está abierto, y contesto.",
@@ -443,7 +443,7 @@ const es: typeof en = {
     inShort: "En resumen",
   },
   about: {
-    hero: "Quince años poniendo orden en sistemas caóticos.",
+    hero: "Dieciséis años poniendo orden en sistemas caóticos.",
     shortLabel: "La versión corta",
     short1:
       "Soy product designer para productos que no necesitan manual, y diseño para la persona que ya llegó frustrada.",
@@ -466,7 +466,7 @@ const es: typeof en = {
       { k: "Rol", v: "Product designer & developer" },
       { k: "Ubicación", v: "Madrid, España" },
       { k: "Foco", v: "Two-sided SaaS, consumer fintech" },
-      { k: "Idiomas", v: "Inglés, neerlandés · español en A2" },
+      { k: "Idiomas", v: "Inglés, neerlandés · alemán en B1 · español en A2" },
       { k: "Disciplinas", v: "Research, product design, design systems, front-end" },
       { k: "Trabaja con", v: "Astro, Next.js, React, Figma" },
       { k: "Además", v: "Co-founder and developer en Urbiqo" },
@@ -500,15 +500,15 @@ const es: typeof en = {
       },
       {
         q: "¿Diseñas o también construyes?",
-        a: "Las dos cosas. Diseñé Urbiqo y luego lo construí en Next.js. La web que estás leyendo es un build en Astro que dirigí y lancé yo mismo. No todos los proyectos lo necesitan, pero cuando ayuda, el diseño no se queda en un documento de traspaso.",
+        a: "Las dos cosas. Diseñé Urbiqo y luego lo construí yo mismo en Next.js, y la web que estás leyendo es un build en Astro que dirigí y lancé de la misma manera. Que una sola persona haga las dos cosas significa cero traspasos, cero ida y vuelta entre el archivo de un diseñador y la interpretación de un developer. Lo que ves diseñado es lo que se lanza, y normalmente se lanza más rápido. No todos los proyectos lo necesitan, pero cuando ayuda, el diseño no se queda en un documento de traspaso.",
       },
       {
         q: "¿Dónde estás, y en qué idiomas trabajas?",
-        a: "Madrid, España. Trabajo en inglés y neerlandés. Mi español está en A2 y va mejorando: me sirve para el barrio, todavía no para llevar una design review. La web sí está publicada en los tres idiomas.",
+        a: "Madrid, España. Mis idiomas de trabajo son inglés y neerlandés. El alemán lo tengo en un B1 sólido, suficiente para una conversación de trabajo pero todavía no independiente. El español está en A2 y va mejorando: me sirve para el barrio, todavía no para llevar una design review. La web está publicada en inglés, neerlandés y español.",
       },
       {
         q: "¿Cómo empieza una colaboración?",
-        a: "No hay formulario de intake. Cuéntame qué es lo que no funciona, y a partir de ahí vemos si soy la persona indicada. Algunos proyectos empiezan como una mirada corta a lo que va mal, otros como un build completo.",
+        a: "Depende de lo que ya exista. Para una web o producto nuevo, empiezo por research: entender a quién lo va a usar antes de tocar una pantalla. Si ya hay algo en marcha, empiezo analizando lo que hay: qué funciona, qué no, qué se puede mejorar. Si me uno a un equipo con un design system ya existente o bajo un lead designer, mi papel es más modesto: trabajar dentro de lo que ya hay, sin perder el ojo crítico sobre las partes que no aguantan.",
       },
     ],
   },
