@@ -2,12 +2,13 @@
 
 A running record of the redesign, so a fresh session (Claude Code or Cowork)
 can pick up without losing context. Written for Marco Ramos, Witty Wolf Design.
-Last updated: 3 August 2026, after phase 2 of the LLM-discoverability work
-(visible facts block, FAQ, "In short" block, makesOffer — see the entry near
-the end). Earlier the same day: phase 1, the invisible layer (robots.txt,
-generated sitemap, llms.txt, JSON-LD). Previous: 30 July 2026, the AI-slop
-copy pass on the Witty Wolf case. Earlier that day: old-site imagery
-corrected. Before that: 29 July 2026,
+Last updated: 3 August 2026, after phase 3 of the LLM-discoverability work
+(bio correction, merged /about facts blocks, entity alignment — see the
+entry near the end). Earlier the same day: phase 2 (visible facts block,
+FAQ, "In short" block, makesOffer) and, before that, phase 1, the invisible
+layer (robots.txt, generated sitemap, llms.txt, JSON-LD). Previous:
+30 July 2026, the AI-slop copy pass on the Witty Wolf case. Earlier that
+day: old-site imagery corrected. Before that: 29 July 2026,
 the Shelly 2026 act.
 
 ## Marco's working preferences (apply to everything)
@@ -1043,6 +1044,75 @@ matching `--step` tokens already in `global.css`).
   same `@media (max-width: 620px/680px/820px)` breakpoints used nearby),
   so they should behave, but this still needs an actual 360px check —
   either Marco eyeballs it, or a fresh session tries the resize again.
+
+## LLM-discoverability, phase 3: corrections and entity alignment
+(3 August 2026, same day as phases 1–2). One live factual error, fixed
+first as asked, plus a merge and some schema tightening. Same field-notes
+constraint as phase 2: hairline rules, mono labels, no cards, no boxes.
+
+- **Fixed a live factual error in llms.txt**: it previously said the
+  fifteen years were "running his own businesses" — wrong. Replaced with
+  the correct line (operations management at an Amsterdam architecture
+  firm, ~2 years actual UX/UI experience) and added a new "Background"
+  bullet spelling this out, right after the "In his own words" quote.
+  Verified gone from the built file.
+- **Merged the two /about facts blocks.** `about.facts` (the 4-item hero
+  row: Based in / Focus / Toolkit / Also) and `about.colophon` (the
+  phase-2 addition) overlapped and put Madrid on the page twice. Deleted
+  `about.facts` and its render entirely, and `about.colophon` is now the
+  single set: Role, Based, Focus, Languages, Disciplines, Builds with,
+  Also (Co-founder and developer at Urbiqo), Available, Contact — 9 rows.
+  "Toolkit" was dropped on purpose (Disciplines already covers it).
+  **Placement call**: kept it at the bottom, in the colophon position
+  (hairline label/value rows, full width), not the old hero position (a
+  4-column grid built for short one-line phrases). The new set has full
+  sentences in it (Available, Also) that would have broken that grid, so
+  this wasn't a close call — didn't build a second option to show. Easy
+  to move back if you disagree, it's one block. Verified: exactly one
+  facts block, 9 rows, in all three locales.
+- **One availability sentence, everywhere**: "Client and freelance
+  projects through Witty Wolf Design. Open to early-stage SaaS and
+  marketplace roles, remote or Madrid." (and its nl/es equivalents) now
+  appears in exactly three places — the colophon's Available row,
+  llms.txt, and the closing line of contact FAQ question 1 — and nowhere
+  else. Grepped the repo afterwards for the old "product design role" /
+  "vaste rol als product designer" / "puesto fijo de product designer"
+  phrasing: zero hits, confirmed gone.
+- **Schema** (`src/components/Schema.astro`): Person node gets
+  `alternateName: "Marco Ramos Steinfort"` (LinkedIn uses the full name,
+  the site the short one — without this they could read as two different
+  people) and a `description` covering the real career background.
+  `src/pages/work/[slug].astro`: the Article's `about` field is a bare
+  `{"@type":"Organization","name":...}` for every case except Urbiqo,
+  which now gets a full node (`@id .../#urbiqo`, `description`, `founder`
+  pointing at `#marco`) since it's Marco's own co-founded product, not
+  just a client. Deliberately no `url` on it — the only live address is a
+  staging host, and the entity graph shouldn't point the public web at
+  staging. Nothing else in the graph touched. Verified in the built
+  output: Urbiqo's `about` node matches exactly (no `url` key present),
+  every other case's `about` unchanged, `makesOffer` and the rest of
+  phase 2 untouched.
+- **`meta.aboutDesc`** rewritten in all three locales to lead with the
+  architecture-firm background instead of dropping it; nl/es both kept
+  under 160 characters (157, 157) as asked, en is 160.
+- `npm run build` passes, still 31 pages. Diff touches exactly the 5
+  expected files (`Schema.astro`, `ui.ts`, `about.astro`, `llms.txt.ts`,
+  `work/[slug].astro`) — no case-narrative copy, nav or footer touched.
+  Committed to main (`5fd4556`). Git CLI here again has no push
+  credentials — Marco needs to hit Push origin in GitHub Desktop.
+- Visually checked `/about` live via `npm run dev`, both themes, at
+  desktop width: the single merged block reads correctly, no duplicate
+  Madrid, all 9 rows present including the new "Also" and the unified
+  "Available" sentence.
+  **360px still not checked**, same blocker as phase 2's note: across two
+  separate fresh browser sessions this run, `resize_window` reported
+  success but `window.innerWidth` stayed pinned (800px one session, the
+  full native 1920px this one) no matter what size was requested —
+  including after trying to force the window out of fullscreen. This
+  looks like an environment-level constraint on this machine's Chrome
+  window, not anything wrong with the build; a real 360px check still
+  needs either Marco's own eyes or a session where the resize tool
+  actually works.
 
 ```
 cd "04 Website & portfolio/witty-wolf-portfolio"
