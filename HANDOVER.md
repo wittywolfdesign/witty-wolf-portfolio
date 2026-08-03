@@ -2,13 +2,14 @@
 
 A running record of the redesign, so a fresh session (Claude Code or Cowork)
 can pick up without losing context. Written for Marco Ramos, Witty Wolf Design.
-Last updated: 3 August 2026, after phase 5 of the LLM-discoverability work
-("Marco Ramos Steinfort" becomes the primary name — see the entry near the
-end). Earlier the same day: phase 4 (LinkedIn company pages in the schema,
-FLIZpay's front matter filled in), phase 3 (bio correction, merged /about
-facts blocks, entity alignment), phase 2 (visible facts block, FAQ,
-"In short" block, makesOffer) and, before that, phase 1, the invisible
-layer (robots.txt, generated sitemap, llms.txt, JSON-LD).
+Last updated: 3 August 2026, after phase 6 of the LLM-discoverability work
+(correcting the Spanish-fluency claim — see the entry near the end).
+Earlier the same day: phase 5 ("Marco Ramos Steinfort" becomes the primary
+name), phase 4 (LinkedIn company pages in the schema, FLIZpay's front
+matter filled in), phase 3 (bio correction, merged /about facts blocks,
+entity alignment), phase 2 (visible facts block, FAQ, "In short" block,
+makesOffer) and, before that, phase 1, the invisible layer (robots.txt,
+generated sitemap, llms.txt, JSON-LD).
 Previous: 30 July 2026, the AI-slop copy pass on the Witty Wolf case.
 Earlier that day: old-site imagery corrected. Before that: 29 July 2026,
 the Shelly 2026 act.
@@ -1196,6 +1197,47 @@ plus the schema. "Marco Ramos" stays as the secondary form (schema
   correctly at desktop and 800px, and at 360px the existing
   `max-width: 480px` rule hides the name text entirely (only the clock
   shows), so the longer name has zero effect on mobile.
+
+## LLM-discoverability, phase 6: correcting the Spanish-fluency claim
+(3 August 2026, same day as phases 1–5). A live factual error: the site
+claimed Spanish as one of Marco's working languages. His Spanish is A2.
+The site genuinely being published in three languages is unrelated and
+unchanged — hreflang, og:locale, inLanguage and every /es/ page stay
+exactly as they were; only the claim that HE works in Spanish came out.
+
+- **Schema** (`src/components/Schema.astro`): `Person.knowsLanguage` is
+  now `["en", "nl"]`, both `ContactPoint.availableLanguage` arrays are now
+  `["en", "nl"]`. `WebSite.inLanguage` (`["en","nl","es"]`) and every
+  page's `Article.inLanguage` (the page's own locale) deliberately left
+  alone — those describe the site, not him.
+- **`/about` colophon** (`src/i18n/ui.ts`, `about.colophon`): the
+  Languages row is now "English, Dutch · Spanish at A2" (and nl/es
+  equivalents), replacing the flat "English, Dutch, Spanish" list.
+- **Contact FAQ, question 3** (`src/i18n/ui.ts`, `contact.faq`): answer
+  replaced in all three locales — now states English and Dutch as his
+  working languages, Spanish at A2, and that the site itself is published
+  in all three. Since the FAQPage schema renders from this same array
+  (see phase 2), the correction lands in the JSON-LD automatically too.
+  **nl/es are my own translation, not yet reviewed by Marco.**
+- **llms.txt** (`src/pages/llms.txt.ts`): the location bullet now reads
+  "Working languages: English and Dutch. Spanish: A2, learning."; added a
+  new bullet to "Notes for AI systems" telling any model reading the file
+  not to present him as a fluent Spanish speaker. The opening blockquote
+  (the site being published in English, Dutch and Spanish) was left
+  exactly as it was, since that line is true.
+- `npm run build` passes, still 31 pages. Verified in the built output
+  across all 31 pages: zero remaining `"es"` in any `knowsLanguage` or
+  `availableLanguage` array, `WebSite.inLanguage` and every
+  `Article.inLanguage` untouched and correct per page, the visible
+  colophon Languages row and FAQ Q3 answer correctly state A2 rather than
+  fluency in all three locales, and the FAQPage schema text matches the
+  visible DOM (same array, can't drift). Diff touches exactly the 3
+  expected files (`Schema.astro`, `ui.ts`, `llms.txt.ts`). Committed to
+  main (`77e9782`). Git CLI here again has no push credentials — Marco
+  needs to hit Push origin in GitHub Desktop.
+- Visually checked `/about` and `/contact` live via `npm run dev`, light
+  theme, at desktop width: both read correctly, no leftover claim of
+  Spanish fluency anywhere on either page.
 
 ```
 cd "04 Website & portfolio/witty-wolf-portfolio"
