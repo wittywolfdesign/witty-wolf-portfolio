@@ -2,9 +2,11 @@
 
 A running record of the redesign, so a fresh session (Claude Code or Cowork)
 can pick up without losing context. Written for Marco Ramos, Witty Wolf Design.
-Last updated: 30 July 2026, after the AI-slop copy pass on the Witty Wolf
-case (see the entry near the end). Earlier the same day: old-site imagery
-corrected. Previous: 29 July 2026, the Shelly 2026 act.
+Last updated: 3 August 2026, after adding the LLM-discoverability layer
+(robots.txt, generated sitemap, llms.txt, JSON-LD — see the entry near the
+end). Previous: 30 July 2026, the AI-slop copy pass on the Witty Wolf case.
+Earlier that day: old-site imagery corrected. Before that: 29 July 2026,
+the Shelly 2026 act.
 
 ## Marco's working preferences (apply to everything)
 - UK English. Metric units. No Oxford comma. No em-dashes, use commas or full stops.
@@ -899,6 +901,59 @@ Patterns removed, for future writing on this site:
 Dry wit stays where it is concrete and earns its place (the upgrade-button
 figcaption, the rented-flat image, used once each). One closing line kept
 as the single allowed closer.
+
+## LLM-discoverability layer (3 August 2026)
+Four invisible additions, no visual, copy or layout change anywhere (verified:
+the diff touches only astro.config.mjs, public/robots.txt, one new component,
+one new endpoint, Base.astro's `<head>`, and the Article/breadcrumb wiring in
+work/[slug].astro).
+
+- `public/robots.txt` replaced: explicit `Allow: /` blocks for every major
+  crawler and AI assistant (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot,
+  Claude-User, Claude-SearchBot, PerplexityBot, Perplexity-User,
+  Google-Extended, Applebot(-Extended), Bingbot, Amazonbot,
+  meta-externalagent, cohere-ai), plus the catch-all `*`. Sitemap line now
+  points at `sitemap-index.xml`.
+- The hand-written `public/sitemap.xml` is gone (it was frozen at
+  8 July, listed only 4 of 6 cases, no `/nl/` or `/es/` URLs). Replaced with
+  `@astrojs/sitemap`, wired in `astro.config.mjs` with the site's own
+  `i18n: { defaultLocale: 'en', locales: { en, nl, es } }` mapping (so every
+  URL carries `xhtml:link` hreflang alternates to its sibling locales), a
+  `filter` that drops `/404`, and a `serialize()` that stamps every entry
+  with the same `lastmod` (the build's own start time). Verified in
+  `dist/sitemap-0.xml`: all 30 URLs (10 pages × 3 locales), all 6 case
+  slugs present in `en`/`nl`/`es`, zero `/404` entries.
+- `src/pages/llms.txt.ts`: a static `text/plain` endpoint. Fixed prose
+  (practice description, contact, LinkedIn, the "in his own words" quote,
+  the notes for AI systems) plus a generated "## Case studies" list built
+  from the `en` work collection, sorted by `order`, so it can never drift
+  from what the site actually publishes. Verified output matches the spec
+  line for line, 6 cases in the right order, Urbiqo correctly showing
+  "Since 2025" rather than a fabricated year.
+- `src/components/Schema.astro`: one `@graph` per page (`@context`
+  `https://schema.org`), rendered from `src/layouts/Base.astro` inside
+  `<head>` via a new optional `schema` (extra graph nodes) and
+  `breadcrumbLabel` prop, reusing Base's existing `base`/`canonical`/`locale`.
+  Site-wide on every page: `Person` (#marco), `ProfessionalService`
+  (#studio, both contact points, `knowsAbout`, the `/brand/og-image.png`
+  image+logo), `WebSite` (#website). Auto-built `BreadcrumbList` on every
+  page except the locale home and 404, labelled from the same nav strings
+  as the header, in the visitor's own locale (checked: `/nl/work/urbiqo/`
+  correctly reads "Witty Wolf Design › Werk › Vertrouwensproblemen
+  oplossen"). Case-study pages additionally get an `Article` node built
+  from front matter in `work/[slug].astro` (headline, alternativeName,
+  abstract, description, about/client, keywords from discipline, the
+  thumb as an absolute image URL) — `datePublished` is only set when
+  `year` is a plain four-digit string, so Urbiqo's "Since 2025" is
+  correctly left without one. Verified: every built page has exactly one
+  `ld+json` block, all parse as valid JSON, spot-checked structure on the
+  home page and both the `en` and `nl` Urbiqo case.
+- `npm run build` passes, 31 pages built. Committed to main
+  (38c4a31). Git CLI here has no push credentials — Marco needs to hit
+  Push origin in GitHub Desktop (repo: witty-wolf-portfolio, branch: main)
+  to actually ship this; the live `robots.txt` / `llms.txt` /
+  `sitemap-index.xml` have not been checked post-deploy yet.
+
 ```
 cd "04 Website & portfolio/witty-wolf-portfolio"
 npm run dev   # http://localhost:4321
