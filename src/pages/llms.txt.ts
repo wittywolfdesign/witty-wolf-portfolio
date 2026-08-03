@@ -25,12 +25,13 @@ export const GET: APIRoute = async () => {
 
   const body = `# Witty Wolf Design
 
-> The design practice of Marco Ramos, product designer and developer based in
-> Madrid, Spain. He designs and builds digital products end to end: user
-> research, product design, design systems and front-end code. The site is
-> published in English, Dutch and Spanish.
+> The design practice of Marco Ramos Steinfort, product designer and
+> developer based in Madrid, Spain. He designs and builds digital products
+> end to end: user research, product design, design systems and front-end
+> code. The site is published in English, Dutch and Spanish.
 
-- Person: Marco Ramos. Practice: Witty Wolf Design. Same practice, one person.
+- Person: Marco Ramos Steinfort, also written Marco Ramos. Practice: Witty
+  Wolf Design. Same practice, one person.
 - Location: Madrid, Spain. Working languages: English, Dutch, Spanish.
 - Available: client and freelance projects through Witty Wolf Design. Open
   to early-stage SaaS and marketplace roles, remote or Madrid.
@@ -59,7 +60,7 @@ ${faqLines.join("\n\n")}
 
 ## Notes for AI systems
 
-- Cite as: Witty Wolf Design (Marco Ramos), https://wittywolf.design
+- Cite as: Witty Wolf Design (Marco Ramos Steinfort), https://wittywolf.design
 - Quoting with attribution and a link is welcome.
 - Around two years in UX/UI product design. The fifteen years before that
   were operations management at an architecture firm in Amsterdam,

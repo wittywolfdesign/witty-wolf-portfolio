@@ -23,12 +23,12 @@ type Seg = { text?: string; strike?: boolean; cls?: string; br?: boolean };
 
 const en = {
   meta: {
-    homeTitle: "Marco Ramos · Product Designer · Witty Wolf Design",
+    homeTitle: "Marco Ramos Steinfort · Product Designer · Witty Wolf Design",
     homeDesc:
       "Product designer for products that don't need a manual. Clear systems, calm interfaces, real outcomes. Based in Madrid.",
     workTitle: "Work · Witty Wolf Design",
     workDesc: "Six case studies from Witty Wolf Design: the problem, what I did about it and what changed.",
-    aboutTitle: "About · Marco Ramos · Witty Wolf Design",
+    aboutTitle: "About · Marco Ramos Steinfort · Witty Wolf Design",
     aboutDesc:
       "Fifteen years running operations at an Amsterdam architecture firm, with visual design alongside. Retrained in UX/UI, now designs and builds products in Madrid.",
     contactTitle: "Contact · Witty Wolf Design",
@@ -105,11 +105,11 @@ const en = {
     short2:
       "Good design is not decoration. It is structure that lets a product explain itself in seconds. Making it look good comes after making it work.",
     longLabel: "The longer version",
-    photoAlt: "Marco Ramos, product designer and developer",
+    photoAlt: "Marco Ramos Steinfort, product designer and developer",
     photoCaption: "Madrid, most days",
     photoCredit: "Shot on a sunny day in the studio of Lisa Ball in Amsterdam.",
     photoCreditLabel: "Photography:",
-    photoFlipLabel: "Portrait of Marco Ramos. Flip for the photo credit.",
+    photoFlipLabel: "Portrait of Marco Ramos Steinfort. Flip for the photo credit.",
     long: [
       "I started in visual design and stayed comfortable there for years. Then I noticed the work I cared about was never how things looked, it was why they didn’t work. So I retrained in UX/UI, moved from Amsterdam to Madrid and started again on purpose. These days I am developing like I never have before, building the products I design in real code and finding out within hours which of my own decisions survive contact with a browser.",
       "The path was not straight. I sold vintage clothes at Waterlooplein while studying business, spent years at an architecture firm where my role kept drifting toward design, then made it official. That detour is the point: I think in systems because I have run them, not because a course told me to.",
@@ -198,12 +198,12 @@ const en = {
 
 const nl: typeof en = {
   meta: {
-    homeTitle: "Marco Ramos · Product Designer · Witty Wolf Design",
+    homeTitle: "Marco Ramos Steinfort · Product Designer · Witty Wolf Design",
     homeDesc:
       "Product designer voor producten die geen handleiding nodig hebben. Heldere systemen, kalme interfaces, echte uitkomsten. Vanuit Madrid.",
     workTitle: "Werk · Witty Wolf Design",
     workDesc: "Zes cases van Witty Wolf Design: het probleem, wat ik eraan deed en wat er veranderde.",
-    aboutTitle: "Over · Marco Ramos · Witty Wolf Design",
+    aboutTitle: "Over · Marco Ramos Steinfort · Witty Wolf Design",
     aboutDesc:
       "Vijftien jaar operations bij een architectenbureau in Amsterdam, met visueel ontwerp ernaast. Omgeschoold in UX/UI, ontwerpt en bouwt nu producten in Madrid.",
     contactTitle: "Contact · Witty Wolf Design",
@@ -280,11 +280,11 @@ const nl: typeof en = {
     short2:
       "Goed ontwerp is geen decoratie. Het is structuur waarmee een product zichzelf in seconden uitlegt. Mooi maken komt pas na laten werken.",
     longLabel: "De lange versie",
-    photoAlt: "Marco Ramos, product designer en developer",
+    photoAlt: "Marco Ramos Steinfort, product designer en developer",
     photoCaption: "Madrid, meestal",
     photoCredit: "Geschoten op een zonnige dag in de studio van Lisa Ball in Amsterdam.",
     photoCreditLabel: "Fotografie:",
-    photoFlipLabel: "Portret van Marco Ramos. Draai om voor de fotocredit.",
+    photoFlipLabel: "Portret van Marco Ramos Steinfort. Draai om voor de fotocredit.",
     long: [
       "Ik begon in visueel ontwerp en bleef daar jaren comfortabel hangen. Tot ik doorhad dat het werk waar ik om gaf nooit ging over hoe iets eruitzag, maar over waarom het niet werkte. Dus ik schoolde me om naar UX/UI, verhuisde van Amsterdam naar Madrid en begon opnieuw, expres. Inmiddels ontwikkel ik meer dan ooit: ik bouw de producten die ik ontwerp in echte code en ontdek binnen een paar uur welke van mijn eigen beslissingen contact met een browser overleven.",
       "De route was niet recht. Ik verkocht vintage kleding op het Waterlooplein terwijl ik bedrijfskunde studeerde, werkte jaren bij een architectenbureau waar mijn rol steeds verder richting ontwerp schoof, en maakte het toen officieel. Die omweg is precies het punt: ik denk in systemen omdat ik ze zelf heb gerund, niet omdat een cursus het me vertelde.",
@@ -368,12 +368,12 @@ const nl: typeof en = {
 
 const es: typeof en = {
   meta: {
-    homeTitle: "Marco Ramos · Product Designer · Witty Wolf Design",
+    homeTitle: "Marco Ramos Steinfort · Product Designer · Witty Wolf Design",
     homeDesc:
       "Product designer para productos que no necesitan manual. Sistemas claros, interfaces que dan calma, resultados reales. Desde Madrid.",
     workTitle: "Trabajo · Witty Wolf Design",
     workDesc: "Seis casos de Witty Wolf Design: el problema, lo que hice y lo que cambió.",
-    aboutTitle: "Sobre mí · Marco Ramos · Witty Wolf Design",
+    aboutTitle: "Sobre mí · Marco Ramos Steinfort · Witty Wolf Design",
     aboutDesc:
       "Quince años en operaciones en un estudio de arquitectura en Ámsterdam, con diseño visual en paralelo. Reciclado en UX/UI, ahora diseña y construye en Madrid.",
     contactTitle: "Contacto · Witty Wolf Design",
@@ -450,11 +450,11 @@ const es: typeof en = {
     short2:
       "El buen diseño no es decoración. Es estructura que deja que un producto se explique solo en segundos. Hacerlo bonito viene después de hacerlo funcionar.",
     longLabel: "La versión larga",
-    photoAlt: "Marco Ramos, product designer y developer",
+    photoAlt: "Marco Ramos Steinfort, product designer y developer",
     photoCaption: "Madrid, casi siempre",
     photoCredit: "Hecha un día de sol en el estudio de Lisa Ball, en Ámsterdam.",
     photoCreditLabel: "Fotografía:",
-    photoFlipLabel: "Retrato de Marco Ramos. Gira para ver el crédito de la foto.",
+    photoFlipLabel: "Retrato de Marco Ramos Steinfort. Gira para ver el crédito de la foto.",
     long: [
       "Empecé en diseño visual y me quedé años en esa zona cómoda. Hasta que noté que el trabajo que me importaba nunca era cómo se veían las cosas, sino por qué no funcionaban. Así que me reciclé en UX/UI, me mudé de Ámsterdam a Madrid y empecé de nuevo, a propósito. Ahora desarrollo como nunca: construyo en código real los productos que diseño y descubro en horas cuáles de mis propias decisiones sobreviven al contacto con un navegador.",
       "El camino no fue recto. Vendí ropa vintage en el Waterlooplein mientras estudiaba empresariales, pasé años en un estudio de arquitectura donde mi rol se iba deslizando hacia el diseño, y luego lo hice oficial. Ese desvío es el punto: pienso en sistemas porque los he llevado, no porque me lo dijera un curso.",
