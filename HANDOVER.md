@@ -2,14 +2,15 @@
 
 A running record of the redesign, so a fresh session (Claude Code or Cowork)
 can pick up without losing context. Written for Marco Ramos, Witty Wolf Design.
-Last updated: 3 August 2026, after phase 6 of the LLM-discoverability work
-(correcting the Spanish-fluency claim — see the entry near the end).
-Earlier the same day: phase 5 ("Marco Ramos Steinfort" becomes the primary
-name), phase 4 (LinkedIn company pages in the schema, FLIZpay's front
-matter filled in), phase 3 (bio correction, merged /about facts blocks,
-entity alignment), phase 2 (visible facts block, FAQ, "In short" block,
-makesOffer) and, before that, phase 1, the invisible layer (robots.txt,
-generated sitemap, llms.txt, JSON-LD).
+Last updated: 3 August 2026, after phase 7 of the LLM-discoverability work
+(FAQ as native details/summary, German at B1, sixteen years corrected,
+a FLIZpay metric — see the entry near the end). Earlier the same day:
+phase 6 (correcting the Spanish-fluency claim), phase 5 ("Marco Ramos
+Steinfort" becomes the primary name), phase 4 (LinkedIn company pages in
+the schema, FLIZpay's front matter filled in), phase 3 (bio correction,
+merged /about facts blocks, entity alignment), phase 2 (visible facts
+block, FAQ, "In short" block, makesOffer) and, before that, phase 1, the
+invisible layer (robots.txt, generated sitemap, llms.txt, JSON-LD).
 Previous: 30 July 2026, the AI-slop copy pass on the Witty Wolf case.
 Earlier that day: old-site imagery corrected. Before that: 29 July 2026,
 the Shelly 2026 act.
@@ -1238,6 +1239,70 @@ exactly as they were; only the claim that HE works in Spanish came out.
 - Visually checked `/about` and `/contact` live via `npm run dev`, light
   theme, at desktop width: both read correctly, no leftover claim of
   Spanish fluency anywhere on either page.
+
+## LLM-discoverability, phase 7: FAQ disclosure, German, sixteen years
+(3 August 2026, same day as phases 1–6). FAQ layout fix, three answer
+rewrites, a language addition, and a factual correction.
+
+- **FAQ: heading + native disclosure** (`src/pages/contact.astro`): added
+  a mono "Common questions" section label (reusing `T.contact.faqLabel`,
+  which already held that exact string as an unused aria-label — now it's
+  real visible text, and the section uses `aria-labelledby` pointing at it
+  instead), styled with the same hairline-above-only recipe as "In short"
+  on case pages. Each Q&A is now a native `<details><summary>` pair —
+  server-rendered plain HTML, collapsed by default via the browser's own
+  disclosure behaviour, no JS accordion, no library. Verified via
+  view-source: the full answer text for all four questions is present in
+  the raw HTML regardless of collapsed state; the FAQPage schema (which
+  already read from the same `T.contact.faq` array) still emits correctly,
+  confirmed unaffected.
+- **Three FAQ answers rewritten** (`src/i18n/ui.ts`, `contact.faq`, all
+  three locales): Q2 now makes the design-and-build pitch more concrete
+  (no handoff, no interpretation gap, ships faster). Q3 now states English
+  and Dutch as working languages, German at a "solid B1", Spanish at A2.
+  Q4 replaces the generic "no intake form" line with a real answer about
+  how an engagement's shape depends on what already exists (new build vs.
+  live analysis vs. joining an existing team). llms.txt's "## Common
+  questions" section is generated from this same `ui.en.contact.faq`
+  array, so it picked up the rewrites automatically, no separate edit
+  needed. **nl/es are my own translation, not yet reviewed by Marco.**
+- **German, added honestly** (`src/i18n/ui.ts` `about.colophon`,
+  `src/pages/llms.txt.ts`): the Languages row is now "English, Dutch ·
+  German at B1 · Spanish at A2" (and nl/es equivalents); llms.txt's
+  location bullet now reads "...Also: German at B1, Spanish at A2, both
+  improving." Deliberately prose-only: `Person.knowsLanguage` and both
+  `ContactPoint.availableLanguage` stay exactly `["en","nl"]` — verified
+  across all 31 built pages, zero drift.
+- **"Sixteen years", not fifteen** — grepped `ui.ts` and `llms.txt.ts` for
+  "fifteen" as asked, and fixed every hit: `about.hero` (the typewriter
+  headline, all three locales), `meta.aboutDesc` (all three locales), and
+  three spots in llms.txt (the Background bullet, the Notes-for-AI bullet,
+  and a quoted "15 years" in the "In his own words" line that would
+  otherwise have contradicted the corrected figure two lines below it).
+  **Also fixed `Schema.astro`'s `Person.description`**, which said
+  "Fifteen years..." too — that file wasn't in the brief's named scope,
+  but the verify step demands zero "fifteen" in `dist/`, and this JSON-LD
+  field ships on every page, so leaving it would have failed that check.
+  Confirmed: zero "fifteen" anywhere in the built site, hero reads
+  "Sixteen"/"Zestien"/"Dieciséis" correctly in all three locales.
+- **FLIZpay metric**: added `250,000+` / "Users of the live consumer app"
+  (translated for nl/es) to the front matter in all three locales. FLIZ's
+  `metrics` array already existed with three entries (unlike the brief's
+  phrasing, which suggested it might need creating); this makes FLIZ the
+  only case with four metrics instead of three, so its last grid row now
+  holds a single item rather than three — flagging in case that's worth a
+  look, not something I've touched otherwise.
+- `npm run build` passes, still 31 pages. Diff touches exactly the 7
+  expected files (`Schema.astro`, the three `fliz.md` files, `ui.ts`,
+  `contact.astro`, `llms.txt.ts`). Committed to main (`acdb27f`). Git CLI
+  here again has no push credentials — Marco needs to hit Push origin in
+  GitHub Desktop.
+- Visually checked `/about` (hero + colophon) and `/contact` (FAQ,
+  collapsed and one expanded) live via `npm run dev`, light theme, at
+  desktop width: hero types "Sixteen years...", colophon shows the full
+  German/Spanish language line, and the FAQ renders as four collapsed
+  rows with amber native disclosure triangles, expanding cleanly to the
+  rewritten Q2 answer with no layout shift elsewhere.
 
 ```
 cd "04 Website & portfolio/witty-wolf-portfolio"
