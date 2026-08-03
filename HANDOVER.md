@@ -2,10 +2,12 @@
 
 A running record of the redesign, so a fresh session (Claude Code or Cowork)
 can pick up without losing context. Written for Marco Ramos, Witty Wolf Design.
-Last updated: 3 August 2026, after adding the LLM-discoverability layer
-(robots.txt, generated sitemap, llms.txt, JSON-LD — see the entry near the
-end). Previous: 30 July 2026, the AI-slop copy pass on the Witty Wolf case.
-Earlier that day: old-site imagery corrected. Before that: 29 July 2026,
+Last updated: 3 August 2026, after phase 2 of the LLM-discoverability work
+(visible facts block, FAQ, "In short" block, makesOffer — see the entry near
+the end). Earlier the same day: phase 1, the invisible layer (robots.txt,
+generated sitemap, llms.txt, JSON-LD). Previous: 30 July 2026, the AI-slop
+copy pass on the Witty Wolf case. Earlier that day: old-site imagery
+corrected. Before that: 29 July 2026,
 the Shelly 2026 act.
 
 ## Marco's working preferences (apply to everything)
@@ -965,6 +967,82 @@ work/[slug].astro).
     untouched) agree with each other across all three locales of the
     Urbiqo case, each carrying reciprocal en/nl/es links plus `x-default`
     pointing at the English URL.
+  - Extra pass after Marco ran the live pages through validator.schema.org
+    himself: it flagged one real error, `alternativeName` is not a
+    schema.org property on `Article` (schema.org's actual property is
+    `alternateName` — a typo in the original brief, not a code mistake).
+    Fixed in `work/[slug].astro` and re-verified: all 18 live case pages
+    (6 cases × en/nl/es) now validate with 0 errors, 0 warnings on the
+    real validator, not just a local JSON-structure check.
+
+## LLM-discoverability, phase 2: visible facts, FAQ, "In short", makesOffer
+(3 August 2026, same day as phase 1). This phase DOES touch visible copy
+and layout, unlike phase 1 — all of it built from the existing field-notes
+system (hairline rules, mono labels, no cards, no boxes, no new type sizes,
+matching `--step` tokens already in `global.css`).
+
+- **Colophon on /about** (`src/pages/about.astro`): a plain label/value
+  block low on the page, seven rows (Role, Based, Languages, Disciplines,
+  Builds with, Available, Contact), hairline rule per row, mono label
+  muted / mono value ink, no fill. Copy lives in `T.about.colophon` in
+  `src/i18n/ui.ts` — a NEW key, deliberately not reusing the existing
+  `about.facts` (that one drives the four-column facts row under the hero
+  and has a different shape; merging them would have broken that row).
+- **FAQ on /contact, with schema** (`src/pages/contact.astro`): the four
+  Q&As live once, in `T.contact.faq` (array of `{q, a}`), and both the
+  visible block below the form AND the `FAQPage` JSON-LD render from that
+  same array, so they can't drift. Visible treatment: question in bold
+  mono, answer in Work Sans, hairline rule between entries, everything in
+  the DOM at load (no accordion). Verified on all three locales: exactly
+  one `FAQPage` node per page, its four questions match the visible DOM
+  word for word.
+- **"In short" on case studies** (`src/pages/work/[slug].astro`, shared by
+  all three locale routes): a mono "In short" label with a hairline rule
+  above it only, then the `problem` and `outcome` front-matter values as
+  two short paragraphs — directly below the hero/meta, above the body.
+  Renders ONLY when both `problem` and `outcome` are present; never falls
+  back to `summary`. Verified: renders on all 5 cases that have both
+  fields, in all 3 locales (15/15), absent on FLIZpay everywhere (3/3),
+  since it currently has neither. Added a
+  `# TODO MARCO: add context, problem and outcome...` comment to
+  `fliz.md`'s front matter in all three locales — flagging it here as
+  asked: **FLIZpay needs `context`, `problem` and `outcome` written before
+  it can get an "In short" block or a full `Article` schema description.**
+- **llms.txt**: added an "Available: ..." bullet after the location line,
+  and a new "## Common questions" section (before "## Other pages") built
+  from the same English `T.contact.faq` array as the visible FAQ — so this
+  can't drift from the site either.
+- **Schema**: added `makesOffer` to the `ProfessionalService` node in
+  `src/components/Schema.astro` — four `Service` nodes (User research,
+  Product design, Design systems, Front-end development), each
+  `provider: {"@id": ".../#studio"}`, `areaServed: "Worldwide"`. Every
+  other node and field left exactly as it was.
+- **Translation flag**: the Dutch and Spanish copy for the colophon, the
+  FAQ and the "In short" label is my own translation, matching the
+  register already in `ui.ts` as closely as I could judge, but **not
+  reviewed by Marco** — he asked for this explicitly since voice isn't
+  something I can judge in either language. Please check both before
+  treating them as final.
+- `npm run build` passes, still 31 pages, no errors. Diff is additive only
+  (9 files, all expected: `Schema.astro`, the three `fliz.md` front
+  matters, `ui.ts`, `about.astro`, `contact.astro`, `llms.txt.ts`,
+  `work/[slug].astro`) — no hero, nav, footer or case-narrative copy
+  touched. Committed to main (`be27aab`). Git CLI here again has no push
+  credentials — Marco needs to hit Push origin in GitHub Desktop (repo
+  witty-wolf-portfolio, branch main).
+- Visually checked live in Chrome via `npm run dev`: `/about`, `/contact`
+  and `/work/urbiqo`, both light and dark, at desktop width. All three new
+  blocks read exactly as intended — hairline rows, mono labels, no fill,
+  consistent with the rest of the site in both themes.
+  **Not checked at 360px**: `resize_window` in this session got stuck at
+  an ~800px floor no matter what width was requested (confirmed via
+  `window.innerWidth`, tried repeatedly) — looked like the Chrome window
+  had been snapped into a fixed OS-level tile rather than anything wrong
+  with the build. The new blocks use the same fluid/responsive patterns
+  already proven elsewhere on the site (`clamp()`, `max-width: 62ch`, the
+  same `@media (max-width: 620px/680px/820px)` breakpoints used nearby),
+  so they should behave, but this still needs an actual 360px check —
+  either Marco eyeballs it, or a fresh session tries the resize again.
 
 ```
 cd "04 Website & portfolio/witty-wolf-portfolio"
