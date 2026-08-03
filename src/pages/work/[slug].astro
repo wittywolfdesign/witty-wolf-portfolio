@@ -99,6 +99,17 @@ const line2 =
    must not be turned into a fabricated one. */
 const schemaBase = Astro.site ?? new URL("https://wittywolf.design");
 const schemaCanonical = new URL(Astro.url.pathname, schemaBase).href;
+/* Urbiqo is Marco's own co-founded product, not just a case study client,
+   so it gets a full Organization node (his other clients stay bare names).
+   No `url`: the only live address is a staging host, and the entity graph
+   should not point the public web at staging. */
+const urbiqoOrg = {
+  "@id": "https://wittywolf.design/#urbiqo",
+  "@type": "Organization",
+  name: "Urbiqo",
+  description: "A two-sided SaaS marketplace for urban rentals, in active development.",
+  founder: { "@id": "https://wittywolf.design/#marco" },
+};
 const article = {
   "@type": "Article",
   "@id": `${schemaCanonical}#article`,
@@ -106,7 +117,7 @@ const article = {
   alternateName: d.tagline,
   abstract: d.summary,
   description: d.outcome ?? d.summary,
-  about: { "@type": "Organization", name: d.client },
+  about: cleanSlug === "urbiqo" ? urbiqoOrg : { "@type": "Organization", name: d.client },
   author: { "@id": "https://wittywolf.design/#marco" },
   creator: { "@id": "https://wittywolf.design/#marco" },
   publisher: { "@id": "https://wittywolf.design/#studio" },

@@ -29,9 +29,14 @@ const person = {
   "@type": "Person",
   "@id": marcoId,
   name: "Marco Ramos",
+  /* LinkedIn carries the full name; without this the two can read as
+     different people to anything matching on name alone */
+  alternateName: "Marco Ramos Steinfort",
   jobTitle: "Product designer & developer",
   url: abs("/about/"),
   email: "howl@wittywolf.design",
+  description:
+    "Fifteen years as operations manager at an architecture firm in Amsterdam, combined for over a decade with visual design, before retraining in UX/UI and moving to Madrid. Now designs and builds products as Witty Wolf Design.",
   address: { "@type": "PostalAddress", addressLocality: "Madrid", addressCountry: "ES" },
   knowsLanguage: ["en", "nl", "es"],
   sameAs: ["https://www.linkedin.com/in/marcorramos"],

@@ -30,7 +30,7 @@ const en = {
     workDesc: "Six case studies from Witty Wolf Design: the problem, what I did about it and what changed.",
     aboutTitle: "About · Marco Ramos · Witty Wolf Design",
     aboutDesc:
-      "From selling vintage clothes in Amsterdam to product design in Madrid. 15 years of making sense of messy systems, now applied to digital products.",
+      "Fifteen years running operations at an Amsterdam architecture firm, with visual design alongside. Retrained in UX/UI, now designs and builds products in Madrid.",
     contactTitle: "Contact · Witty Wolf Design",
     contactDesc:
       "A project, a collaboration or just an idea worth talking through. The inbox is open, and I answer.",
@@ -99,12 +99,6 @@ const en = {
   },
   about: {
     hero: "Fifteen years of making sense of messy systems.",
-    facts: [
-      { k: "Based in", v: "Madrid" },
-      { k: "Focus", v: "Two-sided SaaS · consumer fintech" },
-      { k: "Toolkit", v: "Research → production UI → front-end" },
-      { k: "Also", v: "Co-founder & developer" },
-    ],
     shortLabel: "The short version",
     short1:
       "I am a product designer for products that don’t require a manual, designing for the user who’s already frustrated.",
@@ -123,15 +117,18 @@ const en = {
       "Almost three years into UX/UI, and nobody has to hold my hand. Urbiqo started as a napkin idea; I turned it into a defined product, a design system and the code now running on staging, as co-founder, designer and developer. At FLIZpay I walked into the overhaul of their merchant dashboard and owned much of the early work that set up the project, pulling context from engineering, business and design into clear, shippable decisions.",
     ],
     seeWork: "See my work",
-    /* colophon block, low on /about: plain label/value facts, separate
-       structure from the hero `facts` row above (do not merge the two) */
+    /* single facts block, low on /about: the old hero `facts` row and the
+       phase-2 `colophon` overlapped (Madrid twice) and have been merged
+       into this one set */
     colophon: [
       { k: "Role", v: "Product designer & developer" },
       { k: "Based", v: "Madrid, Spain" },
+      { k: "Focus", v: "Two-sided SaaS, consumer fintech" },
       { k: "Languages", v: "English, Dutch, Spanish" },
       { k: "Disciplines", v: "User research, product design, design systems, front-end" },
       { k: "Builds with", v: "Astro, Next.js, React, Figma" },
-      { k: "Available", v: "Client and freelance projects through Witty Wolf Design, and open to a product design role" },
+      { k: "Also", v: "Co-founder and developer at Urbiqo" },
+      { k: "Available", v: "Client and freelance projects through Witty Wolf Design. Open to early-stage SaaS and marketplace roles, remote or Madrid." },
       { k: "Contact", v: "howl@wittywolf.design" },
     ],
   },
@@ -157,7 +154,7 @@ const en = {
     faq: [
       {
         q: "What can I hire you for?",
-        a: "Product design end to end: user research, interface design, design systems, and the front-end code to ship it. That has meant a two-sided rental marketplace, a merchant payments dashboard, an e-commerce redesign and a habit app. Currently available for client and freelance projects through Witty Wolf Design, and open to a product design role.",
+        a: "Product design end to end: user research, interface design, design systems, and the front-end code to ship it. That has meant a two-sided rental marketplace, a merchant payments dashboard, an e-commerce redesign and a habit app. Client and freelance projects through Witty Wolf Design. Open to early-stage SaaS and marketplace roles, remote or Madrid.",
       },
       {
         q: "Do you build as well as design?",
@@ -208,7 +205,7 @@ const nl: typeof en = {
     workDesc: "Zes cases van Witty Wolf Design: het probleem, wat ik eraan deed en wat er veranderde.",
     aboutTitle: "Over · Marco Ramos · Witty Wolf Design",
     aboutDesc:
-      "Van vintage kleding verkopen in Amsterdam naar product design in Madrid. Vijftien jaar orde scheppen in rommelige systemen, nu toegepast op digitale producten.",
+      "Vijftien jaar operations bij een architectenbureau in Amsterdam, met visueel ontwerp ernaast. Omgeschoold in UX/UI, ontwerpt en bouwt nu producten in Madrid.",
     contactTitle: "Contact · Witty Wolf Design",
     contactDesc:
       "Een project, een samenwerking of gewoon een idee dat het bespreken waard is. De inbox staat open, en ik antwoord.",
@@ -277,12 +274,6 @@ const nl: typeof en = {
   },
   about: {
     hero: "Vijftien jaar orde scheppen in rommelige systemen.",
-    facts: [
-      { k: "Gevestigd in", v: "Madrid" },
-      { k: "Focus", v: "Two-sided SaaS · consumer fintech" },
-      { k: "Toolkit", v: "Research → production UI → front-end" },
-      { k: "Ook", v: "Co-founder & developer" },
-    ],
     shortLabel: "De korte versie",
     short1:
       "Ik ben product designer voor producten die geen handleiding nodig hebben, en ontwerp voor de gebruiker die al gefrustreerd is.",
@@ -304,10 +295,12 @@ const nl: typeof en = {
     colophon: [
       { k: "Rol", v: "Product designer & developer" },
       { k: "Locatie", v: "Madrid, Spanje" },
+      { k: "Focus", v: "Two-sided SaaS, consumer fintech" },
       { k: "Talen", v: "Engels, Nederlands, Spaans" },
       { k: "Disciplines", v: "Research, product design, design systems, front-end" },
       { k: "Werkt met", v: "Astro, Next.js, React, Figma" },
-      { k: "Beschikbaar", v: "Klant- en freelanceprojecten via Witty Wolf Design, en open voor een vaste rol als product designer" },
+      { k: "Ook", v: "Co-founder and developer bij Urbiqo" },
+      { k: "Beschikbaar", v: "Klant- en freelanceprojecten via Witty Wolf Design. Open voor early-stage SaaS- en marketplace-rollen, remote of in Madrid." },
       { k: "Contact", v: "howl@wittywolf.design" },
     ],
   },
@@ -333,7 +326,7 @@ const nl: typeof en = {
     faq: [
       {
         q: "Waarvoor kan je mij inhuren?",
-        a: "Product design van begin tot eind: research, interfaceontwerp, design systems, en de front-end code om het te lanceren. Dat was tot nu toe een two-sided verhuurplatform, een merchant-dashboard voor betalingen, een e-commerce herontwerp en een habit-app. Op dit moment beschikbaar voor klant- en freelanceprojecten via Witty Wolf Design, en open voor een vaste rol als product designer.",
+        a: "Product design van begin tot eind: research, interfaceontwerp, design systems, en de front-end code om het te lanceren. Dat was tot nu toe een two-sided verhuurplatform, een merchant-dashboard voor betalingen, een e-commerce herontwerp en een habit-app. Klant- en freelanceprojecten via Witty Wolf Design. Open voor early-stage SaaS- en marketplace-rollen, remote of in Madrid.",
       },
       {
         q: "Ontwerp je ook, of bouw je het zelf ook?",
@@ -382,7 +375,7 @@ const es: typeof en = {
     workDesc: "Seis casos de Witty Wolf Design: el problema, lo que hice y lo que cambió.",
     aboutTitle: "Sobre mí · Marco Ramos · Witty Wolf Design",
     aboutDesc:
-      "De vender ropa vintage en Ámsterdam al diseño de producto en Madrid. Quince años poniendo orden en sistemas caóticos, ahora aplicados a productos digitales.",
+      "Quince años en operaciones en un estudio de arquitectura en Ámsterdam, con diseño visual en paralelo. Reciclado en UX/UI, ahora diseña y construye en Madrid.",
     contactTitle: "Contacto · Witty Wolf Design",
     contactDesc:
       "Un proyecto, una colaboración o una idea a medio hacer que valga la pena comentar. El buzón está abierto, y contesto.",
@@ -451,12 +444,6 @@ const es: typeof en = {
   },
   about: {
     hero: "Quince años poniendo orden en sistemas caóticos.",
-    facts: [
-      { k: "Base", v: "Madrid" },
-      { k: "Foco", v: "Two-sided SaaS · consumer fintech" },
-      { k: "Toolkit", v: "Research → production UI → front-end" },
-      { k: "Además", v: "Co-founder & developer" },
-    ],
     shortLabel: "La versión corta",
     short1:
       "Soy product designer para productos que no necesitan manual, y diseño para la persona que ya llegó frustrada.",
@@ -478,10 +465,12 @@ const es: typeof en = {
     colophon: [
       { k: "Rol", v: "Product designer & developer" },
       { k: "Ubicación", v: "Madrid, España" },
+      { k: "Foco", v: "Two-sided SaaS, consumer fintech" },
       { k: "Idiomas", v: "Inglés, neerlandés, español" },
       { k: "Disciplinas", v: "Research, product design, design systems, front-end" },
       { k: "Trabaja con", v: "Astro, Next.js, React, Figma" },
-      { k: "Disponible", v: "Proyectos de cliente y freelance a través de Witty Wolf Design, y abierto a un puesto fijo de product designer" },
+      { k: "Además", v: "Co-founder and developer en Urbiqo" },
+      { k: "Disponible", v: "Proyectos de cliente y freelance a través de Witty Wolf Design. Abierto a puestos en SaaS o marketplaces en fase inicial, en remoto o en Madrid." },
       { k: "Contacto", v: "howl@wittywolf.design" },
     ],
   },
@@ -507,7 +496,7 @@ const es: typeof en = {
     faq: [
       {
         q: "¿Para qué puedes contratarme?",
-        a: "Product design de principio a fin: research, diseño de interfaz, design systems y el código front-end para lanzarlo. Hasta ahora eso ha sido un marketplace de alquiler two-sided, un panel de pagos para comercios, un rediseño de e-commerce y una app de hábitos. Disponible ahora mismo para proyectos de cliente y freelance a través de Witty Wolf Design, y abierto a un puesto fijo de product designer.",
+        a: "Product design de principio a fin: research, diseño de interfaz, design systems y el código front-end para lanzarlo. Hasta ahora eso ha sido un marketplace de alquiler two-sided, un panel de pagos para comercios, un rediseño de e-commerce y una app de hábitos. Proyectos de cliente y freelance a través de Witty Wolf Design. Abierto a puestos en SaaS o marketplaces en fase inicial, en remoto o en Madrid.",
       },
       {
         q: "¿Diseñas o también construyes?",
