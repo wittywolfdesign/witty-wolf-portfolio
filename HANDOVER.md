@@ -2,13 +2,14 @@
 
 A running record of the redesign, so a fresh session (Claude Code or Cowork)
 can pick up without losing context. Written for Marco Ramos, Witty Wolf Design.
-Last updated: 3 August 2026, after phase 3 of the LLM-discoverability work
-(bio correction, merged /about facts blocks, entity alignment — see the
-entry near the end). Earlier the same day: phase 2 (visible facts block,
-FAQ, "In short" block, makesOffer) and, before that, phase 1, the invisible
-layer (robots.txt, generated sitemap, llms.txt, JSON-LD). Previous:
-30 July 2026, the AI-slop copy pass on the Witty Wolf case. Earlier that
-day: old-site imagery corrected. Before that: 29 July 2026,
+Last updated: 3 August 2026, after phase 4 of the LLM-discoverability work
+(LinkedIn company pages in the schema, FLIZpay's front matter filled in —
+see the entry near the end). Earlier the same day: phase 3 (bio correction,
+merged /about facts blocks, entity alignment), phase 2 (visible facts
+block, FAQ, "In short" block, makesOffer) and, before that, phase 1, the
+invisible layer (robots.txt, generated sitemap, llms.txt, JSON-LD).
+Previous: 30 July 2026, the AI-slop copy pass on the Witty Wolf case.
+Earlier that day: old-site imagery corrected. Before that: 29 July 2026,
 the Shelly 2026 act.
 
 ## Marco's working preferences (apply to everything)
@@ -1113,6 +1114,42 @@ constraint as phase 2: hairline rules, mono labels, no cards, no boxes.
   window, not anything wrong with the build; a real 360px check still
   needs either Marco's own eyes or a session where the resize tool
   actually works.
+
+## LLM-discoverability, phase 4: LinkedIn pages, FLIZpay front matter
+(3 August 2026, same day as phases 1–3). The last code step of this work.
+Two small, surgical changes.
+
+- **LinkedIn company pages in the schema** (`src/components/Schema.astro`,
+  `src/pages/work/[slug].astro`): the `ProfessionalService` node (#studio)
+  now carries `sameAs: ["https://www.linkedin.com/company/witty-wolf-design/"]`;
+  Urbiqo's `Organization` node (#urbiqo, Urbiqo case page only) now carries
+  `sameAs: ["https://www.linkedin.com/company/urbiqo/"]`. Both are the
+  vanity URLs Marco gave, not the numeric `/company/<id>/` form. Urbiqo
+  still gets no `url` — only a staging address exists. Person's `sameAs`
+  (the personal LinkedIn profile) untouched. Verified in the built HTML:
+  both arrays present, everything else in both nodes unchanged.
+- **Filled in FLIZpay's front matter** (`src/content/work/{en,nl,es}/fliz.md`):
+  it was the one case with no `context`/`problem`/`outcome`, so it had no
+  "In short" block and a thin Article description. Added all three,
+  verbatim in English (compressed from Marco's own FLIZpay case text,
+  approved by him), and removed the phase-2 `TODO MARCO` comment in all
+  three locales. **nl/es are my own translation, matching the register of
+  that file's existing translated body copy as best I could judge — not
+  reviewed by Marco, please check both before treating them as final.**
+- `npm run build` passes, still 31 pages. Verified: the "In short" block
+  now renders on all 6 cases in all 3 locales (18/18, FLIZpay included for
+  the first time), FLIZpay's Article node has a real `description` instead
+  of falling back to `summary`. Diff touches exactly the 5 expected files
+  (`Schema.astro`, `work/[slug].astro`, the three `fliz.md` files) — no
+  other copy, layout or schema node touched. Committed to main
+  (`c19d989`). Git CLI here again has no push credentials — Marco needs to
+  hit Push origin in GitHub Desktop.
+- Visually checked `/work/fliz` live via `npm run dev`, both themes, at
+  desktop width: the "In short" block appears for the first time on this
+  case, reading identically to the other five (hairline rule, mono label,
+  no card). 360px still not checked this round either — same environment
+  blocker noted in the phase-3 entry; didn't re-attempt `resize_window`
+  since nothing about this session suggested it would behave differently.
 
 ```
 cd "04 Website & portfolio/witty-wolf-portfolio"
