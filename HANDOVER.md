@@ -2,12 +2,13 @@
 
 A running record of the redesign, so a fresh session (Claude Code or Cowork)
 can pick up without losing context. Written for Marco Ramos, Witty Wolf Design.
-Last updated: 3 August 2026, after phase 4 of the LLM-discoverability work
-(LinkedIn company pages in the schema, FLIZpay's front matter filled in —
-see the entry near the end). Earlier the same day: phase 3 (bio correction,
-merged /about facts blocks, entity alignment), phase 2 (visible facts
-block, FAQ, "In short" block, makesOffer) and, before that, phase 1, the
-invisible layer (robots.txt, generated sitemap, llms.txt, JSON-LD).
+Last updated: 3 August 2026, after phase 5 of the LLM-discoverability work
+("Marco Ramos Steinfort" becomes the primary name — see the entry near the
+end). Earlier the same day: phase 4 (LinkedIn company pages in the schema,
+FLIZpay's front matter filled in), phase 3 (bio correction, merged /about
+facts blocks, entity alignment), phase 2 (visible facts block, FAQ,
+"In short" block, makesOffer) and, before that, phase 1, the invisible
+layer (robots.txt, generated sitemap, llms.txt, JSON-LD).
 Previous: 30 July 2026, the AI-slop copy pass on the Witty Wolf case.
 Earlier that day: old-site imagery corrected. Before that: 29 July 2026,
 the Shelly 2026 act.
@@ -1150,6 +1151,51 @@ Two small, surgical changes.
   no card). 360px still not checked this round either — same environment
   blocker noted in the phase-3 entry; didn't re-attempt `resize_window`
   since nothing about this session suggested it would behave differently.
+
+## LLM-discoverability, phase 5: "Marco Ramos Steinfort" is now the name
+(3 August 2026, same day as phases 1–4). Textual rename across 14 strings
+plus the schema. "Marco Ramos" stays as the secondary form (schema
+`alternateName`, llms.txt "also written" clause) — nowhere else.
+
+- **Schema** (`src/components/Schema.astro`): Person node's `name` and
+  `alternateName` swapped — `name` is now "Marco Ramos Steinfort",
+  `alternateName` is "Marco Ramos". Nothing else in the node touched.
+- **Metaline** (`src/layouts/Base.astro`): now reads "Marco Ramos
+  Steinfort · Product designer & developer". **Checked the 600–800px
+  range as asked**, using an iframe sized to the exact width (window
+  resize is still broken in this environment — see phases 3–4) rather
+  than the real browser window: no collision anywhere in that range. From
+  ~620px up it stays one line with a growing gap before the clock; between
+  600–615px the left text gracefully wraps to two lines, the same
+  behaviour the layout already had for long strings elsewhere — the clock
+  never moves and never gets overlapped. No CSS change was needed.
+- **12 i18n strings** (`src/i18n/ui.ts`): `meta.homeTitle`,
+  `meta.aboutTitle`, `about.photoAlt`, `about.photoFlipLabel`, across
+  en/nl/es. **Flag**: the brief said the resulting English home title is
+  59 characters; it actually measures 60 (`"Marco Ramos Steinfort ·
+  Product Designer · Witty Wolf Design"`). Still at, not past, the usual
+  ~60 truncation point, so left as specified rather than shortened — just
+  noting the count didn't match what was given.
+- **llms.txt** (`src/pages/llms.txt.ts`): the opening blockquote, the
+  "Person:" bullet (now "Marco Ramos Steinfort, also written Marco
+  Ramos"), and the "Cite as:" line all updated to the full name.
+- `npm run build` passes, still 31 pages. Verified with a full-text scan
+  of `dist/` (not line-based grep, since the JSON-LD is one long line
+  containing both names): every remaining bare "Marco Ramos" not followed
+  by "Steinfort" is exactly one of the two expected exceptions
+  (`alternateName` in the schema, or the llms.txt "also written" clause)
+  — no stray occurrences anywhere else. `og:site_name`, the wordmark and
+  the nav confirmed untouched; studio stays "Witty Wolf Design". Diff
+  touches exactly the 4 expected files. Committed to main (`d158052`).
+  Git CLI here again has no push credentials — Marco needs to hit Push
+  origin in GitHub Desktop.
+- Visually checked the home page and `/about`, light theme, at desktop,
+  800px and 360px (the 800/360 renders came from an iframe at that exact
+  width, same workaround as the metaline check, since the browser window
+  itself still won't resize this session). All clean: metaline reads
+  correctly at desktop and 800px, and at 360px the existing
+  `max-width: 480px` rule hides the name text entirely (only the clock
+  shows), so the longer name has zero effect on mobile.
 
 ```
 cd "04 Website & portfolio/witty-wolf-portfolio"
