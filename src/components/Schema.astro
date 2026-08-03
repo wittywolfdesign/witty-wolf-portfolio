@@ -1,0 +1,134 @@
+---
+import { t, basePath, type Locale } from "../i18n/ui";
+
+/* One @graph per page: the three site-wide nodes (Person, ProfessionalService,
+   WebSite) plus an auto-built BreadcrumbList (every page except home and the
+   404), plus whatever page-specific nodes the caller passes in (currently
+   just the case-study Article). Nothing here is fabricated: the site-wide
+   facts are the verified set Marco supplied, and the per-page nodes are
+   built straight from front matter / routing, never invented. */
+
+interface Props {
+  base: URL;
+  canonical: string;
+  locale: Locale;
+  pathname: string;
+  breadcrumbLabel?: string;
+  extra?: object[];
+}
+
+const { base, canonical, locale, pathname, breadcrumbLabel, extra = [] } = Astro.props;
+
+const abs = (path: string) => new URL(path, base).href;
+
+const marcoId = "https://wittywolf.design/#marco";
+const studioId = "https://wittywolf.design/#studio";
+const websiteId = "https://wittywolf.design/#website";
+
+const person = {
+  "@type": "Person",
+  "@id": marcoId,
+  name: "Marco Ramos",
+  jobTitle: "Product designer & developer",
+  url: abs("/about/"),
+  email: "howl@wittywolf.design",
+  address: { "@type": "PostalAddress", addressLocality: "Madrid", addressCountry: "ES" },
+  knowsLanguage: ["en", "nl", "es"],
+  sameAs: ["https://www.linkedin.com/in/marcorramos"],
+  worksFor: { "@id": studioId },
+};
+
+const studio = {
+  "@type": "ProfessionalService",
+  "@id": studioId,
+  name: "Witty Wolf Design",
+  url: "https://wittywolf.design",
+  founder: { "@id": marcoId },
+  employee: { "@id": marcoId },
+  email: "howl@wittywolf.design",
+  telephone: "+34624225011",
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: "+34624225011",
+      contactType: "customer support",
+      areaServed: "ES",
+      availableLanguage: ["en", "nl", "es"],
+    },
+    {
+      "@type": "ContactPoint",
+      telephone: "+31653215989",
+      contactType: "customer support",
+      areaServed: "NL",
+      description: "WhatsApp",
+      availableLanguage: ["en", "nl", "es"],
+    },
+  ],
+  address: { "@type": "PostalAddress", addressLocality: "Madrid", addressCountry: "ES" },
+  image: abs("/brand/og-image.png"),
+  logo: abs("/brand/og-image.png"),
+  knowsAbout: [
+    "Product design",
+    "UX/UI design",
+    "Design systems",
+    "User research",
+    "Front-end development",
+    "Astro",
+    "Next.js",
+    "Branding",
+  ],
+  description:
+    "Product designer for products that don't need a manual. Clear systems, calm interfaces, real outcomes. Based in Madrid.",
+};
+
+const website = {
+  "@type": "WebSite",
+  "@id": websiteId,
+  name: "Witty Wolf Design",
+  url: "https://wittywolf.design",
+  inLanguage: ["en", "nl", "es"],
+  publisher: { "@id": studioId },
+};
+
+/* BreadcrumbList: skip the locale home ("/") and the 404 page, since
+   neither sits at a meaningful place in a hierarchy. Segment labels reuse
+   the same nav strings as the header; the last segment of a case-study URL
+   takes its name from breadcrumbLabel, since only the page knows the
+   case's own title. */
+const clean = basePath(pathname);
+const segments = clean.split("/").filter(Boolean);
+const T = t(locale);
+const localeRoot = locale === "en" ? "/" : `/${locale}/`;
+
+let breadcrumb: object | null = null;
+if (segments.length && segments[0] !== "404") {
+  const items: { name: string; url: string }[] = [
+    { name: "Witty Wolf Design", url: abs(localeRoot) },
+  ];
+  let acc = "";
+  segments.forEach((seg, i) => {
+    acc += `/${seg}`;
+    const isLast = i === segments.length - 1;
+    const name =
+      seg === "work" ? T.nav.work :
+      seg === "about" ? T.nav.about :
+      seg === "contact" ? T.nav.contact :
+      isLast && breadcrumbLabel ? breadcrumbLabel : seg;
+    const url = locale === "en" ? `${acc}/` : `/${locale}${acc}/`;
+    items.push({ name, url: abs(url) });
+  });
+  breadcrumb = {
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  };
+}
+
+const graph = [person, studio, website, ...(breadcrumb ? [breadcrumb] : []), ...extra];
+---
+
+<script type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", "@graph": graph })} />

@@ -1,6 +1,11 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 import { slug } from './src/scripts/slug.mjs';
+
+/* Fixed once at config load (build start), so every URL in the generated
+   sitemap shares the same lastmod: the moment this build ran. */
+const buildDate = new Date().toISOString();
 
 /* Stamp a stable id onto every <p class="note"> in case-study markdown, keyed
    off its text via the shared slug(). This runs at build so the section-index
@@ -57,4 +62,17 @@ export default defineConfig({
   markdown: {
     rehypePlugins: [rehypeNoteIds],
   },
+  integrations: [
+    sitemap({
+      i18n: {
+        defaultLocale: 'en',
+        locales: { en: 'en', nl: 'nl', es: 'es' },
+      },
+      filter: (page) => !page.includes('/404'),
+      serialize(item) {
+        item.lastmod = buildDate;
+        return item;
+      },
+    }),
+  ],
 });

@@ -4,6 +4,7 @@ import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import ConsentBanner from "../components/ConsentBanner.astro";
 import Witty from "../components/Witty.astro";
+import Schema from "../components/Schema.astro";
 /* Self-hosted fonts (Fontsource). Two styles only: Geist Mono is the
    primary voice, Work Sans is reserved for long-form reading. */
 import "@fontsource-variable/work-sans";
@@ -17,6 +18,8 @@ interface Props {
   description?: string;
   theme?: "light" | "dark";
   image?: string;
+  schema?: object[];
+  breadcrumbLabel?: string;
 }
 
 /* locale comes from the URL via Astro's built-in i18n routing */
@@ -28,6 +31,8 @@ const {
   description = T.meta.homeDesc,
   theme = "light",
   image = "/brand/og-image.png",
+  schema = [],
+  breadcrumbLabel,
 } = Astro.props;
 
 /* Absolute URLs for canonical + social cards. Astro.site is set in
@@ -88,6 +93,14 @@ const alternates = locales.map((l) => ({
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <Schema
+      base={base}
+      canonical={canonical}
+      locale={locale}
+      pathname={Astro.url.pathname}
+      breadcrumbLabel={breadcrumbLabel}
+      extra={schema}
+    />
     <ClientRouter />
   </head>
 

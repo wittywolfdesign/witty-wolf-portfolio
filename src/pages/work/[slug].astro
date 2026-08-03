@@ -92,9 +92,33 @@ const line1 =
 const line2 =
   `M ${px(0.58, 0.06)} C ${px(0.68, -0.04)}, ${px(0.82, -0.02)}, ${px(0.86, 0.1)} ` +
   `C ${px(0.88, 0.17)}, ${px(0.81, 0.2)}, ${px(0.78, 0.12)}`;
+
+/* Article node for this case study's JSON-LD (see Schema.astro), built
+   straight from front matter. datePublished is only set when `year` is a
+   plain four-digit year: Urbiqo's "Since 2025" is not a publish date and
+   must not be turned into a fabricated one. */
+const schemaBase = Astro.site ?? new URL("https://wittywolf.design");
+const schemaCanonical = new URL(Astro.url.pathname, schemaBase).href;
+const article = {
+  "@type": "Article",
+  "@id": `${schemaCanonical}#article`,
+  headline: d.title,
+  alternativeName: d.tagline,
+  abstract: d.summary,
+  description: d.outcome ?? d.summary,
+  about: { "@type": "Organization", name: d.client },
+  author: { "@id": "https://wittywolf.design/#marco" },
+  creator: { "@id": "https://wittywolf.design/#marco" },
+  publisher: { "@id": "https://wittywolf.design/#studio" },
+  keywords: d.discipline.join(", "),
+  inLanguage: locale,
+  url: schemaCanonical,
+  image: new URL(d.thumb, schemaBase).href,
+  ...(/^\d{4}$/.test(d.year) ? { datePublished: d.year } : {}),
+};
 ---
 
-<Base title={baseTitle} description={d.summary}>
+<Base title={baseTitle} description={d.summary} schema={[article]} breadcrumbLabel={d.title}>
   {isShelly && <style set:html={sjFontCSS}></style>}
   <!-- Case hero. Two accents, kept separate:
        --case-accent is MY brand accent (var(--accent), theme-aware) and drives
