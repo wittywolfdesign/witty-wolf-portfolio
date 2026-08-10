@@ -1,0 +1,7 @@
+name = "capman-auth-gate"
+main = "worker.js"
+compatibility_date = "2026-08-01"
+
+routes = [
+  { pattern = "wittywolf.design/clients/capman/*", zone_name = "wittywolf.design" }
+]

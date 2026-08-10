@@ -68,7 +68,7 @@ export default defineConfig({
         defaultLocale: 'en',
         locales: { en: 'en', nl: 'nl', es: 'es' },
       },
-      filter: (page) => !page.includes('/404'),
+      filter: (page) => !page.includes('/404') && !page.includes('/clients/'),
       serialize(item) {
         item.lastmod = buildDate;
         return item;
