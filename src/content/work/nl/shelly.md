@@ -4,6 +4,8 @@ client: "Shelly"
 tagline: "Wellness-app voor mensen die wellness-apps haten"
 summary: "Gezonde routines opbouwen met flexibiliteit, niet met druk. Herschetst en in beweging gezet, 2026."
 year: "2025"
+publishDate: "2026-07-08"
+dateModified: "2026-07-30"
 role: "UX/UI Designer · 4 weken teamsprint, met Anna · 2026-herschets in 3 dagen, solo"
 discipline: ["Product design", "Behavioural UX", "Branding"]
 thumb: "/thumbs/shelly.svg"

@@ -4,6 +4,8 @@ client: "Shelly"
 tagline: "Una app de bienestar para gente que odia las apps de bienestar"
 summary: "Construir rutinas de salud con flexibilidad, no con presión. Redibujada y puesta en movimiento, 2026."
 year: "2025"
+publishDate: "2026-07-08"
+dateModified: "2026-07-30"
 role: "UX/UI Designer · Sprint de equipo de 4 semanas, con Anna · Rediseño 2026 en 3 días, en solitario"
 discipline: ["Product design", "Behavioural UX", "Branding"]
 thumb: "/thumbs/shelly.svg"

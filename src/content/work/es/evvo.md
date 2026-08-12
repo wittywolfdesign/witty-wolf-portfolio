@@ -4,6 +4,8 @@ client: "EVVO"
 tagline: "Ayudar a comprar equipo sin leerse un ensayo antes"
 summary: "Una marca francesa de raquetas de nieve con tecnología premiada que nadie entendía. La web tenía que vender la historia, no las especificaciones."
 year: "2024"
+publishDate: "2026-07-08"
+dateModified: "2026-07-29"
 role: "UX/UI Designer · Sprint de equipo de 6 semanas, con Jacopo y Rodrigo"
 discipline: ["UX", "E-commerce", "UI"]
 thumb: "/thumbs/evvo.svg"

@@ -28,6 +28,10 @@ const T = t(locale);
 const prefix = locale === "en" ? "" : `/${locale}`;
 /* content lives under <locale>/<slug>; the public slug drops the prefix */
 const cleanSlug = entry.slug.split("/").pop();
+/* machine-readable year for the visible case-meta Year field: extracts the
+   bare 4-digit year from strings like "Since 2025" so <time datetime> stays
+   a valid year while the human copy ("Since 2025") is untouched */
+const yearIso = d.year.match(/\d{4}/)?.[0] ?? d.year;
 const nextSlug = next.slug.split("/").pop();
 /* FLIZ is the one case that opts into the Emote-style scroll layer (Lenis +
    GSAP): a pinned KPI moment, scrubbed horizontal gallery, heading wipes and
@@ -94,9 +98,10 @@ const line2 =
   `C ${px(0.88, 0.17)}, ${px(0.81, 0.2)}, ${px(0.78, 0.12)}`;
 
 /* Article node for this case study's JSON-LD (see Schema.astro), built
-   straight from front matter. datePublished is only set when `year` is a
-   plain four-digit year: Urbiqo's "Since 2025" is not a publish date and
-   must not be turned into a fabricated one. */
+   straight from front matter. publishDate/dateModified are separate from
+   the visible `year` field: year is the client engagement year shown in
+   the case meta, publishDate/dateModified are when this write-up itself
+   went live and was last substantively edited on wittywolf.design. */
 const schemaBase = Astro.site ?? new URL("https://wittywolf.design");
 const schemaCanonical = new URL(Astro.url.pathname, schemaBase).href;
 /* Urbiqo is Marco's own co-founded product, not just a case study client,
@@ -126,7 +131,8 @@ const article = {
   inLanguage: locale,
   url: schemaCanonical,
   image: new URL(d.thumb, schemaBase).href,
-  ...(/^\d{4}$/.test(d.year) ? { datePublished: d.year } : {}),
+  datePublished: d.publishDate,
+  dateModified: d.dateModified,
 };
 ---
 
@@ -179,7 +185,7 @@ const article = {
             </g>
           </svg>
         </div>
-        <a href={`${prefix}/work`} class="case-back ul">&larr; {T.caseUi.back}</a>
+        <a href={`${prefix}/work/`} class="case-back ul">&larr; {T.caseUi.back}</a>
         <p class="mono muted case-kicker">{d.client} · {d.year}</p>
         <h1 class="case-title">
           <TypeLine segments={[{ text: d.tagline }]} />
@@ -197,7 +203,7 @@ const article = {
         <dl class="case-meta">
           <div><dt>{T.caseUi.role}</dt><dd>{d.role}</dd></div>
           <div><dt>{T.caseUi.discipline}</dt><dd>{d.discipline.join(" · ")}</dd></div>
-          <div><dt>{T.caseUi.year}</dt><dd>{d.year}{isShelly && <span class="year-sharpie" aria-hidden="true"><svg viewBox="0 0 64 28"><path d="M62 15 Q36 3 16 13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M16 13 L25 9 M16 13 L24 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>{{ en: "redrawn, 2026", nl: "herschetst, 2026", es: "redibujado, 2026" }[locale]}</span>}</dd></div>
+          <div><dt>{T.caseUi.year}</dt><dd><time datetime={yearIso}>{d.year}</time>{isShelly && <span class="year-sharpie" aria-hidden="true"><svg viewBox="0 0 64 28"><path d="M62 15 Q36 3 16 13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M16 13 L25 9 M16 13 L24 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>{{ en: "redrawn, 2026", nl: "herschetst, 2026", es: "redibujado, 2026" }[locale]}</span>}</dd></div>
         </dl>
 
         {/* live-site CTA, URL read from frontmatter (single source, see liveUrl) */}
@@ -211,7 +217,7 @@ const article = {
 
     <!-- "In short": problem + outcome, straight from front matter. Renders
          only when BOTH are present (never falls back to summary) so a case
-         missing either simply skips this block, e.g. FLIZpay. -->
+         missing either simply skips this block. -->
     {d.problem && d.outcome && (
       <section class="section--tight">
         <div class="wrap">
@@ -225,15 +231,15 @@ const article = {
     {d.metrics && (
       <section class="section--tight">
         <div class="wrap">
-          <div class="metrics" data-reveal-group>
+          <dl class="metrics" data-reveal-group>
             {d.metrics.map((m, i) => (
               <div class="metric" data-reveal>
-                <span class="metric__v">{m.value}</span>
+                <dt class="metric__l muted">{m.label}</dt>
+                <dd class="metric__v">{m.value}</dd>
                 {isShelly && i === 0 && <span class="metric-sharpie" aria-hidden="true"><svg viewBox="0 0 34 22"><path d="M32 6 Q18 16 6 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6 10 L13 6 M6 10 L12 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>{{ en: "+ 3 days: one scribbling, two vibe coding", nl: "+ 3 dagen: één schetsen, twee vibe coding", es: "+ 3 días: uno esbozando, dos de vibe coding" }[locale]}</span>}
-                <span class="metric__l muted">{m.label}</span>
               </div>
             ))}
-          </div>
+          </dl>
         </div>
       </section>
     )}
@@ -261,7 +267,7 @@ const article = {
     </section>
 
     <!-- Next project -->
-    <a href={`${prefix}/work/${nextSlug}`} class="nextcard dark" data-accent={next.data.accent}>
+    <a href={`${prefix}/work/${nextSlug}/`} class="nextcard dark" data-accent={next.data.accent}>
       <div class="wrap nextcard__inner">
         <span class="mono nextcard__label">{T.caseUi.nextCase}</span>
         <span class="nextcard__title">{next.data.tagline}</span>
@@ -483,18 +489,22 @@ const article = {
   .live-cta:hover .live-cta__arrow, .live-cta:focus-visible .live-cta__arrow { transform: translateX(6px); }
   .live-cta--foot { margin-top: 2rem; }
 
-  .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 0; }
   .metric {
     display: grid; gap: 0.35rem; padding: 1.25rem;
     border: 1px solid var(--line);
     border-top: 2px solid var(--case-accent, var(--accent));
   }
-  .metric__v { font-family: var(--font-mono); font-weight: 700; font-size: var(--step-1); color: var(--ink); line-height: 1.1; font-variant-numeric: tabular-nums; }
-  .metric__l { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.02em; }
+  /* dt (label) precedes dd (value) in the DOM for valid dl semantics, but the
+     design reads value-first: order flips the two back to their visual spot,
+     with the optional Shelly sharpie note keeping its place between them */
+  .metric__v { order: 1; font-family: var(--font-mono); font-weight: 700; font-size: var(--step-1); color: var(--ink); line-height: 1.1; font-variant-numeric: tabular-nums; margin: 0; }
+  .metric__l { order: 3; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.02em; margin: 0; }
   @media (max-width: 680px) { .metrics { grid-template-columns: 1fr; } }
   /* Shelly only: the 3-day redraw scrawled onto the 4-weeks card, same
      hand-marker voice as .year-sharpie (site accent, not the .sj palette) */
   .metric-sharpie {
+    order: 2;
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;

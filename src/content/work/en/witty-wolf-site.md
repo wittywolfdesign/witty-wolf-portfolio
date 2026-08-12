@@ -10,6 +10,8 @@ client: "Witty Wolf"
 tagline: "The site you are reading is the case study"
 summary: "The portfolio itself: a Framer template retired in favour of an Astro site built with AI, directed by me. Same copy soul, new vessel, every call mine."
 year: "2026"
+publishDate: "2026-07-10"
+dateModified: "2026-07-30"
 role: "Product designer & developer"
 discipline: ["Art direction", "Front-end", "Design system"]
 thumb: "/thumbs/witty-wolf.svg"

@@ -4,6 +4,8 @@ client: "Urbiqo"
 tagline: "Verifying hosts and tenants before anything goes wrong"
 summary: "How excluded tenants and risk-averse hosts end up on the same platform."
 year: "Since 2025"
+publishDate: "2026-07-08"
+dateModified: "2026-07-29"
 role: "Product Designer, Co-founder & Developer"
 discipline: ["Research", "Product design", "Design system", "Front-end"]
 thumb: "/thumbs/urbiqo.svg"

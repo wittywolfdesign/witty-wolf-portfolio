@@ -4,6 +4,8 @@ client: "EVVO"
 tagline: "Mensen uitrusting laten kopen zonder eerst een essay te lezen"
 summary: "Een Frans sneeuwschoenenmerk met bekroonde techniek die niemand begreep. De site moest het verhaal verkopen, niet de specs."
 year: "2024"
+publishDate: "2026-07-08"
+dateModified: "2026-07-29"
 role: "UX/UI Designer · 6 weken teamsprint, met Jacopo en Rodrigo"
 discipline: ["UX", "E-commerce", "UI"]
 thumb: "/thumbs/evvo.svg"

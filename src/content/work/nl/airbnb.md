@@ -4,6 +4,8 @@ client: "Airbnb"
 tagline: "Wat Airbnb scherm voor scherm naklonen echt blootlegt"
 summary: "Een scherm-voor-scherm-kloon van Airbnb's iOS-app: een studie in wat er op schaal gaat schuiven en of strikt atomic design het bijeen kan houden."
 year: "2024"
+publishDate: "2026-07-08"
+dateModified: "2026-07-29"
 role: "Solo-oefening · Heuristische audit en conceptherontwerp (geen klantproject)"
 discipline: ["UI", "Design systems", "Audit"]
 thumb: "/thumbs/airbnb.svg"

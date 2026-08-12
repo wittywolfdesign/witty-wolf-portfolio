@@ -4,6 +4,8 @@ client: "Urbiqo"
 tagline: "Hosts en huurders verifiëren voordat er iets misgaat"
 summary: "Hoe buitengesloten huurders en risicomijdende hosts op hetzelfde platform belanden."
 year: "Sinds 2025"
+publishDate: "2026-07-08"
+dateModified: "2026-07-29"
 role: "Product Designer, Co-founder & Developer"
 discipline: ["Research", "Product design", "Design system", "Front-end"]
 thumb: "/thumbs/urbiqo.svg"

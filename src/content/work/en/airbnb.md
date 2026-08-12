@@ -4,6 +4,8 @@ client: "Airbnb"
 tagline: "What cloning Airbnb screen by screen actually reveals"
 summary: "A screen-by-screen clone of Airbnb's iOS app: a study in what drifts at scale and whether strict atomic design could hold it together."
 year: "2024"
+publishDate: "2026-07-08"
+dateModified: "2026-07-29"
 role: "Solo exercise · Heuristic audit and concept redesign (not a client project)"
 discipline: ["UI", "Design systems", "Audit"]
 thumb: "/thumbs/airbnb.svg"

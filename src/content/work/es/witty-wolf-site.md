@@ -7,6 +7,8 @@ client: "Witty Wolf"
 tagline: "La web que estás leyendo es el caso de estudio"
 summary: "El propio portfolio: una plantilla de Framer jubilada a favor de una web Astro construida con IA, dirigida por mí. La misma alma en los textos, un envase nuevo, cada decisión mía."
 year: "2026"
+publishDate: "2026-07-10"
+dateModified: "2026-07-30"
 role: "Product designer & developer"
 discipline: ["Art direction", "Front-end", "Design system"]
 thumb: "/thumbs/witty-wolf.svg"

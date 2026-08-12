@@ -4,6 +4,8 @@ client: "Urbiqo"
 tagline: "Verificar a hosts e inquilinos antes de que algo salga mal"
 summary: "Cómo inquilinos excluidos y hosts con aversión al riesgo acaban en la misma plataforma."
 year: "Desde 2025"
+publishDate: "2026-07-08"
+dateModified: "2026-07-29"
 role: "Product Designer, Co-founder & Developer"
 discipline: ["Research", "Product design", "Design system", "Front-end"]
 thumb: "/thumbs/urbiqo.svg"

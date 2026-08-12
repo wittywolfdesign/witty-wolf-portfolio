@@ -4,6 +4,8 @@ client: "EVVO"
 tagline: "Helping people buy gear without reading an essay first"
 summary: "A French snowshoe brand with award-winning tech that nobody understood. The site needed to sell the story, not the specs."
 year: "2024"
+publishDate: "2026-07-08"
+dateModified: "2026-07-29"
 role: "UX/UI Designer · 6-week team sprint, with Jacopo and Rodrigo"
 discipline: ["UX", "E-commerce", "UI"]
 thumb: "/thumbs/evvo.svg"

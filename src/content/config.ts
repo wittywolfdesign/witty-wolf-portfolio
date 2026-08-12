@@ -8,6 +8,8 @@ const work = defineCollection({
     tagline: z.string(),        // the punchy one-liner from the card
     summary: z.string(),        // supporting line
     year: z.string(),
+    publishDate: z.string(), // ISO date (YYYY-MM-DD) this case study went live on the site
+    dateModified: z.string(), // ISO date (YYYY-MM-DD) of the last substantive edit
     role: z.string(),
     discipline: z.array(z.string()),
     thumb: z.string(),          // /thumbs/xyz.svg

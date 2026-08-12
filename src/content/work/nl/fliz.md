@@ -4,6 +4,8 @@ client: "FLIZpay"
 tagline: "Verkoop het verschil, niet de checklist"
 summary: "Het merchant-dashboard en de betaalapp van FLIZpay opnieuw ontworpen, rond de cashback die ze onderscheidt."
 year: "2026"
+publishDate: "2026-07-29"
+dateModified: "2026-08-03"
 role: "Product Designer, UX/UI · 12 weken, met het design- en engineeringteam van FLIZ"
 discipline: ["Research", "Product design", "Design system", "QA"]
 thumb: "/thumbs/fliz.svg"

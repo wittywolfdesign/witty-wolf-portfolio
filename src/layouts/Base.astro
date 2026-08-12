@@ -117,7 +117,7 @@ const alternates = locales.map((l) => ({
     <div class="metaline mono">
       <div class="wrap metaline__inner">
         <span>Marco Ramos Steinfort · Product designer &amp; developer</span>
-        <span>Madrid, ES · <time data-clock datetime="">--:--:--</time></span>
+        <span>Madrid, ES · <time data-clock>--:--:--</time></span>
       </div>
     </div>
     <main id="main">
@@ -298,9 +298,11 @@ const alternates = locales.map((l) => ({
         const els = document.querySelectorAll<HTMLElement>("[data-clock]");
         if (!els.length) return;
         const tick = () => {
-          const now = clockFmt.format(new Date());
+          const nowDate = new Date();
+          const now = clockFmt.format(nowDate);
           document.querySelectorAll<HTMLElement>("[data-clock]").forEach((el) => {
             el.textContent = now;
+            el.setAttribute("datetime", nowDate.toISOString());
           });
         };
         tick();

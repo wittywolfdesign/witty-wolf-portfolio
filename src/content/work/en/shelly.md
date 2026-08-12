@@ -4,6 +4,8 @@ client: "Shelly"
 tagline: "Wellness app for people who hate wellness apps"
 summary: "Building health routines through flexibility, not pressure. Redrawn and set in motion, 2026."
 year: "2025"
+publishDate: "2026-07-08"
+dateModified: "2026-07-30"
 role: "UX/UI Designer · 4-week team sprint, with Anna · 2026 redraw in 3 days, solo"
 discipline: ["Product design", "Behavioural UX", "Branding"]
 thumb: "/thumbs/shelly.svg"

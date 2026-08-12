@@ -7,6 +7,8 @@ client: "Witty Wolf"
 tagline: "De site die je nu leest is de case study"
 summary: "Het portfolio zelf: een Framer-template met pensioen gestuurd voor een Astro-site, met AI gebouwd, door mij aangestuurd. Dezelfde ziel in de copy, een nieuw vat, elke keuze van mij."
 year: "2026"
+publishDate: "2026-07-10"
+dateModified: "2026-07-30"
 role: "Product designer & developer"
 discipline: ["Art direction", "Front-end", "Design system"]
 thumb: "/thumbs/witty-wolf.svg"

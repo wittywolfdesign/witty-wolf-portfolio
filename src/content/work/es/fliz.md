@@ -4,6 +4,8 @@ client: "FLIZpay"
 tagline: "Vende la diferencia, no la checklist"
 summary: "Rediseñar el panel de comercios y la app de pago de FLIZpay en torno al cashback que los distingue."
 year: "2026"
+publishDate: "2026-07-29"
+dateModified: "2026-08-03"
 role: "Product Designer, UX/UI · 12 semanas, con el equipo de diseño e ingeniería de FLIZ"
 discipline: ["Research", "Product design", "Design system", "QA"]
 thumb: "/thumbs/fliz.svg"

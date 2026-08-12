@@ -8,8 +8,8 @@ const prefix = locale === "en" ? "" : `/${locale}`;
 const home = locale === "en" ? "/" : `/${locale}/`;
 const isActive = (href: string) => path.startsWith(href);
 const links = [
-  { href: `${prefix}/about`, label: T.nav.about },
-  { href: `${prefix}/contact`, label: T.nav.contact },
+  { href: `${prefix}/about/`, label: T.nav.about },
+  { href: `${prefix}/contact/`, label: T.nav.contact },
 ];
 /* the same page in each locale: slugs are shared, so only the prefix moves */
 const switcher = locales.map((l) => ({
@@ -31,7 +31,7 @@ const switcher = locales.map((l) => ({
            own "Attempts", strikes it through, and settles back. Overlay
            only, no layout shift; the other links stay plain. -->
       <a
-        href={`${prefix}/work`}
+        href={`${prefix}/work/`}
         class:list={["nav__link", "nav__link--gag", { "is-active": isActive(`${prefix}/work`) }]}
         data-gag
       >
