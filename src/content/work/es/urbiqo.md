@@ -37,7 +37,7 @@ pequeño y más uniforme.
 
 ## Solvente, y aun así fuera
 
-Freelancers y expats se dan contra puertas cerradas, rechazados por no
+En Urbiqo, freelancers y expats se dan contra puertas cerradas, rechazados por no
 tener una nómina estándar por muy solventes que sean. Los hosts también
 están atrapados: el papeleo rígido es la única herramienta de riesgo que
 existe, así que la usan. Urbiqo no tira ese papeleo; añade más formas de
@@ -53,7 +53,7 @@ inquilinos solventes no tradicionales cruzan la puerta.
 
 ## Mapear el recorrido completo
 
-Antes de cualquier pantalla, mapeé el flujo completo de los dos lados:
+Antes de cualquier pantalla, mapeé el flujo completo de Urbiqo para los dos lados:
 cada punto de decisión desde el primer login hasta la verificación, la
 solicitud y el pago. Se convirtió en la fuente de verdad de qué diseñar
 primero. También fijó tres reglas que el producto debía respetar: mirar
@@ -73,7 +73,7 @@ solicitudes.
 
 ## Dos lados, un problema
 
-El producto tiene que sostener dos realidades a la vez.
+Urbiqo tiene que sostener dos realidades a la vez.
 
 <div class="board">
   <div>
@@ -97,7 +97,7 @@ La apuesta de Urbiqo: validar fiabilidad, no solo salario.
 
 ## Un filtro más justo
 
-Puse pruebas alternativas junto a la nómina clásica: extractos bancarios y
+En Urbiqo, puse pruebas alternativas junto a la nómina clásica: extractos bancarios y
 facturas. Las cartas del empleador y las declaraciones de impuestos se
 consideraron y se descartaron, ambas van por detrás del flujo de caja
 real. Los extractos y las facturas lo reflejan en tiempo real, y se
@@ -116,7 +116,7 @@ freelancers, por ejemplo.
 
 ## Humanizar la transacción
 
-Un perfil verificado viaja por delante del inquilino. El host ve la misma
+En Urbiqo, un perfil verificado viaja por delante del inquilino. El host ve la misma
 tarjeta de verificación antes de cualquier encuentro: email, teléfono,
 identidad y comprobación de antecedentes. Los hosts declaran también su
 relación con el anuncio, propietario, inquilino o intermediario, para que
@@ -132,7 +132,7 @@ lados antes de que nadie reserve una visita.
 
 ## Desmitificar el proceso
 
-Alquilar ya agobia bastante. La landing funciona como un filtro que da
+Alquilar en Urbiqo ya agobia bastante. La landing funciona como un filtro que da
 calma: el recorrido de verificación comprimido en cuatro pasos lineales,
 entendidos antes de que nadie cree una cuenta.
 
@@ -155,7 +155,7 @@ no tradicionales.
 
 ## Detrás de las pantallas
 
-El sistema por debajo: tokens, componentes y theming con variables para
+El sistema de Urbiqo por debajo: tokens, componentes y theming con variables para
 modo oscuro y localización inglés/español. Construido junto al producto,
 guardado como su propia referencia.
 
@@ -168,7 +168,7 @@ guardado como su propia referencia.
 
 ## Diseñarlo era la parte fácil
 
-El diseño estaba definido, el sistema documentado, los flujos mapeados.
+El diseño de Urbiqo estaba definido, el sistema documentado, los flujos mapeados.
 Entonces lo construí, en Next.js, con toda la build desarrollada con IA y
 yo dirigiendo: la IA escribía el código, yo daba el encargo, revisaba y
 devolvía hasta que cuadraba con el diseño. Construir tu propio diseño es la
@@ -226,7 +226,7 @@ Tres decisiones de la construcción se ganaron sus propias etiquetas.
 
 ## La tarjeta que no sabía estarse quieta
 
-Las descripciones reales varían de largo, así que el botón 'Más detalles'
+En Urbiqo, las descripciones reales varían de largo, así que el botón 'Más detalles'
 clavado después del texto no podía estarse quieto. El título ahora se
 limita a una línea, la descripción a tres y la tarjeta entera se convirtió
 en el objetivo del clic.
@@ -240,8 +240,8 @@ en el objetivo del clic.
 
 ## Una píldora nunca debería mentir sobre por qué está en rojo
 
-El pensamiento de verificación sobrevivió en código como la tarjeta de
-trust & safety de cada anuncio. Cada señal tiene su propio estado: un
+En Urbiqo, el pensamiento de verificación de antes sobrevivió en código
+como la tarjeta de trust & safety de cada anuncio. Cada señal tiene su propio estado: un
 perfil puede mostrar el email verificado mientras el teléfono y la
 identidad siguen pendientes.
 
@@ -261,7 +261,7 @@ cosa específica.
 
 ## Solo la mitad de las palabras son mías
 
-La localización se diseñó como un modo de variables y salió como uno. Las
+La localización de Urbiqo se diseñó como un modo de variables y salió como uno. Las
 mismas pantallas corren en inglés y español de punta a punta.
 
 <figure class="fig fig--paper fig--duo">
@@ -286,7 +286,7 @@ nunca puso a prueba.
 
 ## Uso de IA
 
-Dos usos, que no conviene confundir. La build: toda la plataforma
+Urbiqo: dos usos, que no conviene confundir. La build: toda la plataforma
 desarrollada con IA bajo mi dirección, la IA escribía el código, yo daba
 el encargo, revisaba y devolvía hasta que cuadraba. El producto: el propio
 Urbiqo funciona con una IA que puede equivocarse, el OCR lee los
@@ -296,8 +296,8 @@ persona, y cada status pill dice la verdad sobre por qué está en rojo.
 
 ## Lo que aprendí
 
-Diseñado de punta a punta y luego construido de punta a punta, por una
-persona dirigiendo a la IA, en Next.js. Ese es el resultado: una plataforma de dos lados
+Urbiqo: diseñado de punta a punta y luego construido de punta a punta,
+por una persona dirigiendo a la IA, en Next.js. Ese es el resultado: una plataforma de dos lados
 corriendo en staging en dos idiomas, de la búsqueda a la solicitud. Sin
 métricas de usuarios todavía, el lanzamiento aún no ha llegado, así que lo
 que sigue es lo que me enseñó construirlo, no lo que dijo el mercado.

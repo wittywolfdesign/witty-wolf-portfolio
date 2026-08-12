@@ -38,7 +38,7 @@ community, in a crowded health-tech space, strictly inside GDPR.
 
 ## The research
 
-City life leaves no room for rigid wellness plans. Research with 16
+For Shelly, city life leaves no room for rigid wellness plans. Research with 16
 participants showed the conflict:
 
 <div class="stats">
@@ -74,7 +74,7 @@ flexible habits. Hence the hare racing through the screens.
 </div>
 </div>
 
-The six screens follow Maria: an agency job in Barcelona, irregular
+Shelly's six screens follow Maria: an agency job in Barcelona, irregular
 hours, no appetite for another plan to fail at. Three sliders set the
 routine, days, minutes and intensity. The loading screen stays in
 character. Suggestions fit the day she is having, an exercise can be
@@ -88,6 +88,11 @@ them moving.
 <p class="note">The 2026 redraw</p>
 
 ## The 2026 redraw
+
+In 2026 I redrew the same six Shelly screens by hand with text markers and
+set them moving. One day of scribbling with the turtle, the hare and the
+cream pages of a field journal, then two days of vibe coding turned the
+drawings into a working product.
 
 <div class="sj-strip">
 <div class="sj-strip__track">
@@ -128,7 +133,7 @@ tests.
 
 ## Use of AI
 
-The 2025 sprint was human work, with Anna, no AI in the loop: full UX
+Shelly's 2025 sprint was human work, with Anna, no AI in the loop: full UX
 research and a full UI trajectory, sixteen participants, twenty-six
 screens, from interviews, affinity mapping and personas through user
 flows and usability rounds to a hi-fi prototype in Figma.

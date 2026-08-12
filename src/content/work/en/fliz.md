@@ -68,7 +68,7 @@ matching the checklist, and put the difference where it cannot be missed.
 
 ## The company account, rebuilt around the cashback
 
-A merchant should not log in to *look* at their account. They should log in to
+A FLIZ merchant should not log in to *look* at their account. They should log in to
 *run* it. The dashboard has one job, and it is not taking payments, the app does
 that. It is where a merchant sets their cashback rate, watches it perform and
 keeps the shop connected. So we rebuilt the FLIZ Company
@@ -105,7 +105,7 @@ account readable and runnable from one screen.
 
 ## A number, before anything else
 
-The first thing the dashboard shows is not a menu. It is four numbers. That was
+The first thing the FLIZ dashboard shows is not a menu. It is four numbers. That was
 the design decision: a single, honest value should greet the merchant before they
 do anything, so the account answers *how are we doing?* on sight.
 
@@ -139,7 +139,7 @@ do anything, so the account answers *how are we doing?* on sight.
 
 ## Status you can trust at a glance
 
-A payment either happened or it did not, and a merchant should never have to guess
+A FLIZ payment either happened or it did not, and a merchant should never have to guess
 which. The transactions table runs on one status system with a fixed colour
 mapping, so a state means the same thing every time you see it: green settled,
 amber waiting, red failed, grey stopped.
@@ -187,7 +187,7 @@ dashboard.
 
 ## A merchant guide worth reading
 
-Onboarding a shop was a heavy, skippable tutorial. Working from the design
+Onboarding a shop onto FLIZ was a heavy, skippable tutorial. Working from the design
 lead's direction, I redesigned it as a well-made, low-tech static guide, the kind
 of documentation you actually read, with Stripe's docs as the visual reference:
 calm, sequential, no video to sit through. It was drawn as wireframes first and only then raised to high fidelity,
@@ -241,7 +241,7 @@ app's send and receive functions entirely.
 
 ## Small decisions, real friction
 
-The big structure only works if the small signals are honest. Saving an offer was
+The FLIZ app's big structure only works if its small signals are honest. Saving an offer was
 marked with a paperclip, which reads as *attach*, not *keep*, so it became a
 heart. That freed up the urgency signal the paperclip had been muddying, and the
 deal of the week took a flame to say *this expires*.
@@ -250,7 +250,7 @@ deal of the week took a flame to say *this expires*.
 
 ## Under the hood
 
-Under the visible work sat the unglamorous kind, and it is where my division of
+Under FLIZpay's visible work sat the unglamorous kind, and it is where my division of
 labour with AI was sharpest. Roughly **1,150 layers** renamed to sentence case
 and around **50 localisation strings** fixed across EN/DE, with a pass over
 capitalisation throughout: AI did the bulk on a precise brief and proposed the
@@ -270,7 +270,7 @@ worth fixing.
 
 ## Use of AI
 
-AI ran through almost every part of this work, from research to QA. The
+AI ran through almost every part of the FLIZpay engagement, from research to QA. The
 clearest examples: it filled the competitive matrix on parameters I fixed,
 and I verified every conclusion in the rivals' own apps. It did the bulk
 of the 1,150-layer rename and the localisation fixes on precise briefs,

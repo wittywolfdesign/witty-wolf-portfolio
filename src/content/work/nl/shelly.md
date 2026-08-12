@@ -39,7 +39,7 @@ AVG.
 
 ## De research
 
-Stadsleven laat geen ruimte voor starre wellnessplannen. Research met 16
+Voor Shelly laat stadsleven geen ruimte voor starre wellnessplannen. Research met 16
 deelnemers legde het conflict bloot:
 
 <div class="stats">
@@ -75,7 +75,7 @@ flexibele gewoontes. Vandaar de haas die door de schermen rent.
 </div>
 </div>
 
-De zes schermen volgen Maria: een bureaubaan in Barcelona,
+Shelly's zes schermen volgen Maria: een bureaubaan in Barcelona,
 onregelmatige uren, geen zin in nóg een plan om in te falen. Drie
 sliders stellen de routine in, dagen, minuten en intensiteit. Het
 laadscherm blijft in karakter. Suggesties passen bij de dag die ze
@@ -89,6 +89,11 @@ schermen opnieuw met de hand met stiften en zette ze in beweging.
 <p class="note">De herschets van 2026</p>
 
 ## De herschets van 2026
+
+In 2026 herschetste ik dezelfde zes Shelly-schermen met de hand met
+stiften en zette ik ze in beweging. Eén dag krabbelen met de schildpad,
+de haas en de crèmekleurige pagina's van een veldjournaal, daarna
+maakten twee dagen vibe coding er een werkend product van.
 
 <div class="sj-strip">
 <div class="sj-strip__track">
@@ -128,7 +133,7 @@ De regel hierboven kwam van een deelnemer in de laatste testronde.
 
 ## AI-gebruik
 
-De sprint van 2025 was mensenwerk, met Anna, zonder AI: volledige
+Shelly's sprint van 2025 was mensenwerk, met Anna, zonder AI: volledige
 UX-research en een volledig UI-traject, zestien deelnemers,
 zesentwintig schermen, van interviews, affinity mapping en persona's
 via user flows en usabilityrondes naar een hi-fi prototype in Figma.

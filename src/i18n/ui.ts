@@ -62,6 +62,8 @@ const en = {
       { text: " people using it are." },
     ] as Seg[],
     lead: "I design products, then build them in real code. The second half keeps the first half honest.",
+    answerBlock:
+      "I'm Marco Ramos Steinfort, a product designer in Madrid who also writes the front-end code, so what you see designed is what ships. Recent work: Urbiqo, a rental marketplace I co-founded and built, and FLIZpay's merchant payments dashboard. New products start with research. Live ones start with an honest look at what's already there.",
     selectedWork: "Selected work",
     projects: "projects",
     approachNote: "The short version",
@@ -237,6 +239,8 @@ const nl: typeof en = {
       { text: " mensen die het gebruiken wel." },
     ] as Seg[],
     lead: "Ik ontwerp producten en bouw ze daarna in echte code. De tweede helft houdt de eerste helft eerlijk.",
+    answerBlock:
+      "Ik ben Marco Ramos Steinfort, product designer in Madrid, en ik schrijf ook de front-end code, dus wat je ziet ontworpen is ook wat er gebouwd wordt. Recent werk: Urbiqo, een verhuurplatform dat ik als co-founder heb opgezet en gebouwd, en het merchant-dashboard van FLIZpay. Nieuwe producten beginnen met research. Bestaande producten beginnen met een eerlijke blik op wat er al is.",
     selectedWork: "Geselecteerd werk",
     projects: "projecten",
     approachNote: "De korte versie",
@@ -407,6 +411,8 @@ const es: typeof en = {
       { text: " personas que lo usan." },
     ] as Seg[],
     lead: "Diseño productos y luego los construyo en código real. La segunda mitad mantiene honesta a la primera.",
+    answerBlock:
+      "Soy Marco Ramos Steinfort, product designer en Madrid, y también escribo el código front-end, así que lo que ves diseñado es lo que se lanza. Trabajo reciente: Urbiqo, un marketplace de alquiler que cofundé y construí, y el panel de pagos para comercios de FLIZpay. Los productos nuevos empiezan con research. Los que ya están en marcha empiezan con una mirada honesta a lo que ya existe.",
     selectedWork: "Trabajo seleccionado",
     projects: "proyectos",
     approachNote: "La versión corta",

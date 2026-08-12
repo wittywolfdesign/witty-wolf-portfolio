@@ -37,7 +37,7 @@ conservarse; la plataforma era una factura mensual.
 
 ## El envase de otro
 
-Empezó como una plantilla llena de stock. Mi propio atardecer de los
+La web de Witty Wolf empezó como una plantilla llena de stock. Mi propio atardecer de los
 Houthavens estaba en el hero, pero la página de trabajo abría con un render
 3D de una fototeca y el contacto se escondía tras un skyline de ciudad que
 podría haber vendido cualquier cosa. Debajo había un logotipo en una
@@ -78,7 +78,7 @@ claridad. Lo que no podía conseguir en Framer era la propiedad.
 
 ## La misma alma, un envase nuevo
 
-La decisión fue jubilar la plantilla y construir una web Astro estática,
+La decisión fue jubilar la plantilla de Framer y construir una web Astro estática,
 la IA escribiendo el código, yo dirigiendo: conservar la voz de los
 textos, sustituir todo lo que la sostenía. La dirección de arte se volvió
 field notes: papel cálido, tinta,
@@ -102,7 +102,7 @@ máquina de escribir al susto del lobo, fue mía.
 
 ## Detalles que se ganan el sitio
 
-El hero se escribe solo, comete un error a propósito, lo tacha y sigue:
+El hero de esta web se escribe solo, comete un error a propósito, lo tacha y sigue:
 pantallas se convierte en personas. El lobo de al lado es el logo real
 dibujado como línea pura que se esboza a sí misma, sin rellenos salvo la
 lengua ámbar. Un rastro ámbar se dibuja página abajo mientras haces
@@ -122,7 +122,7 @@ reduced motion está activo.
 
 ## Una sola fuente de verdad
 
-Las páginas de caso corren sobre un sistema pequeño. Las etiquetas de
+Las páginas de caso de esta web corren sobre un sistema pequeño. Las etiquetas de
 margen de esta página son la única fuente de verdad del índice de
 secciones: el raíl con scroll-spy en escritorio, la píldora flotante en
 móvil y los enlaces ancla que siguen funcionando sin JavaScript, sellados

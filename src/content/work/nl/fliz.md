@@ -68,7 +68,7 @@ onderscheid waar niemand het kan missen.
 
 ## Het bedrijfsaccount, herbouwd rond de cashback
 
-Een merchant moet niet inloggen om naar het account te *kijken*. Hij moet inloggen
+Een FLIZ-merchant moet niet inloggen om naar het account te *kijken*. Hij moet inloggen
 om het te *runnen*. Het dashboard heeft één taak, en dat is niet betalingen
 aannemen, dat doet de app. Het is waar een merchant de cashback instelt, de
 prestaties volgt en de winkel verbonden houdt. Dus bouwden we het FLIZ Company
@@ -105,7 +105,7 @@ account leesbaar en bestuurbaar vanaf één scherm.
 
 ## Een getal, voor al het andere
 
-Het eerste wat het dashboard toont is geen menu. Het zijn vier getallen. Dat was de
+Het eerste wat het FLIZ-dashboard toont is geen menu. Het zijn vier getallen. Dat was de
 ontwerpkeuze: één eerlijk getal moet de merchant begroeten voor hij iets doet,
 zodat het account meteen antwoordt op *hoe gaat het?*
 
@@ -139,7 +139,7 @@ zodat het account meteen antwoordt op *hoe gaat het?*
 
 ## Status die je in één oogopslag vertrouwt
 
-Een betaling gebeurde of niet, en een merchant zou nooit moeten gokken welke. De
+Een FLIZ-betaling gebeurde of niet, en een merchant zou nooit moeten gokken welke. De
 transactietabel draait op één statussysteem met een vaste kleurmapping, zodat een
 staat elke keer hetzelfde betekent: groen afgerond, amber wachtend, rood mislukt,
 grijs gestopt.
@@ -187,7 +187,7 @@ dashboard.
 
 ## Een merchant-gids die het lezen waard is
 
-Een winkel onboarden was een zware, overslaanbare tutorial. Vanuit de richting van
+Een winkel onboarden bij FLIZ was een zware, overslaanbare tutorial. Vanuit de richting van
 de design lead ontwierp ik het opnieuw als een goed gemaakte, low-tech statische
 gids, het soort documentatie dat je echt leest, met de docs van Stripe als visuele
 referentie: rustig, stap voor stap, geen video om door te zitten. Het werd eerst
@@ -243,7 +243,7 @@ CEO schrapten de verstuur- en ontvangstfuncties volledig uit de app.
 
 ## Kleine beslissingen, echte frictie
 
-De grote structuur werkt alleen als de kleine signalen eerlijk zijn. Een offer
+De grote structuur van de FLIZ-app werkt alleen als de kleine signalen eerlijk zijn. Een offer
 bewaren stond met een paperclip, wat leest als *bijlage*, niet *bewaren*, dus werd
 het een hart. Dat maakte het urgentiesignaal vrij dat de paperclip vertroebelde,
 en de deal of the week kreeg een vlam om te zeggen *dit verloopt*.
@@ -252,7 +252,7 @@ en de deal of the week kreeg een vlam om te zeggen *dit verloopt*.
 
 ## Onder de motorkap
 
-Onder het zichtbare werk zat het ongrappige soort. Daar was mijn taakverdeling
+Onder FLIZpay's zichtbare werk zat het ongrappige soort. Daar was mijn taakverdeling
 met AI ook het scherpst. Ruwweg **1.150 lagen** hernoemd naar sentence case en
 zo'n **50 localisation strings** gefixt in EN/DE, met een pass over de
 capitalisatie: AI deed het bulkwerk op een precieze opdracht en stelde
@@ -272,7 +272,7 @@ retentie- of activatieprobleem dat het oplossen waard was.
 
 ## AI-gebruik
 
-AI liep door bijna elk deel van dit werk, van research tot QA. De
+AI liep door bijna elk deel van de FLIZpay-opdracht, van research tot QA. De
 duidelijkste voorbeelden: het vulde de concurrentiematrix op parameters
 die ik vastlegde, en ik controleerde elke conclusie in de apps van de
 concurrenten zelf. Het deed het bulkwerk van de 1.150 hernoemde lagen en

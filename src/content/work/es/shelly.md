@@ -39,7 +39,7 @@ mercado health-tech saturado, estrictamente dentro del RGPD.
 
 ## La research
 
-La vida de ciudad no deja sitio para planes de bienestar rígidos. La
+Para Shelly, la vida de ciudad no deja sitio para planes de bienestar rígidos. La
 research con 16 participantes destapó el conflicto:
 
 <div class="stats">
@@ -75,7 +75,7 @@ constantes, flexibles. De ahí la liebre que corre por las pantallas.
 </div>
 </div>
 
-Las seis pantallas siguen a Maria: un trabajo de agencia en Barcelona,
+Las seis pantallas de Shelly siguen a Maria: un trabajo de agencia en Barcelona,
 horarios irregulares, ningunas ganas de otro plan en el que fallar.
 Tres sliders fijan la rutina, días, minutos e intensidad. La pantalla
 de carga no se sale del personaje. Las sugerencias encajan con el día
@@ -90,6 +90,12 @@ movimiento.
 <p class="note">El rediseño de 2026</p>
 
 ## El rediseño de 2026
+
+En 2026 rediseñé a mano las mismas seis pantallas de Shelly con
+rotuladores y las puse en movimiento. Un día de garabatos con la
+tortuga, la liebre y las páginas crema de un cuaderno de campo, y
+después dos días de vibe coding convirtieron los dibujos en un producto
+que funciona.
 
 <div class="sj-strip">
 <div class="sj-strip__track">
@@ -130,7 +136,7 @@ pruebas.
 
 ## Uso de IA
 
-El sprint de 2025 fue trabajo humano, con Anna, sin IA: research de UX
+El sprint de 2025 de Shelly fue trabajo humano, con Anna, sin IA: research de UX
 completa y un recorrido de UI completo, dieciséis participantes,
 veintiséis pantallas, de las entrevistas, el diagrama de afinidad y las
 personas a los user flows, las rondas de usabilidad y un prototipo

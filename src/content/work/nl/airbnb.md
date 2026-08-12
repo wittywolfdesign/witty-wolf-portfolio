@@ -36,7 +36,7 @@ waarschijnlijk.
 
 ## De audit
 
-De huidige app naklonen was een nachtmerrie, in de nuttige zin. Meer dan 9
+Airbnb's huidige app naklonen was een nachtmerrie, in de nuttige zin. Meer dan 9
 letterstijlen in één flow. Hoekradii die willekeurig verschillen.
 Terugpijlen en annuleerknoppen die per scherm van stijl en plek wisselen,
 zodat gebruikers zich steeds opnieuw moeten oriënteren. Die visuele drift
@@ -64,8 +64,8 @@ kost aandacht en verzwakt het gevoel van controle.
 
 ## Van atomen naar pagina's
 
-Met de problemen gedocumenteerd testte ik of strikt atomic design ze kon
-oplossen. Een modulair systeem vanaf nul: een strak icoonraster, uniforme
+Met Airbnb's inconsistenties in typografie, hoekradius en knoppen
+gedocumenteerd testte ik of strikt atomic design ze kon oplossen. Een modulair systeem vanaf nul: een strak icoonraster, uniforme
 hoekradii van 8px, een gestandaardiseerd palet. Elk scherm deelt dezelfde
 fundering. Het herontwerp is een concept, geen geshipt product; één
 mogelijk antwoord op wat de audit blootlegde.
@@ -79,7 +79,7 @@ mogelijk antwoord op wat de audit blootlegde.
 
 ## Leesbare typografie
 
-Lexend als primair lettertype. Ronde vormen, royale spatiëring, betere
+Lexend als primair lettertype van het herontwerp. Ronde vormen, royale spatiëring, betere
 leesbaarheid voor een bredere groep reizigers.
 
 <figure class="fig fig--mid fig--pin">
@@ -91,7 +91,7 @@ leesbaarheid voor een bredere groep reizigers.
 
 ## Uniforme componenten
 
-Eén icoonraster, één knoppensysteem. Elk interactief element deelt
+Het herontwerp: één icoonraster, één knoppensysteem. Elk interactief element deelt
 dezelfde lijndikte en hoekradius, zodat niets tussen schermen opnieuw
 geleerd hoeft te worden.
 
@@ -103,6 +103,11 @@ geleerd hoeft te worden.
 <p class="note">03 · Ervaring</p>
 
 ## Rustiger ontdekken
+
+Het herontwerp past het nieuwe systeem toe op Airbnb's ontdekflow voor
+verblijven en ervaringen: hetzelfde icoonraster, dezelfde hoekradii,
+dezelfde typografie. Er is hier geen nieuwe content, alleen een rustigere
+versie van wat er al bestaat.
 
 <figure class="fig fig--duo">
   <span class="fig__tile fig__tile--offset"><img src="/work/airbnb/airbnb-discovery-flow.png" alt="De ontdekflow voor verblijven en ervaringen met een opgeruimde layout" loading="lazy" /></span>

@@ -35,7 +35,7 @@ estén casi todos los sistemas que llevan una década publicando deprisa.
 
 ## La auditoría
 
-Clonar la app actual fue una pesadilla, en el sentido útil. Más de 9
+Clonar la app actual de Airbnb fue una pesadilla, en el sentido útil. Más de 9
 estilos tipográficos en un solo flujo. Radios de esquina que varían al
 azar. Flechas de volver y botones de cancelar que cambian de estilo y de
 sitio entre pantallas, así que la gente se reorienta una y otra vez. Esa
@@ -63,8 +63,8 @@ deriva visual cuesta atención y debilita la sensación de control.
 
 ## De los átomos a las páginas
 
-Con los problemas documentados, probé si un atomic design estricto podía
-resolverlos. Un sistema modular desde cero: una cuadrícula de iconos
+Con las inconsistencias de tipografía, radio de esquina y controles de
+Airbnb documentadas, probé si un atomic design estricto podía resolverlas. Un sistema modular desde cero: una cuadrícula de iconos
 estricta, radios de esquina uniformes de 8px, una paleta estandarizada.
 Cada pantalla comparte los mismos cimientos. El rediseño es un concepto,
 no un producto publicado; una respuesta posible a lo que la auditoría
@@ -79,7 +79,7 @@ destapó.
 
 ## Tipografía legible
 
-Lexend como tipografía principal. Formas redondeadas, espaciado generoso,
+Lexend como tipografía principal del rediseño. Formas redondeadas, espaciado generoso,
 mejor lectura para un rango más amplio de viajeros.
 
 <figure class="fig fig--mid fig--pin">
@@ -91,7 +91,7 @@ mejor lectura para un rango más amplio de viajeros.
 
 ## Componentes unificados
 
-Una cuadrícula de iconos, un sistema de botones. Cada elemento interactivo
+El rediseño: una cuadrícula de iconos, un sistema de botones. Cada elemento interactivo
 comparte el mismo grosor de trazo y el mismo radio de esquina, así que
 nada hay que reaprenderlo entre pantallas.
 
@@ -103,6 +103,11 @@ nada hay que reaprenderlo entre pantallas.
 <p class="note">03 · Experiencia</p>
 
 ## Descubrir con más calma
+
+El rediseño aplica el nuevo sistema al flujo de descubrimiento de
+estancias y experiencias de Airbnb: la misma cuadrícula de iconos, los
+mismos radios de esquina, la misma tipografía. Aquí no hay contenido
+nuevo, solo una versión más calmada de lo que ya existe.
 
 <figure class="fig fig--duo">
   <span class="fig__tile fig__tile--offset"><img src="/work/airbnb/airbnb-discovery-flow.png" alt="El flujo de descubrimiento de estancias y experiencias con un layout despejado" loading="lazy" /></span>

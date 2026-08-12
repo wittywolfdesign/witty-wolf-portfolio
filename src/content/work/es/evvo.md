@@ -49,7 +49,7 @@ historia y que elegir producto sea rápido y seguro.
 
 ## De las especificaciones a la historia
 
-Tres hallazgos marcaron la estrategia. Los diferenciadores, suelas
+Tres hallazgos marcaron la estrategia de EVVO. Los diferenciadores, suelas
 Michelin y materiales reciclados, eran invisibles en los textos. No había
 diseño responsive, cuando la mayor parte de la búsqueda pasaba en el
 móvil, contra tarjetas densas, tallas confusas y cero herramientas para
@@ -65,7 +65,7 @@ entrevistas.
 
 ## Un camino despejado
 
-Cambiamos el espagueti de categorías técnicas por un flujo de elección
+Cambiamos el espagueti de categorías técnicas de EVVO por un flujo de elección
 lineal. Preguntas según la necesidad en lugar de un catálogo: menos fatiga
 de decisión, un camino más corto hasta el pago.
 
@@ -89,7 +89,7 @@ La historia va primero: por qué EVVO importa antes de qué vende EVVO.
 
 ## Navegación por necesidad
 
-Ocho códigos SKU técnicos se convirtieron en categorías por actividad,
+Los ocho códigos SKU técnicos de EVVO se convirtieron en categorías por actividad,
 para que cada persona se ubique al instante. Las tarjetas de producto
 siguen la misma lógica: primero imagen, luego una línea de beneficio, la
 especificación al final.
@@ -104,7 +104,7 @@ especificación al final.
 
 ## Comparar para decidir con confianza
 
-Una herramienta lado a lado pondera prioridades como agarre contra peso.
+La herramienta lado a lado de EVVO pondera prioridades como agarre contra peso.
 Responde al miedo que la research no dejaba de sacar: comprar el equipo
 equivocado.
 
@@ -117,7 +117,7 @@ equivocado.
 
 ## Páginas de producto con historia
 
-La tecnología Michelin explicada con historia y visuales en vez de una
+La tecnología Michelin de EVVO explicada con historia y visuales en vez de una
 tabla, los materiales reciclados argumentados como beneficios.
 
 <figure class="fig fig--paper fig--margin">
@@ -129,7 +129,7 @@ tabla, los materiales reciclados argumentados como beneficios.
 
 ## Construido para crecer
 
-Una biblioteca modular de componentes, atomic design y auto layout en todo.
+La biblioteca modular de componentes de EVVO, atomic design y auto layout en todo.
 
 <figure class="fig fig--small fig--pin">
   <img src="/work/evvo/evvo-design-system.png" alt="Design system de EVVO: una parrilla modular de botones, estilos tipográficos y componentes" loading="lazy" />
@@ -140,7 +140,7 @@ Una biblioteca modular de componentes, atomic design y auto layout en todo.
 
 ## Impacto y reflexiones
 
-La hipótesis: abre con la historia, sostén con especificaciones. En las
+La hipótesis de EVVO: abre con la historia, sostén con especificaciones. En las
 pruebas de usabilidad la gente entendía el producto más rápido y elegía
 con más seguridad.
 

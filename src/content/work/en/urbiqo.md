@@ -36,7 +36,7 @@ solvent tenants and leaves hosts choosing from a smaller, samey pool.
 
 ## Solvent, and still locked out
 
-Freelancers and expats hit closed doors, blocked for lacking a standard
+On Urbiqo, freelancers and expats hit closed doors, blocked for lacking a standard
 payslip however solvent they are. Hosts are stuck too:
 rigid paperwork is the only risk tool on offer, so they use it. Urbiqo does
 not throw that paperwork away; it adds more ways in. A tenant can name a
@@ -52,7 +52,7 @@ the door.
 
 ## Mapping the full journey
 
-Before any screens, I mapped the complete flow for both sides: every
+Before any screens, I mapped Urbiqo's complete flow for both sides: every
 decision point from first login through verification, application and
 payment. It became the source of truth for what to design first. It also
 fixed three rules the product had to honour: browsing stays open without an
@@ -71,7 +71,7 @@ listing, and a verified profile is reusable across applications.
 
 ## Two sides, one problem
 
-The product has to hold two realities at once.
+Urbiqo has to hold two realities at once.
 
 <div class="board">
   <div>
@@ -95,7 +95,7 @@ The difference Urbiqo bets on: validating reliability, not just salary.
 
 ## Fairer screening
 
-I added alternative proofs beside the classic payslip: bank statements and
+For Urbiqo, I added alternative proofs beside the classic payslip: bank statements and
 invoices. Employer letters and tax returns were considered and dropped,
 both lag actual cash flow. Bank statements and invoices reflect it in real
 time, and validate through OCR with manual review for the edge cases.
@@ -113,7 +113,7 @@ for example.
 
 ## Humanising the transaction
 
-A verified profile travels ahead of the tenant. The host sees the same
+On Urbiqo, a verified profile travels ahead of the tenant. The host sees the same
 verification card before any meeting: email, phone, ID and background
 check. Hosts declare their relationship to the listing too, owner, tenant
 or intermediary, so applicants know who they are dealing with. Trust is
@@ -128,7 +128,7 @@ visible on both sides before anyone books a viewing.
 
 ## Demystifying the process
 
-Renting is overwhelming enough. The landing page works as a calming
+Renting on Urbiqo is overwhelming enough. The landing page works as a calming
 filter: the verification journey compressed into four linear steps,
 understood before anyone creates an account.
 
@@ -150,7 +150,7 @@ accessible pricing for freelancers, expats and non-traditional tenants.
 
 ## Behind the screens
 
-The system underneath: tokens, components and variable theming for dark
+Urbiqo's system underneath: tokens, components and variable theming for dark
 mode and English/Spanish localisation. Built alongside the product, kept
 as its own reference.
 
@@ -163,7 +163,7 @@ as its own reference.
 
 ## Designing it was the easy part
 
-The design was defined, the system documented, the flows mapped. Then I
+Urbiqo's design was defined, the system documented, the flows mapped. Then I
 built it, on Next.js, the entire build AI-developed with me directing: AI
 wrote the code, I briefed it, reviewed it and sent it back until it matched
 the design. Building your own design is the most honest usability
@@ -217,7 +217,7 @@ Three decisions from the build earned their own labels.
 
 ## The card that could not sit still
 
-Real descriptions vary in length, so the 'More details' button pinned after
+On Urbiqo, real descriptions vary in length, so the 'More details' button pinned after
 the text could never sit still. The title now clamps to one line, the
 description to three and the whole card became the click target.
 
@@ -230,8 +230,8 @@ description to three and the whole card became the click target.
 
 ## A pill should never lie about why it is red
 
-The verification thinking survived into code as the trust and safety card
-on every listing. Each signal has its own state: a profile can show email
+On Urbiqo, the verification thinking from earlier survived into code as the
+trust and safety card on every listing. Each signal has its own state: a profile can show email
 verified while phone and identity are still pending.
 
 In the design file the four states were a legend: Active, Pending, Attention
@@ -249,7 +249,7 @@ so a red pill always means one specific thing.
 
 ## Only half the words are mine
 
-Localisation was designed as a variable mode and shipped as one. The same
+Urbiqo's localisation was designed as a variable mode and shipped as one. The same
 screens run in English and Spanish end to end.
 
 <figure class="fig fig--paper fig--duo">
@@ -272,7 +272,7 @@ And Spanish runs long enough to truncate cards the English never stressed.
 
 ## Use of AI
 
-Two kinds, and they should not be confused. The build: the entire
+Urbiqo: two kinds, and they should not be confused. The build: the entire
 platform was AI-developed under my direction, AI wrote the code, I
 briefed, reviewed and sent back until it matched the design. The product:
 Urbiqo itself runs on AI that can be wrong, OCR reads the verification
@@ -282,8 +282,8 @@ status pill tells the truth about why it is red.
 
 ## What I learned
 
-Designed end to end, then built end to end, by one person directing AI, on
-Next.js.
+Urbiqo: designed end to end, then built end to end, by one person directing
+AI, on Next.js.
 That is the outcome: a two-sided platform running on staging in two
 languages, from search to application. No user metrics yet, the launch is
 still ahead, so what follows is what shipping it taught, not what the

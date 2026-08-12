@@ -42,7 +42,7 @@ keeping; the platform was a monthly bill.
 
 ## Someone else's vessel
 
-It began as a template full of stock. My own Houthavens sunset sat in the
+The Witty Wolf site began as a template full of stock. My own Houthavens sunset sat in the
 hero, but the work page opened on a 3D render from a photo library and
 contact hid behind a city skyline that could have sold anything. Under it
 sat a wordmark in a rounded display face that has since been retired from
@@ -82,7 +82,7 @@ from Framer was ownership.
 
 ## Same soul, new vessel
 
-The decision was to retire the template and build a static Astro site, AI
+The decision was to retire the Framer template and build a static Astro site, AI
 writing the code, me directing it: keep the copy's voice, replace
 everything it stood on. The art direction became
 field notes: warm paper, ink, a faint guide grid, thin line work and one
@@ -105,7 +105,7 @@ spook, was mine.
 
 ## Details that earn their keep
 
-The hero types itself, makes a deliberate mistake, strikes it through and
+This site's hero types itself, makes a deliberate mistake, strikes it through and
 carries on: pixels becomes people. The wolf beside it is the real logo
 drawn as stroke-only line art that sketches itself in, no fills except the
 amber tongue. An amber scent trail draws down the page as you scroll, a
@@ -124,7 +124,7 @@ theme switches. Every animation is disabled when reduced motion is on.
 
 ## One source of truth
 
-The case pages run on a small system. The margin labels on this page are
+This site's case pages run on a small system. The margin labels on this page are
 the single source of truth for the section index: the scroll-spy rail on
 desktop, the floating pill on mobile and the anchor links that keep
 working with JavaScript off, stamped in at build by a rehype plugin.

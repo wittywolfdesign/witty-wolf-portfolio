@@ -49,7 +49,7 @@ choosing a product quick and confident.
 
 ## From specs to story
 
-Three findings set the strategy. The differentiators, Michelin soles and
+Three findings set EVVO's strategy. The differentiators, Michelin soles and
 recycled materials, were invisible in the copy. There was no responsive
 design, while most research happened on mobile, against dense cards,
 unclear sizing and no comparison tools. And interviews kept saying the
@@ -65,7 +65,7 @@ interviews.
 
 ## A streamlined path
 
-We replaced the spaghetti of technical categories with a linear finder
+We replaced EVVO's spaghetti of technical categories with a linear finder
 flow. Need-based questions instead of a catalogue: less decision fatigue,
 a shorter path to checkout.
 
@@ -89,7 +89,7 @@ The story goes first: why EVVO matters before what EVVO sells.
 
 ## Need-based navigation
 
-Eight technical SKU codes became activity-based categories, so users
+EVVO's eight technical SKU codes became activity-based categories, so users
 self-segment instantly. Product cards follow the same logic: image first,
 benefit one-liner second, spec last.
 
@@ -103,7 +103,7 @@ benefit one-liner second, spec last.
 
 ## Confidence-building comparison
 
-A side-by-side tool weighs priorities like grip against weight. It answers
+EVVO's side-by-side tool weighs priorities like grip against weight. It answers
 the fear our research kept surfacing: buying the wrong gear.
 
 <figure class="fig fig--paper">
@@ -115,7 +115,7 @@ the fear our research kept surfacing: buying the wrong gear.
 
 ## Story-driven product pages
 
-Michelin technology explained through story and visuals instead of a
+EVVO's Michelin technology explained through story and visuals instead of a
 table, recycled materials argued as benefits.
 
 <figure class="fig fig--paper fig--margin">
@@ -127,7 +127,7 @@ table, recycled materials argued as benefits.
 
 ## Built for scale
 
-A modular component library, atomic design and auto layout throughout.
+EVVO's modular component library, atomic design and auto layout throughout.
 
 <figure class="fig fig--small fig--pin">
   <img src="/work/evvo/evvo-design-system.png" alt="EVVO design system: a modular grid of buttons, typography styles and components" loading="lazy" />
@@ -138,7 +138,7 @@ A modular component library, atomic design and auto layout throughout.
 
 ## Impact and reflections
 
-The hypothesis: lead with story, support with specs. In usability testing
+EVVO's hypothesis: lead with story, support with specs. In usability testing
 people understood the product faster and chose with more confidence.
 
 Conversion needs a live shop to prove it. The judgement stands either way: a

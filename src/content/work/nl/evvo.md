@@ -50,7 +50,7 @@ snel en zeker.
 
 ## Van specs naar verhaal
 
-Drie bevindingen bepaalden de strategie. De onderscheiders, Michelin-zolen
+Drie bevindingen bepaalden EVVO's strategie. De onderscheiders, Michelin-zolen
 en gerecyclede materialen, waren onzichtbaar in de teksten. Er was geen
 responsive ontwerp, terwijl het meeste zoekwerk op mobiel gebeurde, tegen
 dichte kaarten, onduidelijke maten en geen vergelijkingstools in. En de
@@ -66,7 +66,7 @@ interviews.
 
 ## Een gestroomlijnd pad
 
-We vervingen de spaghetti van technische categorieën door een lineaire
+We vervingen EVVO's spaghetti van technische categorieën door een lineaire
 kiesflow. Vragen op basis van behoefte in plaats van een catalogus: minder
 keuzestress, een korter pad naar de kassa.
 
@@ -90,7 +90,7 @@ Het verhaal gaat voorop: waarom EVVO ertoe doet vóór wat EVVO verkoopt.
 
 ## Navigatie op behoefte
 
-Acht technische SKU-codes werden categorieën op activiteit, zodat
+EVVO's acht technische SKU-codes werden categorieën op activiteit, zodat
 gebruikers zichzelf meteen indelen. Productkaarten volgen dezelfde logica:
 eerst beeld, dan één regel voordeel, dan pas spec.
 
@@ -104,7 +104,7 @@ eerst beeld, dan één regel voordeel, dan pas spec.
 
 ## Vergelijken dat zekerheid geeft
 
-Een naast-elkaar-tool weegt prioriteiten als grip tegen gewicht. Het
+EVVO's naast-elkaar-tool weegt prioriteiten als grip tegen gewicht. Het
 beantwoordt de angst die onze research bleef opduiken: de verkeerde
 uitrusting kopen.
 
@@ -117,7 +117,7 @@ uitrusting kopen.
 
 ## Productpagina's met een verhaal
 
-Michelin-techniek uitgelegd via verhaal en beeld in plaats van een
+EVVO's Michelin-techniek uitgelegd via verhaal en beeld in plaats van een
 tabel, gerecyclede materialen beargumenteerd als voordelen.
 
 <figure class="fig fig--paper fig--margin">
@@ -129,7 +129,7 @@ tabel, gerecyclede materialen beargumenteerd als voordelen.
 
 ## Gebouwd om te groeien
 
-Een modulaire componentenbibliotheek, atomic design en auto layout,
+EVVO's modulaire componentenbibliotheek, atomic design en auto layout,
 overal.
 
 <figure class="fig fig--small fig--pin">
@@ -141,7 +141,7 @@ overal.
 
 ## Impact en reflecties
 
-De hypothese: open met het verhaal, onderbouw met specs. In usabilitytests
+EVVO's hypothese: open met het verhaal, onderbouw met specs. In usabilitytests
 begrepen mensen het product sneller en kozen ze met meer zekerheid.
 
 Conversie kan alleen een live winkel bewijzen. Het oordeel staat hoe dan

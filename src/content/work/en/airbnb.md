@@ -35,7 +35,7 @@ shipped fast for a decade probably are.
 
 ## The audit
 
-Cloning the current app was a nightmare, in the useful sense. Over 9 font
+Cloning Airbnb's current app was a nightmare, in the useful sense. Over 9 font
 styles in a single flow. Corner radii that vary at random. Back arrows and
 cancel buttons that change style and position between screens, so users
 keep re-orienting themselves. That visual drift costs attention and
@@ -63,8 +63,8 @@ weakens the sense of control.
 
 ## From atoms to pages
 
-With the problems documented, I tested whether strict atomic design could
-resolve them. A modular system from scratch: a strict icon grid, uniform
+With Airbnb's typography, radius and control inconsistencies documented, I
+tested whether strict atomic design could resolve them. A modular system from scratch: a strict icon grid, uniform
 8px corner radii, a standardised palette. Every screen shares the same
 foundation. The redesign is a concept, not a shipped product; one possible
 answer to what the audit surfaced.
@@ -78,7 +78,7 @@ answer to what the audit surfaced.
 
 ## Legible typography
 
-Lexend as the primary typeface. Rounded forms, generous spacing, better
+Lexend as the redesign's primary typeface. Rounded forms, generous spacing, better
 readability for a broader range of travellers.
 
 <figure class="fig fig--mid fig--pin">
@@ -90,7 +90,7 @@ readability for a broader range of travellers.
 
 ## Unified components
 
-One icon grid, one button system. Every interactive element shares the
+The redesign: one icon grid, one button system. Every interactive element shares the
 same stroke weight and corner radius, so nothing has to be relearned
 between screens.
 
@@ -102,6 +102,10 @@ between screens.
 <p class="note">03 · Experience</p>
 
 ## Calmer discovery
+
+The redesign applies the new system to Airbnb's stays and experiences
+discovery flow: the same icon grid, the same corner radii, the same type.
+Nothing here is new content, only a calmer version of what already exists.
 
 <figure class="fig fig--duo">
   <span class="fig__tile fig__tile--offset"><img src="/work/airbnb/airbnb-discovery-flow.png" alt="The stays and experiences discovery flow with a decluttered layout" loading="lazy" /></span>

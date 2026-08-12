@@ -36,7 +36,7 @@ huurders buiten en laat hosts kiezen uit een kleinere, eenvormige groep.
 
 ## Solvent, en toch buitengesloten
 
-Freelancers en expats lopen tegen dichte deuren aan, afgewezen omdat een
+Bij Urbiqo lopen freelancers en expats tegen dichte deuren aan, afgewezen omdat een
 standaard loonstrook ontbreekt, hoe solvent ze ook zijn. Hosts zitten ook
 klem: strakke papierwinkel is het enige risicogereedschap dat er is, dus
 gebruiken ze het. Urbiqo gooit die papieren niet weg; het voegt extra
@@ -52,7 +52,7 @@ bewijs, en solvente niet-traditionele huurders komen door de deur.
 
 ## De hele reis in kaart
 
-Voor er ook maar één scherm bestond, bracht ik de complete flow voor beide
+Voor er ook maar één scherm bestond, bracht ik Urbiqo's complete flow voor beide
 kanten in kaart: elk beslismoment van eerste login tot verificatie,
 aanvraag en betaling. Het werd de bron van waarheid voor wat er eerst
 ontworpen moest worden. Het legde ook drie regels vast die het product
@@ -72,7 +72,7 @@ geverifieerd profiel is herbruikbaar over aanvragen heen.
 
 ## Twee kanten, één probleem
 
-Het product moet twee werkelijkheden tegelijk vasthouden.
+Urbiqo moet twee werkelijkheden tegelijk vasthouden.
 
 <div class="board">
   <div>
@@ -97,7 +97,7 @@ De weddenschap van Urbiqo: betrouwbaarheid valideren, niet alleen salaris.
 
 ## Eerlijker screenen
 
-Ik zette alternatieve bewijzen naast de klassieke loonstrook:
+Voor Urbiqo zette ik alternatieve bewijzen naast de klassieke loonstrook:
 bankafschriften en facturen. Werkgeversverklaringen en belastingaangiftes
 zijn overwogen en geschrapt, beide lopen achter op de werkelijke cashflow.
 Bankafschriften en facturen tonen die in realtime, en valideren via OCR
@@ -116,7 +116,7 @@ facturen accepteren voor freelancers.
 
 ## De transactie menselijk maken
 
-Een geverifieerd profiel reist voor de huurder uit. De host ziet dezelfde
+Bij Urbiqo reist een geverifieerd profiel voor de huurder uit. De host ziet dezelfde
 verificatiekaart vóór elke afspraak: e-mail, telefoon, ID en
 achtergrondcheck. Hosts geven ook hun relatie tot de woning op, eigenaar,
 huurder of tussenpersoon, zodat aanvragers weten met wie ze te maken
@@ -132,7 +132,7 @@ bezichtiging boekt.
 
 ## Het proces ontrafelen
 
-Huren is al overweldigend genoeg. De landingspagina werkt als een kalm
+Huren via Urbiqo is al overweldigend genoeg. De landingspagina werkt als een kalm
 filter: de verificatiereis samengevat in vier lineaire stappen, begrepen
 voordat iemand een account aanmaakt.
 
@@ -155,7 +155,7 @@ freelancers, expats en niet-traditionele huurders.
 
 ## Achter de schermen
 
-Het systeem eronder: tokens, componenten en variabele theming voor dark
+Urbiqo's systeem eronder: tokens, componenten en variabele theming voor dark
 mode en Engels/Spaanse lokalisatie. Naast het product gebouwd, bewaard als
 eigen referentie.
 
@@ -168,7 +168,7 @@ eigen referentie.
 
 ## Ontwerpen was het makkelijke deel
 
-Het ontwerp stond, het systeem was gedocumenteerd, de flows in kaart. Toen
+Urbiqo's ontwerp stond, het systeem was gedocumenteerd, de flows in kaart. Toen
 bouwde ik het, op Next.js. De hele build met AI gedeveloped, met mij aan het
 stuur: AI schreef de code, ik briefde, controleerde en stuurde terug tot het
 klopte met het ontwerp. Je eigen ontwerp bouwen is de eerlijkste
@@ -224,7 +224,7 @@ Drie beslissingen uit de bouw verdienden hun eigen labels.
 
 ## De kaart die niet stil kon zitten
 
-Echte omschrijvingen verschillen in lengte, dus de knop 'Meer details' die
+Bij Urbiqo verschillen echte omschrijvingen in lengte, dus de knop 'Meer details' die
 achter de tekst hing, kon nooit stilzitten. De titel klemt nu op één regel,
 de omschrijving op drie en de hele kaart werd het klikdoel.
 
@@ -237,8 +237,8 @@ de omschrijving op drie en de hele kaart werd het klikdoel.
 
 ## Een pil mag nooit liegen over waarom hij rood is
 
-Het verificatiedenken overleefde in code als de trust & safety-kaart op
-elke advertentie. Elk signaal heeft zijn eigen status: een profiel kan
+Bij Urbiqo overleefde het verificatiedenken van eerder in code als de
+trust & safety-kaart op elke advertentie. Elk signaal heeft zijn eigen status: een profiel kan
 e-mail geverifieerd tonen terwijl telefoon en identiteit nog in behandeling
 zijn.
 
@@ -258,7 +258,7 @@ specifiek ding betekent.
 
 ## Maar de helft van de woorden is van mij
 
-Lokalisatie was ontworpen als een variable mode en shipte er ook als één.
+Urbiqo's lokalisatie was ontworpen als een variable mode en shipte er ook als één.
 Dezelfde schermen draaien end-to-end in het Engels en het Spaans.
 
 <figure class="fig fig--paper fig--duo">
@@ -282,7 +282,7 @@ kappen die het Engels nooit onder druk zette.
 
 ## AI-gebruik
 
-Twee soorten, niet te verwarren. De build: het hele platform met AI
+Urbiqo: twee soorten, niet te verwarren. De build: het hele platform met AI
 gedeveloped onder mijn regie. AI schreef de code, ik briefde, controleerde
 en stuurde terug tot het klopte. Het product: Urbiqo draait zelf op AI die
 het fout kan hebben. OCR leest de verificatiedocumenten. Dus ontwierp ik voor de
@@ -292,8 +292,8 @@ waarom hij rood is.
 
 ## Wat ik ervan leerde
 
-End-to-end ontworpen en daarna end-to-end gebouwd, door één persoon die AI
-aanstuurde, op Next.js. Dat is de uitkomst: een tweezijdig platform dat in twee talen op
+Urbiqo: end-to-end ontworpen en daarna end-to-end gebouwd, door één
+persoon die AI aanstuurde, op Next.js. Dat is de uitkomst: een tweezijdig platform dat in twee talen op
 staging draait, van zoeken tot aanvraag. Nog geen gebruikersdata, de launch
 komt nog, dus wat volgt is wat het bouwen me leerde, niet wat de markt zei.
 

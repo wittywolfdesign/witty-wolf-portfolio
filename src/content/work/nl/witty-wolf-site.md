@@ -37,7 +37,7 @@ het bewaren waard; het platform was een maandelijkse rekening.
 
 ## Andermans vat
 
-Het begon als een template vol stockbeeld. Mijn eigen
+De Witty Wolf-site begon als een template vol stockbeeld. Mijn eigen
 Houthavens-zonsondergang stond in de hero, maar de werkpagina opende op een
 3D-render uit een fotobibliotheek en contact verschool zich achter een
 stadssilhouet dat alles had kunnen verkopen. Daaronder stond een woordmerk
@@ -78,7 +78,7 @@ niet kon krijgen, was eigendom.
 
 ## Dezelfde ziel, een nieuw vat
 
-De beslissing was om de template met pensioen te sturen en een statische
+De beslissing was om de Framer-template met pensioen te sturen en een statische
 Astro-site te bouwen, AI schreef de code, ik stuurde: de stem van de copy
 behouden, alles waar die op stond vervangen. De art direction werd field
 notes: warm papier, inkt, een vaag
@@ -102,7 +102,7 @@ schrikreactie van de wolf, was van mij.
 
 ## Details die hun plek verdienen
 
-De hero typt zichzelf, maakt expres een fout, streept die door en gaat
+De hero van deze site typt zichzelf, maakt expres een fout, streept die door en gaat
 verder: pixels wordt mensen. De wolf ernaast is het echte logo, getekend
 als pure lijnkunst die zichzelf inschetst, geen vulling behalve de amberen
 tong. Een amberkleurig geurspoor tekent zich over de pagina terwijl je
@@ -122,7 +122,7 @@ zodra reduced motion aanstaat.
 
 ## Eén bron van waarheid
 
-De casepagina's draaien op een klein systeem. De marge-labels op deze
+De casepagina's van deze site draaien op een klein systeem. De marge-labels op deze
 pagina zijn de enige bron van waarheid voor de sectie-index: de
 scroll-spy-rail op desktop, de zwevende pil op mobiel en de ankerlinks die
 blijven werken met JavaScript uit, tijdens de build gestempeld door een

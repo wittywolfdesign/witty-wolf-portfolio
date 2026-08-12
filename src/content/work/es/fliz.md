@@ -70,7 +70,7 @@ el diferenciador donde no se pueda pasar por alto.
 
 ## La cuenta de empresa, reconstruida en torno al cashback
 
-Un comercio no debería entrar para *mirar* su cuenta. Debería entrar para
+Un comercio de FLIZ no debería entrar para *mirar* su cuenta. Debería entrar para
 *gestionarla*. El panel tiene un solo trabajo, y no es aceptar pagos, eso lo hace la
 app. Es donde un comercio fija su cashback, ve cómo rinde y mantiene la tienda
 conectada. Así que reconstruimos el FLIZ Company Account en torno a
@@ -109,7 +109,7 @@ sola pantalla.
 
 ## Un número, antes que nada
 
-Lo primero que muestra el panel no es un menú. Son cuatro números. Esa fue la
+Lo primero que muestra el panel de FLIZ no es un menú. Son cuatro números. Esa fue la
 decisión de diseño: un valor honesto debería recibir al comercio antes de que haga
 nada, para que la cuenta responda a *¿cómo vamos?* de un vistazo.
 
@@ -143,7 +143,7 @@ nada, para que la cuenta responda a *¿cómo vamos?* de un vistazo.
 
 ## Un estado en el que confiar de un vistazo
 
-Un pago ocurrió o no, y un comercio no debería tener que adivinar cuál. La tabla de
+Un pago de FLIZ ocurrió o no, y un comercio no debería tener que adivinar cuál. La tabla de
 transacciones funciona con un solo sistema de estados y un mapeo de color fijo, de
 modo que un estado significa lo mismo cada vez que lo ves: verde liquidado, ámbar
 esperando, rojo fallido, gris detenido.
@@ -190,7 +190,7 @@ hacer en el panel.
 
 ## Una guía para comercios que vale la pena leer
 
-Dar de alta una tienda era un tutorial pesado y saltable. Siguiendo la dirección de
+Dar de alta una tienda en FLIZ era un tutorial pesado y saltable. Siguiendo la dirección de
 la design lead, lo rediseñé como una guía estática bien hecha y de baja tecnología,
 el tipo de documentación que de verdad lees, con los docs de Stripe como referencia
 visual: tranquila, secuencial, sin vídeo que aguantar. Se dibujó primero como
@@ -247,7 +247,7 @@ enviar y recibir de la app.
 
 ## Decisiones pequeñas, fricción real
 
-La gran estructura solo funciona si las señales pequeñas son honestas. Guardar una
+La gran estructura de la app de FLIZ solo funciona si las señales pequeñas son honestas. Guardar una
 oferta se marcaba con un clip, que se lee como *adjuntar*, no *guardar*, así que pasó
 a ser un corazón. Eso liberó la señal de urgencia que el clip enturbiaba, y el deal
 of the week tomó una llama para decir *esto caduca*.
@@ -256,7 +256,7 @@ of the week tomó una llama para decir *esto caduca*.
 
 ## Bajo el capó
 
-Bajo el trabajo visible estaba el tipo poco lucido, y ahí es donde mi reparto de
+Bajo el trabajo visible de FLIZpay estaba el tipo poco lucido, y ahí es donde mi reparto de
 tareas con la IA fue más nítido. Unas **1.150 capas** renombradas a sentence case
 y cerca de **50 localisation strings** arregladas en EN/DE, con una pasada por
 las mayúsculas: la IA hizo el grueso con un encargo preciso y propuso las
@@ -277,7 +277,7 @@ valía la pena resolver.
 
 ## Uso de IA
 
-La IA atravesó casi todas las partes de este trabajo, de la research al
+La IA atravesó casi todas las partes del proyecto de FLIZpay, de la research al
 QA. Los ejemplos más claros: rellenó la matriz competitiva con parámetros
 que fijé yo, y verifiqué cada conclusión en las apps de los propios
 rivales. Hizo el grueso del renombrado de 1.150 capas y de los arreglos de
