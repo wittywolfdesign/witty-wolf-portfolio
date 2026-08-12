@@ -103,7 +103,7 @@ const channels = [
        two can never say different things. -->
   <section class="section--tight" aria-labelledby="faq-heading">
     <div class="wrap">
-      <p class="mono faq__label" id="faq-heading">{T.contact.faqLabel}</p>
+      <h2 class="mono faq__label" id="faq-heading">{T.contact.faqLabel}</h2>
       <div class="faq">
         {T.contact.faq.map((item) => (
           <details class="faq__item">
@@ -184,11 +184,13 @@ const channels = [
      pages), answer in the reading face. */
   .faq__label {
     font-size: 0.72rem;
+    font-weight: 400;
+    line-height: 1.6;
     letter-spacing: 0.03em;
     color: var(--text-muted);
     border-top: 1px solid var(--line);
     padding-top: 1.25rem;
-    margin-bottom: 0.75rem;
+    margin: 0 0 0.75rem;
   }
   .faq { max-width: 62ch; }
   .faq__item { padding-block: 1.25rem; border-top: 1px solid var(--line); }
