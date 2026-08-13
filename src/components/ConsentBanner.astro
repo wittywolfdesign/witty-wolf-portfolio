@@ -17,7 +17,7 @@ import { t, type Locale } from "../i18n/ui";
 const T = t((Astro.currentLocale ?? "en") as Locale);
 ---
 
-<aside class="consent" data-consent-banner aria-label={T.consent.ariaLabel} aria-live="polite">
+<aside class="consent" data-consent-banner data-cookie-caught-text={T.consent.cookieCaught} aria-label={T.consent.ariaLabel} aria-live="polite">
   <div class="consent__card">
     <p class="consent__label">{T.consent.label}</p>
     <p class="consent__body">{T.consent.body}</p>
@@ -27,6 +27,27 @@ const T = t((Astro.currentLocale ?? "en") as Locale);
     </div>
   </div>
 </aside>
+
+<!-- The Allow reward: a hand-drawn cookie thrown across the page like a
+     flying kiss. Cloned into the DOM per throw, caught with a click before
+     it exits, missed and it just wanders off. Template only, never rendered
+     as-is; see the script. -->
+<template data-cookie-template>
+  <svg class="cookie-flyer" data-cookie-flyer viewBox="0 0 64 64" aria-hidden="true">
+    <path
+      class="cookie-flyer__body"
+      d="M32 6c8-1 17 1 22 8c5 6 8 15 6 23c-2 8-9 15-17 18c-8 3-18 3-25-2
+         c-7-5-12-13-11-22c1-9 6-18 15-22c3-2 7-3 10-3Z"
+    />
+    <circle class="cookie-flyer__chip" cx="24" cy="21" r="2.6" />
+    <circle class="cookie-flyer__chip" cx="39" cy="17" r="2.2" />
+    <circle class="cookie-flyer__chip" cx="45" cy="31" r="2.8" />
+    <circle class="cookie-flyer__chip" cx="21" cy="37" r="2.4" />
+    <circle class="cookie-flyer__chip" cx="34" cy="43" r="2.1" />
+    <circle class="cookie-flyer__chip" cx="15" cy="27" r="1.9" />
+    <circle class="cookie-flyer__chip" cx="30" cy="29" r="1.7" />
+  </svg>
+</template>
 
 <style>
   /* slim card, bottom-left, never a full-screen overlay. Hidden until the
@@ -100,6 +121,69 @@ const T = t((Astro.currentLocale ?? "en") as Locale);
     .consent { transition: none; transform: none; }
     .consent__decline { transition: none; }
   }
+
+  /* the flying cookie: spawned on Allow, cloned from the template above.
+     Fixed and unclipped so it can cross the whole viewport; above the
+     accent wash (140) so a page transition never eats it, below the
+     lightbox (200) on the off chance one is open. */
+  :global(.cookie-flyer) {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 150;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.18));
+    will-change: transform;
+  }
+  :global(.cookie-flyer__body) {
+    fill: #D9A05B;
+    stroke: var(--ink);
+    stroke-width: 2;
+    stroke-linejoin: round;
+  }
+  :global(.cookie-flyer__chip) { fill: #6B4226; }
+  :global([data-theme="dark"] .cookie-flyer__body) { fill: #C68B4A; }
+
+  /* the little pop-text on a catch, same mono voice as everything else */
+  :global(.cookie-caught-label) {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 151;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    padding: 0.2rem 0.5rem;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  /* crumbs: a small burst on catch, same ink/chip tones as the cookie */
+  :global(.cookie-crumb) {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 149;
+    width: 5px;
+    height: 5px;
+    border-radius: 1px;
+    background: #6B4226;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.cookie-flyer),
+    :global(.cookie-caught-label),
+    :global(.cookie-crumb) {
+      display: none;
+    }
+  }
 </style>
 
 <script>
@@ -127,11 +211,115 @@ const T = t((Astro.currentLocale ?? "en") as Locale);
   const show = (b: HTMLElement) => b.classList.add("is-visible");
   const hide = (b: HTMLElement) => b.classList.remove("is-visible");
 
+  // The Allow reward: a cookie thrown across the page like a flying kiss.
+  // Click it before it exits and it gets caught (a little bite wobble, a
+  // few crumbs, a "nom nom nom"); miss it and it just drifts off and
+  // removes itself. Skipped entirely under reduced motion.
+  function throwCookie(origin: HTMLElement) {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const tpl = document.querySelector<HTMLTemplateElement>("[data-cookie-template]");
+    const node = tpl?.content.firstElementChild?.cloneNode(true) as HTMLElement | undefined;
+    if (!node) return;
+    document.body.appendChild(node);
+
+    const r = origin.getBoundingClientRect();
+    const startX = r.left + r.width / 2 - 22;
+    const startY = r.top + r.height / 2 - 22;
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const dir = Math.random() < 0.5 ? -1 : 1;
+    const dx1 = dir * vw * (0.18 + Math.random() * 0.12);
+    const dy1 = -vh * (0.28 + Math.random() * 0.12);
+    const dx2 = dir * vw * (0.4 + Math.random() * 0.2);
+    const dy2 = -vh * (0.5 + Math.random() * 0.15);
+    const dx3 = dir * vw * (0.65 + Math.random() * 0.25);
+    const dy3 = -vh * (0.55 + Math.random() * 0.2);
+
+    // easing lives per-keyframe (on the transform segments only), so offsets
+    // stay real wall-clock fractions and opacity's own 0.06/0.85 stops read
+    // as intended: a fast fade in, fully visible through the flight, a fade
+    // out only in the last stretch
+    const anim = node.animate(
+      [
+        { transform: `translate(${startX}px, ${startY}px) rotate(0deg) scale(0.5)`, opacity: 0, easing: "ease-in" },
+        { opacity: 1, offset: 0.06 },
+        { transform: `translate(${startX + dx1}px, ${startY + dy1}px) rotate(90deg) scale(1)`, offset: 0.18, easing: "ease-out" },
+        { transform: `translate(${startX + dx2}px, ${startY + dy2}px) rotate(230deg) scale(1)`, offset: 0.6, easing: "ease-in" },
+        { opacity: 1, offset: 0.85 },
+        { transform: `translate(${startX + dx3}px, ${startY + dy3}px) rotate(380deg) scale(0.6)`, opacity: 0 },
+      ],
+      { duration: 2800, fill: "forwards" }
+    );
+
+    const catchIt = () => {
+      const rect = node.getBoundingClientRect();
+      anim.cancel();
+      node.style.transform = `translate(${rect.left}px, ${rect.top}px)`;
+      node.removeEventListener("click", catchIt);
+      bite(node, rect);
+    };
+    node.addEventListener("click", catchIt);
+    anim.onfinish = () => node.remove();
+  }
+
+  function bite(cookie: HTMLElement, rect: DOMRect) {
+    const banner = document.querySelector<HTMLElement>("[data-consent-banner]");
+    const text = banner?.dataset.cookieCaughtText ?? "Nom nom nom.";
+    const cx = rect.left + rect.width / 2 - 40;
+
+    const label = document.createElement("span");
+    label.className = "cookie-caught-label mono";
+    label.textContent = text;
+    document.body.appendChild(label);
+    label.animate(
+      [
+        { transform: `translate(${cx}px, ${rect.top - 10}px) scale(0.7)`, opacity: 0 },
+        { transform: `translate(${cx}px, ${rect.top - 26}px) scale(1)`, opacity: 1, offset: 0.2 },
+        { transform: `translate(${cx}px, ${rect.top - 26}px) scale(1)`, opacity: 1, offset: 0.7 },
+        { transform: `translate(${cx}px, ${rect.top - 44}px) scale(0.9)`, opacity: 0 },
+      ],
+      { duration: 1100, easing: "ease-out" }
+    ).onfinish = () => label.remove();
+
+    for (let i = 0; i < 6; i++) crumb(rect.left + rect.width / 2, rect.top + rect.height / 2);
+
+    const cx0 = rect.left, cy0 = rect.top;
+    cookie.animate(
+      [
+        { transform: `translate(${cx0}px, ${cy0}px) scale(1) rotate(0deg)` },
+        { transform: `translate(${cx0}px, ${cy0}px) scale(1.15) rotate(-8deg)`, offset: 0.15 },
+        { transform: `translate(${cx0}px, ${cy0}px) scale(0.85) rotate(6deg)`, offset: 0.35 },
+        { transform: `translate(${cx0}px, ${cy0}px) scale(1.05) rotate(-4deg)`, offset: 0.55 },
+        { transform: `translate(${cx0}px, ${cy0}px) scale(0.55) rotate(3deg)`, offset: 0.8 },
+        { transform: `translate(${cx0}px, ${cy0}px) scale(0) rotate(0deg)`, offset: 1 },
+      ],
+      { duration: 850, easing: "ease-in-out" }
+    ).onfinish = () => cookie.remove();
+  }
+
+  function crumb(x: number, y: number) {
+    const el = document.createElement("span");
+    el.className = "cookie-crumb";
+    document.body.appendChild(el);
+    const angle = Math.random() * Math.PI * 2;
+    const dist = 18 + Math.random() * 26;
+    const dx = Math.cos(angle) * dist;
+    const dy = Math.sin(angle) * dist * 0.6 - 6;
+    el.animate(
+      [
+        { transform: `translate(${x}px, ${y}px) scale(1)`, opacity: 1 },
+        { transform: `translate(${x + dx}px, ${y + dy - 4}px) scale(1)`, opacity: 1, offset: 0.35 },
+        { transform: `translate(${x + dx * 1.3}px, ${y + dy + 26}px) scale(0.4)`, opacity: 0 },
+      ],
+      { duration: 650 + Math.random() * 200, easing: "cubic-bezier(.3,.6,.6,1)" }
+    ).onfinish = () => el.remove();
+  }
+
   function bind(b: HTMLElement) {
     if (b.dataset.bound) return;
     b.dataset.bound = "1";
-    b.querySelector<HTMLButtonElement>("[data-consent-allow]")?.addEventListener("click", () => {
+    b.querySelector<HTMLButtonElement>("[data-consent-allow]")?.addEventListener("click", (e) => {
       write("granted"); loadClarity(); hide(b);
+      throwCookie(e.currentTarget as HTMLElement);
     });
     b.querySelector<HTMLButtonElement>("[data-consent-deny]")?.addEventListener("click", () => {
       write("denied"); hide(b);

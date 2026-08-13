@@ -178,6 +178,7 @@ const en = {
     allow: "Allow",
     deny: "No thanks",
     ariaLabel: "Cookie consent",
+    cookieCaught: "Nom nom nom.",
   },
   witty: {
     ariaLabel: "Witty, the site mascot",
@@ -352,6 +353,7 @@ const nl: typeof en = {
     allow: "Prima",
     deny: "Nee, bedankt",
     ariaLabel: "Cookietoestemming",
+    cookieCaught: "Hap hap hap.",
   },
   witty: {
     ariaLabel: "Witty, de mascotte van deze site",
@@ -524,6 +526,7 @@ const es: typeof en = {
     allow: "Vale",
     deny: "No, gracias",
     ariaLabel: "Consentimiento de cookies",
+    cookieCaught: "Ñam ñam ñam.",
   },
   witty: {
     ariaLabel: "Witty, la mascota de esta web",
